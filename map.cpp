@@ -7,13 +7,20 @@ map::map(int shipNum)
   //based on ship implemenation, perhaps ships could be placed in this function.
 }
 
+//check length is 2, first coordinate, second coordinate
 bool map::validPos(std::string pos)
 {
-  bool isValid = true;
-  //check length is 2, if not then set bool to false.
-  //check first coordinate, if not in range set bool to false.
-  //check second coordinate, if not in range set bool to false.
-  return(isValid);
+  if(pos.length()==2)
+  {
+    if(pos[0]=='A'||pos[0]=='B'||pos[0]=='C'||pos[0]=='D'||pos[0]=='E'||pos[0]=='F'||pos[0]=='G'||pos[0]=='H')
+    {
+      if(pos[1]=='1'||pos[1]=='2'||pos[1]=='3'||pos[1]=='4'||pos[1]=='5'||pos[1]=='6'||pos[1]=='7'||pos[1]=='8')
+      {
+        return true;
+      }
+    }
+  }
+  return false;
 }
 
 void map::printEnemyShotMap()
