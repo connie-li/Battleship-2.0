@@ -2,9 +2,82 @@
 #include "ship.h"
 #include <iostream>
 
+// ~ water
+//O Miss
+//X Hit
+//5 Carrier
+//4 BattleShip
+//3 Cruiser
+//2 Desroyer
+//1 Tug
 map::map(int shipNum)
 {
+  for(int i=0;i<8;i++) //Creating the 2D array
+  {
+    for(int j=0;j<8;j++)
+    {
+      gridMap[i][j]='~';
+    }
+  }
+  std::string tempCoordStart;
+  std::string tempCoordEnd;
+  for(int i=shipNum;i>0;i--) //Filling the Array with ships
+  {
+    std::cout<<"Please input the starting coordinate for your "<<i<<"x1 ship.\n";
+    std::cin>>tempCoordStart;
+    bool exit=false;
+    while(!exit) //Checks the first Coordinate
+    {
+      if(!validPos(tempCoordStart))
+      {
+        std::cout<<"Invalid coordinate. Please inout another: \n";
+        std::cin>>tempCoordStart;
+      }
+      else
+      {
+        exit=true;
+      }
+    }
+    exit=false;
+    std::cin>>tempCoordEnd;
+    while(!exit) //Checks the Second Coordinate
+    {
+      if(!validPos(tempCoordEnd))
+      {
+        std::cout<<"Invalid coordinate. Please inout another: \n";
+        std::cin>>tempCoordEnd;
+      }
+      else
+      {
+        exit=true;
+      }
+      if(tempCoordStart[0]==tempCoordEnd[0]||tempCoordStart[1]==tempCoordEnd[1])//Checks if it a Strait line
+      {
+        if(checkShipLength(tempCoordStart, tempCoordEnd, i))//Checks if the Ship is the correct length
+        {
+          if(checkShipPosition(tempCoordStart, tempCoordEnd))//Checks if the ship position is valid
+          {
+            addShip(tempCoordStart, tempCoordEnd);
+          }
+        }
+      }
+    }
+  }
+}
 
+bool map::checkShipLength(std::string start, std::string end, int length)
+{
+
+}
+
+bool map::checkShipPosition(std::string start, std::string end)
+{
+
+}
+
+void map::addShip(std::string start, std::string end)
+{
+  
 }
 
 //check length is 2, first coordinate, second coordinate
