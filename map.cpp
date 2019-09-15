@@ -4,7 +4,7 @@
 
 map::map(int shipNum)
 {
-  //based on ship implemenation, perhaps ships could be placed in this function.
+
 }
 
 //check length is 2, first coordinate, second coordinate
@@ -30,7 +30,15 @@ void map::printEnemyShotMap()
 
 void map::printCurrentMap()
 {
-  //cout with grid format untouched. For player
+  for(int i=0;i<8;i++)
+  {
+    std::cout<< '\n';
+    for(int j=0;j<8;j++)
+    {
+      std::cout<<gridMap[i][j];
+      std::cout<<" ";
+    }
+  }
 }
 
 void map::incomingShot(std::string pos)
