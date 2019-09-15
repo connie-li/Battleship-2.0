@@ -18,16 +18,16 @@ void exec::run()
   int row;
   int ship_num;
   bool working = false;
-  int player_choice;
+  std::string player_choice;
   while(gamerun == true)
     {
       std::cout << "\n\nWelcome to Battleship!\nMenu:\n 1) Start Game\n 2) Instructions\n 3) Quit Game\n 4) Segfault the program\n\nEnter option (1-4): ";
       std::cin >> player_choice;
-      if(player_choice != 1 || player_choice != 2 ||player_choice != 3 || player_choice != 4)
+      if(player_choice != "1" && player_choice != "2" && player_choice != "3" && player_choice != "4")
       {
         std::cout << "\nError with player selection please choose 1, 2, 3 or, 4\n";
       }
-      if(player_choice == 1)
+      if(player_choice == "1")
       {
         while(working == false)
           {
@@ -45,17 +45,17 @@ void exec::run()
           }
         //send number of ships down to //map(shipnum)
         }
-        if(player_choice == 2)
+        if(player_choice == "2")
         {
           std::cout << "\nGoals of the game!: Sink all enemy ships\n\nHow to Play:\n - You, the player, will start by selecting how many ships you'd like to play with, 1 to 5 ships.";
           std::cout << "\n - You will walk through and place your ships and then take turns entering coordinates to attack the other players ships.\n - The game is over when all Enemy Ships have been sunk.";
         }
-        if(player_choice == 3)
+        if(player_choice == "3")
         {
           gamerun = false;
           std::cout << "\nHave a nice day!\n";
         }
-        if(player_choice == 4)
+        if(player_choice == "4")
         {
           std::cout << "\n\nIt's a feature not a bug :p\n\n";
           raise(SIGSEGV);
