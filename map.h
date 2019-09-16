@@ -8,7 +8,12 @@ class map
 {
   private:
     char** gridMap; //2D array of chars for 8x8 grid of positions to hide boats and land shots.
-    ship* fleet; //Possible dynamically allocated array of ships, not sure on ship class implementation.
+    std::string fleet[5]={"Tug", "Destroyer", "Cruiser", "BattleShip", "Carrier"}; //Names of the Boats
+    bool checkShipLength(std::string start, std::string end, int length);
+    bool checkShipPosition(std::string start, std::string end);
+    void addShip(std::string start, std::string end);
+    int charCoordtoIntCoord(char c);
+
   public:
     map(int shipNum); //constructor is likely needed, implementation will depend on ship class implementation.
     bool validPos(std::string pos); //returns if valid position in bool.
