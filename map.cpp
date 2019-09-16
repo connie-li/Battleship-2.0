@@ -295,7 +295,22 @@ bool map::validPos(std::string pos)
 
 void map::printEnemyShotMap()
 {
-    //cout with grid format but if a ship icon is seen, change to empty water. For opponent.
+  for(int i=0;i<8;i++)
+  {
+    std::cout<< '\n';
+    for(int j=0;j<8;j++)
+    {
+      if(gridMap[i][j]!='~'||gridMap[i][j]!='O'||gridMap[i][j]!='X')
+      {
+        std::cout<<"~ ";
+      }
+      else
+      {
+        std::cout<<gridMap[i][j];
+        std::cout<<" ";
+      }
+    }
+  }
 }
 
 void map::printCurrentMap()
