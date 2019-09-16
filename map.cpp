@@ -464,5 +464,9 @@ bool map::gameOver()
 
 map::~map()
 {
-
+  for(int i=0;i<8;i++)
+  {
+    delete gridMap[i];
+  }
+  delete gridMap;
 }
