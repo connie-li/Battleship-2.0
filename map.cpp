@@ -23,7 +23,7 @@ map::map(int shipNum)
   std::string tempCoordEnd;
   for(int i=shipNum;i>0;i--) //Filling the Array with ships
   {
-    std::cout<<"Please input the starting coordinate for your "<<i<<"x1 ship.\n";
+    std::cout<<"Please input the starting coordinate for your "<<i<<"x1 ship.\nThis would take the form of an UPPERCASE letter and a number. Ex: A3\n";
     std::cin>>tempCoordStart;
     bool exit=false;
     while(!exit) //Checks the first Coordinate
@@ -67,7 +67,21 @@ map::map(int shipNum)
 
 bool map::checkShipLength(std::string start, std::string end, int length)
 {
-
+  if(start[0]==end[0]) //Checks to see if they have the same letter and checks the difference in the numbers
+  {
+    if((end[1]-start[1]==length)||(start[1]-end[1]==length))
+    {
+      return true;
+    }
+  }
+  if(start[1]==end[1]) //Checks to see if the number is the same and checks the difference in the letters
+  {
+    if((end[0]-start[0]==length)||(start[0]-end[1]==length))
+    {
+      return true;
+    }
+  }
+  return false;
 }
 
 bool map::checkShipPosition(std::string start, std::string end)
@@ -77,7 +91,7 @@ bool map::checkShipPosition(std::string start, std::string end)
 
 void map::addShip(std::string start, std::string end)
 {
-  
+
 }
 
 //check length is 2, first coordinate, second coordinate
