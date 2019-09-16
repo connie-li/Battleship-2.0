@@ -1,7 +1,6 @@
 #include "exec.h"
 #include "map.h"
 #include <iostream>
-#include <signal.h>
 
 void exec::run()
 {
@@ -14,18 +13,16 @@ void exec::run()
   //delete maps.
   //end code.
   bool gamerun = true;
-  char* c = ""; //collums
-  int row;
   int ship_num;
   bool working = false;
   std::string player_choice;
   while(gamerun == true)
     {
-      std::cout << "\n\nWelcome to Battleship!\nMenu:\n 1) Start Game\n 2) Instructions\n 3) Quit Game\n 4) Segfault the program\n\nEnter option (1-4): ";
+      std::cout << "\n\nWelcome to Battleship!\nMenu:\n 1) Start Game\n 2) Instructions\n 3) Quit Game\n\nEnter option (1-3): ";
       std::cin >> player_choice;
-      if(player_choice != "1" && player_choice != "2" && player_choice != "3" && player_choice != "4")
+      if(player_choice != "1" && player_choice != "2" && player_choice != "3" )
       {
-        std::cout << "\nError with player selection please choose 1, 2, 3 or, 4\n";
+        std::cout << "\nError with player selection please choose 1, 2, or 3 \n";
       }
       if(player_choice == "1")
       {
@@ -54,11 +51,6 @@ void exec::run()
         {
           gamerun = false;
           std::cout << "\nHave a nice day!\n";
-        }
-        if(player_choice == "4")
-        {
-          std::cout << "\n\nIt's a feature not a bug :p\n\n";
-          raise(SIGSEGV);
         }
       }
 }
