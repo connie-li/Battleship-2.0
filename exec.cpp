@@ -13,7 +13,8 @@ void exec::run()
   //delete maps.
   //end code.
   bool gamerun = true;
-  int ship_num;
+  std::string ship_num;
+  int ship_int;
   bool working = false;
   std::string player_choice;
   while(gamerun == true)
@@ -30,16 +31,22 @@ void exec::run()
           {
             std::cout << "\nHow many ships would you like to play with? (1-5 ships): ";
             std::cin >> ship_num;
-            if(ship_num == 1 || ship_num == 2 || ship_num == 3 || ship_num == 4 || ship_num == 5)
+            if(ship_num == "1" || ship_num == "2" || ship_num == "3" || ship_num == "4" || ship_num == "5")
               {
                 working = true;
-                std::cout << "\nit worked";
+                ship_int = std::stoi(ship_num);
+                std::cout << "\nit worked\n";
               }
             else
             {
               std::cout << "\nError with number of ships, please enter a valid number 1, 2, 3, 4 or, 5\n";
             }
           }
+          std::cout << "Player 1 place your ships:\n\n";
+          playerOneMap = new map(ship_int);
+          std::cout << "\n\n\n\n\n\n\n\n\n\nPlayer 2 place your ships:\n\n";
+          playerTwoMap = new map(ship_int);
+
         //send number of ships down to //map(shipnum)
         }
         if(player_choice == "2")
