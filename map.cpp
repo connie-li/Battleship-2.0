@@ -67,16 +67,16 @@ map::map(int shipNum)
 
 bool map::checkShipLength(std::string start, std::string end, int length)
 {
-  if(start[0]==end[0]) //Checks to see if they have the same letter and checks the difference in the numbers
+  if(start[0]==end[0]) //Checks to see if they have the same number and checks the difference in the letters
   {
-    if((end[1]-start[1]==length)||(start[1]-end[1]==length))
+    if((end[1]-start[1]==length)||(start[1]-end[1]==(length-1)))
     {
       return true;
     }
   }
-  if(start[1]==end[1]) //Checks to see if the number is the same and checks the difference in the letters
+  if(start[1]==end[1]) //Checks to see if the letters are the same and checks the difference in the numbers
   {
-    if((end[0]-start[0]==length)||(start[0]-end[1]==length))
+    if((end[0]-start[0]==length)||(start[0]-end[0]==(length-1)))
     {
       return true;
     }
@@ -90,13 +90,53 @@ bool map::checkShipPosition(std::string start, std::string end) //finish this af
   int ed; //end coordinate letter as an int
   st = charCoordtoIntCoord(start[0]);
   ed = charCoordtoIntCoord(end[0]);
-  if(st==ed)
+  if(st==ed) //if the letters are the same
   {
-    if(start[1]<end[1])
+    if(start[1]<end[1]) //checks if the start number is less than the end number
     {
-
-    }//Checks if the start coordinate is
+      for(int i=0;i<(end[1]-start[1])+1;i++)
+      {
+        if(gridMap[start[1]+i][start[st]]!='~')
+        {
+          return false;
+        }
+      }
+    }
+    else
+    {
+      for(int i=0;i<(start[1]-end[1])+1;i++)
+      {
+        if(gridMap[end[1]+i][end[st]]!='~')
+        {
+          return false;
+        }
+      }
+    }
   }
+  else //if the letters are different
+  {
+    if(st<ed) //checks if the start letter is less than the end letter
+    {
+      for(int i=0;i<(ed-st)+1;i++)
+      {
+        if(gridMap[start[1]][start[st+i]]!='~')
+        {
+          return false;
+        }
+      }
+    }
+    else
+    {
+      for(int i=0;i<(st-ed)+1;i++)
+      {
+        if(gridMap[end[1]][end[st+i]]!='~')
+        {
+          return false;
+        }
+      }
+    }
+  }
+  return true;
 }
 
 int map::charCoordtoIntCoord(char c)
@@ -179,7 +219,7 @@ void map::incomingShot(std::string pos)
   //Fired from opponent to players board. position should already have been checked, so just go through steps to place shot.
 }
 
-bool gameOver()
+bool map::gameOver()
 {
   bool isOver = true;
   //checks if all ships are sunk.

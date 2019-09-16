@@ -21,7 +21,6 @@ class map
     void printCurrentMap(); //Map with ships for the player to see what the opponent has done to their field.
     void incomingShot(std::string pos); //Shot landing on player's map, fired by opponent.
     bool gameOver(); //Checks if all ships are sunk
-
     ~map(); //2D array might not have to be dynamically allocated, in which case remove this.
 };
 
