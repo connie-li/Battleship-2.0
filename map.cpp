@@ -330,7 +330,119 @@ void map::printCurrentMap()
 void map::incomingShot(std::string pos)
 {
   int posLetter = charCoordtoIntCoord(pos[0]);
-
+  bool exit=false;
+  while(!exit)
+  {
+    if(gridMap[pos[1]-49][posLetter]=='O'||gridMap[pos[1]-49][posLetter]=='X')
+    {
+      std::cout<<"You have already shot here. Please select another coordinate: \n";
+    }
+    else
+    {
+      exit=true;
+    }
+  }
+  bool sunk=true;
+  if(gridMap[pos[1]-49][posLetter]=='C')
+  {
+    std::cout<<"Hit!\n";
+    gridMap[pos[1]-49][posLetter]='X';
+    for(int i=0;i<8;i++)
+    {
+      for(int j=0;j<8;j++)
+      {
+        if(gridMap[pos[1]-49][posLetter]=='C')
+        {
+          sunk=false;
+        }
+      }
+    }
+    if(sunk==true)
+    {
+      std::cout<<"You sunk my Carrier!\n";
+    }
+  }
+  else if(gridMap[pos[1]-49][posLetter]=='B')
+  {
+    std::cout<<"Hit!\n";
+    gridMap[pos[1]-49][posLetter]='X';
+    for(int i=0;i<8;i++)
+    {
+      for(int j=0;j<8;j++)
+      {
+        if(gridMap[pos[1]-49][posLetter]=='B')
+        {
+          sunk=false;
+        }
+      }
+    }
+    if(sunk==true)
+    {
+      std::cout<<"You sunk my Battleship!\n";
+    }
+  }
+  else if(gridMap[pos[1]-49][posLetter]=='D')
+  {
+    std::cout<<"Hit!\n";
+    gridMap[pos[1]-49][posLetter]='X';
+    for(int i=0;i<8;i++)
+    {
+      for(int j=0;j<8;j++)
+      {
+        if(gridMap[pos[1]-49][posLetter]=='D')
+        {
+          sunk=false;
+        }
+      }
+    }
+    if(sunk==true)
+    {
+      std::cout<<"You sunk my Destroyer!\n";
+    }
+  }
+  else if(gridMap[pos[1]-49][posLetter]=='S')
+  {
+    std::cout<<"Hit!\n";
+    gridMap[pos[1]-49][posLetter]='X';
+    for(int i=0;i<8;i++)
+    {
+      for(int j=0;j<8;j++)
+      {
+        if(gridMap[pos[1]-49][posLetter]=='S')
+        {
+          sunk=false;
+        }
+      }
+    }
+    if(sunk==true)
+    {
+      std::cout<<"You sunk my Carrier!\n";
+    }
+  }
+  else if(gridMap[pos[1]-49][posLetter]=='T')
+  {
+    std::cout<<"Hit!\n";
+    gridMap[pos[1]-49][posLetter]='X';
+    for(int i=0;i<8;i++)
+    {
+      for(int j=0;j<8;j++)
+      {
+        if(gridMap[pos[1]-49][posLetter]=='T')
+        {
+          sunk=false;
+        }
+      }
+    }
+    if(sunk==true)
+    {
+      std::cout<<"You sunk my Tug Boat!\n";
+    }
+  }
+  else //Has to be ~ then
+  {
+    gridMap[pos[1]-49][posLetter]='O';
+    std::cout<<"Miss!\n";
+  }
 }
 
 bool map::gameOver()
