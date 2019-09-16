@@ -84,9 +84,55 @@ bool map::checkShipLength(std::string start, std::string end, int length)
   return false;
 }
 
-bool map::checkShipPosition(std::string start, std::string end)
+bool map::checkShipPosition(std::string start, std::string end) //finish this after fixing coordinate system
 {
+  int st; //start coordinate letter as an int
+  int ed; //end coordinate letter as an int
+  st = charCoordtoIntCoord(start[0]);
+  ed = charCoordtoIntCoord(end[0]);
+  if(st==ed)
+  {
+    if(start[1]<end[1])
+    {
 
+    }//Checks if the start coordinate is
+  }
+}
+
+int map::charCoordtoIntCoord(char c)
+{
+  if(c=='A')
+  {
+    return 0;
+  }
+  if(c=='B')
+  {
+    return 1;
+  }
+  if(c=='C')
+  {
+    return 2;
+  }
+  if(c=='D')
+  {
+    return 3;
+  }
+  if(c=='E')
+  {
+    return 4;
+  }
+  if(c=='F')
+  {
+    return 5;
+  }
+  if(c=='G')
+  {
+    return 6;
+  }
+  if(c=='H')
+  {
+    return 7;
+  }
 }
 
 void map::addShip(std::string start, std::string end)

@@ -12,6 +12,7 @@ class map
     bool checkShipLength(std::string start, std::string end, int length);
     bool checkShipPosition(std::string start, std::string end);
     void addShip(std::string start, std::string end);
+    int charCoordtoIntCoord(char c);
 
   public:
     map(int shipNum); //constructor is likely needed, implementation will depend on ship class implementation.
