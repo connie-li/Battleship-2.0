@@ -96,7 +96,7 @@ bool map::checkShipPosition(std::string start, std::string end) //finish this af
     {
       for(int i=0;i<(end[1]-start[1])+1;i++)
       {
-        if(gridMap[start[1]+i][start[st]]!='~')
+        if(gridMap[start[1]-49+i][st]!='~')
         {
           return false;
         }
@@ -106,7 +106,7 @@ bool map::checkShipPosition(std::string start, std::string end) //finish this af
     {
       for(int i=0;i<(start[1]-end[1])+1;i++)
       {
-        if(gridMap[end[1]+i][end[st]]!='~')
+        if(gridMap[end[1]-49+i][ed]!='~')
         {
           return false;
         }
@@ -119,7 +119,7 @@ bool map::checkShipPosition(std::string start, std::string end) //finish this af
     {
       for(int i=0;i<(ed-st)+1;i++)
       {
-        if(gridMap[start[1]][start[st+i]]!='~')
+        if(gridMap[start[1]-49][st+i]!='~')
         {
           return false;
         }
@@ -129,7 +129,7 @@ bool map::checkShipPosition(std::string start, std::string end) //finish this af
     {
       for(int i=0;i<(st-ed)+1;i++)
       {
-        if(gridMap[end[1]][end[st+i]]!='~')
+        if(gridMap[end[1]-49][ed+i]!='~')
         {
           return false;
         }
@@ -189,19 +189,19 @@ void map::addShip(std::string start, std::string end)
       {
         if(((end[1]-start[1])+1)==2)
         {
-          gridMap[start[1]+i][start[st]]='S';
+          gridMap[start[1]-49+i][st]='S';
         }
         else if(((end[1]-start[1])+1)==3)
         {
-          gridMap[start[1]+i][start[st]]='D';
+          gridMap[start[1]-49+i][st]='D';
         }
         else if(((end[1]-start[1])+1)==4)
         {
-          gridMap[start[1]+i][start[st]]='B';
+          gridMap[start[1]-49+i][st]='B';
         }
         else
         {
-          gridMap[start[1]+i][start[st]]='C';
+          gridMap[start[1]-49+i][st]='C';
         }
       }
     }
@@ -211,19 +211,19 @@ void map::addShip(std::string start, std::string end)
       {
         if(((start[1]-end[1])+1)==2)
         {
-          gridMap[end[1]+i][end[st]]='S';
+          gridMap[end[1]-49+i][ed]='S';
         }
         else if(((start[1]-end[1])+1)==3)
         {
-          gridMap[end[1]+i][end[st]]='D';
+          gridMap[end[1]-49+i][ed]='D';
         }
         else if(((start[1]-end[1])+1)==4)
         {
-          gridMap[end[1]+i][end[st]]='B';
+          gridMap[end[1]-49+i][ed]='B';
         }
         else
         {
-          gridMap[end[1]+i][end[st]]='C';
+          gridMap[end[1]-49+i][ed]='C';
         }
       }
     }
@@ -236,19 +236,19 @@ void map::addShip(std::string start, std::string end)
       {
         if(((end[1]-start[1])+1)==2)
         {
-          gridMap[start[1]][start[st+i]]='S';
+          gridMap[start[1]-49][st+i]='S';
         }
         else if(((end[1]-start[1])+1)==3)
         {
-          gridMap[start[1]][start[st+i]]='D';
+          gridMap[start[1]-49][st+i]='D';
         }
         else if(((end[1]-start[1])+1)==4)
         {
-          gridMap[start[1]][start[st+i]]='B';
+          gridMap[start[1]-49][st+i]='B';
         }
         else
         {
-          gridMap[start[1]][start[st+i]]='C';
+          gridMap[start[1]-49][st+i]='C';
         }
       }
     }
@@ -258,19 +258,19 @@ void map::addShip(std::string start, std::string end)
       {
         if(((start[1]-end[1])+1)==2)
         {
-          gridMap[end[1]][end[st+i]]='S';
+          gridMap[end[1]-49][ed+i]='S';
         }
         else if(((start[1]-end[1])+1)==3)
         {
-          gridMap[end[1]][end[st+i]]='D';
+          gridMap[end[1]-49][ed+i]='D';
         }
         else if(((start[1]-end[1])+1)==4)
         {
-          gridMap[end[1]][end[st+i]]='B';
+          gridMap[end[1]-49][ed+i]='B';
         }
         else
         {
-          gridMap[end[1]][end[st+i]]='C';
+          gridMap[end[1]-49][ed+i]='C';
         }
       }
     }
@@ -326,9 +326,11 @@ void map::printCurrentMap()
   }
 }
 
+//Fired from opponent to players board. position should already have been checked, so just go through steps to place shot.
 void map::incomingShot(std::string pos)
 {
-  //Fired from opponent to players board. position should already have been checked, so just go through steps to place shot.
+  int posLetter = charCoordtoIntCoord(pos[0]);
+
 }
 
 bool map::gameOver()
