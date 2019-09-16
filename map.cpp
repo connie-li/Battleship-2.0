@@ -173,6 +173,7 @@ int map::charCoordtoIntCoord(char c)
   {
     return 7;
   }
+  return 0;
 }
 
 void map::addShip(std::string start, std::string end)
@@ -351,7 +352,7 @@ void map::incomingShot(std::string pos)
     {
       for(int j=0;j<8;j++)
       {
-        if(gridMap[pos[1]-49][posLetter]=='C')
+        if(gridMap[i][j]=='C')
         {
           sunk=false;
         }
@@ -370,7 +371,7 @@ void map::incomingShot(std::string pos)
     {
       for(int j=0;j<8;j++)
       {
-        if(gridMap[pos[1]-49][posLetter]=='B')
+        if(gridMap[i][j]=='B')
         {
           sunk=false;
         }
@@ -389,7 +390,7 @@ void map::incomingShot(std::string pos)
     {
       for(int j=0;j<8;j++)
       {
-        if(gridMap[pos[1]-49][posLetter]=='D')
+        if(gridMap[i][j]=='D')
         {
           sunk=false;
         }
@@ -408,7 +409,7 @@ void map::incomingShot(std::string pos)
     {
       for(int j=0;j<8;j++)
       {
-        if(gridMap[pos[1]-49][posLetter]=='S')
+        if(gridMap[i][j]=='S')
         {
           sunk=false;
         }
@@ -427,7 +428,7 @@ void map::incomingShot(std::string pos)
     {
       for(int j=0;j<8;j++)
       {
-        if(gridMap[pos[1]-49][posLetter]=='T')
+        if(gridMap[i][j]=='T')
         {
           sunk=false;
         }
@@ -447,9 +448,18 @@ void map::incomingShot(std::string pos)
 
 bool map::gameOver()
 {
-  bool isOver = true;
-  //checks if all ships are sunk.
-  return(isOver);
+  bool done=true;
+  for(int i=0;i<8;i++)
+  {
+    for(int j=0;j<8;j++)
+    {
+      if(gridMap[i][j]=='C'||gridMap[i][j]=='B'||gridMap[i][j]=='D'||gridMap[i][j]=='S'||gridMap[i][j]=='T')
+      {
+        done=false;
+      }
+    }
+  }
+  return done;
 }
 
 map::~map()
