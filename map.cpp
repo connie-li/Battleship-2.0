@@ -7,8 +7,8 @@
 //X Hit
 //5 Carrier
 //4 BattleShip
-//3 Cruiser
-//2 Desroyer
+//3 Desroyer
+//2 Submarine
 //1 Tug
 map::map(int shipNum)
 {
@@ -177,7 +177,104 @@ int map::charCoordtoIntCoord(char c)
 
 void map::addShip(std::string start, std::string end)
 {
-
+  int st; //start coordinate letter as an int
+  int ed; //end coordinate letter as an int
+  st = charCoordtoIntCoord(start[0]);
+  ed = charCoordtoIntCoord(end[0]);
+  if(st==ed) //if the letters are the same
+  {
+    if(start[1]<end[1]) //checks if the start number is less than the end number
+    {
+      for(int i=0;i<(end[1]-start[1])+1;i++)
+      {
+        if(((end[1]-start[1])+1)==2)
+        {
+          gridMap[start[1]+i][start[st]]='S';
+        }
+        else if(((end[1]-start[1])+1)==3)
+        {
+          gridMap[start[1]+i][start[st]]='D';
+        }
+        else if(((end[1]-start[1])+1)==4)
+        {
+          gridMap[start[1]+i][start[st]]='B';
+        }
+        else
+        {
+          gridMap[start[1]+i][start[st]]='C';
+        }
+      }
+    }
+    else
+    {
+      for(int i=0;i<(start[1]-end[1])+1;i++)
+      {
+        if(((start[1]-end[1])+1)==2)
+        {
+          gridMap[end[1]+i][end[st]]='S';
+        }
+        else if(((start[1]-end[1])+1)==3)
+        {
+          gridMap[end[1]+i][end[st]]='D';
+        }
+        else if(((start[1]-end[1])+1)==4)
+        {
+          gridMap[end[1]+i][end[st]]='B';
+        }
+        else
+        {
+          gridMap[end[1]+i][end[st]]='C';
+        }
+      }
+    }
+  }
+  else //if the letters are different
+  {
+    if(st<ed) //checks if the start letter is less than the end letter
+    {
+      for(int i=0;i<(ed-st)+1;i++)
+      {
+        if(((end[1]-start[1])+1)==2)
+        {
+          gridMap[start[1]][start[st+i]]='S';
+        }
+        else if(((end[1]-start[1])+1)==3)
+        {
+          gridMap[start[1]][start[st+i]]='D';
+        }
+        else if(((end[1]-start[1])+1)==4)
+        {
+          gridMap[start[1]][start[st+i]]='B';
+        }
+        else
+        {
+          gridMap[start[1]][start[st+i]]='C';
+        }
+      }
+    }
+    else
+    {
+      for(int i=0;i<(st-ed)+1;i++)
+      {
+        if(((start[1]-end[1])+1)==2)
+        {
+          gridMap[end[1]][end[st+i]]='S';
+        }
+        else if(((start[1]-end[1])+1)==3)
+        {
+          gridMap[end[1]][end[st+i]]='D';
+        }
+        else if(((start[1]-end[1])+1)==4)
+        {
+          gridMap[end[1]][end[st+i]]='B';
+        }
+        else
+        {
+          gridMap[end[1]][end[st+i]]='C';
+        }
+      }
+    }
+  }
 }
 
 //check length is 2, first coordinate, second coordinate
