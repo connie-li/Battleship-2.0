@@ -1,5 +1,4 @@
 #include "map.h"
-#include "ship.h"
 #include <iostream>
 
 // ~ water
