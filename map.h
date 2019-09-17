@@ -1,6 +1,6 @@
 #ifndef MAP_H
 #define MAP_H
-#include "ship.h"
+
 #include <iostream>
 
 
