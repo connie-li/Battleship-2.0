@@ -36,7 +36,6 @@ void exec::run()
               {
                 working = true;
                 ship_int = std::stoi(ship_num); //If input is good, cast to int for map creation and end loop for menu.
-                std::cout << "\nit worked\n";
                 menurun = false;
               }
             else
@@ -64,10 +63,11 @@ void exec::run()
       while(1)
       { //player one start
         playerTwoMap->printEnemyShotMap(); //Where they have shot
+        std::cout << "\n";
         playerOneMap->printCurrentMap(); //Their own map
         while(!playerOneMap->validPos(player_shot)) //Continually ask until valid coordinate is given.
         {
-          std::cout << "Player 1, input a valid coordinate to fire on: ";
+          std::cout << "\nPlayer 1, input a valid coordinate to fire on: ";
           std::cin >> player_shot;
         }
         playerTwoMap->incomingShot(player_shot); //fire shot at given coordintate.
@@ -80,10 +80,11 @@ void exec::run()
         std::cout << "\n\n\n\n";
         //Player 2 start, repeating same process
         playerOneMap->printEnemyShotMap();
+        std::cout << "\n";
         playerTwoMap->printCurrentMap();
         while(!playerTwoMap->validPos(player_shot))
         {
-          std::cout << "Player 2, input a valid coordinate to fire on: ";
+          std::cout << "\nPlayer 2, input a valid coordinate to fire on: ";
           std::cin >> player_shot;
         }
         playerOneMap->incomingShot(player_shot);
