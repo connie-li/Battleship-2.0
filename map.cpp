@@ -1,3 +1,7 @@
+// @File Name: map.cpp
+// @Assignment: EECS 448 Project 1
+// @Brief: This program is the .cpp for the map class, it implements the game
+
 #include "map.h"
 #include <iostream>
 
@@ -58,35 +62,30 @@ map::map(int shipNum)
                {
                  std::cout<<"Invalid position. Please input another new first: \n";
                  tempCoordEnd = "";
-                 //std::cin>>tempCoordStart;
                }
              }
             else
             {
               std::cout<<"Invalid length. Please input another new first: \n";
               tempCoordEnd = "";
-              //std::cin>>tempCoordStart;
             }
           }
           else
           {
             std::cout<<"Invalid direction. Please input another new first: \n";
             tempCoordEnd = "";
-            //std::cin>>tempCoordStart;
           }
         }
         else
         {
           std::cout<<"Invalid second coord. Please input another new first: \n";
           tempCoordEnd = "";
-          //std::cin>>tempCoordStart;
         }
       }
       else
       {
         std::cout<<"Invalid first coord. Please input another new first: \n";
         tempCoordEnd = "";
-        //std::cin>>tempCoordStart;
       }
     }
   }
@@ -167,7 +166,7 @@ bool map::checkShipPosition(std::string start, std::string end) //finish this af
   return true;
 }
 
-int map::charCoordtoIntCoord(char c)
+int map::charCoordtoIntCoord(char c) //convert char A-H to int 0-7
 {
   if(c=='A')
   {
@@ -338,7 +337,7 @@ bool map::validPos(std::string pos)
   return false;
 }
 
-void map::printEnemyShotMap()
+void map::printEnemyShotMap() //prints enemy map
 {
   std::cout << " A B C D E F G H";
   for(int i=0;i<8;i++)
@@ -359,7 +358,7 @@ void map::printEnemyShotMap()
   }
 }
 
-void map::printCurrentMap()
+void map::printCurrentMap() //print current player's map
 {
   std::cout << " A B C D E F G H";
   for(int i=0;i<8;i++)
@@ -494,7 +493,7 @@ void map::incomingShot(std::string pos)
   }
 }
 
-bool map::gameOver()
+bool map::gameOver() //ends game if no boats left on one player's map
 {
   bool done=true;
   for(int i=0;i<8;i++)
@@ -510,7 +509,7 @@ bool map::gameOver()
   return done;
 }
 
-map::~map()
+map::~map() //destructor
 {
   for(int i=0;i<8;i++)
   {
