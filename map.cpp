@@ -382,7 +382,9 @@ void map::incomingShot(std::string pos)
   {
     if(gridMap[pos[1]-49][posLetter]=='O'||gridMap[pos[1]-49][posLetter]=='X')
     {
-      std::cout<<"You have already shot here. Please select another coordinate: \n";
+      std::cout<<"You have already shot here. Please select another coordinate: ";
+      std::cin>>pos;
+      std::cout<<'\n';
     }
     else
     {
@@ -463,7 +465,7 @@ void map::incomingShot(std::string pos)
     }
     if(sunk==true)
     {
-      std::cout<<"You sunk my Carrier!\n";
+      std::cout<<"You sunk my Submarine!\n";
     }
   }
   else if(gridMap[pos[1]-49][posLetter]=='T')
