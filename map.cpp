@@ -23,61 +23,75 @@ map::map(int shipNum)
       gridMap[i][j]='~';
     }
   }
+
   std::string tempCoordStart;
   std::string tempCoordEnd;
   for(int i=shipNum;i>0;i--) //Filling the Array with ships
   {
+    tempCoordStart = "";
+    tempCoordEnd = "";
     std::cout << "Current Map:\n";
     printCurrentMap();
     std::cout<<"\nPlease input the starting coordinate for your "<<i<<"x1 ship.\nThis would take the form of an UPPERCASE letter and a number. Ex: A3\n";
-    std::cin>>tempCoordStart;
-    bool exit=false;
-    while(!exit) //Checks the first Coordinate
+    bool exit1=false;
+
+    while(!exit1) //Checks the first Coordinate
     {
-      if(!validPos(tempCoordStart)||(gridMap[tempCoordStart[0]-65][tempCoordEnd[1]-49] == 'T'||gridMap[tempCoordStart[0]-65][tempCoordEnd[1]-49] == 'S'||gridMap[tempCoordStart[0]-65][tempCoordEnd[1]-49] == 'D'||gridMap[tempCoordStart[0]-65][tempCoordEnd[1]-49] == 'B'||gridMap[tempCoordStart[0]-65][tempCoordEnd[1]-49] == 'C'))
-      {
-        std::cout<<"Invalid coordinate. Please input another: \n";
-        std::cin>>tempCoordStart;
-      }
-      else
-      {
-        exit=true;
-      }
-    }
-    exit=false;
-    std::cout << "\nNow input an end coordinate for your "<<i<<"x1 ship. Should be the correct distance from the first coordinate and same format.\n";
-    std::cin>>tempCoordEnd;
-    while(!exit) //Checks the Second Coordinate
-    {
-      if(!validPos(tempCoordEnd))
-      {
-        std::cout<<"Invalid coordinate. Please input another: \n";
-        std::cin>>tempCoordEnd;
-      }
-      else if(tempCoordStart[0]==tempCoordEnd[0]||tempCoordStart[1]==tempCoordEnd[1])//Checks if it a Strait line
-      {
-        if(checkShipLength(tempCoordStart, tempCoordEnd, i))//Checks if the Ship is the correct length
-        {
-          if(checkShipPosition(tempCoordStart, tempCoordEnd))//Checks if the ship position is valid
-          {
-            addShip(tempCoordStart, tempCoordEnd);
-            exit=true;
+      std::cout<<"begin while\n";
+      std::cin>>tempCoordStart;
+       if(validPos(tempCoordStart))
+       {
+         std::cout << "\nNow input an end coordinate for your "<<i<<"x1 ship. Should be the correct distance from the first coordinate and same format.\n";
+         std::cin>>tempCoordEnd;
+         if(validPos(tempCoordEnd))
+         {
+           if(tempCoordStart[0]==tempCoordEnd[0]||tempCoordStart[1]==tempCoordEnd[1])//Checks if it a Strait line
+           {
+             if(checkShipLength(tempCoordStart, tempCoordEnd, i))//Checks if the Ship is the correct length
+             {
+               if(checkShipPosition(tempCoordStart, tempCoordEnd))//Checks if the ship position is valid
+               {
+                 addShip(tempCoordStart, tempCoordEnd);
+                 exit1=true;
+               }
+               else
+               {
+                 std::cout<<"Invalid position. Please input another new first: \n";
+                 tempCoordEnd = "";
+                 //std::cin>>tempCoordStart;
+               }
+             }
+            else
+            {
+              std::cout<<"Invalid length. Please input another new first: \n";
+              tempCoordEnd = "";
+              //std::cin>>tempCoordStart;
+            }
           }
           else
           {
-            std::cout<<"Invalid coordinate. Please input another: \n";
-            std::cin>>tempCoordEnd;
+            std::cout<<"Invalid direction. Please input another new first: \n";
+            tempCoordEnd = "";
+            //std::cin>>tempCoordStart;
           }
         }
         else
         {
-          std::cout<<"Invalid coordinate. Please input another: \n";
-          std::cin>>tempCoordEnd;
+          std::cout<<"Invalid second coord. Please input another new first: \n";
+          tempCoordEnd = "";
+          //std::cin>>tempCoordStart;
         }
+      }
+      else
+      {
+        std::cout<<"Invalid first coord. Please input another new first: \n";
+        tempCoordEnd = "";
+        //std::cin>>tempCoordStart;
       }
     }
   }
 }
+
 
 bool map::checkShipLength(std::string start, std::string end, int length)
 {
@@ -196,7 +210,7 @@ void map::addShip(std::string start, std::string end)
   int ed; //end coordinate letter as an int
   st = charCoordtoIntCoord(start[0]);
   ed = charCoordtoIntCoord(end[0]);
-  if(st==ed) //if the letters are the same
+  if(st==ed) //if the letters are the same - vertical
   {
     if(start[1]<end[1]) //checks if the start number is less than the end number
     {
@@ -251,25 +265,25 @@ void map::addShip(std::string start, std::string end)
       }
     }
   }
-  else //if the letters are different
+  else //if the letters are different - Horizontal
   {
     if(st<ed) //checks if the start letter is less than the end letter
     {
       for(int i=0;i<(ed-st)+1;i++)
       {
-        if(((end[1]-start[1])+1)==1)
+        if(((end[0]-start[0])+1)==1)
         {
           gridMap[start[1]-49][st+i]='T';
         }
-        else if(((end[1]-start[1])+1)==2)
+        else if(((end[0]-start[0])+1)==2)
         {
           gridMap[start[1]-49][st+i]='S';
         }
-        else if(((end[1]-start[1])+1)==3)
+        else if(((end[0]-start[0])+1)==3)
         {
           gridMap[start[1]-49][st+i]='D';
         }
-        else if(((end[1]-start[1])+1)==4)
+        else if(((end[0]-start[0])+1)==4)
         {
           gridMap[start[1]-49][st+i]='B';
         }
@@ -283,19 +297,19 @@ void map::addShip(std::string start, std::string end)
     {
       for(int i=0;i<(st-ed)+1;i++)
       {
-        if(((start[1]-end[1])+1)==1)
+        if(((start[0]-end[0])+1)==1)
         {
           gridMap[end[1]-49][ed+i]='T';
         }
-        else if(((start[1]-end[1])+1)==2)
+        else if(((start[0]-end[0])+1)==2)
         {
           gridMap[end[1]-49][ed+i]='S';
         }
-        else if(((start[1]-end[1])+1)==3)
+        else if(((start[0]-end[0])+1)==3)
         {
           gridMap[end[1]-49][ed+i]='D';
         }
-        else if(((start[1]-end[1])+1)==4)
+        else if(((start[0]-end[0])+1)==4)
         {
           gridMap[end[1]-49][ed+i]='B';
         }
