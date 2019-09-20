@@ -41,7 +41,6 @@ map::map(int shipNum)
 
     while(!exit1) //Checks the first Coordinate
     {
-      std::cout<<"begin while\n";
       std::cin>>tempCoordStart;
        if(validPos(tempCoordStart))
        {
