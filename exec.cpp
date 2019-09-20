@@ -1,6 +1,8 @@
 #include "exec.h"
 #include "map.h"
 #include <iostream>
+#include <chrono>
+#include <thread>
 
 void exec::run()
 {
@@ -12,6 +14,7 @@ void exec::run()
   //Once a gameOver() kills the loop, congratulate the winning player.
   //delete maps.
   //end code.
+  std::chrono::seconds interval(3);
   bool menurun = true;
   std::string ship_num;
   int ship_int;
@@ -20,7 +23,15 @@ void exec::run()
   std::string player_shot = "";
   while(menurun == true)
     {
-      std::cout << "\n\nWelcome to Battleship!\nMenu:\n 1) Start Game\n 2) Instructions\n 3) Quit Game\n\nEnter option (1-3): ";
+      std::cout << "\n\n  ____        _   _   _           _     _       \n";
+      std::cout << " |  _ \\      | | | | | |         | |   (_)      \n";
+      std::cout << " | |_) | __ _| |_| |_| | ___  ___| |__  _ _ __  \n";
+      std::cout << " |  _ < / _` | __| __| |/ _ \\/ __| '_ \\| | '_ \\ \n";
+      std::cout << " | |_) | (_| | |_| |_| |  __/\\__ \\ | | | | |_) |\n";
+      std::cout << " |____/ \\__,_|\\__|\\__|_|\\___||___/_| |_|_| .__/ \n";
+      std::cout << "                                         | |    \n";
+      std::cout << "                                         |_|    \n"; //ASCII conversion done with online generator, http://patorjk.com/software/taag/
+      std::cout << "\nMenu:\n 1) Start Game\n 2) Instructions\n 3) Quit Game\n\nEnter option (1-3): ";
       std::cin >> player_choice;
       if(player_choice != "1" && player_choice != "2" && player_choice != "3" )
       {
@@ -60,10 +71,12 @@ void exec::run()
       playerOneMap = new map(ship_int); //Each player takes turns placing ships in the map class.
       std::cout << "\n\n\n\n\n\n\n\n\n\nPlayer 2 place your ships:\n\n";
       playerTwoMap = new map(ship_int);
+      std::cout << "\n\n\n\n\n\n\n\n\n\n";
       while(1)
       { //player one start
+        std::cout << "Your shots:\n";
         playerTwoMap->printEnemyShotMap(); //Where they have shot
-        std::cout << "\n";
+        std::cout << "\n\nYour board:\n";
         playerOneMap->printCurrentMap(); //Their own map
         while(!playerOneMap->validPos(player_shot)) //Continually ask until valid coordinate is given.
         {
@@ -77,10 +90,12 @@ void exec::run()
         }
         player_shot = ""; //Reset coordinate to avoid infinite loop of both players firing on same spot.
 
+        std::this_thread::sleep_for(interval);
         std::cout << "\n\n\n\n";
         //Player 2 start, repeating same process
+        std::cout << "Your shots:\n";
         playerOneMap->printEnemyShotMap();
-        std::cout << "\n";
+        std::cout << "\n\nYour board:\n";
         playerTwoMap->printCurrentMap();
         while(!playerTwoMap->validPos(player_shot))
         {
@@ -94,6 +109,7 @@ void exec::run()
         }
         player_shot = "";
 
+        std::this_thread::sleep_for(interval);
         std::cout << "\n\n\n\n";
       }
       std::cout << "\n\n\n";
