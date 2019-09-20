@@ -14,7 +14,7 @@ void exec::run()
   //Once a gameOver() kills the loop, congratulate the winning player.
   //delete maps.
   //end code.
-  std::chrono::seconds interval(3);
+  std::chrono::seconds interval(2);
   bool menurun = true;
   std::string ship_num;
   int ship_int;
@@ -69,9 +69,9 @@ void exec::run()
       } //Start of gamplay phase.
       std::cout << "Player 1 place your ships:\n\n";
       playerOneMap = new map(ship_int); //Each player takes turns placing ships in the map class.
-      std::cout << "\n\n\n\n\n\n\n\n\n\nPlayer 2 place your ships:\n\n";
+      std::cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPlayer 2 place your ships:\n\n";
       playerTwoMap = new map(ship_int);
-      std::cout << "\n\n\n\n\n\n\n\n\n\n";
+      std::cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
       while(1)
       { //player one start
         std::cout << "Your shots:\n";
@@ -91,7 +91,7 @@ void exec::run()
         player_shot = ""; //Reset coordinate to avoid infinite loop of both players firing on same spot.
 
         std::this_thread::sleep_for(interval);
-        std::cout << "\n\n\n\n";
+        std::cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
         //Player 2 start, repeating same process
         std::cout << "Your shots:\n";
         playerOneMap->printEnemyShotMap();
@@ -110,7 +110,7 @@ void exec::run()
         player_shot = "";
 
         std::this_thread::sleep_for(interval);
-        std::cout << "\n\n\n\n";
+        std::cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
       }
       std::cout << "\n\n\n";
       if(playerTwoMap->gameOver())//If all player 2 ships have been sunk, player 1 wins.
@@ -121,6 +121,15 @@ void exec::run()
       {
         std::cout << "Congratulations player 2, you are the winner!\n\n";
       }
+      std::cout << "                                  )___(\n";
+      std::cout << "                           _______/__/_\n";
+      std::cout << "                  ___     /===========|   ___\n";
+      std::cout << " ____       __   [\\\\]___/____________|__[///]   __\n";
+      std::cout << " \\   \\_____[\\\\]__/___________________________\\__[//]___\n";
+      std::cout << "  \\448                                                 |\n";
+      std::cout << "   \\                                                  /\n";
+      std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n\n";
+
       delete playerOneMap; //de-allocate memory like a good boy.
       delete playerTwoMap;
 }
