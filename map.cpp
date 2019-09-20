@@ -44,8 +44,15 @@ map::map(int shipNum)
       std::cin>>tempCoordStart;
        if(validPos(tempCoordStart))
        {
-         std::cout << "\nNow input an end coordinate for your "<<i<<"x1 ship. Should be the correct distance from the first coordinate and same format.\n";
-         std::cin>>tempCoordEnd;
+         if(i == 1)
+         {
+           tempCoordEnd = tempCoordStart;
+         }
+         else
+         {
+           std::cout << "\nNow input an end coordinate for your "<<i<<"x1 ship. Should be the correct distance from the first coordinate and same format.\n";
+           std::cin>>tempCoordEnd;
+        }
          if(validPos(tempCoordEnd))
          {
            if(tempCoordStart[0]==tempCoordEnd[0]||tempCoordStart[1]==tempCoordEnd[1])//Checks if it a Strait line
@@ -77,13 +84,13 @@ map::map(int shipNum)
         }
         else
         {
-          std::cout<<"Invalid second coord. Please input another new first: \n";
+          std::cout<<"Invalid second coordinate. Please input another new first: \n";
           tempCoordEnd = "";
         }
       }
       else
       {
-        std::cout<<"Invalid first coord. Please input another new first: \n";
+        std::cout<<"Invalid first coordinate. Please input another new first: \n";
         tempCoordEnd = "";
       }
     }
