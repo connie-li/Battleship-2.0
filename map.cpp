@@ -4,6 +4,8 @@
 
 #include "map.h"
 #include <iostream>
+#include <chrono>
+#include <thread>
 
 // ~ water
 //O Miss
@@ -50,7 +52,7 @@ map::map(int shipNum)
         }
         else
         {
-          std::cout << "\nNow input an end coordinate for your " << i << "x1 ship. Should be the correct distance from the first coordinate and same format.\n";
+          std::cout << "\nNow input an end coordinate for your " << i << "x1 ship. \nShould be the correct distance from the first coordinate and same format.\n This would take the form of an UPPERCASE letter and a number. Ex: A3\n";
           std::cin >> tempCoordEnd;
         }
         if (validPos(tempCoordEnd))
@@ -414,6 +416,7 @@ void map::incomingShot(std::string pos)
     }
     if (sunk == true)
     {
+      std::this_thread::sleep_for(interval);
       std::cout << "You sunk my Carrier!\n";
     }
   }
@@ -433,6 +436,7 @@ void map::incomingShot(std::string pos)
     }
     if (sunk == true)
     {
+      std::this_thread::sleep_for(interval);
       std::cout << "You sunk my Battleship!\n";
     }
   }
@@ -452,6 +456,7 @@ void map::incomingShot(std::string pos)
     }
     if (sunk == true)
     {
+      std::this_thread::sleep_for(interval);
       std::cout << "You sunk my Destroyer!\n";
     }
   }
@@ -471,6 +476,7 @@ void map::incomingShot(std::string pos)
     }
     if (sunk == true)
     {
+      std::this_thread::sleep_for(interval);
       std::cout << "You sunk my Submarine!\n";
     }
   }
@@ -490,12 +496,14 @@ void map::incomingShot(std::string pos)
     }
     if (sunk == true)
     {
+      std::this_thread::sleep_for(interval);
       std::cout << "You sunk my Tug Boat!\n";
     }
   }
   else //Has to be ~ then
   {
     gridMap[pos[1] - 49][posLetter] = 'O';
+    std::this_thread::sleep_for(interval);
     std::cout << "Miss!\n";
   }
 }
