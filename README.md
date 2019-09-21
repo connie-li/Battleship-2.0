@@ -8,4 +8,4 @@
 ======================================
 
 #### Game Screenshot:
- ![MinyeGit]https://github.com/Team-CodingCodersWhoCodeThings/Battleship/blob/feature/Document/Menu%20Screenshot.png)
+ ![MinyeGit](https://github.com/Team-CodingCodersWhoCodeThings/Battleship/blob/feature/Document/Menu%20Screenshot.png)
