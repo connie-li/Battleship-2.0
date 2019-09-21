@@ -390,7 +390,7 @@ void map::incomingShot(std::string pos)
   {
     if (gridMap[pos[1] - 49][posLetter] == 'O' || gridMap[pos[1] - 49][posLetter] == 'X')
     {
-      std::cout << "You have already shot here. Please select another coordinate: ";
+      std::cout << "\n\nYou have already shot here. Please select another coordinate: ";
       std::cin >> pos;
       std::cout << '\n';
     }
@@ -402,7 +402,7 @@ void map::incomingShot(std::string pos)
   bool sunk = true;
   if (gridMap[pos[1] - 49][posLetter] == 'C')
   {
-    std::cout << "Hit!\n";
+    std::cout << "\n\nHit!\n";
     gridMap[pos[1] - 49][posLetter] = 'X';
     for (int i = 0; i < 8; i++)
     {
@@ -417,12 +417,12 @@ void map::incomingShot(std::string pos)
     if (sunk == true)
     {
       std::this_thread::sleep_for(interval);
-      std::cout << "You sunk my Carrier!\n";
+      std::cout << "\n\nYou sunk my Carrier!\n";
     }
   }
   else if (gridMap[pos[1] - 49][posLetter] == 'B')
   {
-    std::cout << "Hit!\n";
+    std::cout << "\n\nHit!\n";
     gridMap[pos[1] - 49][posLetter] = 'X';
     for (int i = 0; i < 8; i++)
     {
@@ -437,12 +437,12 @@ void map::incomingShot(std::string pos)
     if (sunk == true)
     {
       std::this_thread::sleep_for(interval);
-      std::cout << "You sunk my Battleship!\n";
+      std::cout << "\n\nYou sunk my Battleship!\n";
     }
   }
   else if (gridMap[pos[1] - 49][posLetter] == 'D')
   {
-    std::cout << "Hit!\n";
+    std::cout << "\n\nHit!\n";
     gridMap[pos[1] - 49][posLetter] = 'X';
     for (int i = 0; i < 8; i++)
     {
@@ -457,12 +457,12 @@ void map::incomingShot(std::string pos)
     if (sunk == true)
     {
       std::this_thread::sleep_for(interval);
-      std::cout << "You sunk my Destroyer!\n";
+      std::cout << "\n\nYou sunk my Destroyer!\n";
     }
   }
   else if (gridMap[pos[1] - 49][posLetter] == 'S')
   {
-    std::cout << "Hit!\n";
+    std::cout << "\n\nHit!\n";
     gridMap[pos[1] - 49][posLetter] = 'X';
     for (int i = 0; i < 8; i++)
     {
@@ -477,12 +477,12 @@ void map::incomingShot(std::string pos)
     if (sunk == true)
     {
       std::this_thread::sleep_for(interval);
-      std::cout << "You sunk my Submarine!\n";
+      std::cout << "\n\nYou sunk my Submarine!\n";
     }
   }
   else if (gridMap[pos[1] - 49][posLetter] == 'T')
   {
-    std::cout << "Hit!\n";
+    std::cout << "\n\nHit!\n";
     gridMap[pos[1] - 49][posLetter] = 'X';
     for (int i = 0; i < 8; i++)
     {
@@ -497,14 +497,14 @@ void map::incomingShot(std::string pos)
     if (sunk == true)
     {
       std::this_thread::sleep_for(interval);
-      std::cout << "You sunk my Tug Boat!\n";
+      std::cout << "\n\nYou sunk my Tug Boat!\n";
     }
   }
   else //Has to be ~ then
   {
     gridMap[pos[1] - 49][posLetter] = 'O';
     std::this_thread::sleep_for(interval);
-    std::cout << "Miss!\n";
+    std::cout << "\n\nMiss!\n";
   }
 }
 
