@@ -6,11 +6,18 @@
 #define MAP_H
 
 #include <iostream>
+#include <chrono>
+#include <thread>
 
 
 class map
 {
   private:
+
+    std::chrono::duration<unsigned long long> interval = std::chrono::seconds(2);
+
+    // the thread sleep variable instantiation
+
     char** gridMap;
 
     //2D array of chars for 8x8 grid of positions to hide boats and land shots.
