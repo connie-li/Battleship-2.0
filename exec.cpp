@@ -1,3 +1,7 @@
+// @File Name: exec.cpp
+// @Assignment: EECS 448 Project 1
+// @Brief: This program is the .cpp file for the exec class. It runs the game
+
 #include "exec.h"
 #include "map.h"
 #include <iostream>
@@ -32,7 +36,7 @@ void exec::run()
     std::cout << "                                         | |    \n";
     std::cout << "                                         |_|    \n"; //ASCII conversion done with online generator, http://patorjk.com/software/taag/
     std::cout << "\nMenu:\n 1) Start Game\n 2) Instructions\n 3) Quit Game\n\nEnter option (1-3): ";
-    std::cin >> player_choice;
+    std::getline(std::cin,player_choice);
     if (player_choice != "1" && player_choice != "2" && player_choice != "3")
     {
       std::cout << "\nError with player selection please choose 1, 2, or 3 \n";
@@ -42,7 +46,7 @@ void exec::run()
       while (working == false)
       {
         std::cout << "\nHow many ships would you like to play with? (1-5 ships): ";
-        std::cin >> ship_num;
+        std::getline(std::cin,ship_num);
         if (ship_num == "1" || ship_num == "2" || ship_num == "3" || ship_num == "4" || ship_num == "5")
         {
           working = true;
@@ -81,7 +85,7 @@ void exec::run()
     while (!playerOneMap->validPos(player_shot)) //Continually ask until valid coordinate is given.
     {
       std::cout << "\nPlayer 1, input a valid coordinate to fire on: ";
-      std::cin >> player_shot;
+      std::getline(std::cin,player_shot);
     }
     playerTwoMap->incomingShot(player_shot); //fire shot at given coordintate.
     if (playerTwoMap->gameOver())            //If the shot ended the game, break gameplay loop.
@@ -100,7 +104,7 @@ void exec::run()
     while (!playerTwoMap->validPos(player_shot))
     {
       std::cout << "\nPlayer 2, input a valid coordinate to fire on: ";
-      std::cin >> player_shot;
+      std::getline(std::cin,player_shot);
     }
     playerOneMap->incomingShot(player_shot);
     if (playerOneMap->gameOver())
