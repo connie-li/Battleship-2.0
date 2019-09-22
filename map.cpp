@@ -53,7 +53,7 @@ map::map(int shipNum)
         else
         {
           std::cout << "\nNow input an end coordinate for your " << i << "x1 ship. \nShould be the correct distance from the first coordinate and same format.\n This would take the form of an UPPERCASE letter and a number. Ex: A3\n";
-          std::cin >> tempCoordEnd;
+          std::getline(std::cin,tempCoordEnd);
         }
         if (validPos(tempCoordEnd))
         {
@@ -68,32 +68,37 @@ map::map(int shipNum)
               }
               else
               {
-                std::cout << "Invalid position. Please input another new first: \n";
+                std::cout << "Invalid position. Please input another new first coordinate: \n";
                 tempCoordEnd = "";
+                tempCoordStart = "";
               }
             }
             else
             {
-              std::cout << "Invalid length. Please input another new first: \n";
+              std::cout << "Invalid length. Please input another new first coordinate: \n";
               tempCoordEnd = "";
+              tempCoordStart = "";
             }
           }
           else
           {
-            std::cout << "Invalid direction. Please input another new first: \n";
+            std::cout << "Invalid direction. Please input another new first coordinate: \n";
             tempCoordEnd = "";
+            tempCoordStart = "";
           }
         }
         else
         {
-          std::cout << "Invalid second coordinate. Please input another new first: \n";
+          std::cout << "Invalid second coordinate. Please input another new first coordinate: \n";
           tempCoordEnd = "";
+          tempCoordStart = "";
         }
       }
       else
       {
-        std::cout << "Invalid first coordinate. Please input another new first: \n";
+        std::cout << "Invalid first coordinate. Please input another new first coordinate: \n";
         tempCoordEnd = "";
+        tempCoordStart = "";
       }
     }
   }
