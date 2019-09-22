@@ -67,6 +67,8 @@ void exec::run()
     {
       std::cout << "\nGoals of the game!: Sink all enemy ships\n\nHow to Play:\n - You, the player, will start by selecting how many ships you'd like to play with, 1 to 5 ships.";
       std::cout << "\n - You will walk through and place your ships and then take turns entering coordinates to attack the other players ships.\n - The game is over when all Enemy Ships have been sunk.";
+      std::cout << "\n - Here are the lists of symbols that will show up on the board with explanations: \n";
+      std::cout << "\t • ~: Water \n\t • O: Miss \n\t • X: Hit \n\t • C: 5x1 Carrier \n\t • B: 4x1 Battleship \n\t • D: 3x1 Destroyer \n\t • S: 2x1 Submarine \n\t • T: 1x1 Tug Boat";
     }
     if (player_choice == "3")
     {
@@ -88,10 +90,10 @@ void exec::run()
   while (1)
   {
     /// player one start.
-    std::cout << "Your shots:\n";
+    std::cout << "Your shots:    The map below will show all the shot histories that you made to your opponent's board\n";
     /// Where they have shot.
     playerTwoMap->printEnemyShotMap();
-    std::cout << "\n\nYour board:\n";
+    std::cout << "\n\nYour board:    The map below will show the board with your ships on it as well as your opponent's shot histories against your board\n";
     /// Their own map.
     playerOneMap->printCurrentMap();
     /// Continually ask until valid coordinate is given.
