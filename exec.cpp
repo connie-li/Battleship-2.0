@@ -1,3 +1,7 @@
+// @File Name: exec.cpp
+// @Assignment: EECS 448 Project 1
+// @Brief: This program is the .cpp file for the exec class. It runs the game
+
 #include "exec.h"
 #include "map.h"
 #include <iostream>
