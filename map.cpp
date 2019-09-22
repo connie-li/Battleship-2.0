@@ -7,12 +7,12 @@
 #include <chrono>
 #include <thread>
 
-///  ~ water.
+/// ~ water.
 /// O Miss.
 /// X Hit.
 /// 5 Carrier.
 /// 4 BattleShip.
-/// 3 Desroyer.
+/// 3 Destroyer.
 /// 2 Submarine.
 /// 1 Tug.
 
