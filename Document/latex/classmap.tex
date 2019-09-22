@@ -1,0 +1,207 @@
+\hypertarget{classmap}{}\doxysection{map Class Reference}
+\label{classmap}\index{map@{map}}
+
+
+File Name \mbox{\hyperlink{map_8h_source}{map.\+h}}.  
+
+
+
+
+{\ttfamily \#include $<$map.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmap_ab32636bf9e331d997977068111353b35}{map}} (int ship\+Num)
+\begin{DoxyCompactList}\small\item\em constructor. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classmap_a51d62ae06fdff347a09f3a7b8697ccd9}{valid\+Pos}} (std\+::string pos)
+\begin{DoxyCompactList}\small\item\em check length is 2, first coordinate, second coordinate. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classmap_a9a15fc36bb8ccdc1773a5cbd41a622b0}{print\+Enemy\+Shot\+Map}} ()
+\begin{DoxyCompactList}\small\item\em prints enemy map. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classmap_a05f2fbeb28b3306f868c9e2abf1a0194}{print\+Current\+Map}} ()
+\begin{DoxyCompactList}\small\item\em print current player\textquotesingle{}s map. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classmap_a8e74ef4a03698c7ce9a85923777b438c}{incoming\+Shot}} (std\+::string pos)
+\begin{DoxyCompactList}\small\item\em Fired from opponent to players board. position should already have been checked, so just go through steps to place shot. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classmap_a982e1190c8e6f157ea7ab485ec3b5a1d}{game\+Over}} ()
+\begin{DoxyCompactList}\small\item\em ends game if no boats left on one player\textquotesingle{}s map. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classmap_a0cc22df7b44f7835fa10ed241848b041}{$\sim$map}} ()
+\begin{DoxyCompactList}\small\item\em A deconstructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+File Name \mbox{\hyperlink{map_8h_source}{map.\+h}}. 
+
+Assignment E\+E\+CS 448 Project 1. Brief This program is the .h file for the map class. It defines the functions used for playing the game. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmap_ab32636bf9e331d997977068111353b35}\label{classmap_ab32636bf9e331d997977068111353b35}} 
+\index{map@{map}!map@{map}}
+\index{map@{map}!map@{map}}
+\doxysubsubsection{\texorpdfstring{map()}{map()}}
+{\footnotesize\ttfamily map\+::map (\begin{DoxyParamCaption}\item[{int}]{ship\+Num }\end{DoxyParamCaption})}
+
+
+
+constructor. 
+
+File Name\+: map.\+cpp.
+
+\begin{DoxyPrecond}{Precondition}
+Exec object is created. 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+Map is created with ships. 
+\end{DoxyPostcond}
+
+\begin{DoxyParams}{Parameters}
+{\em ship\+Num} & How many ships are used. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none.
+\end{DoxyReturn}
+Assignment\+: E\+E\+CS 448 Project 1. Brief\+: This program is the .cpp for the map class, it implements the game. $\sim$ water. O Miss. X Hit. 5 Carrier. 4 Battle\+Ship. 3 Desroyer. 2 Submarine. 1 Tug. Creating the 2D array.
+
+Filling the Array with ships.
+
+Checks the first Coordinate.
+
+Checks if it a Strait line.
+
+Checks if the Ship is the correct length.
+
+Checks if the ship position is valid.\mbox{\Hypertarget{classmap_a0cc22df7b44f7835fa10ed241848b041}\label{classmap_a0cc22df7b44f7835fa10ed241848b041}} 
+\index{map@{map}!````~map@{$\sim$map}}
+\index{````~map@{$\sim$map}!map@{map}}
+\doxysubsubsection{\texorpdfstring{$\sim$map()}{~map()}}
+{\footnotesize\ttfamily map\+::$\sim$map (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+A deconstructor. 
+
+destructor.
+
+\begin{DoxyPrecond}{Precondition}
+map object is created. 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+map object is deleted. 
+\end{DoxyPostcond}
+\begin{DoxyReturn}{Returns}
+none. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmap_a982e1190c8e6f157ea7ab485ec3b5a1d}\label{classmap_a982e1190c8e6f157ea7ab485ec3b5a1d}} 
+\index{map@{map}!gameOver@{gameOver}}
+\index{gameOver@{gameOver}!map@{map}}
+\doxysubsubsection{\texorpdfstring{gameOver()}{gameOver()}}
+{\footnotesize\ttfamily bool map\+::game\+Over (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+ends game if no boats left on one player\textquotesingle{}s map. 
+
+\begin{DoxyPrecond}{Precondition}
+Map created, boats placed. 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+Checks if there are any boats left on a map, ends game. 
+\end{DoxyPostcond}
+\begin{DoxyReturn}{Returns}
+True if there are no boats, else false. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmap_a8e74ef4a03698c7ce9a85923777b438c}\label{classmap_a8e74ef4a03698c7ce9a85923777b438c}} 
+\index{map@{map}!incomingShot@{incomingShot}}
+\index{incomingShot@{incomingShot}!map@{map}}
+\doxysubsubsection{\texorpdfstring{incomingShot()}{incomingShot()}}
+{\footnotesize\ttfamily void map\+::incoming\+Shot (\begin{DoxyParamCaption}\item[{std\+::string}]{pos }\end{DoxyParamCaption})}
+
+
+
+Fired from opponent to players board. position should already have been checked, so just go through steps to place shot. 
+
+\begin{DoxyPrecond}{Precondition}
+Map created, boats placed, coordinates given. 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+Updates map to show current game status, prints message if hit, sunk, or missed. 
+\end{DoxyPostcond}
+
+\begin{DoxyParams}{Parameters}
+{\em pos} & Coordinate to be fired. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none. 
+\end{DoxyReturn}
+Has to be $\sim$ then.\mbox{\Hypertarget{classmap_a05f2fbeb28b3306f868c9e2abf1a0194}\label{classmap_a05f2fbeb28b3306f868c9e2abf1a0194}} 
+\index{map@{map}!printCurrentMap@{printCurrentMap}}
+\index{printCurrentMap@{printCurrentMap}!map@{map}}
+\doxysubsubsection{\texorpdfstring{printCurrentMap()}{printCurrentMap()}}
+{\footnotesize\ttfamily void map\+::print\+Current\+Map (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+print current player\textquotesingle{}s map. 
+
+\begin{DoxyPrecond}{Precondition}
+Map created, boats placed. 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+Prints current player\textquotesingle{}s map. 
+\end{DoxyPostcond}
+\begin{DoxyReturn}{Returns}
+none. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmap_a9a15fc36bb8ccdc1773a5cbd41a622b0}\label{classmap_a9a15fc36bb8ccdc1773a5cbd41a622b0}} 
+\index{map@{map}!printEnemyShotMap@{printEnemyShotMap}}
+\index{printEnemyShotMap@{printEnemyShotMap}!map@{map}}
+\doxysubsubsection{\texorpdfstring{printEnemyShotMap()}{printEnemyShotMap()}}
+{\footnotesize\ttfamily void map\+::print\+Enemy\+Shot\+Map (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+prints enemy map. 
+
+\begin{DoxyPrecond}{Precondition}
+Map created, boats placed. 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+Prints opposite player\textquotesingle{}s map. 
+\end{DoxyPostcond}
+\begin{DoxyReturn}{Returns}
+none. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmap_a51d62ae06fdff347a09f3a7b8697ccd9}\label{classmap_a51d62ae06fdff347a09f3a7b8697ccd9}} 
+\index{map@{map}!validPos@{validPos}}
+\index{validPos@{validPos}!map@{map}}
+\doxysubsubsection{\texorpdfstring{validPos()}{validPos()}}
+{\footnotesize\ttfamily bool map\+::valid\+Pos (\begin{DoxyParamCaption}\item[{std\+::string}]{pos }\end{DoxyParamCaption})}
+
+
+
+check length is 2, first coordinate, second coordinate. 
+
+\begin{DoxyPrecond}{Precondition}
+Map created, boats placed, coordinates given. 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+Returns if valid position. 
+\end{DoxyPostcond}
+
+\begin{DoxyParams}{Parameters}
+{\em pos} & Coordinate to check. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Return true if coordinate valid, else false. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+map.\+h\item 
+map.\+cpp\end{DoxyCompactItemize}
