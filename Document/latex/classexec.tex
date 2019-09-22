@@ -1,0 +1,74 @@
+\hypertarget{classexec}{}\doxysection{exec Class Reference}
+\label{classexec}\index{exec@{exec}}
+
+
+File Name\+: \mbox{\hyperlink{exec_8h_source}{exec.\+h}}.  
+
+
+
+
+{\ttfamily \#include $<$exec.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classexec_aad3ea9a2cd99fc28471062719b85b1f6}{run}} ()
+\begin{DoxyCompactList}\small\item\em begins the game. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+File Name\+: \mbox{\hyperlink{exec_8h_source}{exec.\+h}}. 
+
+Assignment\+: E\+E\+CS 448 Project 1. Brief\+: This program is the .h file for the exec class. It begins the game. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classexec_aad3ea9a2cd99fc28471062719b85b1f6}\label{classexec_aad3ea9a2cd99fc28471062719b85b1f6}} 
+\index{exec@{exec}!run@{run}}
+\index{run@{run}!exec@{exec}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily void exec\+::run (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+begins the game. 
+
+File Name\+: exec.\+cpp.
+
+Assignment\+: E\+E\+CS 448 Project 1. Brief\+: This program is the .cpp file for the exec class. It runs the game. First ask number of ships. create player\+One\+Map with that number, allowing them to place. repeat with player\+Two\+Map. begin looping using while loop, using the game\+Over() function to know when to stop. each loop prints a shot map and their own map, then allows player to fire on the others board. Once a game\+Over() kills the loop, congratulate the winning player. delete maps. end code.
+
+A\+S\+C\+II conversion done with online generator, \href{http://patorjk.com/software/taag/}{\texttt{ http\+://patorjk.\+com/software/taag/}}.
+
+If input is good, cast to int for map creation and end loop for menu.
+
+Quitting the program by returning and skipping gameplay phase.
+
+Start of gamplay phase.
+
+Each player takes turns placing ships in the map class.
+
+player one start.
+
+Where they have shot.
+
+Their own map.
+
+Continually ask until valid coordinate is given.
+
+fire shot at given coordintate.
+
+If the shot ended the game, break gameplay loop.
+
+Reset coordinate to avoid infinite loop of both players firing on same spot.
+
+Player 2 start, repeating same process.
+
+If all player 2 ships have been sunk, player 1 wins.
+
+Opposite condition and player 2 has won.
+
+de-\/allocate memory.
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+exec.\+h\item 
+exec.\+cpp\end{DoxyCompactItemize}
