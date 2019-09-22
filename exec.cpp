@@ -83,6 +83,8 @@ void exec::run()
   std::cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPlayer 2 place your ships:\n\n";
   playerTwoMap = new map(ship_int);
   std::cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+  std::cout << "Player 1 Get Ready!\n";
+  std::this_thread::sleep_for(interval);
   while (1)
   {
     /// player one start.
