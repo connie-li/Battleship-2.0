@@ -1,20 +1,21 @@
-// @File Name: map.cpp
-// @Assignment: EECS 448 Project 1
-// @Brief: This program is the .cpp for the map class, it implements the game
+/// File Name: map.cpp.
+/// Assignment: EECS 448 Project 1.
+/// Brief: This program is the .cpp for the map class, it implements the game.
 
 #include "map.h"
 #include <iostream>
 #include <chrono>
 #include <thread>
 
-// ~ water
-//O Miss
-//X Hit
-//5 Carrier
-//4 BattleShip
-//3 Desroyer
-//2 Submarine
-//1 Tug
+///  ~ water.
+/// O Miss.
+/// X Hit.
+/// 5 Carrier.
+/// 4 BattleShip.
+/// 3 Desroyer.
+/// 2 Submarine.
+/// 1 Tug.
+
 map::map(int shipNum)
 {
   gridMap = new char *[8];
@@ -22,7 +23,8 @@ map::map(int shipNum)
   {
     gridMap[i] = new char[8];
   }
-  for (int i = 0; i < 8; i++) //Creating the 2D array
+  /// Creating the 2D array.
+  for (int i = 0; i < 8; i++)
   {
     for (int j = 0; j < 8; j++)
     {
@@ -32,7 +34,8 @@ map::map(int shipNum)
 
   std::string tempCoordStart;
   std::string tempCoordEnd;
-  for (int i = shipNum; i > 0; i--) //Filling the Array with ships
+  /// Filling the Array with ships.
+  for (int i = shipNum; i > 0; i--)
   {
     tempCoordStart = "";
     tempCoordEnd = "";
@@ -40,8 +43,8 @@ map::map(int shipNum)
     printCurrentMap();
     std::cout << "\nPlease input the starting coordinate for your " << i << "x1 ship.\nThis would take the form of an UPPERCASE letter and a number. Ex: A3\n";
     bool exit1 = false;
-
-    while (!exit1) //Checks the first Coordinate
+    /// Checks the first Coordinate.
+    while (!exit1)
     {
       std::getline(std::cin,tempCoordStart);
       if (validPos(tempCoordStart))
@@ -57,11 +60,14 @@ map::map(int shipNum)
         }
         if (validPos(tempCoordEnd))
         {
-          if (tempCoordStart[0] == tempCoordEnd[0] || tempCoordStart[1] == tempCoordEnd[1]) //Checks if it a Strait line
+          /// Checks if it a Strait line.
+          if (tempCoordStart[0] == tempCoordEnd[0] || tempCoordStart[1] == tempCoordEnd[1])
           {
-            if (checkShipLength(tempCoordStart, tempCoordEnd, i)) //Checks if the Ship is the correct length
+            /// Checks if the Ship is the correct length.
+            if (checkShipLength(tempCoordStart, tempCoordEnd, i))
             {
-              if (checkShipPosition(tempCoordStart, tempCoordEnd)) //Checks if the ship position is valid
+              /// Checks if the ship position is valid.
+              if (checkShipPosition(tempCoordStart, tempCoordEnd))
               {
                 addShip(tempCoordStart, tempCoordEnd);
                 exit1 = true;
@@ -106,14 +112,16 @@ map::map(int shipNum)
 
 bool map::checkShipLength(std::string start, std::string end, int length)
 {
-  if (start[0] == end[0]) //Checks to see if they have the same number and checks the difference in the letters
+  /// Checks to see if they have the same number and checks the difference in the letters.
+  if (start[0] == end[0])
   {
     if ((end[1] - start[1] == (length - 1)) || (start[1] - end[1] == (length - 1)))
     {
       return true;
     }
   }
-  if (start[1] == end[1]) //Checks to see if the letters are the same and checks the difference in the numbers
+  /// Checks to see if the letters are the same and checks the difference in the numbers.
+  if (start[1] == end[1])
   {
     if ((end[0] - start[0] == (length - 1)) || (start[0] - end[0] == (length - 1)))
     {
@@ -123,15 +131,20 @@ bool map::checkShipLength(std::string start, std::string end, int length)
   return false;
 }
 
-bool map::checkShipPosition(std::string start, std::string end) //finish this after fixing coordinate system
+/// finish this after fixing coordinate system.
+bool map::checkShipPosition(std::string start, std::string end)
 {
-  int st; //start coordinate letter as an int
-  int ed; //end coordinate letter as an int
+  /// start coordinate letter as an int.
+  int st;
+  /// end coordinate letter as an int.
+  int ed;
   st = charCoordtoIntCoord(start[0]);
   ed = charCoordtoIntCoord(end[0]);
-  if (st == ed) //if the letters are the same
+  /// if the letters are the same.
+  if (st == ed)
   {
-    if (start[1] < end[1]) //checks if the start number is less than the end number
+    /// checks if the start number is less than the end number.
+    if (start[1] < end[1])
     {
       for (int i = 0; i < (end[1] - start[1]) + 1; i++)
       {
@@ -152,9 +165,11 @@ bool map::checkShipPosition(std::string start, std::string end) //finish this af
       }
     }
   }
-  else //if the letters are different
+  /// if the letters are different.
+  else
   {
-    if (st < ed) //checks if the start letter is less than the end letter
+    /// checks if the start letter is less than the end letter.
+    if (st < ed)
     {
       for (int i = 0; i < (ed - st) + 1; i++)
       {
@@ -178,7 +193,8 @@ bool map::checkShipPosition(std::string start, std::string end) //finish this af
   return true;
 }
 
-int map::charCoordtoIntCoord(char c) //convert char A-H to int 0-7
+/// convert char A-H to int 0-7.
+int map::charCoordtoIntCoord(char c)
 {
   if (c == 'A')
   {
@@ -217,13 +233,17 @@ int map::charCoordtoIntCoord(char c) //convert char A-H to int 0-7
 
 void map::addShip(std::string start, std::string end)
 {
-  int st; //start coordinate letter as an int
-  int ed; //end coordinate letter as an int
+  /// start coordinate letter as an int.
+  int st;
+  /// end coordinate letter as an int.
+  int ed;
   st = charCoordtoIntCoord(start[0]);
   ed = charCoordtoIntCoord(end[0]);
-  if (st == ed) //if the letters are the same - vertical
+  /// if the letters are the same - vertical.
+  if (st == ed)
   {
-    if (start[1] < end[1]) //checks if the start number is less than the end number
+    /// checks if the start number is less than the end number.
+    if (start[1] < end[1])
     {
       for (int i = 0; i < (end[1] - start[1]) + 1; i++)
       {
@@ -276,9 +296,11 @@ void map::addShip(std::string start, std::string end)
       }
     }
   }
-  else //if the letters are different - Horizontal
+  /// if the letters are different - Horizontal.
+  else
   {
-    if (st < ed) //checks if the start letter is less than the end letter
+    /// checks if the start letter is less than the end letter.
+    if (st < ed)
     {
       for (int i = 0; i < (ed - st) + 1; i++)
       {
@@ -333,7 +355,7 @@ void map::addShip(std::string start, std::string end)
   }
 }
 
-//check length is 2, first coordinate, second coordinate
+/// check length is 2, first coordinate, second coordinate.
 bool map::validPos(std::string pos)
 {
   if (pos.length() == 2)
@@ -349,7 +371,8 @@ bool map::validPos(std::string pos)
   return false;
 }
 
-void map::printEnemyShotMap() //prints enemy map
+/// prints enemy map.
+void map::printEnemyShotMap()
 {
   std::cout << " A B C D E F G H";
   for (int i = 0; i < 8; i++)
@@ -371,7 +394,8 @@ void map::printEnemyShotMap() //prints enemy map
   }
 }
 
-void map::printCurrentMap() //print current player's map
+/// print current player's map.
+void map::printCurrentMap()
 {
   std::cout << " A B C D E F G H";
   for (int i = 0; i < 8; i++)
@@ -386,7 +410,7 @@ void map::printCurrentMap() //print current player's map
   }
 }
 
-//Fired from opponent to players board. position should already have been checked, so just go through steps to place shot.
+/// Fired from opponent to players board. position should already have been checked, so just go through steps to place shot.
 void map::incomingShot(std::string pos)
 {
   int posLetter = charCoordtoIntCoord(pos[0]);
@@ -505,7 +529,8 @@ void map::incomingShot(std::string pos)
       std::cout << "\n\nYou sunk my Tug Boat!\n";
     }
   }
-  else //Has to be ~ then
+  /// Has to be ~ then.
+  else
   {
     gridMap[pos[1] - 49][posLetter] = 'O';
     std::this_thread::sleep_for(interval);
@@ -513,7 +538,8 @@ void map::incomingShot(std::string pos)
   }
 }
 
-bool map::gameOver() //ends game if no boats left on one player's map
+/// ends game if no boats left on one player's map.
+bool map::gameOver()
 {
   bool done = true;
   for (int i = 0; i < 8; i++)
@@ -529,7 +555,8 @@ bool map::gameOver() //ends game if no boats left on one player's map
   return done;
 }
 
-map::~map() //destructor
+/// destructor.
+map::~map()
 {
   for (int i = 0; i < 8; i++)
   {
