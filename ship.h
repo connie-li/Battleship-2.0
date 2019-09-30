@@ -12,7 +12,7 @@ class Ship
 	private: 
 		int m_size;
 		string* m_coords;
-		bool afloat;
+		bool m_afloat;
 		int m_numHits;
 
 	public:
