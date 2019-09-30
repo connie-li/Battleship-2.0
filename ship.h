@@ -11,9 +11,24 @@ class Ship
 {
 	private: 
 		int m_size;
-		string[] m_coords;
+		string* m_coords;
+		bool afloat;
+		int m_numHits;
 
 	public:
 		Ship(int size);
+		~Ship();
 
-}
+		// setters
+		void setStatus();
+		void incNumHits();
+		void setCoords(const string* coordsArr);
+
+		// getters
+		int getSize() const;
+		string* getCoords() const;
+		bool getAfloat() const;
+		int getNumHits() const;
+};
+
+#endif
