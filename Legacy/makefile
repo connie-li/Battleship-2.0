@@ -11,4 +11,4 @@ exec.o: exec.h exec.cpp
 	g++ -std=c++11 -g -Wall -c exec.cpp
 
 clean:
-	rm *.o Battleship
+	del *.o Battleship.exe
