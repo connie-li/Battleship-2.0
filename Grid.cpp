@@ -14,7 +14,12 @@ Grid::Grid(){
 }
 
 string Grid::getCoor(string coord){
-    return m_arr[rowCoor(coord)][colCoor(coord)];
+    int row = rowCoor(coord);
+    int col = colCoor(coord);
+    if(m_arr[row][col].at(0) = '$'){
+        return m_arr[row][col].substr(1);
+    }
+    return m_arr[row][col];
 }
 
 void Grid::setCoor(string coord, string value){
@@ -31,7 +36,7 @@ string Grid::randCoor(bool allowOcc){
         do{
             row = rand() % m_BOARD_SIZE + 1;
             col = rand() % m_BOARD_SIZE + 1;
-        }while(getCoor(row + ":" + col) != "~");
+        }while(m_arr[row][col] != "~");
     }
     return row + ":" + col;
 }
@@ -60,6 +65,38 @@ int Grid::rowCoor(string coord){
     return stoi(coord.substr(0, coord.find(":"))) - 1;
 }
 
-void Grid::printFiring(){}
+void Grid::printFiring(){
+    for(int i = 0; i < m_BOARD_SIZE; i++){
+        for(int j = 0; j < m_BOARD_SIZE; j++){
+            if(m_arr[i][j] == "O" || m_arr[i][j] == "X"){
+                cout<< m_arr[i][j];
+            }else if(m_arr[i][j].substr(0, 1) == "$"){
+                cout<< m_arr[i][j].substr(1);
+            }else{
+                cout<< "~";
+            }
+            cout<<"\t";
+        }
+        cout<<"\n";
+    }
+}
 
-void Grid::printShip(){}
+void Grid::printShip(){
+    for(int i = 0; i < m_BOARD_SIZE; i++){
+        for(int j = 0; j < m_BOARD_SIZE; j++){
+            char temp = "\0";
+            if(m_arr[i][j].length > 1){
+                temp = m_arr[i][j].at(1);
+            }else{
+                temp = m_arr[i][j].at(0);
+            }
+            if(((int)temp >= 48 && (int)temp <= 57) || temp == 'O' || temp == 'X'){
+                cout<< temp;
+            }else{
+                cout<< "~";
+            }
+            cout<<"\t";
+        }
+        cout<<"\n";
+    }
+}
