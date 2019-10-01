@@ -2,6 +2,8 @@
 #ifndef SHIP_H
 #define SHIP_H
 #include <string>
+#include <iostream>
+#include <stdexcept>
 using namespace std;
 
 /** Class that represents a Ship.
@@ -12,7 +14,7 @@ class Ship
 	private: 
 		int m_size;
 		string* m_coords;
-		bool m_afloat;
+		bool m_status;
 		int m_numHits;
 
 	public:
@@ -20,7 +22,7 @@ class Ship
 		~Ship();
 
 		// setters
-		void setStatus();
+		void setStatusFalse();
 		void incNumHits();
 		void setCoords(const string* coordsArr);
 
