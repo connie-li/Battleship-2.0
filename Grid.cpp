@@ -1,6 +1,7 @@
 #include "Grid.h"
 #include <string>
 #include <iostream>
+#include <cstdlib>
 
 Grid::Grid(){
     m_arr = new string*[m_BOARD_SIZE];
@@ -20,7 +21,20 @@ void Grid::setCoor(string coord, string value){
     m_arr[rowCoor(coord)][colCoor(coord)] = value;
 }
 
-string Grid::randCoor(bool allowOcc){}
+string Grid::randCoor(bool allowOcc){
+    int row = 0;
+    int col = 0;
+    if(allowOcc){
+        row = rand() % m_BOARD_SIZE + 1;
+        col = rand() % m_BOARD_SIZE + 1;
+    }else{
+        do{
+            row = rand() % m_BOARD_SIZE + 1;
+            col = rand() % m_BOARD_SIZE + 1;
+        }while(getCoor(row + ":" + col) != "~");
+    }
+    return row + ":" + col;
+}
 
 void Grid::printGrid(bool isFiring){
     if(isFiring){

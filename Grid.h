@@ -2,6 +2,7 @@
 #define GRID_H
 #include <string>
 #include <iostream>
+#include <cstdlib>
 using namespace std;
 
 class Grid{
