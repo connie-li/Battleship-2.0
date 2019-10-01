@@ -5,6 +5,7 @@
 #include <string>
 #include <iostream>
 #include <stdexcept>
+#include <vector>
 #include "Grid.h"
 #include "Ship.h"
 using namespace std;
@@ -16,8 +17,7 @@ class Admiral
 		int m_numShips;
 		Ship* m_fleet;
 		int m_numAfloat;
-		string m_playerName;
-		string* m_powerUpsArr;
+		vector<string> m_powerUpsArr;
 
 	public:
 		Admiral(int numShips);
@@ -35,7 +35,9 @@ class Admiral
 
 
 		//helpers
+		Ship buildShip(const int size);
 		void decNumAfloat();
+		void addPowerUp(const string powerUp);
 };
 
 #endif
