@@ -6,3 +6,15 @@ TEAM RETURN(AWESOME) - PROJECT 2 - MEETING LOG
 2. 09/28/2019.  Learned Hall / voice call.
 	Attendees: Archana Ramakrishnan, Ethan Brenner, Kyle Kappes-Sum, Connie Li, Malena Schoeni.
 	Brainstormed/decided on features to add; divided up work.  Started listing functionality to potentially alter or improve.
+3. 09/30/2019.  In lecture, scrum.
+	Attendees: Archana Ramakrishnan, Ethan Brenner, Kyle Kappes-Sum, Connie Li, Malena Schoeni.
+	Discussed inherited code base & how we plan to build on it.  Got Dr. Gibbons' approval to refactor the inherited code base and implement a save game feature and powerups.
+4. 09/30/2019.  Spahr Library.
+	Attendees: Kyle Kappes-Sum, Connie Li.
+	Pre-meeting meeting.  Planned refactoring to increase modularity/extensibility, created class concept diagrams, including tentative planning of how to implement PowerUps and AI classes, all to pitch at the full group meeting.
+5. 09/30/2019.  Spahr Library.
+	Attendees: Ethan Brenner, Kyle Kappes-Sum, Connie Li, Malena Schoeni.
+	Discussed & confirmed class concepts for the base game + powerups. Decided to implement AI after refactoring is mostly complete. Decided on a few program conventions. Slightly rearranged work assignments: 
+	 - Kyle, Connie: back-end class refactoring, integration w/ Exec.  Then AI when that is done.
+	 - Malena, Ethan: front-end class refactoring (Exec).  Then Powerups when that is done.
+	 - Archana: continue working on save game feature.
