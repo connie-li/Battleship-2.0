@@ -5,6 +5,7 @@
 #include <stdexcept>
 #include "Admiral.h"
 #include "AI.h"
+#include <chrono>
 
 class Executive
 {
@@ -22,7 +23,7 @@ class Executive
 
     void run();
 
-    void setup();
+    int setup();
 
     void setNumShips();
 
