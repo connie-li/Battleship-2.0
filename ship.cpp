@@ -1,4 +1,5 @@
 // ship.cpp
+#include "Ship.h"
 
 Ship::Ship(int size)
 {
