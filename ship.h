@@ -29,7 +29,7 @@ class Ship
 		// getters
 		int getSize() const;
 		string* getCoords() const;
-		bool getAfloat() const;
+		bool getStatus() const;
 		int getNumHits() const;
 };
 

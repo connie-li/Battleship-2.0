@@ -51,7 +51,22 @@ void Ship::setCoords(const string* coordsArr, const int size)
 }
 
 // getters
-int Ship::getSize() const;
-string* Ship::getCoords() const;
-bool Ship::getAfloat() const;
-int Ship::getNumHits() const;
+int Ship::getSize() const
+{
+	return(m_size);
+}
+
+string* Ship::getCoords() const
+{
+	return(m_coords);
+}
+
+bool Ship::getStatus() const
+{
+	return(m_status);
+}
+
+int Ship::getNumHits() const
+{
+	return(m_numHits);
+}
