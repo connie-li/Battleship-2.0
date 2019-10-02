@@ -13,6 +13,8 @@ class Executive
         Admiral* m_player1;
         Admiral* m_player2;
         int m_numShips;
+        std::chrono::duration<unsigned long long> interval = std::chrono::seconds(2); //their timeout thing
+
 
 
     public:
@@ -24,6 +26,8 @@ class Executive
     void run();
 
     int setup();
+
+    bool validPos(std::string pos);
 
     void setNumShips();
 
