@@ -2,6 +2,7 @@
 
 Executive::Executive()
 {
+    //create players
 
 }
 
@@ -13,7 +14,34 @@ Executive::~Executive()
 
 std::string  Executive::askCoord()
 {
+    std::string coor = "";
+    std::cout << "Please enter a coordinate in the form A1: ";
+    std::getline(std::cin, coor);
+    bool valid = validPos(coor);
+    while (!valid)
+    {
+        std::cout << "Invalid coordinate. Please enter a coordinate in the form A1: ";
+        std::cin >> coor;
+        valid = validPos(coor);
+    }
+    return coor;
+}
 
+
+/// check length is 2, first coordinate, second coordinate.
+bool Executive::validPos(std::string pos)
+{
+  if (pos.length() == 2)
+  {
+    if (pos[0] == 'A' || pos[0] == 'B' || pos[0] == 'C' || pos[0] == 'D' || pos[0] == 'E' || pos[0] == 'F' || pos[0] == 'G' || pos[0] == 'H')
+    {
+      if (pos[1] == '1' || pos[1] == '2' || pos[1] == '3' || pos[1] == '4' || pos[1] == '5' || pos[1] == '6' || pos[1] == '7' || pos[1] == '8')
+      {
+        return true;
+      }
+    }
+  }
+  return false;
 }
 
 void Executive::run()
@@ -51,23 +79,7 @@ int Executive::setup()
     }
     else if (player_choice == "1")
     {
-      while (working == false)
-      {
-        std::cout << "\nHow many ships would you like to play with? (1-5 ships): ";
-        std::getline(std::cin,ship_num);
-        if (ship_num == "1" || ship_num == "2" || ship_num == "3" || ship_num == "4" || ship_num == "5")
-        {
-          working = true;
-          /// If input is good, cast to int for map creation and end loop for menu.
-          m_numShips = std::stoi(ship_num);
-          menurun = false;
-          return 1;
-        }
-        else
-        {
-          std::cout << "\nError with number of ships, please enter a valid number 1, 2, 3, 4 or, 5\n";
-        }
-      }
+        setNumShips();
     }
     else if (player_choice == "2")
     {
@@ -89,5 +101,22 @@ int Executive::setup()
 
 void Executive::setNumShips()
 {
-
+    std::string ship_num = "";
+    while (working == false)
+      {
+        std::cout << "\nHow many ships would you like to play with? (1-5 ships): ";
+        std::getline(std::cin,ship_num);
+        if (ship_num == "1" || ship_num == "2" || ship_num == "3" || ship_num == "4" || ship_num == "5")
+        {
+          working = true;
+          /// If input is good, cast to int for map creation and end loop for menu.
+          ship_int = std::stoi(ship_num);
+          menurun = false;
+        }
+        else
+        {
+          std::cout << "\nError with number of ships, please enter a valid number 1, 2, 3, 4 or, 5\n";
+        }
+      }
+    m_numShips = ship_int;
 }
