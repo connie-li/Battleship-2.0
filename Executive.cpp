@@ -12,15 +12,62 @@ Executive::~Executive()
     delete m_player2;
 }
 
+bool Executive::coorFree(int row, int col, string* arr, int length)
+{
+    
+}
+void Executive::placeShip(int n)
+{
+    //currently, this does not add the ships to a fleet and does not save their location
+    //that will need to be implemented after other classes are built
+
+    bool taken [8][8];
+    for (int i = 0; i < 8; i++)
+    {
+        for (int j = 0; j<8; j++)
+        {
+            taken[i][j] = false;
+        }
+    }
+    for (int size = 0; size< n; size++)
+    {
+        std::cout << "It's time to place your ship of size 1x" << size << ". Enter a starting coordinate\n";
+        std::string start = askCoord();
+        int temp = charCoordtoIntCoord(start.at(1));
+        int r = stoi(start.at(0));
+        int c = stoi(temp);
+        string* coorArr = new string[size];
+        std::cout << "Enter an ending coordinate (possible ending coordinates for this ship are: ";
+        if (r+size <= 8)
+        {
+            bool flag = false;
+            for (int j = r-1; j<= size; j++)
+        }
+        if (r-size > 0)
+        {
+
+        }
+        if (c + size <= 8)
+        {
+
+        }
+        if (c-size > 0)
+        {
+
+        }
+    }
+
+}
+
 std::string  Executive::askCoord()
 {
     std::string coor = "";
-    std::cout << "Please enter a coordinate in the form A1: ";
+    std::cout << "Please enter a coordinate in the form 1A: ";
     std::getline(std::cin, coor);
     bool valid = validPos(coor);
     while (!valid)
     {
-        std::cout << "Invalid coordinate. Please enter a coordinate in the form A1: ";
+        std::cout << "Invalid coordinate. Please enter a coordinate in the form 1A: ";
         std::cin >> coor;
         valid = validPos(coor);
     }
@@ -33,9 +80,9 @@ bool Executive::validPos(std::string pos)
 {
   if (pos.length() == 2)
   {
-    if (pos[0] == 'A' || pos[0] == 'B' || pos[0] == 'C' || pos[0] == 'D' || pos[0] == 'E' || pos[0] == 'F' || pos[0] == 'G' || pos[0] == 'H')
+    if (pos[1] == 'A' || pos[1] == 'B' || pos[1] == 'C' || pos[1] == 'D' || pos[1] == 'E' || pos[1] == 'F' || pos[1] == 'G' || pos[1] == 'H')
     {
-      if (pos[1] == '1' || pos[1] == '2' || pos[1] == '3' || pos[1] == '4' || pos[1] == '5' || pos[1] == '6' || pos[1] == '7' || pos[1] == '8')
+      if (pos[0] == '1' || pos[0] == '2' || pos[0] == '3' || pos[0] == '4' || pos[0] == '5' || pos[0] == '6' || pos[0] == '7' || pos[0] == '8')
       {
         return true;
       }
@@ -120,3 +167,42 @@ void Executive::setNumShips()
       }
     m_numShips = ship_int;
 }
+
+
+int Executive::charCoordtoIntCoord(char c)
+{
+  if (c == 'A')
+  {
+    return 0;
+  }
+  if (c == 'B')
+  {
+    return 1;
+  }
+  if (c == 'C')
+  {
+    return 2;
+  }
+  if (c == 'D')
+  {
+    return 3;
+  }
+  if (c == 'E')
+  {
+    return 4;
+  }
+  if (c == 'F')
+  {
+    return 5;
+  }
+  if (c == 'G')
+  {
+    return 6;
+  }
+  if (c == 'H')
+  {
+    return 7;
+  }
+  return 0;
+}
+

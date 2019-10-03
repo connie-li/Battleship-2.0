@@ -23,9 +23,12 @@ class Executive
 
     std::string askCoord();
 
+    void placeShip(int size);
     void run();
 
     int setup();
+
+    int charCoordtoIntCoord(char c);
 
     bool validPos(std::string pos);
 
