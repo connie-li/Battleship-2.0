@@ -21,10 +21,10 @@ void Executive::placeShip(int n)
     //currently, this does not add the ships to a fleet and does not save their location
     //that will need to be implemented after other classes are built
 
-    bool taken [8][8];
-    for (int i = 0; i < 8; i++)
+    bool taken [9][9];
+    for (int i = 0; i < 9; i++)
     {
-        for (int j = 0; j<8; j++)
+        for (int j = 0; j<9; j++)
         {
             taken[i][j] = false;
         }
@@ -41,19 +41,56 @@ void Executive::placeShip(int n)
         if (r+size <= 8)
         {
             bool flag = false;
-            for (int j = r-1; j<= size; j++)
+            for (int j = 1; j<= size; j++)
+            {
+                if (taken[j+r][c])
+                    flag = true;
+            }
+            if (!flag)
+            {
+                std::cout << r+size << start.at(1) << " ";
+            }
         }
         if (r-size > 0)
         {
-
+            bool flag = false;
+            for (int j = 1; j<= size; j++)
+            {
+                if (taken[r-j][c])
+                    flag = true;
+            }
+            if (!flag)
+            {
+                std::cout << r-size << start.at(1) << " ";
+            }
         }
         if (c + size <= 8)
         {
-
+            bool flag = false;
+            for (int j = 1; j<= size; j++)
+            {
+                if (taken[r][c+j])
+                    flag = true;
+            }
+            if (!flag)
+            {
+                char letter = char(64+c+size)
+                std::cout << r <<  letter << " ";
+            }
         }
         if (c-size > 0)
         {
-
+            bool flag = false;
+            for (int j = 1; j<= size; j++)
+            {
+                if (taken[r][j-c])
+                    flag = true;
+            }
+            if (!flag)
+            {
+                char letter = char(64+c+size)
+                std::cout << r <<  letter << " ";
+            }
         }
     }
 
