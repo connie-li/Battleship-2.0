@@ -12,10 +12,6 @@ Executive::~Executive()
     delete m_player2;
 }
 
-bool Executive::coorFree(int row, int col, string* arr, int length)
-{
-    
-}
 void Executive::placeShip(int n)
 {
     //currently, this does not add the ships to a fleet and does not save their location
@@ -92,11 +88,16 @@ void Executive::placeShip(int n)
                 std::cout << r <<  letter << " ";
             }
         }
+
+        std::cout << "\n Enter the ending coordinate from the list. ";
+        std::string end = askCoord();
+
+        //not done yet
     }
 
 }
 
-std::string  Executive::askCoord()
+std::string Executive::askCoord()
 {
     std::string coor = "";
     std::cout << "Please enter a coordinate in the form 1A: ";
