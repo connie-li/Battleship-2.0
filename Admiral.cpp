@@ -4,7 +4,6 @@
 
 Admiral::Admiral(int numShips)
 {
-	m_board = new Grid();
 	m_numShips = numShips;
 	m_fleet = new Ship*[numShips];
 	for(int i = 0; i < numShips; i++)
@@ -16,13 +15,12 @@ Admiral::Admiral(int numShips)
 
 Admiral::~Admiral()
 {
-	delete m_board;
 	delete m_fleet;
 	//delete m_powerUpsVec;
 }
 
 //getters
-Grid* Admiral::getBoard() const
+Grid Admiral::getBoard() const
 {
 	return(m_board);
 }
