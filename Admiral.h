@@ -17,7 +17,7 @@ class Admiral
 		int m_numShips;
 		Ship* m_fleet;
 		int m_numAfloat;
-		vector<string> m_powerUpsArr;
+		// vector<string> m_powerUpsArr;
 
 	public:
 		Admiral(int numShips);
@@ -28,8 +28,7 @@ class Admiral
 		int getNumShips() const;
 		Ship* getFleet() const;
 		int getNumAfloat() const;
-		string getPlayerName() const;
-		string getPowerUps() const;
+		// string getPowerUps() const;
 
 		//setters
 

@@ -14,12 +14,33 @@ Admiral::Admiral(int numShips)
 	m_numAfloat = numShips;
 }
 
-Admiral::~Admiral();
+Admiral::~Admiral()
+{
+	delete m_board;
+	delete m_fleet;
+	//delete m_powerUpsVec;
+}
 
 //getters
-Grid* Admiral::getBoard() const;
-int Admiral::getNumShips() const;
-Ship* Admiral::getFleet() const;
-int Admiral::getNumAfloat() const;
-string Admiral::getPlayerName() const;
-string Admiral::getPowerUps() const;
+Grid* Admiral::getBoard() const
+{
+	return(m_board);
+}
+
+int Admiral::getNumShips() const
+{
+	return(m_numShips);
+}
+
+Ship* Admiral::getFleet() const
+{
+	return(m_fleet);
+}
+
+int Admiral::getNumAfloat() const
+{
+	return(m_numAfloat);
+}
+
+// string Admiral::getPowerUps() const
+
