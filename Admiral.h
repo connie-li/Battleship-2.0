@@ -20,6 +20,11 @@ class Admiral
 		// vector<string> m_powerUpsVec;	/* a vector containing an PowerUps that the Admiral currently has. */
 
 	public:
+		/** A constructor that takes no parameters.
+		 *
+		 */
+		Admiral();
+
 		/** A constructor that takes one parameter.
 		 * @param numShips the number of Ships the Admiral will have.
 		 */

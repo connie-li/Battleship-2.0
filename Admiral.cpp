@@ -2,6 +2,12 @@
 
 #include "Admiral.h"
 
+Admiral::Admiral()
+{
+	m_numShips = 0;
+	m_numAfloat = 0;
+}
+
 Admiral::Admiral(int numShips)
 {
 	m_numShips = numShips;
