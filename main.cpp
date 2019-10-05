@@ -1,7 +1,7 @@
 #include "Executive.h"
 
 int main(){
-    Executive exec = new Executive();
+    Executive exec;
     exec.run();
     return 0;
 }
