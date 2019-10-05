@@ -32,8 +32,8 @@ void Executive::placeShip(int n)
         std::cout << "It's time to place your ship of size 1x" << size << ". Enter a starting coordinate\n";
         std::string start = askCoord();
         int temp = charCoordtoIntCoord(start.at(1));
-        int r = stoi(start.at(0));
-        int c = stoi(temp);
+        int r = start.at(0);
+        int c = temp;
         string* coorArr = new string[size];
         std::cout << "Enter an ending coordinate (possible ending coordinates for this ship are: ";
         if (r+size <= 8)
@@ -72,8 +72,8 @@ void Executive::placeShip(int n)
             }
             if (!flag)
             {
-                char letter = char(64+c+size)
-                std::cout << r <<  letter << " ";
+                char letter = char(64+c+size);
+                cout<< r <<  letter << " ";
             }
         }
         if (c-size > 0)
@@ -86,8 +86,8 @@ void Executive::placeShip(int n)
             }
             if (!flag)
             {
-                char letter = char(64+c+size)
-                std::cout << r <<  letter << " ";
+                char letter = char(64+c+size);
+                cout << r <<  letter << " ";
             }
         }
 
@@ -188,6 +188,9 @@ int Executive::setup()
 
 void Executive::setNumShips()
 {
+  bool working = true;
+  int ship_int = 0;
+  bool menurun = false;
     std::string ship_num = "";
     while (working == false)
       {
@@ -197,7 +200,7 @@ void Executive::setNumShips()
         {
           working = true;
           /// If input is good, cast to int for map creation and end loop for menu.
-          ship_int = std::stoi(ship_num);
+          ship_int = stoi(ship_num);
           menurun = false;
         }
         else
@@ -213,40 +216,40 @@ void Executive::setNumShips()
 }
 
 
-int Executive::charCoordtoIntCoord(char c)
-{
-  if (c == 'A')
-  {
-    return 0;
-  }
-  if (c == 'B')
-  {
-    return 1;
-  }
-  if (c == 'C')
-  {
-    return 2;
-  }
-  if (c == 'D')
-  {
-    return 3;
-  }
-  if (c == 'E')
-  {
-    return 4;
-  }
-  if (c == 'F')
-  {
-    return 5;
-  }
-  if (c == 'G')
-  {
-    return 6;
-  }
-  if (c == 'H')
-  {
-    return 7;
-  }
-  return 0;
+int Executive::charCoordtoIntCoord(char c){
+  return (int)c - 65;
+  // if (c == 'A')
+  // {
+  //   return 0;
+  // }
+  // if (c == 'B')
+  // {
+  //   return 1;
+  // }
+  // if (c == 'C')
+  // {
+  //   return 2;
+  // }
+  // if (c == 'D')
+  // {
+  //   return 3;
+  // }
+  // if (c == 'E')
+  // {
+  //   return 4;
+  // }
+  // if (c == 'F')
+  // {
+  //   return 5;
+  // }
+  // if (c == 'G')
+  // {
+  //   return 6;
+  // }
+  // if (c == 'H')
+  // {
+  //   return 7;
+  // }
+  // return 0;
 }
 
