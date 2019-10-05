@@ -27,7 +27,7 @@ void Executive::placeShip(int n, Admiral* player)
             taken[i][j] = false;
         }
     }
-    for (int size = 0; size< n; size++)
+    for (int size = 1; size<= n; size++)
     {
         std::cout << "It's time to place your ship of size 1x" << size << ". Enter a starting coordinate\n";
         std::string start = askCoord();
@@ -192,12 +192,16 @@ void Executive::run()
     {
         return;
     }
+    if (option == 1)
+    {
     std::cout<< "Player 1: It's time to place your ships.";
     placeShip(m_numShips, m_player1);
     std::cout << "Thanks for placing your ships player 1! Now it's player 2's turn";
     std::chrono::seconds interval(2);
     std::cout<< "Player 2: It's time to place your ships.";
+    placeShip(m_numShips, m_player1);
     std::cout << "Thanks for placing your ships. Time to start the game";
+    }
 }
 
 int Executive::setup()
