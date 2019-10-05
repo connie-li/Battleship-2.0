@@ -58,7 +58,15 @@ class Admiral
 		// string getPowerUps() const;
 
 		//setters
+		/** Sets the number of Ships that Admiral has.
+		 * @param numShips the number of Ships.
+		 */
+		void setNumShips(const int numShips);
 
+		/** Sets the number of Ships that are still afloat; initially, the same number as the total number of Ships.
+		 * @param num the number of Ships.
+		 */
+		void setNumAfloat(const int num);
 
 		// --- helpers ---
 		/** Constructs a Ship object with size and coordinates, adds it to the m_fleet vector, and assigns the Ship's coordinates to m_board.
@@ -67,7 +75,7 @@ class Admiral
 		 */
 		Ship addShip(const int size, const string* coordsArr);
 
-		/**
+		/** Decrements the number of Ships still afloat; this function is called when a Ship sinks.
 		 *
 		 */
 		void decNumAfloat();
@@ -75,7 +83,7 @@ class Admiral
 		/**
 		 *
 		 */
-		void addPowerUp(const string powerUp);
+		// void addPowerUp(const string powerUp);
 };
 
 #endif
