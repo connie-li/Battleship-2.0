@@ -217,39 +217,6 @@ void Executive::setNumShips()
 
 
 int Executive::charCoordtoIntCoord(char c){
-  return (int)c - 65;
-  // if (c == 'A')
-  // {
-  //   return 0;
-  // }
-  // if (c == 'B')
-  // {
-  //   return 1;
-  // }
-  // if (c == 'C')
-  // {
-  //   return 2;
-  // }
-  // if (c == 'D')
-  // {
-  //   return 3;
-  // }
-  // if (c == 'E')
-  // {
-  //   return 4;
-  // }
-  // if (c == 'F')
-  // {
-  //   return 5;
-  // }
-  // if (c == 'G')
-  // {
-  //   return 6;
-  // }
-  // if (c == 'H')
-  // {
-  //   return 7;
-  // }
-  // return 0;
+  return (int)c - 64;
 }
 
