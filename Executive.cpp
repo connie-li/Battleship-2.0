@@ -14,7 +14,7 @@ Executive::~Executive()
     delete m_player2;
 }
 
-void Executive::placeShip(int n, Admiral player)
+void Executive::placeShip(int n, Admiral* player)
 {
     //currently, this does not add the ships to a fleet and does not save their location
     //that will need to be implemented after other classes are built
@@ -113,7 +113,7 @@ void Executive::placeShip(int n, Admiral player)
             arr[i] = coor;
             index++;
           }
-          player.addShip(size, arr);
+          player->addShip(size, arr);
         }
         else if (north && (end.at(0) == r-size))
         {
@@ -125,7 +125,7 @@ void Executive::placeShip(int n, Admiral player)
             arr[i] = coor;
             index--;
           }
-          player.addShip(size, arr);
+          player->addShip(size, arr);
 
         }
         else if (east && (end.at(1) > start.at(1)))
@@ -137,7 +137,7 @@ void Executive::placeShip(int n, Admiral player)
                 std::string coor = std::to_string(r) + ":" + std::to_string(index);
                 index++;
             }
-            player.addShip(size, arr);
+            player->addShip(size, arr);
         }
         else if (west && (end.at(1) < start.at(1)))
         {
@@ -148,7 +148,7 @@ void Executive::placeShip(int n, Admiral player)
                 std::string coor = std::to_string(r) + ":" + std::to_string(index);
                 index--;
             }
-            player.addShip(size, arr);
+            player->addShip(size, arr);
         }
     }
 }
@@ -192,6 +192,12 @@ void Executive::run()
     {
         return;
     }
+    std::cout<< "Player 1: It's time to place your ships.";
+    placeShip(m_numShips, m_player1);
+    std::cout << "Thanks for placing your ships player 1! Now it's player 2's turn";
+    std::chrono::seconds interval(2);
+    std::cout<< "Player 2: It's time to place your ships.";
+    std::cout << "Thanks for placing your ships. Time to start the game";
 }
 
 int Executive::setup()
