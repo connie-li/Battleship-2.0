@@ -2,3 +2,17 @@
 makefile
 
 .vscode/
+
+Battleship
+
+Admiral.o
+
+Battleship.exe
+
+Executive.o
+
+Grid.o
+
+main.o
+
+Ship.o
