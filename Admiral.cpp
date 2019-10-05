@@ -16,8 +16,6 @@ Admiral::Admiral(int numShips)
 
 Admiral::~Admiral()
 {
-	delete m_fleet;
-	//delete m_powerUpsVec;
 }
 
 // --- getters ---
@@ -31,7 +29,7 @@ int Admiral::getNumShips() const
 	return(m_numShips);
 }
 
-vector<Ship>& Admiral::getFleet() const
+vector<Ship> Admiral::getFleet() const
 {
 	return(m_fleet);
 }
