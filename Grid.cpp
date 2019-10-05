@@ -46,6 +46,12 @@ void Grid::printGrid(bool isFiring){
     }
 }
 
+void Grid::readShip(string* arr, int length){
+    for(int i = 0; i < length; i++){
+        arr[rowCoor(arr[i])][colCoor(arr[i])] = length;
+    }
+}
+
 Grid::~Grid(){
     for(int i = 0; i < m_BOARD_SIZE; i++){
         delete m_arr[i];

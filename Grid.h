@@ -66,6 +66,12 @@ public:
     void printGrid(bool isFiring);
 
     /**
+     * Reads in an array of ship coordinates and sets those coordinates to the ship value
+     * @param arr: An array of string coordinates in "#:#" format
+     */
+    void readShip(string* arr, int length);
+
+    /**
      * Destroys a Grid object.
      */
     ~Grid();
