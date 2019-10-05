@@ -88,5 +88,5 @@ class Admiral
 		 */
 		// void addPowerUp(const string powerUp);
 };
-
+ 
 #endif
