@@ -209,10 +209,10 @@ void Executive::setNumShips()
         }
       }
     m_numShips = ship_int;
-    m_player1.setNumShips(m_numShips);
-    m_player1.setNumAfloat(m_numShips);
-    m_player2.setNumShips(m_numShips);
-    m_player2.setNumAfloat(m_numShips);
+    m_player1->setNumShips(m_numShips);
+    m_player1->setNumAfloat(m_numShips);
+    m_player2->setNumShips(m_numShips);
+    m_player2->setNumAfloat(m_numShips);
 }
 
 
