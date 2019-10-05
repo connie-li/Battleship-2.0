@@ -4,7 +4,7 @@
 #include <iostream>
 #include <stdexcept>
 #include "Admiral.h"
-#include "AI.h"
+// #include "AI.h"
 #include <chrono>
 
 class Executive
@@ -18,6 +18,9 @@ class Executive
 
 
     public:
+    /** A constructor that takes no parameters.
+     *
+     */
     Executive();
     ~Executive();
 
