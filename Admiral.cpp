@@ -42,24 +42,24 @@ int Admiral::getNumAfloat() const
 // string Admiral::getPowerUps() const
 
 // --- setters ---
-void setNumShips(const int numShips)
+void Admiral::setNumShips(const int numShips)
 {
 	m_numShips = numShips;
 }
 
-void setNumAfloat(const int num)
+void Admiral::setNumAfloat(const int num)
 {
 	m_numAfloat = num;
 }
 
-void addShip(const int size, const string* coordsArr)
+void Admiral::addShip(const int size, const string* coordsArr)
 {
 	m_fleet.emplace_back(Ship(size));
-	m_fleet.back.setCoords(coordsArr, size);
+	m_fleet.back().setCoords(coordsArr, size);
 	m_board.readShip(coordsArr, size);
 }
 
-int decNumAfloat()
+int Admiral::decNumAfloat()
 {
 	m_numAfloat--;
 	return(m_numAfloat);

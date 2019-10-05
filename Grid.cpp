@@ -10,20 +10,20 @@ Grid::Grid(){
     }
 }
 
-string Grid::getCoor(string coord){
+string Grid::getCoor(const string coord){
     int row = rowCoor(coord);
     int col = colCoor(coord);
-    if(m_arr[row][col].at(0) = '$'){
+    if(m_arr[row][col].at(0) == '$'){
         return m_arr[row][col].substr(1);
     }
     return m_arr[row][col];
 }
 
-void Grid::setCoor(string coord, string value){
+void Grid::setCoor(const string coord, const string value){
     m_arr[rowCoor(coord)][colCoor(coord)] = value;
 }
 
-string Grid::randCoor(bool allowOcc){
+string Grid::randCoor(const bool allowOcc){
     int row = 0;
     int col = 0;
     if(allowOcc){
@@ -38,7 +38,7 @@ string Grid::randCoor(bool allowOcc){
     return row + ":" + col;
 }
 
-void Grid::printGrid(bool isFiring){
+void Grid::printGrid(const bool isFiring){
     if(isFiring){
         printFiring();
     }else{
@@ -46,9 +46,9 @@ void Grid::printGrid(bool isFiring){
     }
 }
 
-void Grid::readShip(string* arr, int length){
+void Grid::readShip(const string* arr, const int length){
     for(int i = 0; i < length; i++){
-        arr[rowCoor(arr[i])][colCoor(arr[i])] = length;
+        m_arr[rowCoor(arr[i])][colCoor(arr[i])] = length;
     }
 }
 
@@ -60,11 +60,11 @@ Grid::~Grid(){
     m_arr = nullptr;
 }
 
-int Grid::colCoor(string coord){
+int Grid::colCoor(const string coord){
     return stoi(coord.substr(coord.find(":") + 1)) - 1;
 }
 
-int Grid::rowCoor(string coord){
+int Grid::rowCoor(const string coord){
     return stoi(coord.substr(0, coord.find(":"))) - 1;
 }
 
@@ -88,7 +88,7 @@ void Grid::printShip(){
     for(int i = 0; i < m_BOARD_SIZE; i++){
         for(int j = 0; j < m_BOARD_SIZE; j++){
             char temp = '\0';
-            if(m_arr[i][j].length > 1){
+            if(m_arr[i][j].length() > 1){
                 temp = m_arr[i][j].at(1);
             }else{
                 temp = m_arr[i][j].at(0);

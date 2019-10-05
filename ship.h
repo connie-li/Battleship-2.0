@@ -24,7 +24,7 @@ class Ship
 		// setters
 		void setStatusFalse();
 		void incNumHits();
-		void setCoords(const string* coordsArr);
+		void setCoords(const string* coordsArr, const int size);
 
 		// getters
 		int getSize() const;
