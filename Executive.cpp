@@ -14,7 +14,7 @@ Executive::~Executive()
     delete m_player2;
 }
 
-void Executive::placeShip(int n)
+void Executive::placeShip(int n, Admiral player)
 {
     //currently, this does not add the ships to a fleet and does not save their location
     //that will need to be implemented after other classes are built
@@ -34,6 +34,11 @@ void Executive::placeShip(int n)
         int temp = charCoordtoIntCoord(start.at(1));
         int r = start.at(0);
         int c = temp;
+        bool north = false;
+        bool south = false;
+        bool west = false;
+        bool east = false;
+
         string* coorArr = new string[size];
         std::cout << "Enter an ending coordinate (possible ending coordinates for this ship are: ";
         if (r+size <= 8)
@@ -46,6 +51,7 @@ void Executive::placeShip(int n)
             }
             if (!flag)
             {
+                south = true;
                 std::cout << r+size << start.at(1) << " ";
             }
         }
@@ -59,6 +65,7 @@ void Executive::placeShip(int n)
             }
             if (!flag)
             {
+                north = true;
                 std::cout << r-size << start.at(1) << " ";
             }
         }
@@ -72,6 +79,7 @@ void Executive::placeShip(int n)
             }
             if (!flag)
             {
+                east = true;
                 char letter = char(64+c+size);
                 cout<< r <<  letter << " ";
             }
@@ -86,6 +94,7 @@ void Executive::placeShip(int n)
             }
             if (!flag)
             {
+                west = true;
                 char letter = char(64+c+size);
                 cout << r <<  letter << " ";
             }
@@ -94,9 +103,54 @@ void Executive::placeShip(int n)
         std::cout << "\n Enter the ending coordinate from the list. ";
         std::string end = askCoord();
 
-        //not done yet
-    }
+        if(south && (end.at(0) == r+size))
+        {
+          std::string* arr = new std::string[size];
+          int index = r;
+          for(int i = 0; i<size; i++)
+          {
+            std::string coor = std::to_string(index) + ":" + std::to_string(charCoordtoIntCoord(start.at(1)));
+            arr[i] = coor;
+            index++;
+          }
+          player.addShip(size, arr);
+        }
+        else if (north && (end.at(0) == r-size))
+        {
+          std::string* arr = new std::string[size];
+          int index = r;
+          for(int i = 0; i<size; i++)
+          {
+            std::string coor = std::to_string(index) + ":" + std::to_string(charCoordtoIntCoord(start.at(1)));
+            arr[i] = coor;
+            index--;
+          }
+          player.addShip(size, arr);
 
+        }
+        else if (east && (end.at(1) > start.at(1)))
+        {
+            std::string* arr = new std::string[size];
+            int index = c;
+            for (int i = 0; i<size; i++)
+            {
+                std::string coor = std::to_string(r) + ":" + std::to_string(index);
+                index++;
+            }
+            player.addShip(size, arr);
+        }
+        else if (west && (end.at(1) < start.at(1)))
+        {
+            std::string* arr = new std::string[size];
+            int index = c;
+            for (int i = 0; i<size; i++)
+            {
+                std::string coor = std::to_string(r) + ":" + std::to_string(index);
+                index--;
+            }
+            player.addShip(size, arr);
+        }
+    }
 }
 
 std::string Executive::askCoord()
@@ -200,7 +254,7 @@ void Executive::setNumShips()
         {
           working = true;
           /// If input is good, cast to int for map creation and end loop for menu.
-          ship_int = stoi(ship_num);
+          ship_int = std::stoi(ship_num);
           menurun = false;
         }
         else
