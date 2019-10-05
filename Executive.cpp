@@ -3,6 +3,8 @@
 Executive::Executive()
 {
     //create players
+  m_player1 = new Admiral();
+  m_player2 = new Admiral();
 
 }
 
