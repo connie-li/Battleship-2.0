@@ -187,13 +187,7 @@ bool Executive::validPos(std::string pos)
 
 void Executive::run()
 {
-    int option = setup();
-    if (option == 3)
-    {
-        return;
-    }
-    if (option == 1 )
-    {
+    setup();
     std::cout<< "Player 1: It's time to place your ships.";
     placeShip(m_numShips, m_player1);
     std::cout << "Thanks for placing your ships player 1! Now it's player 2's turn";
@@ -201,10 +195,9 @@ void Executive::run()
     std::cout<< "Player 2: It's time to place your ships.";
     placeShip(m_numShips, m_player1);
     std::cout << "Thanks for placing your ships. Time to start the game";
-    }
 }
 
-int Executive::setup()
+void Executive::setup()
 {
   std::chrono::seconds interval(2);
   bool menurun = true;
@@ -231,7 +224,6 @@ int Executive::setup()
     else if (player_choice == "1")
     {
         setNumShips();
-        return 1;
     }
     else if (player_choice == "2")
     {
@@ -245,14 +237,14 @@ int Executive::setup()
       menurun = false;
       std::cout << "\nHave a nice day!\n";
       /// Quitting the program by returning and skipping gameplay phase.
-      return 3;
+      return;
     }
   }
 }
 
 void Executive::setNumShips()
 {
-  bool working = true;
+  bool working = false;
   int ship_int = 0;
   bool menurun = false;
     std::string ship_num = "";
