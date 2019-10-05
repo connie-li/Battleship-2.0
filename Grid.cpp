@@ -1,7 +1,4 @@
 #include "Grid.h"
-#include <string>
-#include <iostream>
-#include <cstdlib>
 
 Grid::Grid(){
     m_arr = new string*[m_BOARD_SIZE];
@@ -84,7 +81,7 @@ void Grid::printFiring(){
 void Grid::printShip(){
     for(int i = 0; i < m_BOARD_SIZE; i++){
         for(int j = 0; j < m_BOARD_SIZE; j++){
-            char temp = "\0";
+            char temp = '\0';
             if(m_arr[i][j].length > 1){
                 temp = m_arr[i][j].at(1);
             }else{

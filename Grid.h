@@ -6,29 +6,69 @@
 using namespace std;
 
 class Grid{
-    private:
-        const int m_BOARD_SIZE = 8;
-        string** m_arr;
+private:
+    const int m_BOARD_SIZE = 8; /** The size of the board to be created.*/
+    string** m_arr;             /** The array representing the board.*/
 
-        int colCoor(string coord);
+    /**
+     * Returns the column given a "#:#" format string
+     * @param coord: Intakes a string in the "#:#" format and determines the coordinates.
+     */
+    int colCoor(string coord);
 
-        int rowCoor(string coord);
+    /**
+     * Returns the row given a "#:#" format string
+     * @param coord: Intakes a string in the "#:#" format and determines the coordinates.
+     */
+    int rowCoor(string coord);
 
-        void printFiring();
+    /**
+     * Prints a firing map or a map that only shows hits and misses
+     */
+    void printFiring();
 
-        void printShip();
-    public:
-        Grid();
+    /**
+     * Prints a map that shows ships, hits, and misses
+     */
+    void printShip();
+public:
+    
+    /**
+     * Creates a new grid object.
+     */
+    Grid();
 
-        string getCoor(string coord);
+    /**
+     * Returns the value at given coordinate pair.
+     * @param coord: Intakes a string in the "#:#" format and determines the coordinates.
+     * @return string: returns the value at a given coordinate without any modifiers.
+     */
+    string getCoor(string coord);
 
-        void setCoor(string coord, string value);
+    /**
+     * Sets the value at a given coordinate pair.
+     * @param coord: Intakes a string in the "#:#" format and determines the coordinates.
+     * @param value: The given value to set the locations value to.
+     */
+    void setCoor(string coord, string value);
 
-        string randCoor(bool allowOcc);
+    /**
+     * Returns a random coordinate from the grid.
+     * @param allowOcc: If true, allowd for randCoor to include occupied(nonwater) coordinates. 
+     *      If false, ignores occupied coordinates.
+     */
+    string randCoor(bool allowOcc);
 
-        void printGrid(bool isFiring);
+    /**
+     * Prints the grind to the console.
+     * @param isFiring: If true, prints a firing grid. If false, prints a ship grid.
+     */
+    void printGrid(bool isFiring);
 
-        ~Grid();
+    /**
+     * Destroys a Grid object.
+     */
+    ~Grid();
 };
 
 #endif
