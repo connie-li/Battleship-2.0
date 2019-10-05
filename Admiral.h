@@ -48,9 +48,9 @@ class Admiral
 		int getNumShips() const;
 
 		/** Gets the Admiral's fleet of Ships.
-		 * @return a pointer to the fleet array.
+		 * @return a reference to the fleet vector.
 		 */
-		Ship* getFleet() const;
+		vector<Ship>& getFleet() const;
 
 		/** Gets the number of the Admiral's Ships that are still afloat.
 		 * @return the number of Ships afloat.

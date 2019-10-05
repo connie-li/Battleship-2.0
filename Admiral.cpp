@@ -31,7 +31,7 @@ int Admiral::getNumShips() const
 	return(m_numShips);
 }
 
-Ship* Admiral::getFleet() const
+vector<Ship>& Admiral::getFleet() const
 {
 	return(m_fleet);
 }
@@ -54,12 +54,11 @@ void setNumAfloat(const int num)
 	m_numAfloat = num;
 }
 
-Ship addShip(const int size, const string* coordsArr)
+void addShip(const int size, const string* coordsArr)
 {
 	m_fleet.emplace_back(Ship(size));
 	m_fleet.back.setCoords(coordsArr, size);
 	m_board.readShip(coordsArr, size);
-	
 }
 
 int decNumAfloat()
