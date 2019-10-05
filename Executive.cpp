@@ -192,7 +192,7 @@ void Executive::run()
     {
         return;
     }
-    if (option == 1)
+    if (option == 1 )
     {
     std::cout<< "Player 1: It's time to place your ships.";
     placeShip(m_numShips, m_player1);
@@ -231,6 +231,7 @@ int Executive::setup()
     else if (player_choice == "1")
     {
         setNumShips();
+        return 1;
     }
     else if (player_choice == "2")
     {
@@ -238,7 +239,6 @@ int Executive::setup()
       std::cout << "\n - You will walk through and place your ships and then take turns entering coordinates to attack the other players ships.\n - The game is over when all Enemy Ships have been sunk.";
       std::cout << "\n - Here are the lists of symbols that will show up on the board with explanations: \n";
       //std::cout << "\t • ~: Water \n\t • O: Miss \n\t • X: Hit \n\t • C: 5x1 Carrier \n\t • B: 4x1 Battleship \n\t • D: 3x1 Destroyer \n\t • S: 2x1 Submarine \n\t • T: 1x1 Tug Boat";
-      return 2;
     }
     else if (player_choice == "3")
     {
