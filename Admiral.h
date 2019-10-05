@@ -15,11 +15,16 @@ class Admiral
 	private:
 		Grid m_board;	/* a Grid to store the Admiral's game map. */
 		int m_numShips;	/* the number of Ships in Admiral. */
-		Ship* m_fleet;	/* an array of Ships that belong to the Admiral. */
+		vector<Ship> m_fleet;	/* an array of Ships that belong to the Admiral. */
 		int m_numAfloat;	/* the number of ships that are still afloat. */
 		// vector<string> m_powerUpsVec;	/* a vector containing an PowerUps that the Admiral currently has. */
 
 	public:
+		/** A constructor that takes no parameters.
+		 *
+		 */
+		Admiral();
+
 		/** A constructor that takes one parameter.
 		 * @param numShips the number of Ships the Admiral will have.
 		 */
