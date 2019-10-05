@@ -48,9 +48,9 @@ class Admiral
 		int getNumShips() const;
 
 		/** Gets the Admiral's fleet of Ships.
-		 * @return a pointer to the fleet array.
+		 * @return a reference to the fleet vector.
 		 */
-		Ship* getFleet() const;
+		vector<Ship>& getFleet() const;
 
 		/** Gets the number of the Admiral's Ships that are still afloat.
 		 * @return the number of Ships afloat.
@@ -74,9 +74,9 @@ class Admiral
 
 		/** Constructs a Ship object with size and coordinates, adds it to the m_fleet vector, and assigns the Ship's coordinates to m_board.
 		 * @param size the size of the Ship.
-		 * @param coordsArr an array of coordinates that the new Ship will occupy.
+		 * @param coordsArr a pointer to an array of coordinates that the new Ship will occupy.
 		 */
-		Ship addShip(const int size, const string* coordsArr);
+		void addShip(const int size, const string* coordsArr);
 
 		/** Decrements the number of Ships still afloat; this function is called when a Ship sinks.
 		 * @return the number of Ships still afloat.
