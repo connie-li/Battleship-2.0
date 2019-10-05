@@ -27,7 +27,7 @@ class Executive
 
     std::string askCoord();
 
-    void placeShip(int size);
+    void placeShip(int size, Admiral player);
     void run();
 
     int setup();
