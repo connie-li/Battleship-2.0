@@ -64,3 +64,27 @@ int Admiral::decNumAfloat()
 	m_numAfloat--;
 	return(m_numAfloat);
 }
+
+bool Admiral::fire(const string coord)
+{
+
+}
+
+int Admiral::findShipbyCoord(const string coord) const
+{
+	int foundIndex = -1;
+	for(int shipIndex = 0; shipIndex < m_numShips; i++)
+	{
+		int shipSize = m_fleet.at(shipIndex).getSize();
+		string* shipCoords = m_fleet.at(shipIndex).getCoords();
+		for(int coordIndex = 0; coordIndex < shipSize; coordIndex++)
+		{
+			if(shipCoords.at(coordIndex) == coord)
+			{
+				foundIndex = shipIndex;
+				return(foundIndex);
+			}
+		}
+	}
+	return(foundIndex);
+}

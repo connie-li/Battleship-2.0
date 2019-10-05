@@ -83,6 +83,16 @@ class Admiral
 		 */
 		int decNumAfloat();
 
+		/** Checks the given coordinate in its m_board, updates the game board and the relevant Ship if necessary.
+		 *
+		 */
+		bool fire(const string coord);
+
+		/** Finds the index of the Ship in the fleet that occupies the given coordinate.
+		 * @return the index of the relevant Ship in m_fleet, or -1 if the Ship is not found.
+		 */
+		int findShipbyCoord(const string coord) const;
+
 		/**
 		 *
 		 */
