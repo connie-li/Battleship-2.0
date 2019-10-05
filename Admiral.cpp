@@ -56,7 +56,10 @@ void setNumAfloat(const int num)
 
 Ship addShip(const int size, const string* coordsArr)
 {
-
+	m_fleet.emplace_back(Ship(size));
+	m_fleet.back.setCoords(coordsArr, size);
+	m_board.readShip(coordsArr, size);
+	
 }
 
 int decNumAfloat()
