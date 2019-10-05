@@ -20,7 +20,7 @@ Admiral::~Admiral()
 	//delete m_powerUpsVec;
 }
 
-//getters
+// --- getters ---
 Grid Admiral::getBoard() const
 {
 	return(m_board);
@@ -43,3 +43,24 @@ int Admiral::getNumAfloat() const
 
 // string Admiral::getPowerUps() const
 
+// --- setters ---
+void setNumShips(const int numShips)
+{
+	m_numShips = numShips;
+}
+
+void setNumAfloat(const int num)
+{
+	m_numAfloat = num;
+}
+
+Ship addShip(const int size, const string* coordsArr)
+{
+
+}
+
+int decNumAfloat()
+{
+	m_numAfloat--;
+	return(m_numAfloat);
+}
