@@ -32,16 +32,15 @@ void Executive::placeShip(int n, Admiral* player)
         std::cout << "It's time to place your ship of size 1x" << size << ". Enter a starting coordinate\n";
         std::string start = askCoord();
         int temp = charCoordtoIntCoord(start.at(1));
-        int r = start.at(0);
+        int r = std::stoi(start.substr(0,1));
         int c = temp;
         bool north = false;
         bool south = false;
         bool west = false;
         bool east = false;
 
-        string* coorArr = new string[size];
         std::cout << "Enter an ending coordinate (possible ending coordinates for this ship are: ";
-        if (r+size <= 8)
+        if (r+(size-1) <= 8)
         {
             bool flag = false;
             for (int j = 1; j<= size; j++)
@@ -52,10 +51,10 @@ void Executive::placeShip(int n, Admiral* player)
             if (!flag)
             {
                 south = true;
-                std::cout << r+size << start.at(1) << " ";
+                std::cout << r+(size-1) << start.at(1) << " ";
             }
         }
-        if (r-size > 0)
+        if (r-(size-1) > 0)
         {
             bool flag = false;
             for (int j = 1; j<= size; j++)
@@ -66,10 +65,10 @@ void Executive::placeShip(int n, Admiral* player)
             if (!flag)
             {
                 north = true;
-                std::cout << r-size << start.at(1) << " ";
+                std::cout << r-(size-1) << start.at(1) << " ";
             }
         }
-        if (c + size <= 8)
+        if (c + (size-1) <= 8)
         {
             bool flag = false;
             for (int j = 1; j<= size; j++)
@@ -80,11 +79,11 @@ void Executive::placeShip(int n, Admiral* player)
             if (!flag)
             {
                 east = true;
-                char letter = char(64+c+size);
+                char letter = char(64+c+(size-1));
                 cout<< r <<  letter << " ";
             }
         }
-        if (c-size > 0)
+        if (c-(size-1) > 0)
         {
             bool flag = false;
             for (int j = 1; j<= size; j++)
@@ -95,7 +94,7 @@ void Executive::placeShip(int n, Admiral* player)
             if (!flag)
             {
                 west = true;
-                char letter = char(64+c+size);
+                char letter = char(64+(c-(size-1)));
                 cout << r <<  letter << " ";
             }
         }
