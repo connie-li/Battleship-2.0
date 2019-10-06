@@ -39,6 +39,12 @@ void Executive::placeShip(int n, Admiral* player)
         bool west = false;
         bool east = false;
 
+        std::string* array = new std::string[1];
+        std::string s = start + ":"+ c;
+        array[0] = s;
+        player->addShip(1, array);
+    if (size != 1)
+    {
         std::cout << "Enter an ending coordinate (possible ending coordinates for this ship are: ";
         if (r+(size-1) <= 8)
         {
@@ -149,6 +155,7 @@ void Executive::placeShip(int n, Admiral* player)
             }
             player->addShip(size, arr);
         }
+      }
     }
 }
 
