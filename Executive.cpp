@@ -31,18 +31,26 @@ void Executive::placeShip(int n, Admiral* player)
     {
         std::cout << "It's time to place your ship of size 1x" << size << ". Enter a starting coordinate\n";
         std::string start = askCoord();
+      
         int temp = charCoordtoIntCoord(start.at(1));
         int r = std::stoi(start.substr(0,1));
         int c = temp;
+        while(taken[r][c] == true)
+        {
+            std::cout << "Error you already placed a ship there. Try a different coordinate. ";
+            start = askCoord();
+            temp = charCoordtoIntCoord(start.at(1));
+            r = std::stoi(start.substr(0,1));
+            c = temp;
+        }
         bool north = false;
         bool south = false;
         bool west = false;
         bool east = false;
-
-        std::string* array = new std::string[1];
-        std::string s = start + ":"+ c;
-        array[0] = s;
-        player->addShip(1, array);
+        std::string option_n = "";
+        std::string option_s = "";
+        std::string option_w = "";
+        std::string option_e = "";
     if (size != 1)
     {
         std::cout << "Enter an ending coordinate (possible ending coordinates for this ship are: ";
@@ -57,6 +65,7 @@ void Executive::placeShip(int n, Admiral* player)
             if (!flag)
             {
                 south = true;
+                option_s = std::to_string(r+(size-1))+start.at(1);
                 std::cout << r+(size-1) << start.at(1) << " ";
             }
         }
@@ -71,6 +80,7 @@ void Executive::placeShip(int n, Admiral* player)
             if (!flag)
             {
                 north = true;
+                option_n = std::to_string(r-(size-1))+start.at(1);
                 std::cout << r-(size-1) << start.at(1) << " ";
             }
         }
@@ -86,6 +96,7 @@ void Executive::placeShip(int n, Admiral* player)
             {
                 east = true;
                 char letter = char(64+c+(size-1));
+                option_e = std::to_string(r)+letter;
                 cout<< r <<  letter << " ";
             }
         }
@@ -101,36 +112,44 @@ void Executive::placeShip(int n, Admiral* player)
             {
                 west = true;
                 char letter = char(64+(c-(size-1)));
+                option_w = std::to_string(r)+letter;
                 cout << r <<  letter << " ";
             }
         }
 
         std::cout << "\n Enter the ending coordinate from the list. ";
         std::string end = askCoord();
+        while (end !=option_e && end!=option_n && end!=option_s && end!=option_w)
+        {
+            std::cout << "Error. Enter one of the coordinates listed above. ";
+            end = askCoord();
+        }
 
-        if(south && (end.at(0) == r+size))
+        if(south && (std::stoi(end.substr(0,1))== r+(size-1)))
         {
           std::string* arr = new std::string[size];
           int index = r;
           for(int i = 0; i<size; i++)
           {
+            taken[index][charCoordtoIntCoord(start.at(1))] = true;
             std::string coor = std::to_string(index) + ":" + std::to_string(charCoordtoIntCoord(start.at(1)));
             arr[i] = coor;
             index++;
           }
-          player->addShip(size, arr);
+           player->addShip(size, arr);
         }
-        else if (north && (end.at(0) == r-size))
+        else if (north && (std::stoi(end.substr(0,1)) == r-(size-1)))
         {
           std::string* arr = new std::string[size];
           int index = r;
-          for(int i = 0; i<size; i++)
+          for(int i = size-1; i>=0; i--)
           {
+            taken[index][charCoordtoIntCoord(start.at(1))] = true;
             std::string coor = std::to_string(index) + ":" + std::to_string(charCoordtoIntCoord(start.at(1)));
             arr[i] = coor;
             index--;
           }
-          player->addShip(size, arr);
+           player->addShip(size, arr);
 
         }
         else if (east && (end.at(1) > start.at(1)))
@@ -139,22 +158,33 @@ void Executive::placeShip(int n, Admiral* player)
             int index = c;
             for (int i = 0; i<size; i++)
             {
+                taken[r][index] = true;
                 std::string coor = std::to_string(r) + ":" + std::to_string(index);
+                arr[i] = coor;
                 index++;
             }
-            player->addShip(size, arr);
+             player->addShip(size, arr);
         }
         else if (west && (end.at(1) < start.at(1)))
         {
             std::string* arr = new std::string[size];
             int index = c;
-            for (int i = 0; i<size; i++)
+            for (int i = size-1; i>=0; i--)
             {
+                taken[r][index] = true;
                 std::string coor = std::to_string(r) + ":" + std::to_string(index);
+                arr[i] = coor;
                 index--;
             }
-            player->addShip(size, arr);
+             player->addShip(size, arr);
         }
+      }
+      else //if size is 1x1 don't ask for ending coor
+      {
+            std::string* arr = new std::string[size];
+            arr[0] = std::to_string(r) + ":" + std::to_string(c);
+            taken[r][c] = true;
+            player->addShip(size, arr);
       }
     }
 }
