@@ -1,9 +1,11 @@
 #include "PowerUps.h"
 
-PowerUps::PowerUps()
+PowerUps::PowerUps(Grid* playerGrid)
 {
     //initializes the power up list to an empty array
     m_powerUpslist = new char[0];
+
+    m_map = playerGrid;
 }
 
 PowerUps::~PowerUps(){
