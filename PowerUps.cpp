@@ -10,3 +10,9 @@ PowerUps::~PowerUps(){
     delete[] m_powerUpslist;
     m_powerUpslist = nullptr;
 }
+
+void PowerUps::useTorpedo(){
+    //use the torpedo element, make appropriate calls into grid
+    
+    for(int i=0;i<)
+}

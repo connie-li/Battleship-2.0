@@ -10,6 +10,7 @@ class PowerUps
 
     //pointer for the list of aquired powerups
     char* m_powerUpslist = nullptr;
+    int m_size = 0;
 
     public:
 
