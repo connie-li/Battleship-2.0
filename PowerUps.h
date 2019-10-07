@@ -7,6 +7,13 @@ class PowerUps
 {
     private:
     //are we using an enum for the powerup storage (not ptr/array)?
+    /*
+    T = torpedo
+    R = radar
+    U = uber commander
+    S = scattershot
+
+    */
 
     //pointer for the list of aquired powerups
     char* m_powerUpslist = nullptr;
@@ -52,5 +59,12 @@ class PowerUps
      * @param char the char symbol used to repesent a specific power up
      */
     void addPowerUp(char symbol);
+
+    /**
+     * removes the given powerup from the list
+     * @param char the symbol of the powerup to be removed
+     */
+    
+    void removePowerUp(char symbol);
 };
 #endif

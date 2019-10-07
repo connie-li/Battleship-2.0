@@ -14,5 +14,17 @@ PowerUps::~PowerUps(){
 void PowerUps::useTorpedo(){
     //use the torpedo element, make appropriate calls into grid
     
-    for(int i=0;i<)
+    removePowerUp('T');
+}
+
+void PowerUps::removePowerUp(char symbol){
+
+    for(int i=0;i<m_size; i++){
+            if(m_powerUpslist[i] == symbol){
+                //do nothing, will skip from updating the list
+            }
+            else{
+                m_powerUpslist[i] = m_powerUpslist[i];
+            } 
+        }
 }
