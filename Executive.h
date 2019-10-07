@@ -40,6 +40,35 @@ class Executive
 
     void setNumShips();
 
+    // GAMEPLAY TODOS: (multiple funcs; rename/refactor as necessary)
+    // - turn handling func
+    // - get firing coord from player
+    // - call fire() on that coord to process the other player
+    // - update the current player's powerups if necessary (implement later)
+    // - cout messages to player
+
+    /** TODO: handles everything necessary to complete one turn, using many of the funcs below
+     * call getFireCoord, fire
+     * update powerups if necessary
+     * call printTurnResult
+     *  
+     */
+    void handleTurn();
+
+    /** TODO: I/O, gets the firing coordinate from the user
+     *
+     */
+    string getFireCoord();
+
+    /** TODO: call Admiral::incomingShot() on the opponent; get whatever it returns
+     *
+     */
+    void fire(string coord);
+
+    /** Adds the given powerup to the current player's powerup vector. [NOT USED YET]
+     * @param powerup a string representing the powerup.
+     */
+    void updatePowerups(const string powerup);
 
     /** Prints the result of the turn: hit, miss, powerup, etc.
      * @param result represents whether the turn result was a hit, miss, or powerup.
