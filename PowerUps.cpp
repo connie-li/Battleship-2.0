@@ -17,6 +17,29 @@ void PowerUps::useTorpedo(){
     removePowerUp('T');
 }
 
+void PowerUps::useRadar(){
+    //make appropriate call to grid to show the surrounding tiles
+    //should these show as water or misses?
+
+    removePowerUp('R');
+}
+
+void PowerUps::useScatterShot(){
+    //make 3 random shots on the board,
+    //either call an AI or we rng the shots here, then send to grid
+    //as a "fire"
+
+    removePowerUp('S');
+}
+
+void PowerUps::useUberCommander(){
+    //does this call the Hard AI to find the smallest ship? 
+
+    removePowerUp('U');
+}
+
+
+
 void PowerUps::removePowerUp(char symbol){
 
     for(int i=0;i<m_size; i++){
