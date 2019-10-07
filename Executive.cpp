@@ -234,7 +234,7 @@ void Executive::run()
     std::cout << "Thanks for placing your ships player 1! Now it's player 2's turn";
     std::chrono::seconds interval(2);
     std::cout<< "Player 2: It's time to place your ships.";
-    placeShip(m_numShips, m_player1);
+    placeShip(m_numShips, m_player2);
     std::cout << "Thanks for placing your ships. Time to start the game";
 }
 
