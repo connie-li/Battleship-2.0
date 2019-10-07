@@ -30,23 +30,27 @@ class PowerUps
 
     /**
      * launches insta-kill torpedo
+     * @param string coordinate to use the powerup on
      */
-    void useTorpedo();
+    void useTorpedo(std::string coord);
 
     /**
      * reveals locations around the chosen coordinate
+     * @param string coordinate to use the powerup on
      */
-    void useRadar();
+    void useRadar(std::string coord);
 
     /**
      * hits random locations around the map
+     * @param string coordinate to use the powerup on
      */
-    void useScatterShot();
+    void useScatterShot(std::string coord);
 
     /**
      * seeks the smallest ship and fires upon it
+     * @param string coordinate to use the powerup on
      */
-    void useUberCommander();
+    void useUberCommander(std::string coord);
 
     /**
      * returns the list of collected powerups to the player
