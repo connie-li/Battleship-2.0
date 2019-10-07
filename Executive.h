@@ -30,7 +30,7 @@ class Executive
     void placeShip(int size, Admiral* player);
     void run();
 
-    void setup();
+    int setup();
 
     int charCoordtoIntCoord(char c);
 

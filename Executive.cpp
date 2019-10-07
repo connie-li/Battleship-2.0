@@ -57,7 +57,7 @@ void Executive::placeShip(int n, Admiral* player)
         if (r+(size-1) <= 8)
         {
             bool flag = false;
-            for (int j = 1; j<= size; j++)
+            for (int j = 1; j< size; j++)
             {
                 if (taken[j+r][c])
                     flag = true;
@@ -72,7 +72,7 @@ void Executive::placeShip(int n, Admiral* player)
         if (r-(size-1) > 0)
         {
             bool flag = false;
-            for (int j = 1; j<= size; j++)
+            for (int j = 1; j< size; j++)
             {
                 if (taken[r-j][c])
                     flag = true;
@@ -87,7 +87,7 @@ void Executive::placeShip(int n, Admiral* player)
         if (c + (size-1) <= 8)
         {
             bool flag = false;
-            for (int j = 1; j<= size; j++)
+            for (int j = 1; j< size; j++)
             {
                 if (taken[r][c+j])
                     flag = true;
@@ -103,7 +103,7 @@ void Executive::placeShip(int n, Admiral* player)
         if (c-(size-1) > 0)
         {
             bool flag = false;
-            for (int j = 1; j<= size; j++)
+            for (int j = 1; j< size; j++)
             {
                 if (taken[r][j-c])
                     flag = true;
@@ -223,7 +223,11 @@ bool Executive::validPos(std::string pos)
 
 void Executive::run()
 {
-    setup();
+    int menu = setup();
+    if (menu == 3)
+    {
+      return;
+    }
     std::cout<< "Player 1: It's time to place your ships.";
     placeShip(m_numShips, m_player1);
     std::cout << "Thanks for placing your ships player 1! Now it's player 2's turn";
@@ -233,7 +237,7 @@ void Executive::run()
     std::cout << "Thanks for placing your ships. Time to start the game";
 }
 
-void Executive::setup()
+int Executive::setup()
 {
   std::chrono::seconds interval(2);
   bool menurun = true;
@@ -260,6 +264,7 @@ void Executive::setup()
     else if (player_choice == "1")
     {
         setNumShips();
+        return 1;
     }
     else if (player_choice == "2")
     {
@@ -273,7 +278,7 @@ void Executive::setup()
       menurun = false;
       std::cout << "\nHave a nice day!\n";
       /// Quitting the program by returning and skipping gameplay phase.
-      return;
+      return 3;
     }
   }
 }
