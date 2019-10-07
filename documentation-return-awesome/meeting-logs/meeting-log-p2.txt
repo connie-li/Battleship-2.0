@@ -18,3 +18,15 @@ TEAM RETURN(AWESOME) - PROJECT 2 - MEETING LOG
 	 - Kyle, Connie: back-end class refactoring, integration w/ Exec.  Then AI when that is done.
 	 - Malena, Ethan: front-end class refactoring (Exec).  Then Powerups when that is done.
 	 - Archana: continue working on save game feature.
+6. 10/02/2019. In Lecture, scrum.
+	Attendees: Ethan Brenner, Kyle Kappes-Sum, Connie Li, Malena Schoeni.
+	Discussed: Progress on each area in preparation for new integrations
+7. 10/05/2019. LEEP2 G415.
+	Attendees: Kyle Kappes-Sum, Connie Li, Malena Schoeni.
+	Discussed: Existing code and error fixes
+	 - Kyle: Future AI integration, and debugging
+	 - Connie: Admiral development and future AI implementation
+	 - Malena: Debugging and Exec development
+8. 10/07/2019. In Lecture, scrum.
+	Attendees: Archana Ramakrishnan, Ethan Brenner, Kyle Kappes-Sum, Connie Li, Malena Schoeni.
+	Discussed: Current progresses and issues. Implenatation of powerups and saving features given the refactoring that has occured.

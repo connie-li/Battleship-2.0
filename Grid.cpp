@@ -53,11 +53,14 @@ void Grid::readShip(const string* arr, const int length){
 }
 
 Grid::~Grid(){
-    for(int i = 0; i < m_BOARD_SIZE; i++){
-        delete m_arr[i];
+    if(m_arr != nullptr)
+    {
+        for(int i = 0; i < m_BOARD_SIZE; i++){
+            delete[] m_arr[i];
+        }
+        delete[] m_arr;
+        m_arr = nullptr;
     }
-    delete m_arr;
-    m_arr = nullptr;
 }
 
 int Grid::colCoor(const string coord){

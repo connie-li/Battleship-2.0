@@ -15,7 +15,7 @@ class Admiral
 	private:
 		Grid m_board;	/* a Grid to store the Admiral's game map. */
 		int m_numShips;	/* the number of Ships in Admiral. */
-		vector<Ship> m_fleet;	/* an array of Ships that belong to the Admiral. */
+		vector<Ship*> m_fleet;	/* an vector of pointers to Ships that belong to the Admiral. */
 		int m_numAfloat;	/* the number of ships that are still afloat. */
 		// vector<string> m_powerUpsVec;	/* a vector containing an PowerUps that the Admiral currently has. */
 
@@ -50,7 +50,7 @@ class Admiral
 		/** Gets the Admiral's fleet of Ships.
 		 * @return a reference to the fleet vector.
 		 */
-		vector<Ship> getFleet() const;
+		vector<Ship*> getFleet() const;
 
 		/** Gets the number of the Admiral's Ships that are still afloat.
 		 * @return the number of Ships afloat.
@@ -98,5 +98,4 @@ class Admiral
 		 */
 		// void addPowerUp(const string powerUp);
 };
- 
 #endif

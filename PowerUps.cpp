@@ -1,30 +1,34 @@
 #include "PowerUps.h"
 
-PowerUps::PowerUps()
+PowerUps::PowerUps(Grid* playerGrid)
 {
     //initializes the power up list to an empty array
     m_powerUpslist = new char[0];
+
+    m_map = playerGrid;
 }
 
 PowerUps::~PowerUps(){
     delete[] m_powerUpslist;
     m_powerUpslist = nullptr;
+    delete[] m_map;
+    m_map = nullptr;
 }
 
-void PowerUps::useTorpedo(){
+void PowerUps::useTorpedo(std::string coord){
     //use the torpedo element, make appropriate calls into grid
     
     removePowerUp('T');
 }
 
-void PowerUps::useRadar(){
+void PowerUps::useRadar(std::string coord){
     //make appropriate call to grid to show the surrounding tiles
     //should these show as water or misses?
 
     removePowerUp('R');
 }
 
-void PowerUps::useScatterShot(){
+void PowerUps::useScatterShot(std::string coord){
     //make 3 random shots on the board,
     //either call an AI or we rng the shots here, then send to grid
     //as a "fire"
@@ -32,7 +36,7 @@ void PowerUps::useScatterShot(){
     removePowerUp('S');
 }
 
-void PowerUps::useUberCommander(){
+void PowerUps::useUberCommander(std::string coord){
     //does this call the Hard AI to find the smallest ship? 
 
     removePowerUp('U');

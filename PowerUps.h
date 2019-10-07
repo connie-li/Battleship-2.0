@@ -2,6 +2,7 @@
 #define POWERUPS_H
 #include <string>
 #include <stdexcept>
+#include "Grid.h"
 
 class PowerUps
 {
@@ -12,41 +13,44 @@ class PowerUps
     R = radar
     U = uber commander
     S = scattershot
-
     */
 
     //pointer for the list of aquired powerups
     char* m_powerUpslist = nullptr;
     int m_size = 0;
-
+    Grid* m_map = nullptr;
     public:
 
     /**
      * the default constructor that takes no parameters
      * @param none
      */
-    PowerUps();
+    PowerUps(Grid* playerGrid);
     ~PowerUps();
 
     /**
      * launches insta-kill torpedo
+     * @param string coordinate to use the powerup on
      */
-    void useTorpedo();
+    void useTorpedo(std::string coord);
 
     /**
      * reveals locations around the chosen coordinate
+     * @param string coordinate to use the powerup on
      */
-    void useRadar();
+    void useRadar(std::string coord);
 
     /**
      * hits random locations around the map
+     * @param string coordinate to use the powerup on
      */
-    void useScatterShot();
+    void useScatterShot(std::string coord);
 
     /**
      * seeks the smallest ship and fires upon it
+     * @param string coordinate to use the powerup on
      */
-    void useUberCommander();
+    void useUberCommander(std::string coord);
 
     /**
      * returns the list of collected powerups to the player

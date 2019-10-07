@@ -29,7 +29,7 @@ int Admiral::getNumShips() const
 	return(m_numShips);
 }
 
-vector<Ship> Admiral::getFleet() const
+vector<Ship*> Admiral::getFleet() const
 {
 	return(m_fleet);
 }
@@ -54,8 +54,8 @@ void Admiral::setNumAfloat(const int num)
 
 void Admiral::addShip(const int size, const string* coordsArr)
 {
-	m_fleet.emplace_back(Ship(size));
-	m_fleet.back().setCoords(coordsArr, size);
+	m_fleet.push_back(new Ship(size));
+	m_fleet.back()->setCoords(coordsArr, size);
 	m_board.readShip(coordsArr, size);
 }
 
@@ -75,8 +75,8 @@ int Admiral::findShipbyCoord(const string coord) const
 	int foundIndex = -1;
 	for(int shipIndex = 0; shipIndex < m_numShips; shipIndex++)
 	{
-		int shipSize = m_fleet.at(shipIndex).getSize();
-		string* shipCoords = m_fleet.at(shipIndex).getCoords();
+		int shipSize = m_fleet.at(shipIndex)->getSize();
+		string* shipCoords = m_fleet.at(shipIndex)->getCoords();
 		for(int coordIndex = 0; coordIndex < shipSize; coordIndex++)
 		{
 			if(shipCoords[coordIndex] == coord)
