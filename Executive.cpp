@@ -31,7 +31,7 @@ void Executive::placeShip(int n, Admiral* player)
     {
         std::cout << "It's time to place your ship of size 1x" << size << ". Enter a starting coordinate\n";
         std::string start = askCoord();
-      
+
         int temp = charCoordtoIntCoord(start.at(1));
         int r = std::stoi(start.substr(0,1));
         int c = temp;
@@ -185,6 +185,7 @@ void Executive::placeShip(int n, Admiral* player)
             arr[0] = std::to_string(r) + ":" + std::to_string(c);
             taken[r][c] = true;
             player->addShip(size, arr);
+            delete[] arr;
       }
     }
 }
@@ -316,4 +317,3 @@ void Executive::setNumShips()
 int Executive::charCoordtoIntCoord(char c){
   return (int)c - 64;
 }
-
