@@ -41,5 +41,12 @@ class Executive
     void setNumShips();
 
 
+    /** Helper function: converts coords from the form "1A" to the form "<row>:<col>".
+     * @param orig the original coordinate.
+     * @return the coordinate in "<row>:<col>" form.
+     */
+    string convertCoord(const string orig) const;
+
+
 };
 #endif

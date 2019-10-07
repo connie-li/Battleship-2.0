@@ -317,3 +317,11 @@ void Executive::setNumShips()
 int Executive::charCoordtoIntCoord(char c){
   return (int)c - 64;
 }
+
+string Executive::convertCoord(string orig)
+{
+  int row = charCoordtoIntCoord(orig.at(0));
+  int col = charCoordtoIntCoord(orig.at(1));
+  string newCoord = to_string(row) + ":" + to_string(col);
+  return(newCoord);
+}
