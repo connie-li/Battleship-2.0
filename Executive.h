@@ -41,6 +41,12 @@ class Executive
     void setNumShips();
 
 
+    /** Prints the result of the turn: hit, miss, powerup, etc.
+     * @param result represents whether the turn result was a hit, miss, or powerup.
+     * @post Prints messages for the current player based on the given result
+     */
+    void printTurnResult(const char result);
+
     /** Helper function: converts coords from the form "1A" to the form "<row>:<col>".
      * @param orig the original coordinate.
      * @return the coordinate in "<row>:<col>" form.
