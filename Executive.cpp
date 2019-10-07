@@ -314,7 +314,7 @@ void Executive::setNumShips()
 }
 
 
-void Executive::printTurnResult(const char result, const bool wasSunk)
+void Executive::printTurnResult(const char result, const bool wasSunk) const
 {
   if(result == 'H')
   {
