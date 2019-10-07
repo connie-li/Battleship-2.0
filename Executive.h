@@ -11,18 +11,20 @@ using namespace std;
 class Executive
 {
     private:
-        Admiral* m_player1;
-        Admiral* m_player2;
-        int m_numShips;
+        Admiral* m_player1; //Player 1
+        Admiral* m_player2; //player 2 
+        int m_numShips; //the number of ships the players are using in the game
         std::chrono::duration<unsigned long long> interval = std::chrono::seconds(2); //their timeout thing
 
 
 
     public:
     /** A constructor that takes no parameters.
-     *
+     * @param = none
      */
     Executive();
+
+    
     ~Executive();
 
     std::string askCoord();
