@@ -45,7 +45,7 @@ class Executive
      * @param result represents whether the turn result was a hit, miss, or powerup.
      * @post Prints messages for the current player based on the given result
      */
-    void printTurnResult(const char result, const bool wasSunk) const;
+    void printTurnResult(const string result, const bool wasSunk) const;
 
     /** Helper function: converts coords from the form "1A" to the form "<row>:<col>".
      * @param orig the original coordinate.

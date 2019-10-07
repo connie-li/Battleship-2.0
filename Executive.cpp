@@ -314,13 +314,13 @@ void Executive::setNumShips()
 }
 
 
-void Executive::printTurnResult(const char result, const bool wasSunk) const
+void Executive::printTurnResult(const string result, const bool wasSunk) const
 {
-  if(result == 'H')
+  if(result == "X")
   {
     cout << "Hit!\n";
   }
-  else if(result == 'M')
+  else if(result == "O")
   {
     cout << "Miss!\n";
   }
