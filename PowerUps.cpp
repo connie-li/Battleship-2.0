@@ -11,6 +11,8 @@ PowerUps::PowerUps(Grid* playerGrid)
 PowerUps::~PowerUps(){
     delete[] m_powerUpslist;
     m_powerUpslist = nullptr;
+    delete[] m_map;
+    m_map = nullptr;
 }
 
 void PowerUps::useTorpedo(std::string coord){
