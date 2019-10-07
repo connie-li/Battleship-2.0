@@ -17,7 +17,25 @@ PowerUps::~PowerUps(){
 
 void PowerUps::useTorpedo(std::string coord){
     //use the torpedo element, make appropriate calls into grid
+    //check to see if the value is an int
+    std::string coordValue = m_map->getCoor(coord);
+    try{
+        int num = std::stoi(coordValue);
+
+        
+    }
+    catch(std::invalid_argument& ia){
+        std::cout << "invalid argument thrown from PowerUp: " << ia.what();
+    }
+    catch(std::out_of_range& oor){
+        std::cout << "out of range thrown from PowerUp: " << oor.what();
+    }
+    catch(std::exception& e){
+        std::cout << "Unknown exception thrown from PowerUp" << e.what();
+    }
+
     
+
     removePowerUp('T');
 }
 

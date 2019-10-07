@@ -4,6 +4,7 @@
 #include <stdexcept>
 #include "Grid.h"
 
+
 class PowerUps
 {
     private:
@@ -16,7 +17,7 @@ class PowerUps
     */
 
     //pointer for the list of aquired powerups
-    char* m_powerUpslist = nullptr;
+    std::string* m_powerUpslist = nullptr;
     int m_size = 0;
     Grid* m_map = nullptr;
     public:
