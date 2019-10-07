@@ -65,9 +65,9 @@ int Admiral::decNumAfloat()
 	return(m_numAfloat);
 }
 
-bool Admiral::fire(const string coord)
+int Admiral::incomingShot(const string coord)
 {
-
+	
 }
 
 int Admiral::findShipbyCoord(const string coord) const

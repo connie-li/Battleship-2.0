@@ -84,9 +84,10 @@ class Admiral
 		int decNumAfloat();
 
 		/** Checks the given coordinate in its m_board, updates the game board and the relevant Ship if necessary.
-		 *
+		 * @param coord - the coordinate to try.
+		 * @return 0 if it's a miss, 1 if it's a hit, 2 if it's a powerup.
 		 */
-		bool fire(const string coord);
+		int incomingShot(const string coord);
 
 		/** Finds the index of the Ship in the fleet that occupies the given coordinate.
 		 * @return the index of the relevant Ship in m_fleet, or -1 if the Ship is not found.
