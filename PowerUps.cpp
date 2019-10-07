@@ -38,7 +38,22 @@ void PowerUps::useUberCommander(){
     removePowerUp('U');
 }
 
+char* PowerUps::getPowerUps(){
+    return(m_powerUpslist);
+}
 
+void PowerUps::addPowerUp(char symbol){
+    char* temp = new char[(m_size+1)];
+    for(int i=0;i<m_size; i++)
+    {
+        temp[i]=m_powerUpslist[i];
+    }
+    delete m_powerUpslist;
+    temp[m_size] = symbol;
+    
+    m_powerUpslist = temp;
+    m_size++;
+}
 
 void PowerUps::removePowerUp(char symbol){
 
