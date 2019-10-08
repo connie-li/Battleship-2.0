@@ -18,23 +18,24 @@ class PowerUps
     */
 
     //pointer for the list of aquired powerups
-    std::string* m_powerUpslist = nullptr;
-    int m_size = 0;
-    Grid* m_map = nullptr;
+    
+    Grid* m_admir1Map = nullptr;
+    Grid* m_admir2Map = nullptr;
+
     public:
 
     /**
      * the default constructor that takes no parameters
      * @param none
      */
-    PowerUps(Grid* playerGrid);
+    PowerUps();
     ~PowerUps();
 
     /**
      * launches insta-kill torpedo
      * @param string coordinate to use the powerup on
      */
-    void useTorpedo(std::string coord);
+    void useTorpedo(std::string coord, bool isPlayer1);
 
     /**
      * reveals locations around the chosen coordinate
@@ -58,7 +59,7 @@ class PowerUps
      * returns the list of collected powerups to the player
      * @return a list of powerup symbols
      */
-    char* getPowerUps();
+    string* getPowerUps();
 
     /**
      * adds a powerup in the player's arsenal
