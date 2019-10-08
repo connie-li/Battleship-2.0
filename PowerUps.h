@@ -40,20 +40,23 @@ class PowerUps
     /**
      * reveals locations around the chosen coordinate
      * @param string coordinate to use the powerup on
+     * @param bool true if player1 false if player2
      */
-    void useRadar(std::string coord);
+    void useRadar(std::string coord,bool isPlayer1);
 
     /**
      * hits random locations around the map
      * @param string coordinate to use the powerup on
+     * @param bool true if player1 false if player2
      */
-    void useScatterShot(std::string coord);
+    void useScatterShot(std::string coord,bool isPlayer1);
 
     /**
      * seeks the smallest ship and fires upon it
      * @param string coordinate to use the powerup on
+     * @param bool true if player1 false if player2
      */
-    void useUberCommander(std::string coord);
+    void useUberCommander(std::string coord,bool isPlayer1);
 
     /**
      * returns the list of collected powerups to the player
