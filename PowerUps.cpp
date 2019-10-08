@@ -48,22 +48,22 @@ void PowerUps::useTorpedo(std::string coord,bool isPlayer1){
 void PowerUps::useRadar(std::string coord,bool isPlayer1){
     //make appropriate call to grid to show the surrounding tiles
     //should these show as water or misses?
-
-    removePowerUp('R');
+    Grid* map = mapPicker(isPlayer1);
+   // removePowerUp('R');
 }
 
 void PowerUps::useScatterShot(std::string coord,bool isPlayer1){
     //make 3 random shots on the board,
     //either call an AI or we rng the shots here, then send to grid
     //as a "fire"
-
-    removePowerUp('S');
+    Grid* map = mapPicker(isPlayer1);
+   // removePowerUp('S');
 }
 
 void PowerUps::useUberCommander(std::string coord,bool isPlayer1){
     //does this call the Hard AI to find the smallest ship? 
-
-    removePowerUp('U');
+    Grid* map = mapPicker(isPlayer1);
+  //  removePowerUp('U');
 }
 
 /*
