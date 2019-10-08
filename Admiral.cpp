@@ -65,9 +65,28 @@ int Admiral::decNumAfloat()
 	return(m_numAfloat);
 }
 
-int Admiral::incomingShot(const string coord)
+string Admiral::incomingShot(const string coord)
 {
-	
+	char orig = m_board.getCoor(coord);
+	if(isDigit(orig) != 0)
+	{
+		m_board.setCoor(coord, "X");
+		int shipIndex = findShipbyCoord(coord);
+		m_fleet[shipIndex]->incNumHits();
+		if(!(m_fleet[shipIndex]->getStatus()))
+		{
+			return("sunk");
+		}
+		else
+		{
+			return("X");
+		}
+	}
+	else
+	{
+		return(orig);
+	}
+
 }
 
 int Admiral::findShipbyCoord(const string coord) const

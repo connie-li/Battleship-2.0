@@ -5,6 +5,7 @@
 #include <string>
 #include <iostream>
 #include <stdexcept>
+#include <cctype>
 #include <vector>
 #include "Grid.h"
 #include "Ship.h"
@@ -85,9 +86,9 @@ class Admiral
 
 		/** Checks the given coordinate in its m_board, updates the game board and the relevant Ship if necessary.
 		 * @param coord - the coordinate to try.
-		 * @return 0 if it's a miss, 1 if it's a hit, 2 if it's a powerup.
+		 * @return the content of the coord location, which indicates the result of the shot.
 		 */
-		int incomingShot(const string coord);
+		string incomingShot(const string coord);
 
 		/** Finds the index of the Ship in the fleet that occupies the given coordinate.
 		 * @return the index of the relevant Ship in m_fleet, or -1 if the Ship is not found.
