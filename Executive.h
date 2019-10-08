@@ -71,7 +71,7 @@ class Executive
     void updatePowerups(const string powerup);
 
     /** Prints the result of the turn: hit, miss, powerup, etc.
-     * @param result represents whether the turn result was a hit, miss, or powerup.
+     * @param result represents whether the turn result was a hit, miss, sink, or powerup.
      * @post Prints messages for the current player based on the given result
      */
     void printTurnResult(const string result, const bool wasSunk) const;
