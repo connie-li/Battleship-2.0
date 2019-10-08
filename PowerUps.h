@@ -4,7 +4,7 @@
 #include <stdexcept>
 #include "Grid.h"
 #include <ctype.h>
-
+#include "Ship.h"
 
 class PowerUps
 {
