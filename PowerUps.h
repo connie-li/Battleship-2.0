@@ -4,7 +4,7 @@
 #include <stdexcept>
 #include "Grid.h"
 #include <ctype.h>
-
+#include "Ship.h"
 
 class PowerUps
 {
@@ -18,47 +18,57 @@ class PowerUps
     */
 
     //pointer for the list of aquired powerups
-    std::string* m_powerUpslist = nullptr;
-    int m_size = 0;
-    Grid* m_map = nullptr;
+    
+    Grid* m_admir1Map = nullptr;
+    Grid* m_admir2Map = nullptr;
+
     public:
 
     /**
      * the default constructor that takes no parameters
      * @param none
      */
-    PowerUps(Grid* playerGrid);
+    PowerUps();
     ~PowerUps();
 
     /**
      * launches insta-kill torpedo
      * @param string coordinate to use the powerup on
      */
-    void useTorpedo(std::string coord);
+    void useTorpedo(std::string coord, bool isPlayer1);
 
     /**
      * reveals locations around the chosen coordinate
      * @param string coordinate to use the powerup on
+     * @param bool true if player1 false if player2
      */
-    void useRadar(std::string coord);
+    void useRadar(std::string coord,bool isPlayer1);
 
     /**
      * hits random locations around the map
      * @param string coordinate to use the powerup on
+     * @param bool true if player1 false if player2
      */
-    void useScatterShot(std::string coord);
+    void useScatterShot(std::string coord,bool isPlayer1);
 
     /**
      * seeks the smallest ship and fires upon it
      * @param string coordinate to use the powerup on
+     * @param bool true if player1 false if player2
      */
-    void useUberCommander(std::string coord);
+    void useUberCommander(std::string coord,bool isPlayer1);
+
+    /**
+     * chooses which map should be handed to the function
+     * @param bool true if player1's turn, false if player2
+     */
+    Grid* mapPicker(bool isPlayer1);
 
     /**
      * returns the list of collected powerups to the player
      * @return a list of powerup symbols
      */
-    char* getPowerUps();
+    string* getPowerUps();
 
     /**
      * adds a powerup in the player's arsenal
