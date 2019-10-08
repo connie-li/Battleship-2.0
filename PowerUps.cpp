@@ -12,14 +12,16 @@ PowerUps::~PowerUps(){
     m_admir2Map = nullptr;
 }
 
-void PowerUps::useTorpedo(std::string coord,bool isPlayer1){
-    Grid* map = nullptr;
+Grid* PowerUps::mapPicker(bool isPlayer1){
     if(isPlayer1){
-        map = m_admir2Map;
+        return(m_admir2Map);
     }
-    else{
-        map = m_admir1Map;
-    }
+    return(m_admir1Map);
+}
+
+void PowerUps::useTorpedo(std::string coord,bool isPlayer1){
+    Grid* map = mapPicker(isPlayer1);
+    
      //check to see if the value is an int
     std::string coordValue = map->getCoor(coord);
     if(isdigit(coordValue[0]) == '1'|| coordValue[0]=='X'){

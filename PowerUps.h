@@ -59,6 +59,12 @@ class PowerUps
     void useUberCommander(std::string coord,bool isPlayer1);
 
     /**
+     * chooses which map should be handed to the function
+     * @param bool true if player1's turn, false if player2
+     */
+    Grid* mapPicker(bool isPlayer1);
+
+    /**
      * returns the list of collected powerups to the player
      * @return a list of powerup symbols
      */
