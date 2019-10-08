@@ -19,22 +19,17 @@ void PowerUps::useTorpedo(std::string coord){
     //use the torpedo element, make appropriate calls into grid
     //check to see if the value is an int
     std::string coordValue = m_map->getCoor(coord);
-    try{
-        int num = std::stoi(coordValue);
+    if(isdigit(coordValue[0]) == '1'){
+        //this is a hit, destory whole ship
+    }
+    else if (coordValue[0]=='~' || coordValue[0]=='O' || coordValue[0]=='X'){
+        //this is water, a miss or a hit
+    }
+    else {
 
-        
-    }
-    catch(std::invalid_argument& ia){
-        std::cout << "invalid argument thrown from PowerUp: " << ia.what();
-    }
-    catch(std::out_of_range& oor){
-        std::cout << "out of range thrown from PowerUp: " << oor.what();
-    }
-    catch(std::exception& e){
-        std::cout << "Unknown exception thrown from PowerUp" << e.what();
     }
 
-    
+    //if you hit a "hit", then it will sink the whole ship
 
     removePowerUp('T');
 }

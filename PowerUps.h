@@ -3,6 +3,7 @@
 #include <string>
 #include <stdexcept>
 #include "Grid.h"
+#include <ctype.h>
 
 
 class PowerUps
