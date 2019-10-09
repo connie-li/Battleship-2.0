@@ -48,9 +48,12 @@ void PowerUps::useTorpedo(std::string coord,bool isPlayer1){
 void PowerUps::useRadar(std::string coord,bool isPlayer1){
     //make appropriate call to grid to show the surrounding tiles
     //should these show as water or misses?
+    //went with showing them as misses... ships shown as *** 
     Grid* map = mapPicker(isPlayer1);
     int r = std::stoi(coord.substr(0,1));
     int c = charCoordtoIntCoord(coord.at(2));
+
+    //get starting upper left coor row and col for 3x3 box for radar
     int startRow = r-1;
     int startCol = c -1;
     if (r ==1)
@@ -77,10 +80,12 @@ void PowerUps::useRadar(std::string coord,bool isPlayer1){
             std::string coord1 = map->getCoor(shot);
             if(std::isdigit(coord1.at(0)))
             {
+                //if it is a number (ship) then display as *
                 map->setCoor(shot, "*");
             }
             else if (coord1[0] == '~')
             {
+                //if water, display as miss
                 map->setCoor(shot, "O");
             }
         }
@@ -99,14 +104,20 @@ void PowerUps::useScatterShot(std::string coord,bool isPlayer1){
     Grid* map = mapPicker(isPlayer1);
    // removePowerUp('S');
 
+    //randomly generates coordinate
     std::string shot1 = map->randCoor(true);
+
+    //gets the value of that coor from Grid
     std::string coord1 = map->getCoor(shot1);
+
     if(std::isdigit(coord1[0]))
     {
+        //if it is a ship (number) then show as hit
         map->setCoor(shot1, "X");
     }
     else
     {
+        //else show it as a miss --- what about other power ups????
         map->setCoor(shot1, "O");
     }
     
