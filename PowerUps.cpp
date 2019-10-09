@@ -58,6 +58,12 @@ void PowerUps::useScatterShot(std::string coord,bool isPlayer1){
     //as a "fire"
     Grid* map = mapPicker(isPlayer1);
    // removePowerUp('S');
+
+    std::string shot1 = m_map->randCoor(true);
+    std::string shot2 = m_map->randCoor(true);
+    std::string shot3 = m_map->randCoor(true);
+
+    removePowerUp('S');
 }
 
 void PowerUps::useUberCommander(std::string coord,bool isPlayer1){
