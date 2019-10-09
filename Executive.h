@@ -46,10 +46,11 @@ class Executive
      * ending coordinates for the user. Then asks the user to input one of the ending coordinate from list. 
      * @param size is an int for the length of the ship being placed
      * @param player is an Admiral object for the player placing ship
+     * @param AI true if player is AI (don't interact with user)
      * @return none
      * @post sends a string array of the coordinates of the ship to Admiral
      */
-    void placeShip(int size, Admiral* player);
+    void placeShip(int size, Admiral* player, bool AI);
 
     /**
      * Runs the Battleship game
