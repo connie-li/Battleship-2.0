@@ -19,14 +19,16 @@ Grid* PowerUps::mapPicker(bool isPlayer1){
     return(m_admir1Map);
 }
 
-void PowerUps::useTorpedo(std::string coord,bool isPlayer1){
+void PowerUps::useTorpedo(std::string coord,bool isPlayer1, int shipSize, string* shipCoords){
     Grid* map = mapPicker(isPlayer1);
     
      //check to see if the value is an int
     std::string coordValue = map->getCoor(coord);
-    if(isdigit(coordValue[0]) == '1'|| coordValue[0]=='X'){
-        //this is a hit, destory whole ship
-
+    if(shipSize != -1){
+        //this is a hit, destroy whole ship
+        for(int i=0;i<shipSize;i++){
+            map->setCoor(shipCoords[i], "X");
+        }
     }
     else if (coordValue[0]=='~' || coordValue[0]=='O'){
         //this is water or a miss
