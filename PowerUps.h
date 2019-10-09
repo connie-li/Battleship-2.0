@@ -35,10 +35,10 @@ class PowerUps
      * launches insta-kill torpedo
      * @param string coordinate to use the powerup on
      * @param bool isPlayer1 true if player1 false if player2
-     * @param bool isAShip true if at that coordinate there is a ship
+     * @param int shipSize size of the ship, -1 if there is no ship at this coord
      * @param string* shipCoords list of ship coordinates
      */
-    void useTorpedo(std::string coord, bool isPlayer1, bool isAShip, string* shipCoords);
+    void useTorpedo(std::string coord, bool isPlayer1, int shipSize, string* shipCoords);
 
     /**
      * reveals locations around the chosen coordinate
