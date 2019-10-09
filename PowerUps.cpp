@@ -59,11 +59,39 @@ void PowerUps::useScatterShot(std::string coord,bool isPlayer1){
     Grid* map = mapPicker(isPlayer1);
    // removePowerUp('S');
 
-    std::string shot1 = m_map->randCoor(true);
-    std::string shot2 = m_map->randCoor(true);
-    std::string shot3 = m_map->randCoor(true);
+    std::string shot1 = map->randCoor(true);
+    std::string coord1 = map->getCoor(shot1);
+    if(std::isdigit(coord1[0]))
+    {
+        map->setCoor(shot1, "X");
+    }
+    else
+    {
+        map->setCoor(shot1, "O");
+    }
+    
+    std::string shot2 = map->randCoor(true);
+    std::string coord2 = map->getCoor(shot2);
 
-    removePowerUp('S');
+    if(std::isdigit(coord2[0]))
+    {
+        map->setCoor(shot2, "X");
+    }
+    else
+    {
+        map->setCoor(shot2, "O");
+    }
+    std::string shot3 = map->randCoor(true);
+    std::string coord3 = map->getCoor(shot3);
+
+    if(std::isdigit(coord3[0]))
+    {
+        map->setCoor(shot3, "X");
+    }
+    else
+    {
+        map->setCoor(shot3, "O");
+    }
 }
 
 void PowerUps::useUberCommander(std::string coord,bool isPlayer1){

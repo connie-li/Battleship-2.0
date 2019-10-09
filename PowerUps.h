@@ -5,6 +5,7 @@
 #include "Grid.h"
 #include <ctype.h>
 #include "Ship.h"
+#include <ctype.h>
 
 class PowerUps
 {
