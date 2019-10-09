@@ -73,17 +73,18 @@ bool Admiral::fire(const string coord)
 
 	//if using torpedo...
 
-	bool isAShip = false;
+	int shipSize = -1;
 	string* shipCoords;
 
 	int temp = findShipbyCoord(coord);
 	if(temp != -1){
 		//this means there is a ship at this coord
 		shipCoords = getFleet().at(temp)->getCoords();
-		isAShip = true;
+		
+		shipSize = getFleet().at(temp)->getSize();
 	}
 		//now call the powerup torpedo func, syntax may be wrong here
-		//.useTorpedo(coord, isPlayer1, isAShip, shipCoords)
+		//.useTorpedo(coord, isPlayer1, shipSize, shipCoords)
 }
 
 int Admiral::findShipbyCoord(const string coord) const
