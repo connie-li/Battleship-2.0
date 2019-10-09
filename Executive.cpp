@@ -291,6 +291,11 @@ int Executive::setup()
       /// Quitting the program by returning and skipping gameplay phase.
       return 4;
     }
+    else if (player_choice == "3")
+    {
+      m_player2 = new AI(); //exact constructer and arguements to come
+      m_player2.placeShips(m_numShips);
+    }
   }
 }
 
