@@ -224,17 +224,27 @@ bool Executive::validPos(std::string pos)
 void Executive::run()
 {
     int menu = setup();
-    if (menu == 3)
+    if (menu == 4)
     {
       return;
     }
-    std::cout<< "Player 1: It's time to place your ships.";
-    placeShip(m_numShips, m_player1);
-    std::cout << "Thanks for placing your ships player 1! Now it's player 2's turn";
-    std::chrono::seconds interval(2);
-    std::cout<< "Player 2: It's time to place your ships.";
-    placeShip(m_numShips, m_player2);
-    std::cout << "Thanks for placing your ships. Time to start the game";
+    if (menu = 1)
+    {
+        std::cout<< "Player 1: It's time to place your ships.";
+        placeShip(m_numShips, m_player1);
+        std::cout << "Thanks for placing your ships player 1! Now it's player 2's turn";
+        std::chrono::seconds interval(2);
+        std::cout<< "Player 2: It's time to place your ships.";
+        placeShip(m_numShips, m_player2);
+        std::cout << "Thanks for placing your ships. Time to start the game";
+    }
+    if (menu = 3)
+    {
+        std::cout<< "Player 1: It's time to place your ships.";
+        placeShip(m_numShips, m_player1);
+        std::cout << "Thanks for placing your ships. Time to start the game";
+    }
+
 }
 
 int Executive::setup()
@@ -255,9 +265,9 @@ int Executive::setup()
     std::cout << " |____/ \\__,_|\\__|\\__|_|\\___||___/_| |_|_| .__/ \n";
     std::cout << "                                         | |    \n";
     std::cout << "                                         |_|    \n";
-    std::cout << "\nMenu:\n 1) Start Game\n 2) Instructions\n 3) Quit Game\n\nEnter option (1-3): ";
+    std::cout << "\nMenu:\n 1) Start Game (normal 2 v 2)\n 2) Instructions\n 3)Play game (1 player against AI) \n4) Quit Game\n\nEnter option (1-4): ";
     std::getline(std::cin,player_choice);
-    if (player_choice != "1" && player_choice != "2" && player_choice != "3")
+    if (player_choice != "1" && player_choice != "2" && player_choice != "3" && player_choice != "4")
     {
       std::cout << "\nError with player selection please choose 1, 2, or 3 \n";
     }
@@ -272,13 +282,14 @@ int Executive::setup()
       std::cout << "\n - You will walk through and place your ships and then take turns entering coordinates to attack the other players ships.\n - The game is over when all Enemy Ships have been sunk.";
       std::cout << "\n - Here are the lists of symbols that will show up on the board with explanations: \n";
       //std::cout << "\t • ~: Water \n\t • O: Miss \n\t • X: Hit \n\t • C: 5x1 Carrier \n\t • B: 4x1 Battleship \n\t • D: 3x1 Destroyer \n\t • S: 2x1 Submarine \n\t • T: 1x1 Tug Boat";
+      std::cout << "You can play with 1 player and then go against an AI with an easy, medium or difficult skill level\n";
     }
-    else if (player_choice == "3")
+    else if (player_choice == "4")
     {
       menurun = false;
       std::cout << "\nHave a nice day!\n";
       /// Quitting the program by returning and skipping gameplay phase.
-      return 3;
+      return 4;
     }
   }
 }
