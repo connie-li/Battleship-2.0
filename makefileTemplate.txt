@@ -1,25 +1,20 @@
-Battleship: main.o Executive.o Admiral.o Grid.o Ship.o
-	g++ -std=c++11 -g -Wall main.o Executive.o Admiral.o Grid.o Ship.o -o Battleship
+objo := Executive.o Admiral.o Ship.o Grid.o
+objc := $(objo:.o=.cpp)
+flags := -std=c++11 -g -Wall
 
-main.o: main.cpp Executive.h
-	g++ -std=c++11 -g -Wall -c main.cpp
+all: main.o $(objo)
+	g++ $(flags) main.o $(objo) -o Battleship
 
-Executive.o: Executive.h Executive.cpp Admiral.h
-	g++ -std=c++11 -g -Wall -c Executive.cpp
+$(objo): $(objo:.o=.h) $(objc)
+	g++ $(flags) -c $(objc)
 
-Admiral.o: Admiral.h Admiral.cpp Grid.h Ship.h
-	g++ -std=c++11 -g -Wall -c Admiral.cpp
-
-Grid.o: Grid.h Grid.cpp
-	g++ -std=c++11 -g -Wall -c Grid.cpp
-
-Ship.o: Ship.h Ship.cpp
-	g++ -std=c++11 -g -Wall -c Ship.cpp
+main.o: main.cpp
+	g++ $(flags) -c main.cpp
 
 //WINDOWS
 clean:
-	del *.o Battleship.exe
+	del -f main.o $(objo) Battleship.exe
 
 //UNIX
 clean:
-	rm *.o Battleship
+	rm -f main.o $(objo) Battleship
