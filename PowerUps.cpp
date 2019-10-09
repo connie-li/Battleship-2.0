@@ -49,8 +49,48 @@ void PowerUps::useRadar(std::string coord,bool isPlayer1){
     //make appropriate call to grid to show the surrounding tiles
     //should these show as water or misses?
     Grid* map = mapPicker(isPlayer1);
-   // removePowerUp('R');
+    int r = std::stoi(coord.substr(0,1));
+    int c = charCoordtoIntCoord(coord.at(2));
+    int startRow = r-1;
+    int startCol = c -1;
+    if (r ==1)
+    {
+        startRow = r;
+    }
+    else if (r == 8)
+    {
+        startRow -= 1;
+    }
+    if (c == 1)
+    {
+        startCol = c;
+    }
+    else if (c == 8)
+    {
+        startCol -= 1;
+    }
+    for (int i = startRow; i< startRow+2; i++ )
+    {
+        for(int j = startCol; j< startCol+2; j++)
+        {
+            std::string shot = i+":"+j;
+            std::string coord1 = map->getCoor(shot);
+            if(std::isdigit(coord1.at(0)))
+            {
+                map->setCoor(shot, "*");
+            }
+            else if (coord1[0] == '~')
+            {
+                map->setCoor(shot, "O");
+            }
+        }
+    }
 }
+/**
+ * Power up questions: do you want else if =='~' to make sure it is water before 
+ * setting to miss?
+ * How do we know if a user got a power up??
+ */
 
 void PowerUps::useScatterShot(std::string coord,bool isPlayer1){
     //make 3 random shots on the board,
@@ -59,17 +99,49 @@ void PowerUps::useScatterShot(std::string coord,bool isPlayer1){
     Grid* map = mapPicker(isPlayer1);
    // removePowerUp('S');
 
-    std::string shot1 = m_map->randCoor(true);
-    std::string shot2 = m_map->randCoor(true);
-    std::string shot3 = m_map->randCoor(true);
+    std::string shot1 = map->randCoor(true);
+    std::string coord1 = map->getCoor(shot1);
+    if(std::isdigit(coord1[0]))
+    {
+        map->setCoor(shot1, "X");
+    }
+    else
+    {
+        map->setCoor(shot1, "O");
+    }
+    
+    std::string shot2 = map->randCoor(true);
+    std::string coord2 = map->getCoor(shot2);
 
-    removePowerUp('S');
+    if(std::isdigit(coord2[0]))
+    {
+        map->setCoor(shot2, "X");
+    }
+    else
+    {
+        map->setCoor(shot2, "O");
+    }
+    std::string shot3 = map->randCoor(true);
+    std::string coord3 = map->getCoor(shot3);
+
+    if(std::isdigit(coord3[0]))
+    {
+        map->setCoor(shot3, "X");
+    }
+    else
+    {
+        map->setCoor(shot3, "O");
+    }
 }
 
 void PowerUps::useUberCommander(std::string coord,bool isPlayer1){
     //does this call the Hard AI to find the smallest ship? 
     Grid* map = mapPicker(isPlayer1);
   //  removePowerUp('U');
+}
+
+int PowerUps::charCoordtoIntCoord(char c){
+  return (int)c - 64;
 }
 
 /*
