@@ -14,7 +14,6 @@ class AI : public Admiral
     ~AI();
     bool fire();
 
-    void placeShips(int numShips);
 
 };
 #endif
