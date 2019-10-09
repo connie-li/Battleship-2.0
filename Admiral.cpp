@@ -67,7 +67,23 @@ int Admiral::decNumAfloat()
 
 bool Admiral::fire(const string coord)
 {
+	//fire as normal
 
+	//if using a powerup, figure out which one
+
+	//if using torpedo...
+
+	bool isAShip = false;
+	string* shipCoords;
+
+	int temp = findShipbyCoord(coord);
+	if(temp != -1){
+		//this means there is a ship at this coord
+		shipCoords = getFleet().at(temp)->getCoords();
+		isAShip = true;
+	}
+		//now call the powerup torpedo func, syntax may be wrong here
+		//.useTorpedo(coord, isPlayer1, isAShip, shipCoords)
 }
 
 int Admiral::findShipbyCoord(const string coord) const
