@@ -83,5 +83,12 @@ class PowerUps
      */
     
     void removePowerUp(char symbol);
+
+    /**
+     * Return  numeric equivalent of a letter column
+     * @param c is the character letter
+     * @return int equivalent (1-8)
+     */
+    int charCoordtoIntCoord(char c);
 };
 #endif
