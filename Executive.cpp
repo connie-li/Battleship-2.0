@@ -272,7 +272,7 @@ void Executive::run()
     {
       return;
     }
-    if (menu = 1)
+    if (menu == 1)
     {
         std::cout<< "Player 1: It's time to place your ships.";
         placeShip(m_numShips, m_player1, false);
@@ -282,11 +282,11 @@ void Executive::run()
         placeShip(m_numShips, m_player2, false);
         std::cout << "Thanks for placing your ships. Time to start the game";
     }
-    if (menu = 3)
+    if (menu == 3)
     {
         std::cout<< "Player 1: It's time to place your ships.";
         placeShip(m_numShips, m_player1, false);
-        std::cout << "Thanks for placing your ships. Time to start the game";
+        std::cout << "Thanks for placing your ships. The AI's ships have been placed randomly. Time to start the game";
         placeShip(m_numShips, m_player2, true);
     }
 
@@ -338,8 +338,8 @@ int Executive::setup()
     }
     else if (player_choice == "3")
     {
-      m_player2 = new AI(); //exact constructer and arguements to come
-      m_player2.placeShips(m_numShips);
+      // m_player2 = new AI(); //exact constructer and arguements to come
+      // m_player2.placeShips(m_numShips);
     }
   }
 }

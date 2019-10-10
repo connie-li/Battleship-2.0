@@ -78,7 +78,7 @@ void PowerUps::useRadar(std::string coord,bool isPlayer1){
     {
         for(int j = startCol; j< startCol+2; j++)
         {
-            std::string shot = i+":"+j;
+            std::string shot = std::to_string(i)+":"+std::to_string(j);
             std::string coord1 = map->getCoor(shot);
             if(std::isdigit(coord1.at(0)))
             {
