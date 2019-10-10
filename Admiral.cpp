@@ -65,24 +65,55 @@ int Admiral::decNumAfloat()
 	return(m_numAfloat);
 }
 
-bool Admiral::fire(const string coord)
+string Admiral::incomingShot(const string coord)
 {
+	string origStr = m_board.getCoor(coord);
+	char orig = origStr.at(0);
+	if(isdigit(orig) != 0)	// check if the target is a Ship
+	{
+		m_board.setCoor(coord, "X");
+		int shipIndex = findShipbyCoord(coord);
+		m_fleet[shipIndex]->incNumHits();
+		if(!(m_fleet[shipIndex]->getStatus()))
+		{
+			return("sunk");
+		}
+		else
+		{
+			return("hit");
+		}
+	}
+	else if(orig == '~' || orig == 'O')	// shot is a miss
+	{
+		m_board.setCoor(coord, "O");
+		return("miss");
+	}
+	else if(orig == 'X')
+	{
+		return("X");
+	}
+	else
+	{
+		return(origStr);
+	}
+
 	//fire as normal
 
-	//if using a powerup, figure out which one
 
-	//if using torpedo...
+// 	//if using a powerup, figure out which one
 
-	int shipSize = -1;
-	string* shipCoords;
+// 	//if using torpedo...
 
-	int temp = findShipbyCoord(coord);
-	if(temp != -1){
-		//this means there is a ship at this coord
-		shipCoords = getFleet().at(temp)->getCoords();
+// 	int shipSize = -1;
+// 	string* shipCoords;
+
+// 	int temp = findShipbyCoord(coord);
+// 	if(temp != -1){
+// 		//this means there is a ship at this coord
+// 		shipCoords = getFleet().at(temp)->getCoords();
 		
-		shipSize = getFleet().at(temp)->getSize();
-	}
+// 		shipSize = getFleet().at(temp)->getSize();
+// 	}
 		//now call the powerup torpedo func, syntax may be wrong here
 		//.useTorpedo(coord, isPlayer1, shipSize, shipCoords)
 }

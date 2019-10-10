@@ -374,6 +374,33 @@ void Executive::setNumShips()
 }
 
 
+void Executive::printTurnResult(const string result, const bool wasSunk) const
+{
+  if(result == "X")
+  {
+    cout << "Hit!\n";
+  }
+  else if(result == "O")
+  {
+    cout << "Miss!\n";
+  }
+  // else if(result =='') TODO: add Powerup handling
+
+  if(wasSunk)
+  {
+    cout << "You sank their ship!\n";
+  }
+}
+
+// --- HELPER FUNCTIONS ---
 int Executive::charCoordtoIntCoord(char c){
   return (int)c - 64;
+}
+
+string Executive::convertCoord(string orig)
+{
+  int row = charCoordtoIntCoord(orig.at(0));
+  int col = charCoordtoIntCoord(orig.at(1));
+  string newCoord = to_string(row) + ":" + to_string(col);
+  return(newCoord);
 }

@@ -5,6 +5,7 @@
 #include <string>
 #include <iostream>
 #include <stdexcept>
+#include <cctype>
 #include <vector>
 #include "Grid.h"
 #include "Ship.h"
@@ -17,7 +18,7 @@ class Admiral
 		int m_numShips;	/* the number of Ships in Admiral. */
 		vector<Ship*> m_fleet;	/* an vector of pointers to Ships that belong to the Admiral. */
 		int m_numAfloat;	/* the number of ships that are still afloat. */
-		// vector<string> m_powerUpsVec;	/* a vector containing an PowerUps that the Admiral currently has. */
+		//PowerUps m_powerups;	/* handles & contains the Admiral's powerups & related methods */
 
 	public:
 		/** A constructor that takes no parameters.
@@ -84,9 +85,10 @@ class Admiral
 		int decNumAfloat();
 
 		/** Checks the given coordinate in its m_board, updates the game board and the relevant Ship if necessary.
-		 *
+		 * @param coord - the coordinate to try.
+		 * @return the content of the coord location, which indicates the result of the shot.
 		 */
-		bool fire(const string coord);
+		string incomingShot(const string coord);
 
 		/** Finds the index of the Ship in the fleet that occupies the given coordinate.
 		 * @return the index of the relevant Ship in m_fleet, or -1 if the Ship is not found.
