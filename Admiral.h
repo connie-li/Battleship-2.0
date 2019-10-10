@@ -18,7 +18,7 @@ class Admiral
 		int m_numShips;	/* the number of Ships in Admiral. */
 		vector<Ship*> m_fleet;	/* an vector of pointers to Ships that belong to the Admiral. */
 		int m_numAfloat;	/* the number of ships that are still afloat. */
-		// vector<string> m_powerUpsVec;	/* a vector containing an PowerUps that the Admiral currently has. */
+		//PowerUps m_powerups;	/* handles & contains the Admiral's powerups & related methods */
 
 	public:
 		/** A constructor that takes no parameters.
