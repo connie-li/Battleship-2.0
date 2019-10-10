@@ -68,7 +68,7 @@ int Admiral::decNumAfloat()
 string Admiral::incomingShot(const string coord)
 {
 	char orig = m_board.getCoor(coord);
-	if(isDigit(orig) != 0)
+	if(isDigit(orig) != 0)	// check if the target is a Ship
 	{
 		m_board.setCoor(coord, "X");
 		int shipIndex = findShipbyCoord(coord);
@@ -79,8 +79,17 @@ string Admiral::incomingShot(const string coord)
 		}
 		else
 		{
-			return("X");
+			return("hit");
 		}
+	}
+	else if(orig == '~' || orig == 'O')	// shot is a miss
+	{
+		m_board.setCoor(coord, "O");
+		return("miss");
+	}
+	else if(orig = 'X')
+	{
+		return("X");
 	}
 	else
 	{
