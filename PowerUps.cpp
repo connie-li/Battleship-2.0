@@ -167,8 +167,13 @@ int PowerUps::charCoordtoIntCoord(char c){
   return (int)c - 64;
 }
 
-void PowerUps::addPowerUp(std::string value){
-
+void PowerUps::addPowerUp(std::string value, bool isPlayer1){
+     if(isPlayer1){
+            m_admir2Powerups->push_back(value);
+        }
+        else{
+            m_admir1Powerups->push_back(value);
+        }
 }
 /*
 void PowerUps::addPowerUp(char symbol){

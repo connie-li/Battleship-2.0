@@ -77,9 +77,10 @@ class PowerUps
 
     /**
      * adds a powerup to the correct admiral's powerups vector
-     * @param string the string value of the powerup 
+     * @param string the string value of the powerup
+     * @param bool isPlayer1 true if player1 false if player2 
      */
-    void addPowerUp(std::string value);
+    void addPowerUp(std::string value, bool isPlayer1);
 
     /**
      * removes the given powerup from the list
