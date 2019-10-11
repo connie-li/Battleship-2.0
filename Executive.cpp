@@ -432,6 +432,11 @@ void Executive::fire(const Admiral* player, const string coord)
  
 }
 
+vector<string>* Executive::getPowerups(const int player) const
+{
+
+}
+
 void Executive::printTurnResult(const string result, const bool wasSunk) const
 {
   if(result == "X")
