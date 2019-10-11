@@ -2,6 +2,7 @@
 
 Executive::Executive()
 {
+  m_turn = 1;
     //create players
   m_player1 = new Admiral();
   m_player2 = new Admiral();
@@ -370,12 +371,24 @@ void Executive::setNumShips()
     m_player2->setNumAfloat(m_numShips);
 }
 
+void Executive::switchTurn()
+{
+  if(m_turn == 1)
+  {
+    m_turn = 2;
+  }
+  else
+  {
+    m_turn = 1;
+  }
+}
+
 void Executive::handleTurn()
 {
 
 }
 
-string Executive::askForPowerUp(const int player) // TODO: show prompts only for the available powerups & validate input choice accordingly
+string Executive::askForPowerUp(const int player)
 {
   bool goodInput = false;
   vector<string>* playerPUs = getPowerups(player);
