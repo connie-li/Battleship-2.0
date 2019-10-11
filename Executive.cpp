@@ -16,9 +16,6 @@ Executive::~Executive()
 
 void Executive::placeShip(int n, Admiral* player, bool ai)
 {
-    //currently, this does not add the ships to a fleet and does not save their location
-    //that will need to be implemented after other classes are built
-
     bool taken [9][9];
     for (int i = 0; i < 9; i++)
     {
@@ -373,6 +370,15 @@ void Executive::setNumShips()
     m_player2->setNumAfloat(m_numShips);
 }
 
+void Executive::handleTurn()
+{
+
+}
+
+void Executive::fire(const Admiral* player, const string coord)
+{
+ 
+}
 
 void Executive::printTurnResult(const string result, const bool wasSunk) const
 {
