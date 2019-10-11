@@ -37,7 +37,7 @@ void PowerUps::useTorpedo(std::string coord,bool isPlayer1, int shipSize, string
         //should collect whatever powerup was there
 
         //add the symbol to the powerup vector list
-       
+       addPowerUp(coordValue, isPlayer1);
         map.setCoor(coord,"O");
     }
 
