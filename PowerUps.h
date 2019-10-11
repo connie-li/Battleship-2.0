@@ -68,11 +68,11 @@ class PowerUps
      */
     Grid* mapPicker(bool isPlayer1);
 
-    /**
-     * returns the list of collected powerups to the player
-     * @return a list of powerup symbols
+    /** Gets the given player's powerups.
+     * @param player 1 for player 1, 2 for player 2.
+     * @return a pointer to the vector of powerup symbols.
      */
-    string* getPowerUps();
+    vector<string>* getPowerUps(const int player) const;
 
     /**
      * adds a powerup in the player's arsenal
