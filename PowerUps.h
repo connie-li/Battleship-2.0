@@ -2,9 +2,7 @@
 #define POWERUPS_H
 #include <string>
 #include <stdexcept>
-#include "Grid.h"
-#include <ctype.h>
-#include "Ship.h"
+#include "Admiral.h"
 #include <ctype.h>
 
 class PowerUps
@@ -20,8 +18,10 @@ class PowerUps
 
     //pointer for the list of aquired powerups
     
-    Grid* m_admir1Map = nullptr;
-    Grid* m_admir2Map = nullptr;
+    Admiral* m_admir1;
+    Admiral* m_admir2;
+    vector<string>* m_admir1Powerups;
+    vector<string>* m_admir2Powerups;
 
     public:
 

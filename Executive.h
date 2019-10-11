@@ -105,6 +105,7 @@ class Executive
     void handleTurn();
 
     /** Asks the player whether they want to use a powerup.
+     * @pre assumes this method is called only when the player has 1 or more powerups.
      * @param player 1 for player 1, 2 for player 2.
      * @return an initial representing the powerup chosen, or N if the player chooses not to use one.
      */
@@ -127,7 +128,7 @@ class Executive
      * @param player 1 for player 1, 2 for player 2.
      * @return a pointer to the array of the player's powerups.
      */
-    string* getPowerups(const int player) const;
+    vector<string>* getPowerups(const int player) const;
 
     /** Adds the given powerup to the current player's powerup vector. [NOT USED YET]
      * @param powerup a string representing the powerup.
