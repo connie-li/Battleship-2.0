@@ -375,6 +375,17 @@ void Executive::handleTurn()
 
 }
 
+
+string Executive::askForFireCoord(const int player)
+{
+  string coord = "";
+  do {
+    cout << "Player " << player << ", input a valid coordinate to fire on: ";
+    cin >> coord;
+  } while(!validPos(coord));
+  return(coord);
+}
+
 void Executive::fire(const Admiral* player, const string coord)
 {
  
