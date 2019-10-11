@@ -65,8 +65,9 @@ class PowerUps
     /**
      * chooses which map should be handed to the function
      * @param bool true if player1's turn, false if player2
+     * @return Grid the grid owned by the other admiral (to fire upon)
      */
-    Grid* mapPicker(bool isPlayer1);
+    Grid mapPicker(bool isPlayer1);
 
     /** Gets the given player's powerups.
      * @param player 1 for player 1, 2 for player 2.
@@ -75,10 +76,11 @@ class PowerUps
     vector<string>* getPowerUps(const int player) const;
 
     /**
-     * adds a powerup in the player's arsenal
-     * @param char the char symbol used to repesent a specific power up
+     * adds a powerup to the correct admiral's powerups vector
+     * @param string the string value of the powerup
+     * @param bool isPlayer1 true if player1 false if player2 
      */
-    void addPowerUp(char symbol);
+    void addPowerUp(std::string value, bool isPlayer1);
 
     /**
      * removes the given powerup from the list
