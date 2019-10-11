@@ -36,7 +36,8 @@ void PowerUps::useTorpedo(std::string coord,bool isPlayer1, int shipSize, string
         //this tile should be a power up, assuming safe input here
         //should collect whatever powerup was there
 
-        //call admiral helper function to add a new powerup
+        //add the symbol to the powerup vector list
+       
         map.setCoor(coord,"O");
     }
 
@@ -166,6 +167,9 @@ int PowerUps::charCoordtoIntCoord(char c){
   return (int)c - 64;
 }
 
+void PowerUps::addPowerUp(std::string value){
+
+}
 /*
 void PowerUps::addPowerUp(char symbol){
     char* temp = new char[(m_size+1)];

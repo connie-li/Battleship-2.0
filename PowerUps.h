@@ -76,10 +76,10 @@ class PowerUps
     vector<string>* getPowerUps(const int player) const;
 
     /**
-     * adds a powerup in the player's arsenal
-     * @param char the char symbol used to repesent a specific power up
+     * adds a powerup to the correct admiral's powerups vector
+     * @param string the string value of the powerup 
      */
-    void addPowerUp(char symbol);
+    void addPowerUp(std::string value);
 
     /**
      * removes the given powerup from the list
