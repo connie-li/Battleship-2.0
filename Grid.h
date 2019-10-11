@@ -76,5 +76,4 @@ public:
      */
     ~Grid();
 };
-
 #endif

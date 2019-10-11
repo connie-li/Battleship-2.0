@@ -13,7 +13,11 @@ protected:
      * Used to denoted if a test gave a bad result indicating neither a success nor failure.
      */
     const string unkno = "UNKNOWN\n"; 
-    
+
+public:
+
+    Test();
+
     /**
      * func is a special type of bool that is defined as a function pointer for functions with no parameters.
      */
@@ -27,9 +31,5 @@ protected:
      * @param testFunction: The function being evaluated.
      */
     void testFunc(string write, func testFunction);
-
-public:
-
-    Test();
 };
 #endif
