@@ -7,10 +7,10 @@
 class AI : public Admiral
 {
     private: 
+
     public:
     
     AI();
-
     ~AI();
     bool fire();
 
