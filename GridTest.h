@@ -44,5 +44,10 @@ public:
      * Runs all of the test functions.
      */
     void run();
+
+    /**
+     * Wraps up testing
+     */
+    ~GridTest();
 };
 #endif

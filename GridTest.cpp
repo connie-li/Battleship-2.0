@@ -7,6 +7,8 @@ GridTest::GridTest(){
 void GridTest::run(){
     Test::testFunc("Testing Location: ", (Test::func) testLocRet());
     Test::testFunc("Testing Random: ", (Test::func) testRand());
+    Test::testFunc("Testing Read Ship: ", (Test::func)testRead());
+    Test::testFunc("Testing Printing: ", (Test::func) testPrint());
 }
 
 bool GridTest::testLocRet(){
@@ -32,6 +34,10 @@ bool GridTest::testLocRet(){
     }
 
     return hasPassed;
+}
+
+GridTest::~GridTest(){
+    cout<<"GridTesting Complete\n";
 }
 
 bool GridTest::testRand(){
@@ -71,13 +77,41 @@ bool GridTest::testRand(){
 }
 
 bool GridTest::testPrint(){
+    bool hasPassed = 1;
     try{
-
+        cout<< "\t\tTested Ship Grid: \n";
+        m_grid.printGrid(false);
+        cout<<pass;
     }catch(exception){
-        
+        hasPassed = 0;
+        cout<< Test::fail;
     }
+    try{
+        cout<<"\t\tTested Fire Grid: \n";
+        m_grid.printGrid(true);
+        cout<<pass;
+    }catch(exception){
+        hasPassed = 0;
+        cout<< Test::fail;
+    }
+    return hasPassed;
 }
 
 bool GridTest::testRead(){
-
+    bool hasPassed = 1;
+    string arr[3] = {"1:1", "1:2", "1:3"};
+    try{
+        cout<< "\t\tChecking Ship Creation: ";
+        m_grid.readShip(arr, 3);
+        if(m_grid.getCoor("1:1") == "3" && m_grid.getCoor("2:2") == "3" && m_grid.getCoor("3:3") == "3"){
+            cout<<pass;
+        }else{
+            hasPassed = 0;
+            cout<<unkno;
+        }
+    }catch(exception){
+        hasPassed = 0;
+        cout<<fail;
+    }
+    return hasPassed;
 }
