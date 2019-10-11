@@ -83,11 +83,12 @@ class PowerUps
     void addPowerUp(std::string value, bool isPlayer1);
 
     /**
-     * removes the given powerup from the list
-     * @param char the symbol of the powerup to be removed
+     * removes the given powerup from the vector
+     * @param string the string value of the powerup to be removed
+     * @param bool isPlayer1 true if player1 false if player2
      */
     
-    void removePowerUp(char symbol);
+    void removePowerUp(std::string value, bool isPlayer1);
 
     /**
      * Return  numeric equivalent of a letter column

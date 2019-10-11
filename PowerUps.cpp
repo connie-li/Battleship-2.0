@@ -169,11 +169,28 @@ int PowerUps::charCoordtoIntCoord(char c){
 
 void PowerUps::addPowerUp(std::string value, bool isPlayer1){
      if(isPlayer1){
-            m_admir2Powerups->push_back(value);
-        }
-        else{
             m_admir1Powerups->push_back(value);
         }
+        else{
+            m_admir2Powerups->push_back(value);
+        }
+}
+
+void PowerUps::removePowerUp(std::string value, bool isPlayer1){
+    vector<string>* list = nullptr;
+    
+    if(isPlayer1){
+        list = m_admir1Powerups;
+    }
+    else{
+        list = m_admir2Powerups;
+    }
+    for(int i = 0;i<list->size();i++){
+        if(list->at(i) == value){
+            list->erase(list->begin() + i);
+        }
+    }
+    
 }
 /*
 void PowerUps::addPowerUp(char symbol){
