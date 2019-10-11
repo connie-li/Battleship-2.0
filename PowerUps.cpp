@@ -9,11 +9,11 @@ PowerUps::~PowerUps(){
     //tbd
 }
 
-Grid* PowerUps::mapPicker(bool isPlayer1){
+Grid PowerUps::mapPicker(bool isPlayer1){
     if(isPlayer1){
-        return(m_admir2Map);
+        return(m_admir2->getBoard());
     }
-    return(m_admir1Map);
+    return(m_admir1->getBoard());
 }
 
 void PowerUps::useTorpedo(std::string coord,bool isPlayer1, int shipSize, string* shipCoords){
