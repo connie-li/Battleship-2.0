@@ -3,7 +3,9 @@
 #include <string>
 #include <iostream>
 #include <stdexcept>
+#include <algorithm>
 #include "Admiral.h"
+// #include "PowerUps.h"
 // #include "AI.h"
 #include <chrono>
 using namespace std;
@@ -15,7 +17,7 @@ class Executive
         Admiral* m_player2; //Admiral object for player 2
         int m_numShips; //int of the number of ships used in the game
         std::chrono::duration<unsigned long long> interval = std::chrono::seconds(2); //their timeout thing
-
+        // PowerUps m_powerups;    /* Contains both players' powerups and methods to use them. */
 
 
     public:
@@ -103,15 +105,31 @@ class Executive
      */
     void handleTurn();
 
-    /** TODO: I/O, gets the firing coordinate from the user
-     *
+    /** Asks the player whether they want to use a powerup.
+     * @pre assumes this method is called only when the player has 1 or more powerups.
+     * @param player 1 for player 1, 2 for player 2.
+     * @return an initial representing the powerup chosen, or N if the player chooses not to use one.
      */
-    string getFireCoord();
+    string askForPowerUp(const int player);
+
+    /** Gets the firing coordinate from the user.
+     * @param playerNum the current player turn, 1 for player 1, 2 for player 2.
+     * @return a validated coordinate input by the player.
+     */
+    string askForFireCoord(const int player);
 
     /** TODO: call Admiral::incomingShot() on the opponent; get whatever it returns
-     *
+     * @param player a pointer to the current player's Admiral.
+     * @param coord the map coordinate to fire on.
+     * @post updates the relevant data and alerts the player depending on whether the shot misses, hits a Ship, or finds a powerup.
      */
-    void fire(string coord);
+    void fire(const Admiral* player, const string coord);
+
+    /** Gets the given player's current powerups.
+     * @param player 1 for player 1, 2 for player 2.
+     * @return a pointer to the array of the player's powerups.
+     */
+    vector<string>* getPowerups(const int player) const;
 
     /** Adds the given powerup to the current player's powerup vector. [NOT USED YET]
      * @param powerup a string representing the powerup.

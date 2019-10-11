@@ -16,9 +16,6 @@ Executive::~Executive()
 
 void Executive::placeShip(int n, Admiral* player, bool ai)
 {
-    //currently, this does not add the ships to a fleet and does not save their location
-    //that will need to be implemented after other classes are built
-
     bool taken [9][9];
     for (int i = 0; i < 9; i++)
     {
@@ -373,6 +370,72 @@ void Executive::setNumShips()
     m_player2->setNumAfloat(m_numShips);
 }
 
+void Executive::handleTurn()
+{
+
+}
+
+string Executive::askForPowerUp(const int player) // TODO: show prompts only for the available powerups & validate input choice accordingly
+{
+  bool goodInput = false;
+  vector<string>* playerPUs = getPowerups(player);
+  vector<string>::iterator it = playerPUs->begin();
+  string choice = "";
+  do {
+      cout << "Player " << player << ", would you like to use a powerup?\n";
+      it = playerPUs->begin();
+      while(it != playerPUs->end())
+      {
+        if(*it == "T")
+        {
+          cout << "Enter T to use your Torpedo.\n";
+        }
+        if(*it == "R")
+        {
+          cout << "Enter R to use your Radar.\n";
+        }
+        if(*it == "U")
+        {
+          cout << "Enter U to use your Uber Commander.\n";
+        }
+        if(*it == "S")
+        {
+          cout << "Enter S to use your Scattershot.\n";
+        }
+        ++it;
+      }  
+      cout << "Or enter N to not use a powerup this turn.\n";
+      cout << "Your choice: ";
+      cin >> choice;
+      // check whether the choice is in the vector
+      it = find(playerPUs->begin(), playerPUs->end(), choice);
+      if(it != playerPUs->end())
+      {
+        goodInput = true;
+      }
+  } while(!goodInput);
+  return(choice);
+}
+
+string Executive::askForFireCoord(const int player)
+{
+  string coord = "";
+  do {
+    cout << "Player " << player << ", input a valid coordinate to fire on: ";
+    cin >> coord;
+  } while(!validPos(coord));
+  return(coord);
+}
+
+void Executive::fire(const Admiral* player, const string coord)
+{
+ 
+}
+
+vector<string>* Executive::getPowerups(const int player) const
+{
+//   vector<string>* powerups = m_powerups.getPowerUps(player);
+}
 
 void Executive::printTurnResult(const string result, const bool wasSunk) const
 {

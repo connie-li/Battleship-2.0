@@ -153,16 +153,23 @@ void PowerUps::useUberCommander(std::string coord,bool isPlayer1){
   //  removePowerUp('U');
 }
 
+vector<string>* PowerUps::getPowerUps(const int player) const
+{
+    if(player == 1)
+    {
+        return(m_admir1Powerups);
+    }
+    if(player == 2)
+    {
+        return(m_admir2Powerups);
+    }
+}
+
 int PowerUps::charCoordtoIntCoord(char c){
   return (int)c - 64;
 }
 
 /*
-These may get removed, PowerUp doesn't own the list anymore
-string* PowerUps::getPowerUps(){
-    return(m_powerUpslist);
-}
-
 void PowerUps::addPowerUp(char symbol){
     char* temp = new char[(m_size+1)];
     for(int i=0;i<m_size; i++)
