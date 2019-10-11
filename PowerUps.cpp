@@ -6,10 +6,7 @@ PowerUps::PowerUps()
 }
 
 PowerUps::~PowerUps(){
-    delete[] m_admir1Map;
-    m_admir1Map = nullptr;
-    delete[] m_admir2Map;
-    m_admir2Map = nullptr;
+    //tbd
 }
 
 Grid* PowerUps::mapPicker(bool isPlayer1){
