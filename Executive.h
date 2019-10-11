@@ -28,9 +28,6 @@ class Executive
      * Destructor that deletes the 2 player Admiral objects
      * @param none
      */
-    Executive();
-
-    
     ~Executive();
 
     /**

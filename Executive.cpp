@@ -338,8 +338,8 @@ int Executive::setup()
     }
     else if (player_choice == "3")
     {
-      m_player2 = new AI(); //exact constructer and arguements to come
-      m_player2.placeShips(m_numShips);
+      // m_player2 = new AI(); //exact constructer and arguements to come
+      // m_player2.placeShips(m_numShips);
     }
   }
 }
