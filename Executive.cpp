@@ -68,8 +68,13 @@ void Executive::placeShip(int n, Admiral* player, bool ai)
         std::string option_s = "";
         std::string option_w = "";
         std::string option_e = "";
+
     if (size != 1)
     {
+      if(!ai)
+        {
+          std::cout << "Enter an ending coordinate (possible ending coordinates for this ship are: ";
+        }
         if (r+(size-1) <= 8)
         {
             bool flag = false;
@@ -135,7 +140,6 @@ void Executive::placeShip(int n, Admiral* player, bool ai)
         std::string end = "";
         if(!ai)
         {
-          std::cout << "Enter an ending coordinate (possible ending coordinates for this ship are: ";
           std::cout << "\n Enter the ending coordinate from the list. ";
           end = askCoord();
         }
@@ -162,7 +166,7 @@ void Executive::placeShip(int n, Admiral* player, bool ai)
         
         while (end !=option_e && end!=option_n && end!=option_s && end!=option_w)
         {
-            std::cout << "Error. Enter one of the coordinates listed above. ";
+            std::cout << "\n Error. Enter one of the coordinates listed above. ";
             end = askCoord();
         }
 
@@ -271,11 +275,11 @@ void Executive::run()
     }
     if (menu == 1)
     {
-        std::cout<< "Player 1: It's time to place your ships.";
+        std::cout<< "Player 1: It's time to place your ships.\n";
         placeShip(m_numShips, m_player1, false);
-        std::cout << "Thanks for placing your ships player 1! Now it's player 2's turn";
+        std::cout << "Thanks for placing your ships player 1! \nNow it's player 2's turn";
         std::chrono::seconds interval(2);
-        std::cout<< "Player 2: It's time to place your ships.";
+        std::cout<< "\n\n\n\n\n\n\n\n\n\n\nPlayer 2: It's time to place your ships.\n";
         placeShip(m_numShips, m_player2, false);
         std::cout << "Thanks for placing your ships. Time to start the game";
     }
