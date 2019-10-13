@@ -145,12 +145,37 @@ void PowerUps::useScatterShot(std::string coord,bool isPlayer1){
     }
 }
 
+//10/13/19 need to update the ships still, maybe use incoming shot once complete
+//only setting the board to hit or miss, not updating ships
 void PowerUps::useUberCommander(std::string coord,bool isPlayer1){
-    //does this call the Hard AI to find the smallest ship? 
     Grid map = mapPicker(isPlayer1);
+    bool fired = false;
+    Admiral* tempAdmir=nullptr;
+    if(isPlayer1){
+        tempAdmir = m_admir2;
+    }
+    else{
+        tempAdmir = m_admir1;
+    }
+    
+    vector<Ship*> tempFleet = tempAdmir->getFleet();
+    for(int i=1;i<=tempAdmir->getNumShips();i++){
 
+        std::string* tempCoords = tempFleet.at(i)->getCoords();
+        int tempSize = tempFleet.at(i)->getSize();
+        std::string tempI = std::to_string(i);
 
-  removePowerUp("U",isPlayer1);
+        for(int j=0;j<tempSize;j++){
+            if(fired ==false){
+                if(tempCoords[j]== tempI){
+                    map.setCoor(tempCoords[i], "X");
+                    fired = true;
+                }
+            }
+        }
+    }
+   
+    removePowerUp("U",isPlayer1);
 }
 
 vector<string>* PowerUps::getPowerUps(const int player) const
