@@ -268,7 +268,7 @@ void Executive::run()
     int menu = setup();
     if (menu == 4)
     {
-      return(4);
+      return;
     }
     if (menu == 2)
     {
@@ -294,7 +294,6 @@ int Executive::setup()
 {
   std::chrono::seconds interval(2);
   bool menurun = true;
-  bool working = false;
   std::string ship_num;
   std::string player_choice;
   while (menurun == true)
