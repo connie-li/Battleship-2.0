@@ -62,9 +62,7 @@ class Executive
     /**
      * Runs the menu for the game
      * @param none
-     * @return int of the user's selection on the menu
-     * 1 start game or
-     * 3 quit
+     * @return int of the user's selection on the menu: 1 for instructions, 2 to play a PvP game, 3 to play vs. AI, 4 to quit.
      */
     int setup();
 
