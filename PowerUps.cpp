@@ -41,8 +41,8 @@ void PowerUps::useTorpedo(std::string coord,bool isPlayer1, int shipSize, string
         map.setCoor(coord,"O");
     }
 
-
-    //call admiral func to remove powerup, ex: removePowerUp('T');
+    //remove the torpedo from the list
+    removePowerUp("T", isPlayer1);
 }
 
 void PowerUps::useRadar(std::string coord,bool isPlayer1){
@@ -148,7 +148,9 @@ void PowerUps::useScatterShot(std::string coord,bool isPlayer1){
 void PowerUps::useUberCommander(std::string coord,bool isPlayer1){
     //does this call the Hard AI to find the smallest ship? 
     Grid map = mapPicker(isPlayer1);
-  //  removePowerUp('U');
+
+
+  removePowerUp("U",isPlayer1);
 }
 
 vector<string>* PowerUps::getPowerUps(const int player) const
