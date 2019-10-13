@@ -316,22 +316,22 @@ int Executive::setup()
       std::cout << "\n - You will walk through and place your ships and then take turns entering coordinates to attack the other players ships.\n - The game is over when all Enemy Ships have been sunk.";
       std::cout << "\n - Here are the lists of symbols that will show up on the board with explanations: \n";
       std::cout << "\t • ~: Water \n\t • O: Miss \n\t • X: Hit \n\t • 5: 5x1 Carrier \n\t • 4: 4x1 Battleship \n\t • 3: 3x1 Destroyer \n\t • 2: 2x1 Submarine \n\t • 1: 1x1 Tug Boat\n";
-      
     }
     else if (player_choice == "2")
     {
-      
+      cout << "Starting a Player vs. Player game!\n";
       setNumShips();
-        return 1;
+      return 2;
     }
     else if (player_choice == "3")
     {
+      cout << "Starting a Player vs. AI game!\n";
       // m_player2 = new AI(); //exact constructer and arguements to come
       // m_player2.placeShips(m_numShips);
+      return 3;
     }
     else if (player_choice == "4")
     {
-      menurun = false;
       std::cout << "\nHave a nice day!\n";
       return 4;
     }
@@ -347,7 +347,6 @@ void Executive::setNumShips()
 {
   bool working = false;
   int ship_int = 0;
-  bool menurun = false;
     std::string ship_num = "";
     while (working == false)
       {
@@ -358,11 +357,10 @@ void Executive::setNumShips()
           working = true;
           /// If input is good, cast to int for map creation and end loop for menu.
           ship_int = std::stoi(ship_num);
-          menurun = false;
         }
         else
         {
-          std::cout << "\nError with number of ships, please enter a valid number 1, 2, 3, 4 or, 5\n";
+          std::cout << "\nError with number of ships, please enter a valid number: 1, 2, 3, 4 or, 5\n";
         }
       }
     m_numShips = ship_int;
