@@ -269,6 +269,7 @@ bool Executive::validPos(std::string pos)
 
 void Executive::run()
 {
+  int winner = 0;
     int menu = setup();
     if (menu == 4)
     {
@@ -283,6 +284,8 @@ void Executive::run()
         std::cout<< "\n\n\n\n\n\n\n\n\n\n\nPlayer 2: It's time to place your ships.\n";
         placeShip(m_numShips, m_player2, false);
         std::cout << "Thanks for placing your ships. Time to start the game";
+        winner = gameplay(false);
+        printGameOver(winner);
     }
     if (menu == 3)
     {
@@ -290,6 +293,8 @@ void Executive::run()
         placeShip(m_numShips, m_player1, false);
         std::cout << "Thanks for placing your ships. The AI's ships have been placed randomly. Time to start the game";
         placeShip(m_numShips, m_player2, true);
+        winner = gameplay(true);
+        printGameOver(winner);
     }
 
 }
