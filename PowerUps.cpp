@@ -168,12 +168,15 @@ void PowerUps::useUberCommander(std::string coord,bool isPlayer1){
         for(int j=0;j<tempSize;j++){
             if(fired ==false){
                 if(tempCoords[j]== tempI){
-                    map.setCoor(tempCoords[i], "X");
+                    map.setCoor(tempCoords[j], "X");
                     fired = true;
+                    int tempIndex = tempAdmir->findShipbyCoord(tempCoords[i])
                 }
             }
         }
     }
+
+   
    
     removePowerUp("U",isPlayer1);
 }
