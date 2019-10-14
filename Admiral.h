@@ -40,7 +40,7 @@ class Admiral
 		/** Gets the Admiral's game board.
 		 * @return a reference to m_board.
 		 */
-		Grid getBoard() const;
+		Grid* getBoard();
 
 		/** Gets the Admiral's total number of Ships.
 		 * @return the number of Ships, aka the size of the m_fleet array.

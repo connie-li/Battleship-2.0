@@ -19,9 +19,10 @@ Admiral::~Admiral()
 }
 
 // --- getters ---
-Grid Admiral::getBoard() const
+Grid* Admiral::getBoard()
 {
-	return(m_board);
+	Grid* ptr = &m_board;
+	return(ptr);
 }
 
 int Admiral::getNumShips() const
