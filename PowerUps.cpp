@@ -9,7 +9,7 @@ PowerUps::~PowerUps(){
     //tbd
 }
 
-Grid PowerUps::mapPicker(bool isPlayer1){
+Grid* PowerUps::mapPicker(bool isPlayer1){
     if(isPlayer1){
         return(m_admir2->getBoard());
     }
