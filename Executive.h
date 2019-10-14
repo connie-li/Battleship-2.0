@@ -5,7 +5,7 @@
 #include <stdexcept>
 #include <algorithm>
 #include "Admiral.h"
-// #include "PowerUps.h"
+#include "PowerUps.h"
 // #include "AI.h"
 #include <chrono>
 using namespace std;
