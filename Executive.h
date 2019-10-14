@@ -94,12 +94,13 @@ class Executive
      */
     void setNumShips();
 
-    // GAMEPLAY TODOS: (multiple funcs; rename/refactor as necessary)
-    // - turn handling func
-    // - get firing coord from player
-    // - call fire() on that coord to process the other player
-    // - update the current player's powerups if necessary (implement later)
-    // - cout messages to player
+    /** Handles the given player or AI's turn: asks for firing targets & powerup usage, updates Grid & Ship data.
+     * @param player 1 for player 1, 2 for player 2.
+     * @param AI true if an AI is playing, else false.
+     * @post updates the other player's game data as necessary, and prints messages to the user.
+     * @return true if the game is over, else false.
+     */
+    bool handleTurn(const int player, const bool AI);
 
     /** Runs the gameplay portion of the program: switches turns and calls handleTurn for each player. 
      * @param AI true if there is an AI player, else false.

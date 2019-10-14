@@ -391,8 +391,54 @@ void Executive::switchTurn()
   }
 }
 
-void Executive::handleTurn()
+bool Executive::handleTurn(const int player, const bool AI)
 {
+  string powerup;
+  string targetCoord;
+  string turnResult;
+  if(AI)  // AI player
+  {
+    targetCoord = m_player2->chooseTarget();
+    turnResult = m_player1->incomingShot(targetCoord);
+    return(m_player1->getNumAfloat() < 1);
+  }
+  else
+  {
+    if(player == 1)
+    {
+      printMaps(m_turn);  //TODO
+      printEnemyAction(); //TODO
+      if(m_powerups.hasAPowerup(true))
+      {
+        powerup = askForPowerUp(1);
+      }
+      targetCoord = askForFireCoord(m_turn);
+      turnResult = m_player2->incomingShot(targetCoord);
+      // TODO: add powerups
+      // if(turnResult == "T" || turnResult == "R" || turnResult == "U" || turnResult == "S")
+      //   {
+
+      //   }
+      printTurnResult(turnResult);
+      return(m_player2->getNumAfloat() < 1);
+    }
+    else  // player 2
+    {
+      printMaps(m_turn);  //TODO
+      printEnemyAction(); //TODO
+      if(m_powerups.hasAPowerup(false))
+      {
+        powerup = askForPowerUp(2);
+      }
+      targetCoord = askForFireCoord(m_turn);
+      turnResult = m_player1->incomingShot(targetCoord);
+      // TODO: add powerups
+      printTurnResult(turnResult);
+      return(m_player1->getNumAfloat() < 1);
+    }
+  }
+}
+
 int Executive::gameplay(const bool AI)
 {
   bool gameOver = false;
@@ -429,7 +475,6 @@ int Executive::gameplay(const bool AI)
     switchTurn();
   }
   return(winner);
-
 }
 
 string Executive::askForPowerUp(const int player)
