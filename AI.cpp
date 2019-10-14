@@ -1,8 +1,8 @@
 #include "AI.h"
 
-bool AI::fire()
+string AI::randomFiringCoord()
 {
-
+    return ai_board.randCoor(true);
 }
 
 AI::AI()
