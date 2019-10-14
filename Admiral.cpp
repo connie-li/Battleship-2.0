@@ -75,14 +75,7 @@ string Admiral::incomingShot(const string coord)
 		if(!(m_fleet[shipIndex]->getStatus()))
 		{
 			int numAfloat = decNumAfloat();
-			if(numAfloat > 0)
-			{
-				return("sunk");
-			}
-			else
-			{
-				return("sunkLast");
-			}
+			return("sunk");
 		}
 		else
 		{

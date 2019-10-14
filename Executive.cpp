@@ -458,21 +458,27 @@ vector<string>* Executive::getPowerups(const int player) const
 //   vector<string>* powerups = m_powerups.getPowerUps(player);
 }
 
-void Executive::printTurnResult(const string result, const bool wasSunk) const
+void Executive::printTurnResult(const string result) const
 {
-  if(result == "X")
+  if(result == "hit")
   {
-    cout << "Hit!\n";
+    cout << "You hit their ship!\n";
   }
-  else if(result == "O")
+  else if(result == "sunk")
   {
-    cout << "Miss!\n";
+    cout << "You hit and sank their ship!\n";
   }
-  // else if(result =='') TODO: add Powerup handling
-
-  if(wasSunk)
+  else if(result == "miss")
   {
-    cout << "You sank their ship!\n";
+    cout << "You missed.\n";
+  }
+  else if(result == "X")
+  {
+    cout << "You already fired on that location.\n";
+  }
+  else
+  {
+    cout << "You got a powerup!\n";
   }
 }
 
