@@ -15,7 +15,7 @@ bool GridTest::testLocRet(){
     bool hasPassed = 1;
     try{
         cout<<"\t\tSetting Coordinate: ";
-        m_grid.setCoor("1:1", ":-)");
+        m_grid.setCoor("1:1", "X");
         cout<< Test::pass;
     }catch(exception){
         hasPassed = 0;
@@ -23,7 +23,7 @@ bool GridTest::testLocRet(){
     }
     try{
         cout<<"\t\tGetting Coordinate: ";
-        if(m_grid.getCoor("1:1") == ":-)"){
+        if(m_grid.getCoor("1:1") == "X"){
             cout<< Test::pass;
         }else{
             cout<< Test::unkno;
@@ -46,6 +46,7 @@ bool GridTest::testRand(){
     try{
         cout<<"\t\tCompletely Rand Coord: ";
         temp = m_grid.randCoor(false);
+        cout<<"\n\n" << temp <<"\n\n";
         if((stoi(temp.substr(0, 1)) < M_BOARD_SIZE && stoi(temp.substr(2)) < M_BOARD_SIZE) && (stoi(temp.substr(0, 1)) < 0 && stoi(temp.substr(2)) < 0)){
             cout<< pass;
         }else{
@@ -108,6 +109,7 @@ bool GridTest::testRead(){
         }else{
             hasPassed = 0;
             cout<<unkno;
+            cout<< m_grid.getCoor("1:1");
         }
     }catch(exception){
         hasPassed = 0;

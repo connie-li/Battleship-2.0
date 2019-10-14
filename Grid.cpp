@@ -16,6 +16,7 @@ string Grid::getCoor(const string coord){
     if(m_arr[row][col].at(0) == '$'){
         return m_arr[row][col].substr(1);
     }
+    // cout<< m_arr[row][col];
     return m_arr[row][col];
 }
 
@@ -24,8 +25,10 @@ void Grid::setCoor(const string coord, const string value){
 }
 
 string Grid::randCoor(const bool allowOcc){
-    int row = 0;
-    int col = 0;
+    int row = 1;
+    int col = 1;
+    // string temp = to_string(row) + ":" + to_string(col);
+    // cout<<"static randcoor:" << temp;
     if(allowOcc){
         row = rand() % m_BOARD_SIZE + 1;
         col = rand() % m_BOARD_SIZE + 1;
@@ -35,7 +38,7 @@ string Grid::randCoor(const bool allowOcc){
             col = rand() % m_BOARD_SIZE + 1;
         }while(m_arr[row][col] != "~");
     }
-    return row + ":" + col;
+    return to_string(row) + ":" + to_string(col);
 }
 
 void Grid::printGrid(const bool isFiring){
