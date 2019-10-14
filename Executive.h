@@ -152,6 +152,11 @@ class Executive
      */
     string convertCoord(string orig);
 
+    /**
+     * @param player 1 for player 1, 2 for player 2.
+     * @post prints the game over message.
+     */
+    void printGameOver(const int player) const;
 
 };
 #endif

@@ -483,3 +483,17 @@ string Executive::convertCoord(string orig)
   string newCoord = to_string(row) + ":" + to_string(col);
   return(newCoord);
 }
+
+void Executive::printGameOver(const int player) const
+{
+  cout << "GAME OVER!\n";
+  cout << "Congratulations player " << player << ", you are the winner!\n\n";
+  cout << "                                  )___(\n";
+  cout << "                           _______/__/_\n";
+  cout << "                  ___     /===========|   ___\n";
+  cout << " ____       __   [\\\\]___/____________|__[///]   __\n";
+  cout << " \\   \\_____[\\\\]__/___________________________\\__[//]___\n";
+  cout << "  \\448                                                 |\n";
+  cout << "   \\                                                  /\n";
+  cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n\n";
+}
