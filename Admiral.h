@@ -18,7 +18,6 @@ class Admiral
 		int m_numShips;	/* the number of Ships in Admiral. */
 		vector<Ship*> m_fleet;	/* an vector of pointers to Ships that belong to the Admiral. */
 		int m_numAfloat;	/* the number of ships that are still afloat. */
-		//PowerUps m_powerups;	/* handles & contains the Admiral's powerups & related methods */
 
 	public:
 		/** A constructor that takes no parameters.
@@ -57,7 +56,6 @@ class Admiral
 		 * @return the number of Ships afloat.
 		 */
 		int getNumAfloat() const;
-		// string getPowerUps() const;
 
 		// --- setters ---
 
@@ -94,10 +92,5 @@ class Admiral
 		 * @return the index of the relevant Ship in m_fleet, or -1 if the Ship is not found.
 		 */
 		int findShipbyCoord(const string coord) const;
-
-		/**
-		 *
-		 */
-		// void addPowerUp(const string powerUp);
 };
 #endif

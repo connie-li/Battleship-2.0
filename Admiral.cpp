@@ -39,8 +39,6 @@ int Admiral::getNumAfloat() const
 	return(m_numAfloat);
 }
 
-// string Admiral::getPowerUps() const
-
 // --- setters ---
 void Admiral::setNumShips(const int numShips)
 {
