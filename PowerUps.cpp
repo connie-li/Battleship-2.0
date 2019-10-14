@@ -170,7 +170,10 @@ void PowerUps::useUberCommander(std::string coord,bool isPlayer1){
                 if(tempCoords[j]== tempI){
                     map.setCoor(tempCoords[j], "X");
                     fired = true;
-                    int tempIndex = tempAdmir->findShipbyCoord(tempCoords[i])
+                    tempFleet.at(i)->incNumHits();
+                    if(tempFleet.at(i)->getStatus == false){
+                        tempAdmir->decNumAfloat();
+                    }
                 }
             }
         }
