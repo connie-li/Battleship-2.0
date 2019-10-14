@@ -18,16 +18,33 @@ Grid PowerUps::mapPicker(bool isPlayer1){
 
 void PowerUps::useTorpedo(std::string coord,bool isPlayer1, int shipSize, string* shipCoords){
     Grid map = mapPicker(isPlayer1);
+    Admiral* tempAdmir = nullptr;
     
+
+    if(isPlayer1){
+        tempAdmir = m_admir1;
+    }
+    else{
+        tempAdmir = m_admir2;
+    }
+    vector<Ship*> fleet = tempAdmir->getFleet();
+    int tempIndex= tempAdmir->findShipbyCoord(coord);
+
      //check to see if the value is an int
     std::string coordValue = map.getCoor(coord);
     if(shipSize != -1){
         //this is a hit, destroy whole ship
         for(int i=0;i<shipSize;i++){
             map.setCoor(shipCoords[i], "X");
+
+            //update the ship object
+            fleet.at(tempIndex)->incNumHits();
+            if(fleet.at(tempIndex)->getStatus() == false){
+                tempAdmir->decNumAfloat(); 
+            }
         }
     }
-    else if (coordValue[0]=='~' || coordValue[0]=='O'){
+    else if(coordValue[0]=='~' || coordValue[0]=='O'){
         //this is water or a miss
         //should report as a miss
         map.setCoor(coord,"O");
@@ -145,11 +162,12 @@ void PowerUps::useScatterShot(std::string coord,bool isPlayer1){
     }
 }
 
-//10/13/19 need to update the ships still, maybe use incoming shot once complete
-//only setting the board to hit or miss, not updating ships
+//10/13 I think this may only work correctly when the ships are put into the 
+//vector in order from smallest to largest
 void PowerUps::useUberCommander(std::string coord,bool isPlayer1){
     Grid map = mapPicker(isPlayer1);
     bool fired = false;
+    //picking which admiral to use
     Admiral* tempAdmir=nullptr;
     if(isPlayer1){
         tempAdmir = m_admir2;
@@ -159,22 +177,29 @@ void PowerUps::useUberCommander(std::string coord,bool isPlayer1){
     }
     
     vector<Ship*> tempFleet = tempAdmir->getFleet();
+    //outer loop iterates through each ship in the fleet
     for(int i=1;i<=tempAdmir->getNumShips();i++){
-
+        //getting the coordinates of the ship at the ith position of shipVector
         std::string* tempCoords = tempFleet.at(i)->getCoords();
         int tempSize = tempFleet.at(i)->getSize();
         std::string tempI = std::to_string(i);
 
+        //inner loop iterates through each coordinate of a ship
         for(int j=0;j<tempSize;j++){
             if(fired ==false){
+                //if value at the ship coord is = to the number
                 if(tempCoords[j]== tempI){
-                    map.setCoor(tempCoords[i], "X");
+                    map.setCoor(tempCoords[j], "X");
                     fired = true;
+                    //adjust the ship
+                    tempFleet.at(i)->incNumHits();
+                    if(tempFleet.at(i)->getStatus() == false){
+                        tempAdmir->decNumAfloat();
+                    }
                 }
             }
         }
     }
-   
     removePowerUp("U",isPlayer1);
 }
 
