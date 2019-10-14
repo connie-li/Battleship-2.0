@@ -18,7 +18,7 @@ class Executive
         int m_numShips; //int of the number of ships used in the game
         int m_turn; /* 1 for player 1, 2 for player 2 */
         std::chrono::duration<unsigned long long> interval = std::chrono::seconds(2); //their timeout thing
-        // PowerUps m_powerups;    /* Contains both players' powerups and methods to use them. */
+        PowerUps m_powerups;    /* Contains both players' powerups and methods to use them. */
 
 
     public:

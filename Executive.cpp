@@ -406,7 +406,7 @@ bool Executive::handleTurn(const int player, const bool AI)
   {
     if(player == 1)
     {
-      printMaps(player);  //TODO
+      printMaps(player);
       printEnemyAction(); //TODO
       if(m_powerups.hasAPowerup(true))
       {
@@ -424,7 +424,7 @@ bool Executive::handleTurn(const int player, const bool AI)
     }
     else  // player 2
     {
-      printMaps(player);  //TODO
+      printMaps(player);
       printEnemyAction(); //TODO
       if(m_powerups.hasAPowerup(false))
       {
