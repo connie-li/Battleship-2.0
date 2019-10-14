@@ -121,13 +121,6 @@ class Executive
      */
     string askForFireCoord(const int player);
 
-    /** TODO: call Admiral::incomingShot() on the opponent; get whatever it returns
-     * @param player a pointer to the current player's Admiral.
-     * @param coord the map coordinate to fire on.
-     * @post updates the relevant data and alerts the player depending on whether the shot misses, hits a Ship, or finds a powerup.
-     */
-    void fire(const Admiral* player, const string coord);
-
     /** Gets the given player's current powerups.
      * @param player 1 for player 1, 2 for player 2.
      * @return a pointer to the array of the player's powerups.

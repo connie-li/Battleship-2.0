@@ -529,11 +529,6 @@ string Executive::askForFireCoord(const int player)
   return(coord);
 }
 
-void Executive::fire(const Admiral* player, const string coord)
-{
- 
-}
-
 vector<string>* Executive::getPowerups(const int player) const
 {
 //   vector<string>* powerups = m_powerups.getPowerUps(player);
