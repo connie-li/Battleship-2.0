@@ -598,14 +598,14 @@ void Executive::printMaps(const int player) const
   if(player == 1)
   {
     cout << "Your firing map:\n";
-    m_player2->getBoard().printGrid(true);
+    m_player2->getBoard()->printGrid(true);
     cout << "Your ship map:\n";
-    m_player1->getBoard().printGrid(false);
+    m_player1->getBoard()->printGrid(false);
   }
   else
   {
-    m_player1->getBoard().printGrid(true);
-    m_player2->getBoard().printGrid(false);
+    m_player1->getBoard()->printGrid(true);
+    m_player2->getBoard()->printGrid(false);
   }
 }
 
