@@ -16,9 +16,9 @@ class Executive
         Admiral* m_player1; //Admiral object for player 1
         Admiral* m_player2; //Admiral object for player 2
         int m_numShips; //int of the number of ships used in the game
-        int m_turn;
+        int m_turn; /* 1 for player 1, 2 for player 2 */
         std::chrono::duration<unsigned long long> interval = std::chrono::seconds(2); //their timeout thing
-        // PowerUps m_powerups;    /* Contains both players' powerups and methods to use them. */
+        PowerUps m_powerups;    /* Contains both players' powerups and methods to use them. */
 
 
     public:
@@ -94,20 +94,19 @@ class Executive
      */
     void setNumShips();
 
-    // GAMEPLAY TODOS: (multiple funcs; rename/refactor as necessary)
-    // - turn handling func
-    // - get firing coord from player
-    // - call fire() on that coord to process the other player
-    // - update the current player's powerups if necessary (implement later)
-    // - cout messages to player
-
-    /** TODO: handles everything necessary to complete one turn, using many of the funcs below
-     * call getFireCoord, fire
-     * update powerups if necessary
-     * call printTurnResult
-     *  
+    /** Handles the given player or AI's turn: asks for firing targets & powerup usage, updates Grid & Ship data.
+     * @param player 1 for player 1, 2 for player 2.
+     * @param AI true if an AI is playing, else false.
+     * @post updates the other player's game data as necessary, and prints messages to the user.
+     * @return true if the game is over, else false.
      */
-    void handleTurn();
+    bool handleTurn(const int player, const bool AI);
+
+    /** Runs the gameplay portion of the program: switches turns and calls handleTurn for each player. 
+     * @param AI true if there is an AI player, else false.
+     * @return a number representing which player has won: 1 for player 1, 2 for player 2, 3 for an AI.
+     */
+    int gameplay(const bool AI);
 
     /** Asks the player whether they want to use a powerup.
      * @pre assumes this method is called only when the player has 1 or more powerups.
@@ -121,13 +120,6 @@ class Executive
      * @return a validated coordinate input by the player.
      */
     string askForFireCoord(const int player);
-
-    /** TODO: call Admiral::incomingShot() on the opponent; get whatever it returns
-     * @param player a pointer to the current player's Admiral.
-     * @param coord the map coordinate to fire on.
-     * @post updates the relevant data and alerts the player depending on whether the shot misses, hits a Ship, or finds a powerup.
-     */
-    void fire(const Admiral* player, const string coord);
 
     /** Gets the given player's current powerups.
      * @param player 1 for player 1, 2 for player 2.
@@ -144,7 +136,7 @@ class Executive
      * @param result represents whether the turn result was a hit, miss, sink, or powerup.
      * @post Prints messages for the current player based on the given result
      */
-    void printTurnResult(const string result, const bool wasSunk) const;
+    void printTurnResult(const string result) const;
 
     /** Helper function: converts coords from the form "1A" to the form "<row>:<col>".
      * @param orig the original coordinate.
@@ -152,6 +144,21 @@ class Executive
      */
     string convertCoord(string orig);
 
+    /**
+     * @param player 1 for player 1, 2 for player 2.
+     * @post prints the game over message.
+     */
+    void printGameOver(const int player) const;
 
+    /** Prints the current player's firing map and ship map.
+     * @param 1 for player 1, 2 for player 2.
+     * @post prints the current player's firing map and ship map.
+     */
+    void printMaps(const int player) const;
+
+    /** Prints a message if the other player has hit or sunk the current player's Ships.
+     * @param
+     */
+    void printEnemyAction() const;
 };
 #endif

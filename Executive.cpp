@@ -269,6 +269,7 @@ bool Executive::validPos(std::string pos)
 
 void Executive::run()
 {
+  int winner = 0;
     int menu = setup();
     if (menu == 4)
     {
@@ -283,6 +284,8 @@ void Executive::run()
         std::cout<< "\n\n\n\n\n\n\n\n\n\n\nPlayer 2: It's time to place your ships.\n";
         placeShip(m_numShips, m_player2, false);
         std::cout << "Thanks for placing your ships. Time to start the game";
+        winner = gameplay(false);
+        printGameOver(winner);
     }
     if (menu == 3)
     {
@@ -290,6 +293,8 @@ void Executive::run()
         placeShip(m_numShips, m_player1, false);
         std::cout << "Thanks for placing your ships. The AI's ships have been placed randomly. Time to start the game";
         placeShip(m_numShips, m_player2, true);
+        winner = gameplay(true);
+        printGameOver(winner);
     }
 
 }
@@ -386,9 +391,90 @@ void Executive::switchTurn()
   }
 }
 
-void Executive::handleTurn()
+bool Executive::handleTurn(const int player, const bool AI)
 {
+  string powerup;
+  string targetCoord;
+  string turnResult;
+  if(AI)  // AI player
+  {
+    targetCoord = m_player2->chooseTarget();
+    turnResult = m_player1->incomingShot(targetCoord);
+    return(m_player1->getNumAfloat() < 1);
+  }
+  else
+  {
+    if(player == 1)
+    {
+      printMaps(player);
+      printEnemyAction(); //TODO
+      if(m_powerups.hasAPowerup(true))
+      {
+        powerup = askForPowerUp(1);
+      }
+      targetCoord = askForFireCoord(m_turn);
+      turnResult = m_player2->incomingShot(targetCoord);
+      // TODO: add powerups
+      // if(turnResult == "T" || turnResult == "R" || turnResult == "U" || turnResult == "S")
+      //   {
 
+      //   }
+      printTurnResult(turnResult);
+      return(m_player2->getNumAfloat() < 1);
+    }
+    else  // player 2
+    {
+      printMaps(player);
+      printEnemyAction(); //TODO
+      if(m_powerups.hasAPowerup(false))
+      {
+        powerup = askForPowerUp(2);
+      }
+      targetCoord = askForFireCoord(m_turn);
+      turnResult = m_player1->incomingShot(targetCoord);
+      // TODO: add powerups
+      printTurnResult(turnResult);
+      return(m_player1->getNumAfloat() < 1);
+    }
+  }
+}
+
+int Executive::gameplay(const bool AI)
+{
+  bool gameOver = false;
+  int winner = 0;
+  while(!gameOver)
+  {
+    if(m_turn == 1)
+    {
+      gameOver = handleTurn(1, false);
+    }
+    else
+    {
+      gameOver = handleTurn(2, AI);
+    }
+
+    if(gameOver)
+    {
+      if(m_turn == 1)
+      {
+        winner = 1;
+      }
+      else
+      {
+        if(AI)
+        {
+          winner = 3;
+        }
+        else
+        {
+          winner = 2;
+        }
+      }
+    }
+    switchTurn();
+  }
+  return(winner);
 }
 
 string Executive::askForPowerUp(const int player)
@@ -443,31 +529,32 @@ string Executive::askForFireCoord(const int player)
   return(coord);
 }
 
-void Executive::fire(const Admiral* player, const string coord)
-{
- 
-}
-
 vector<string>* Executive::getPowerups(const int player) const
 {
 //   vector<string>* powerups = m_powerups.getPowerUps(player);
 }
 
-void Executive::printTurnResult(const string result, const bool wasSunk) const
+void Executive::printTurnResult(const string result) const
 {
-  if(result == "X")
+  if(result == "hit")
   {
-    cout << "Hit!\n";
+    cout << "You hit their ship!\n";
   }
-  else if(result == "O")
+  else if(result == "sunk")
   {
-    cout << "Miss!\n";
+    cout << "You hit and sank their ship!\n";
   }
-  // else if(result =='') TODO: add Powerup handling
-
-  if(wasSunk)
+  else if(result == "miss")
   {
-    cout << "You sank their ship!\n";
+    cout << "You missed.\n";
+  }
+  else if(result == "X")
+  {
+    cout << "You already fired on that location.\n";
+  }
+  else
+  {
+    cout << "You got a powerup!\n";
   }
 }
 
@@ -482,4 +569,46 @@ string Executive::convertCoord(string orig)
   int col = charCoordtoIntCoord(orig.at(1));
   string newCoord = to_string(row) + ":" + to_string(col);
   return(newCoord);
+}
+
+void Executive::printGameOver(const int player) const
+{
+  cout << "GAME OVER!\n";
+  if(player == 3)
+  {
+    cout << "The AI won the game.  Better luck next time!\n";
+  }
+  else
+  {
+    cout << "Congratulations player " << player << ", you are the winner!\n\n";
+    cout << "                                  )___(\n";
+    cout << "                           _______/__/_\n";
+    cout << "                  ___     /===========|   ___\n";
+    cout << " ____       __   [\\\\]___/____________|__[///]   __\n";
+    cout << " \\   \\_____[\\\\]__/___________________________\\__[//]___\n";
+    cout << "  \\448                                                 |\n";
+    cout << "   \\                                                  /\n";
+    cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n\n";
+  }
+}
+
+void Executive::printMaps(const int player) const
+{
+  if(player == 1)
+  {
+    cout << "Your firing map:\n";
+    m_player2->getBoard()->printGrid(true);
+    cout << "Your ship map:\n";
+    m_player1->getBoard()->printGrid(false);
+  }
+  else
+  {
+    m_player1->getBoard()->printGrid(true);
+    m_player2->getBoard()->printGrid(false);
+  }
+}
+
+void Executive::printEnemyAction() const
+{
+  
 }

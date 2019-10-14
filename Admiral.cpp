@@ -19,9 +19,10 @@ Admiral::~Admiral()
 }
 
 // --- getters ---
-Grid Admiral::getBoard() const
+Grid* Admiral::getBoard()
 {
-	return(m_board);
+	Grid* ptr = &m_board;
+	return(ptr);
 }
 
 int Admiral::getNumShips() const
@@ -38,8 +39,6 @@ int Admiral::getNumAfloat() const
 {
 	return(m_numAfloat);
 }
-
-// string Admiral::getPowerUps() const
 
 // --- setters ---
 void Admiral::setNumShips(const int numShips)
@@ -77,14 +76,7 @@ string Admiral::incomingShot(const string coord)
 		if(!(m_fleet[shipIndex]->getStatus()))
 		{
 			int numAfloat = decNumAfloat();
-			if(numAfloat > 0)
-			{
-				return("sunk");
-			}
-			else
-			{
-				return("sunkLast");
-			}
+			return("sunk");
 		}
 		else
 		{
