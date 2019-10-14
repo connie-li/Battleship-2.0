@@ -398,7 +398,8 @@ bool Executive::handleTurn(const int player, const bool AI)
   string turnResult;
   if(AI)  // AI player
   {
-    targetCoord = m_player2->chooseTarget();
+    // waiting on AI method
+    // targetCoord = m_player2->chooseTarget();
     turnResult = m_player1->incomingShot(targetCoord);
     return(m_player1->getNumAfloat() < 1);
   }
