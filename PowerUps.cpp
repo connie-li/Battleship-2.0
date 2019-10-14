@@ -145,11 +145,12 @@ void PowerUps::useScatterShot(std::string coord,bool isPlayer1){
     }
 }
 
-//10/13/19 need to update the ships still, maybe use incoming shot once complete
-//only setting the board to hit or miss, not updating ships
+//10/13 I think this may only work correctly when the ships are put into the 
+//vector in order from smallest to largest
 void PowerUps::useUberCommander(std::string coord,bool isPlayer1){
     Grid map = mapPicker(isPlayer1);
     bool fired = false;
+    //picking which admiral to use
     Admiral* tempAdmir=nullptr;
     if(isPlayer1){
         tempAdmir = m_admir2;
@@ -159,17 +160,21 @@ void PowerUps::useUberCommander(std::string coord,bool isPlayer1){
     }
     
     vector<Ship*> tempFleet = tempAdmir->getFleet();
+    //outer loop iterates through each ship in the fleet
     for(int i=1;i<=tempAdmir->getNumShips();i++){
-
+        //getting the coordinates of the ship at the ith position of shipVector
         std::string* tempCoords = tempFleet.at(i)->getCoords();
         int tempSize = tempFleet.at(i)->getSize();
         std::string tempI = std::to_string(i);
 
+        //inner loop iterates through each coordinate of a ship
         for(int j=0;j<tempSize;j++){
             if(fired ==false){
+                //if value at the ship coord is = to the number
                 if(tempCoords[j]== tempI){
                     map.setCoor(tempCoords[j], "X");
                     fired = true;
+                    //adjust the ship
                     tempFleet.at(i)->incNumHits();
                     if(tempFleet.at(i)->getStatus == false){
                         tempAdmir->decNumAfloat();
@@ -178,9 +183,6 @@ void PowerUps::useUberCommander(std::string coord,bool isPlayer1){
             }
         }
     }
-
-   
-   
     removePowerUp("U",isPlayer1);
 }
 
