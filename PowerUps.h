@@ -96,5 +96,12 @@ class PowerUps
      * @return int equivalent (1-8)
      */
     int charCoordtoIntCoord(char c);
+
+    /**
+     * figures out whether the player has any powerups
+     * @param isPlayer1 true if player1, false if player2
+     * @return true if player has a powerup, false if they don't
+     * */
+    bool hasAPowerup(bool isPlayer1);
 };
 #endif

@@ -219,6 +219,25 @@ void PowerUps::removePowerUp(std::string value, bool isPlayer1){
     }
     
 }
+
+bool PowerUps::hasAPowerup(bool isPlayer1){
+    if(isPlayer1){
+        if(m_admir1Powerups->size() > 0){
+            return(true);
+        }      
+        else{
+             return(false);
+        }  
+    }
+    else{
+        if(m_admir2Powerups->size() > 0){
+            return(true);
+        }
+        else{
+            return(false);
+        }
+    }
+}
 /*
 void PowerUps::addPowerUp(char symbol){
     char* temp = new char[(m_size+1)];
