@@ -35,7 +35,7 @@ string Grid::randCoor(const bool allowOcc){
             col = rand() % m_BOARD_SIZE + 1;
         }while(m_arr[row][col] != "~");
     }
-    return row + ":" + col;
+    return std::to_string(row) + ":" + std::to_string(col);
 }
 
 void Grid::printGrid(const bool isFiring){

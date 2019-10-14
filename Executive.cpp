@@ -316,7 +316,7 @@ int Executive::setup()
     std::cout << " |____/ \\__,_|\\__|\\__|_|\\___||___/_| |_|_| .__/ \n";
     std::cout << "                                         | |    \n";
     std::cout << "                                         |_|    \n";
-    std::cout << "\nMenu:\n 1) Instructions\n 2) Start Game: Player vs. Player\n 3) Start Game: Player vs. AI\n4) Quit Game\n\nEnter option (1-4): ";
+    std::cout << "\nMenu:\n 1) Instructions\n 2) Start Game: Player vs. Player\n 3) Start Game: Player vs. AI\n 4) Quit Game\n\nEnter option (1-4): ";
     std::getline(std::cin,player_choice);
     if (player_choice == "1")
     {
@@ -598,18 +598,17 @@ void Executive::printMaps(const int player) const
   if(player == 1)
   {
     cout << "Your firing map:\n";
-    m_player2->getBoard()->printGrid(true);
+    m_player2->getBoard().printGrid(true);
     cout << "Your ship map:\n";
-    m_player1->getBoard()->printGrid(false);
+    m_player1->getBoard().printGrid(false);
   }
   else
   {
-    m_player1->getBoard()->printGrid(true);
-    m_player2->getBoard()->printGrid(false);
+    m_player1->getBoard().printGrid(true);
+    m_player2->getBoard().printGrid(false);
   }
 }
 
 void Executive::printEnemyAction() const
 {
-  
 }
