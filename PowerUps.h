@@ -67,7 +67,7 @@ class PowerUps
      * @param bool true if player1's turn, false if player2
      * @return Grid the grid owned by the other admiral (to fire upon)
      */
-    Grid mapPicker(bool isPlayer1);
+    Grid* mapPicker(bool isPlayer1);
 
     /** Gets the given player's powerups.
      * @param player 1 for player 1, 2 for player 2.
