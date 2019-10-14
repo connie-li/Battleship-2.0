@@ -406,7 +406,7 @@ bool Executive::handleTurn(const int player, const bool AI)
   {
     if(player == 1)
     {
-      printMaps(m_turn);  //TODO
+      printMaps(player);  //TODO
       printEnemyAction(); //TODO
       if(m_powerups.hasAPowerup(true))
       {
@@ -424,7 +424,7 @@ bool Executive::handleTurn(const int player, const bool AI)
     }
     else  // player 2
     {
-      printMaps(m_turn);  //TODO
+      printMaps(player);  //TODO
       printEnemyAction(); //TODO
       if(m_powerups.hasAPowerup(false))
       {
@@ -589,5 +589,21 @@ void Executive::printGameOver(const int player) const
     cout << "  \\448                                                 |\n";
     cout << "   \\                                                  /\n";
     cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n\n";
+  }
+}
+
+void Executive::printMaps(const int player) const
+{
+  if(player == 1)
+  {
+    cout << "Your firing map:\n";
+    m_player2->getBoard()->printGrid(true);
+    cout << "Your ship map:\n";
+    m_player1->getBoard()->printGrid(false);
+  }
+  else
+  {
+    m_player1->getBoard()->printGrid(true);
+    m_player2->getBoard()->printGrid(false);
   }
 }

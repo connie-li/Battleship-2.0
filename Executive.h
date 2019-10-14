@@ -150,5 +150,10 @@ class Executive
      */
     void printGameOver(const int player) const;
 
+    /** Prints the current player's firing map and ship map.
+     * @param 1 for player 1, 2 for player 2.
+     * @post prints the current player's firing map and ship map.
+     */
+    void printMaps(const int player) const;
 };
 #endif
