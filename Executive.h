@@ -155,5 +155,10 @@ class Executive
      * @post prints the current player's firing map and ship map.
      */
     void printMaps(const int player) const;
+
+    /** Prints a message if the other player has hit or sunk the current player's Ships.
+     * @param
+     */
+    void printEnemyAction() const;
 };
 #endif

@@ -607,3 +607,8 @@ void Executive::printMaps(const int player) const
     m_player2->getBoard()->printGrid(false);
   }
 }
+
+void Executive::printEnemyAction() const
+{
+  
+}
