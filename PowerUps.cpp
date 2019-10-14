@@ -39,7 +39,7 @@ void PowerUps::useTorpedo(std::string coord,bool isPlayer1, int shipSize, string
 
             //update the ship object
             fleet.at(tempIndex)->incNumHits();
-            if(fleet.at(tempIndex)->getStatus == false){
+            if(fleet.at(tempIndex)->getStatus() == false){
                 tempAdmir->decNumAfloat(); 
             }
         }
@@ -193,7 +193,7 @@ void PowerUps::useUberCommander(std::string coord,bool isPlayer1){
                     fired = true;
                     //adjust the ship
                     tempFleet.at(i)->incNumHits();
-                    if(tempFleet.at(i)->getStatus == false){
+                    if(tempFleet.at(i)->getStatus() == false){
                         tempAdmir->decNumAfloat();
                     }
                 }
