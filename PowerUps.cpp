@@ -41,8 +41,8 @@ void PowerUps::useTorpedo(std::string coord,bool isPlayer1, int shipSize, string
         map.setCoor(coord,"O");
     }
 
-
-    //call admiral func to remove powerup, ex: removePowerUp('T');
+    //remove the torpedo from the list
+    removePowerUp("T", isPlayer1);
 }
 
 void PowerUps::useRadar(std::string coord,bool isPlayer1){
@@ -145,10 +145,37 @@ void PowerUps::useScatterShot(std::string coord,bool isPlayer1){
     }
 }
 
+//10/13/19 need to update the ships still, maybe use incoming shot once complete
+//only setting the board to hit or miss, not updating ships
 void PowerUps::useUberCommander(std::string coord,bool isPlayer1){
-    //does this call the Hard AI to find the smallest ship? 
     Grid map = mapPicker(isPlayer1);
-  //  removePowerUp('U');
+    bool fired = false;
+    Admiral* tempAdmir=nullptr;
+    if(isPlayer1){
+        tempAdmir = m_admir2;
+    }
+    else{
+        tempAdmir = m_admir1;
+    }
+    
+    vector<Ship*> tempFleet = tempAdmir->getFleet();
+    for(int i=1;i<=tempAdmir->getNumShips();i++){
+
+        std::string* tempCoords = tempFleet.at(i)->getCoords();
+        int tempSize = tempFleet.at(i)->getSize();
+        std::string tempI = std::to_string(i);
+
+        for(int j=0;j<tempSize;j++){
+            if(fired ==false){
+                if(tempCoords[j]== tempI){
+                    map.setCoor(tempCoords[i], "X");
+                    fired = true;
+                }
+            }
+        }
+    }
+   
+    removePowerUp("U",isPlayer1);
 }
 
 vector<string>* PowerUps::getPowerUps(const int player) const
@@ -191,6 +218,25 @@ void PowerUps::removePowerUp(std::string value, bool isPlayer1){
         }
     }
     
+}
+
+bool PowerUps::hasAPowerup(bool isPlayer1){
+    if(isPlayer1){
+        if(m_admir1Powerups->size() > 0){
+            return(true);
+        }      
+        else{
+             return(false);
+        }  
+    }
+    else{
+        if(m_admir2Powerups->size() > 0){
+            return(true);
+        }
+        else{
+            return(false);
+        }
+    }
 }
 /*
 void PowerUps::addPowerUp(char symbol){
