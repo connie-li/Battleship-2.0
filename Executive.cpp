@@ -393,6 +393,42 @@ void Executive::switchTurn()
 
 void Executive::handleTurn()
 {
+int Executive::gameplay(const bool AI)
+{
+  bool gameOver = false;
+  int winner = 0;
+  while(!gameOver)
+  {
+    if(m_turn == 1)
+    {
+      gameOver = handleTurn(1, false);
+    }
+    else
+    {
+      gameOver = handleTurn(2, AI);
+    }
+
+    if(gameOver)
+    {
+      if(m_turn == 1)
+      {
+        winner = 1;
+      }
+      else
+      {
+        if(AI)
+        {
+          winner = 3;
+        }
+        else
+        {
+          winner = 2;
+        }
+      }
+    }
+    switchTurn();
+  }
+  return(winner);
 
 }
 

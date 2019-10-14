@@ -16,7 +16,7 @@ class Executive
         Admiral* m_player1; //Admiral object for player 1
         Admiral* m_player2; //Admiral object for player 2
         int m_numShips; //int of the number of ships used in the game
-        int m_turn;
+        int m_turn; /* 1 for player 1, 2 for player 2 */
         std::chrono::duration<unsigned long long> interval = std::chrono::seconds(2); //their timeout thing
         // PowerUps m_powerups;    /* Contains both players' powerups and methods to use them. */
 
@@ -101,13 +101,11 @@ class Executive
     // - update the current player's powerups if necessary (implement later)
     // - cout messages to player
 
-    /** TODO: handles everything necessary to complete one turn, using many of the funcs below
-     * call getFireCoord, fire
-     * update powerups if necessary
-     * call printTurnResult
-     *  
+    /** Runs the gameplay portion of the program: switches turns and calls handleTurn for each player. 
+     * @param AI true if there is an AI player, else false.
+     * @return a number representing which player has won: 1 for player 1, 2 for player 2, 3 for an AI.
      */
-    void handleTurn();
+    int gameplay(const bool AI);
 
     /** Asks the player whether they want to use a powerup.
      * @pre assumes this method is called only when the player has 1 or more powerups.
