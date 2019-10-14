@@ -18,3 +18,7 @@ main.o
 Ship.o
 
 PowerUps.o
+
+**/*.o
+
+**/*.exe
