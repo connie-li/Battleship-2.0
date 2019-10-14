@@ -16,6 +16,7 @@ class Executive
         Admiral* m_player1; //Admiral object for player 1
         Admiral* m_player2; //Admiral object for player 2
         int m_numShips; //int of the number of ships used in the game
+        int m_turn;
         std::chrono::duration<unsigned long long> interval = std::chrono::seconds(2); //their timeout thing
         // PowerUps m_powerups;    /* Contains both players' powerups and methods to use them. */
 
@@ -61,11 +62,14 @@ class Executive
     /**
      * Runs the menu for the game
      * @param none
-     * @return int of the user's selection on the menu
-     * 1 start game or
-     * 3 quit
+     * @return int of the user's selection on the menu: 1 for instructions, 2 to play a PvP game, 3 to play vs. AI, 4 to quit.
      */
     int setup();
+
+    /** Changes the player turn.
+     * @post if the turn is 1, changes it to 2, and vice versa.
+     */
+    void switchTurn();
 
     /**
      * Translates a letter coordinate to a number coordinate

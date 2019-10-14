@@ -2,6 +2,7 @@
 
 Executive::Executive()
 {
+  m_turn = 1;
     //create players
   m_player1 = new Admiral();
   m_player2 = new Admiral();
@@ -273,7 +274,7 @@ void Executive::run()
     {
       return;
     }
-    if (menu == 1)
+    if (menu == 2)
     {
         std::cout<< "Player 1: It's time to place your ships.\n";
         placeShip(m_numShips, m_player1, false);
@@ -297,7 +298,6 @@ int Executive::setup()
 {
   std::chrono::seconds interval(2);
   bool menurun = true;
-  bool working = false;
   std::string ship_num;
   std::string player_choice;
   while (menurun == true)
@@ -311,36 +311,38 @@ int Executive::setup()
     std::cout << " |____/ \\__,_|\\__|\\__|_|\\___||___/_| |_|_| .__/ \n";
     std::cout << "                                         | |    \n";
     std::cout << "                                         |_|    \n";
-    std::cout << "\nMenu:\n 1) Start Game (normal 2 v 2)\n 2) Instructions\n 3)Play game (1 player against AI) \n4) Quit Game\n\nEnter option (1-4): ";
+    std::cout << "\nMenu:\n 1) Instructions\n 2) Start Game: Player vs. Player\n 3) Start Game: Player vs. AI\n4) Quit Game\n\nEnter option (1-4): ";
     std::getline(std::cin,player_choice);
-    if (player_choice != "1" && player_choice != "2" && player_choice != "3" && player_choice != "4")
+    if (player_choice == "1")
     {
-      std::cout << "\nError with player selection please choose 1, 2, or 3 \n";
-    }
-    else if (player_choice == "1")
-    {
-        setNumShips();
-        return 1;
-    }
-    else if (player_choice == "2")
-    {
+      std::cout << "There are two game modes: a 1v1 game with two players, or a player vs. AI mode. In Player vs. AI mode, you can choose Easy, Medium, or Hard AI difficulty.\n";
       std::cout << "\nGoals of the game!: Sink all enemy ships\n\nHow to Play:\n - You, the player, will start by selecting how many ships you'd like to play with, 1 to 5 ships.";
       std::cout << "\n - You will walk through and place your ships and then take turns entering coordinates to attack the other players ships.\n - The game is over when all Enemy Ships have been sunk.";
       std::cout << "\n - Here are the lists of symbols that will show up on the board with explanations: \n";
-      //std::cout << "\t • ~: Water \n\t • O: Miss \n\t • X: Hit \n\t • C: 5x1 Carrier \n\t • B: 4x1 Battleship \n\t • D: 3x1 Destroyer \n\t • S: 2x1 Submarine \n\t • T: 1x1 Tug Boat";
-      std::cout << "You can play with 1 player and then go against an AI with an easy, medium or difficult skill level\n";
+      std::cout << "\t • ~: Water \n\t • O: Miss \n\t • X: Hit \n\t • 5: 5x1 Carrier \n\t • 4: 4x1 Battleship \n\t • 3: 3x1 Destroyer \n\t • 2: 2x1 Submarine \n\t • 1: 1x1 Tug Boat\n";
     }
-    else if (player_choice == "4")
+    else if (player_choice == "2")
     {
-      menurun = false;
-      std::cout << "\nHave a nice day!\n";
-      /// Quitting the program by returning and skipping gameplay phase.
-      return 4;
+      cout << "Starting a Player vs. Player game!\n";
+      setNumShips();
+      return 2;
     }
     else if (player_choice == "3")
     {
+      cout << "Starting a Player vs. AI game!\n";
       // m_player2 = new AI(); //exact constructer and arguements to come
       // m_player2.placeShips(m_numShips);
+      return 3;
+    }
+    else if (player_choice == "4")
+    {
+      std::cout << "\nHave a nice day!\n";
+      return 4;
+    }
+    else
+    {
+      cout << "Please enter a valid input.\n";
+      menurun = true;
     }
   }
 }
@@ -349,7 +351,6 @@ void Executive::setNumShips()
 {
   bool working = false;
   int ship_int = 0;
-  bool menurun = false;
     std::string ship_num = "";
     while (working == false)
       {
@@ -360,11 +361,10 @@ void Executive::setNumShips()
           working = true;
           /// If input is good, cast to int for map creation and end loop for menu.
           ship_int = std::stoi(ship_num);
-          menurun = false;
         }
         else
         {
-          std::cout << "\nError with number of ships, please enter a valid number 1, 2, 3, 4 or, 5\n";
+          std::cout << "\nError with number of ships, please enter a valid number: 1, 2, 3, 4 or, 5\n";
         }
       }
     m_numShips = ship_int;
@@ -374,12 +374,24 @@ void Executive::setNumShips()
     m_player2->setNumAfloat(m_numShips);
 }
 
+void Executive::switchTurn()
+{
+  if(m_turn == 1)
+  {
+    m_turn = 2;
+  }
+  else
+  {
+    m_turn = 1;
+  }
+}
+
 void Executive::handleTurn()
 {
 
 }
 
-string Executive::askForPowerUp(const int player) // TODO: show prompts only for the available powerups & validate input choice accordingly
+string Executive::askForPowerUp(const int player)
 {
   bool goodInput = false;
   vector<string>* playerPUs = getPowerups(player);
