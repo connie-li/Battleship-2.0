@@ -17,7 +17,7 @@ string* generateCoords(string startCoord, int size, bool orientation)
 	{
 		int k = 0;
 		int l = col;
-		
+
 		while((l <= col + size - 1) && (k < size))
 		{
 			coordsArr[k] = to_string(row) + ":" + to_string(l);
@@ -124,14 +124,14 @@ int main()
 		cout << tempCoords[i] << ", ";
 	}
 	cout << '\n';
-		
+
 	// for(int i = 0; i < stackAdm2.getNumShips(); i++)
 	// {
 	// 	cout << "\t\t" << stackAdm2.getFleet()[i]->getSize() << " at coord " << stackAdm1.getFleet()[i]->getCoords()[i] << "\n";
 	// }
 
-	delete coord1;
-	delete stack2coords;
+	delete[] coord1;
+	delete[] stack2coords;
 	delete heapAdm1;
 	delete heapAdm2;
 	return(0);

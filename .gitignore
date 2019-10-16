@@ -24,3 +24,5 @@ PowerUps.o
 **/*.o
 
 **/*.exe
+
+**/AdmiralTest
