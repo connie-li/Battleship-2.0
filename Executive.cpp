@@ -1,4 +1,5 @@
 #include "Executive.h"
+#include <fstream>
 
 Executive::Executive()
 {
@@ -19,10 +20,20 @@ void Executive::saveGame(int n, Admiral* player, bool ai)
 {
   string** board = nullptr;
 
+  //store in the board:whose turn, ai or nah, and boards
+
   //board contains the 2D string array from the grid object from the current player
   board = player->getBoard()->getGrid();
 
-  //testing storing the board by printing
+  ofstream gameFile;
+  gameFile.open("saved.txt"); 
+  writeToFile(gameFile, board);
+
+}
+
+void Executive::writeToFile(ofstream fileObject, string** board)
+{
+  //write board information to a text file
   for(int i = 0; i < m_BOARD_SIZE; i++)
   {
     for(int j = 0; j < m_BOARD_SIZE; j++)
@@ -37,18 +48,18 @@ void Executive::saveGame(int n, Admiral* player, bool ai)
       }
       if(((int)temp >= 48 && (int)temp <= 57) || temp == 'O' || temp == 'X')
       {
-          cout<< temp;
+          fileObject<< temp;
       }
       else
       {
-          cout<< "~";
+          fileObject<< "~";
       }
-      cout<<"\t";
+      fileObject<<"\t";
     }
-    cout<<"\n";
+    fileObject<<"\n";
     }
-  
 
+    fileObject.close();
 }
 
 void Executive::placeShip(int n, Admiral* player, bool ai)

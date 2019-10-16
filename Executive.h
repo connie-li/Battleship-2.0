@@ -13,6 +13,7 @@ using namespace std;
 class Executive
 {
     private:
+        const int m_BOARD_SIZE = 8; /** The size of the board to be created.*/
         Admiral* m_player1; //Admiral object for player 1
         Admiral* m_player2; //Admiral object for player 2
         int m_numShips; //int of the number of ships used in the game
@@ -53,6 +54,7 @@ class Executive
     void placeShip(int size, Admiral* player, bool AI);
 
     void saveGame(int size, Admiral* player, bool AI);
+    void writeToFile(ofstream fileObject, string** board);
 
     /**
      * Runs the Battleship game
