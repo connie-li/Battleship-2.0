@@ -4,7 +4,8 @@
 #include <iostream>
 #include <stdexcept>
 #include "Admiral.h"
-// #include "AI.h"
+#include "PowerUps.h"
+#include "AI.h"
 #include <chrono>
 using namespace std;
 
@@ -48,6 +49,8 @@ class Executive
      * @post sends a string array of the coordinates of the ship to Admiral
      */
     void placeShip(int size, Admiral* player, bool AI);
+
+    void saveGame(int size, Admiral* player, bool AI);
 
     /**
      * Runs the Battleship game

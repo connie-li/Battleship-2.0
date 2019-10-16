@@ -14,6 +14,15 @@ Executive::~Executive()
     delete m_player2;
 }
 
+void Executive::saveGame(int n, Admiral* player, bool ai)
+{
+  string** board = nullptr;
+  //board contains the 2D string array from the grid object from the current player
+  board = player->getBoard()->getGrid();
+  
+
+}
+
 void Executive::placeShip(int n, Admiral* player, bool ai)
 {
     //currently, this does not add the ships to a fleet and does not save their location
@@ -276,10 +285,12 @@ void Executive::run()
     {
         std::cout<< "Player 1: It's time to place your ships.";
         placeShip(m_numShips, m_player1, false);
-        std::cout << "Thanks for placing your ships player 1! Now it's player 2's turn";
+        saveGame(m_numShips, m_player1, false);
+        std::cout << "Thanks for placing your ships player 1! \nNow it's player 2's turn";
         std::chrono::seconds interval(2);
         std::cout<< "Player 2: It's time to place your ships.";
         placeShip(m_numShips, m_player2, false);
+        saveGame(m_numShips, m_player2, false);
         std::cout << "Thanks for placing your ships. Time to start the game";
     }
     if (menu == 3)
@@ -323,11 +334,10 @@ int Executive::setup()
     }
     else if (player_choice == "2")
     {
-      std::cout << "\nGoals of the game!: Sink all enemy ships\n\nHow to Play:\n - You, the player, will start by selecting how many ships you'd like to play with, 1 to 5 ships.";
-      std::cout << "\n - You will walk through and place your ships and then take turns entering coordinates to attack the other players ships.\n - The game is over when all Enemy Ships have been sunk.";
-      std::cout << "\n - Here are the lists of symbols that will show up on the board with explanations: \n";
-      //std::cout << "\t • ~: Water \n\t • O: Miss \n\t • X: Hit \n\t • C: 5x1 Carrier \n\t • B: 4x1 Battleship \n\t • D: 3x1 Destroyer \n\t • S: 2x1 Submarine \n\t • T: 1x1 Tug Boat";
-      std::cout << "You can play with 1 player and then go against an AI with an easy, medium or difficult skill level\n";
+      cout << "Starting a Player vs. AI game!\n";
+      m_player2 = new AI(); 
+      placeShip(m_numShips, m_player2, true);
+      return 3;
     }
     else if (player_choice == "4")
     {
