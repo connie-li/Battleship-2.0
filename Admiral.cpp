@@ -16,6 +16,12 @@ Admiral::Admiral(int numShips)
 
 Admiral::~Admiral()
 {
+	Ship* tempPtr = nullptr;
+	for(vector<Ship*>::iterator it = m_fleet.begin(); it != m_fleet.end(); ++it)
+	{
+		tempPtr = *it;
+		delete tempPtr;
+	}
 }
 
 // --- getters ---
@@ -111,7 +117,7 @@ string Admiral::incomingShot(const string coord)
 // 	if(temp != -1){
 // 		//this means there is a ship at this coord
 // 		shipCoords = getFleet().at(temp)->getCoords();
-		
+
 // 		shipSize = getFleet().at(temp)->getSize();
 // 	}
 		//now call the powerup torpedo func, syntax may be wrong here
