@@ -24,8 +24,8 @@ void Grid::setCoor(const string coord, const string value){
 }
 
 string Grid::randCoor(const bool allowOcc){
-    int row = 1;
-    int col = 1;
+    int row = 0;
+    int col = 0;
     if(allowOcc){
         row = rand() % m_BOARD_SIZE + 1;
         col = rand() % m_BOARD_SIZE + 1;
@@ -35,7 +35,7 @@ string Grid::randCoor(const bool allowOcc){
             col = rand() % m_BOARD_SIZE + 1;
         }while(m_arr[row][col] != "~");
     }
-    return to_string(row) + ":" + to_string(col);
+    return std::to_string(row) + ":" + std::to_string(col);
 }
 
 void Grid::printGrid(const bool isFiring){
@@ -46,13 +46,9 @@ void Grid::printGrid(const bool isFiring){
     }
 }
 
-string** Grid::getGrid(){
-    return m_arr;
-}
-
 void Grid::readShip(const string* arr, const int length){
     for(int i = 0; i < length; i++){
-        setCoor(arr[i], to_string(length));
+        m_arr[rowCoor(arr[i])][colCoor(arr[i])] = length;
     }
 }
 

@@ -29,4 +29,10 @@ TEAM RETURN(AWESOME) - PROJECT 2 - MEETING LOG
 	 - Malena: Debugging and Exec development
 8. 10/07/2019. In Lecture, scrum.
 	Attendees: Archana Ramakrishnan, Ethan Brenner, Kyle Kappes-Sum, Connie Li, Malena Schoeni.
-	Discussed: Current progresses and issues. Implenatation of powerups and saving features given the refactoring that has occured.
+	Discussed: Current progresses and issues. Implementation of powerups and saving features given the refactoring that has occured.
+9. 10/09/2019. In Lecture, scrum.
+	Attendees: Archana Ramakrishnan, Ethan Brenner, Kyle Kappes-Sum, Connie Li, Malena Schoeni.
+	Discussed: progress on Powerups, general testing, makefiles, bug fixes, plans to work on remaining features.
+10. 10/10/2019. Eaton Fishbowl.
+	Attendees: Archana Ramakrishnan, Connie Li.
+	Worked on Admiral, Exec, & AI.

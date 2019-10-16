@@ -2,9 +2,7 @@
 #define POWERUPS_H
 #include <string>
 #include <stdexcept>
-#include "Grid.h"
-#include <ctype.h>
-#include "Ship.h"
+#include "Admiral.h"
 #include <ctype.h>
 
 class PowerUps
@@ -20,8 +18,10 @@ class PowerUps
 
     //pointer for the list of aquired powerups
     
-    Grid* m_admir1Map = nullptr;
-    Grid* m_admir2Map = nullptr;
+    Admiral* m_admir1;
+    Admiral* m_admir2;
+    vector<string>* m_admir1Powerups;
+    vector<string>* m_admir2Powerups;
 
     public:
 
@@ -65,27 +65,30 @@ class PowerUps
     /**
      * chooses which map should be handed to the function
      * @param bool true if player1's turn, false if player2
+     * @return Grid the grid owned by the other admiral (to fire upon)
      */
     Grid* mapPicker(bool isPlayer1);
 
-    /**
-     * returns the list of collected powerups to the player
-     * @return a list of powerup symbols
+    /** Gets the given player's powerups.
+     * @param player 1 for player 1, 2 for player 2.
+     * @return a pointer to the vector of powerup symbols.
      */
-    string* getPowerUps();
+    vector<string>* getPowerUps(const int player) const;
 
     /**
-     * adds a powerup in the player's arsenal
-     * @param char the char symbol used to repesent a specific power up
+     * adds a powerup to the correct admiral's powerups vector
+     * @param string the string value of the powerup
+     * @param bool isPlayer1 true if player1 false if player2 
      */
-    void addPowerUp(char symbol);
+    void addPowerUp(std::string value, bool isPlayer1);
 
     /**
-     * removes the given powerup from the list
-     * @param char the symbol of the powerup to be removed
+     * removes the given powerup from the vector
+     * @param string the string value of the powerup to be removed
+     * @param bool isPlayer1 true if player1 false if player2
      */
     
-    void removePowerUp(char symbol);
+    void removePowerUp(std::string value, bool isPlayer1);
 
     /**
      * Return  numeric equivalent of a letter column
@@ -93,5 +96,12 @@ class PowerUps
      * @return int equivalent (1-8)
      */
     int charCoordtoIntCoord(char c);
+
+    /**
+     * figures out whether the player has any powerups
+     * @param isPlayer1 true if player1, false if player2
+     * @return true if player has a powerup, false if they don't
+     * */
+    bool hasAPowerup(bool isPlayer1);
 };
 #endif

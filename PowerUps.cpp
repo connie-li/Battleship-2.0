@@ -6,31 +6,45 @@ PowerUps::PowerUps()
 }
 
 PowerUps::~PowerUps(){
-    delete[] m_admir1Map;
-    m_admir1Map = nullptr;
-    delete[] m_admir2Map;
-    m_admir2Map = nullptr;
+    //tbd
 }
 
 Grid* PowerUps::mapPicker(bool isPlayer1){
     if(isPlayer1){
-        return(m_admir2Map);
+        return(m_admir2->getBoard());
     }
-    return(m_admir1Map);
+    return(m_admir1->getBoard());
 }
 
 void PowerUps::useTorpedo(std::string coord,bool isPlayer1, int shipSize, string* shipCoords){
     Grid* map = mapPicker(isPlayer1);
+    Admiral* tempAdmir = nullptr;
     
+
+    if(isPlayer1){
+        tempAdmir = m_admir1;
+    }
+    else{
+        tempAdmir = m_admir2;
+    }
+    vector<Ship*> fleet = tempAdmir->getFleet();
+    int tempIndex= tempAdmir->findShipbyCoord(coord);
+
      //check to see if the value is an int
     std::string coordValue = map->getCoor(coord);
     if(shipSize != -1){
         //this is a hit, destroy whole ship
         for(int i=0;i<shipSize;i++){
             map->setCoor(shipCoords[i], "X");
+
+            //update the ship object
+            fleet.at(tempIndex)->incNumHits();
+            if(fleet.at(tempIndex)->getStatus() == false){
+                tempAdmir->decNumAfloat(); 
+            }
         }
     }
-    else if (coordValue[0]=='~' || coordValue[0]=='O'){
+    else if(coordValue[0]=='~' || coordValue[0]=='O'){
         //this is water or a miss
         //should report as a miss
         map->setCoor(coord,"O");
@@ -39,12 +53,13 @@ void PowerUps::useTorpedo(std::string coord,bool isPlayer1, int shipSize, string
         //this tile should be a power up, assuming safe input here
         //should collect whatever powerup was there
 
-        //call admiral helper function to add a new powerup
+        //add the symbol to the powerup vector list
+       addPowerUp(coordValue, isPlayer1);
         map->setCoor(coord,"O");
     }
 
-
-    //call admiral func to remove powerup, ex: removePowerUp('T');
+    //remove the torpedo from the list
+    removePowerUp("T", isPlayer1);
 }
 
 void PowerUps::useRadar(std::string coord,bool isPlayer1){
@@ -147,22 +162,108 @@ void PowerUps::useScatterShot(std::string coord,bool isPlayer1){
     }
 }
 
+//10/13 I think this may only work correctly when the ships are put into the 
+//vector in order from smallest to largest
 void PowerUps::useUberCommander(std::string coord,bool isPlayer1){
-    //does this call the Hard AI to find the smallest ship? 
     Grid* map = mapPicker(isPlayer1);
-  //  removePowerUp('U');
+    bool fired = false;
+    //picking which admiral to use
+    Admiral* tempAdmir=nullptr;
+    if(isPlayer1){
+        tempAdmir = m_admir2;
+    }
+    else{
+        tempAdmir = m_admir1;
+    }
+    
+    vector<Ship*> tempFleet = tempAdmir->getFleet();
+    //outer loop iterates through each ship in the fleet
+    for(int i=1;i<=tempAdmir->getNumShips();i++){
+        //getting the coordinates of the ship at the ith position of shipVector
+        std::string* tempCoords = tempFleet.at(i)->getCoords();
+        int tempSize = tempFleet.at(i)->getSize();
+        std::string tempI = std::to_string(i);
+
+        //inner loop iterates through each coordinate of a ship
+        for(int j=0;j<tempSize;j++){
+            if(fired ==false){
+                //if value at the ship coord is = to the number
+                if(tempCoords[j]== tempI){
+                    map->setCoor(tempCoords[j], "X");
+                    fired = true;
+                    //adjust the ship
+                    tempFleet.at(i)->incNumHits();
+                    if(tempFleet.at(i)->getStatus() == false){
+                        tempAdmir->decNumAfloat();
+                    }
+                }
+            }
+        }
+    }
+    removePowerUp("U",isPlayer1);
+}
+
+vector<string>* PowerUps::getPowerUps(const int player) const
+{
+    if(player == 1)
+    {
+        return(m_admir1Powerups);
+    }
+    if(player == 2)
+    {
+        return(m_admir2Powerups);
+    }
 }
 
 int PowerUps::charCoordtoIntCoord(char c){
   return (int)c - 64;
 }
 
-/*
-These may get removed, PowerUp doesn't own the list anymore
-string* PowerUps::getPowerUps(){
-    return(m_powerUpslist);
+void PowerUps::addPowerUp(std::string value, bool isPlayer1){
+     if(isPlayer1){
+            m_admir1Powerups->push_back(value);
+        }
+        else{
+            m_admir2Powerups->push_back(value);
+        }
 }
 
+void PowerUps::removePowerUp(std::string value, bool isPlayer1){
+    vector<string>* list = nullptr;
+    
+    if(isPlayer1){
+        list = m_admir1Powerups;
+    }
+    else{
+        list = m_admir2Powerups;
+    }
+    for(int i = 0;i<list->size();i++){
+        if(list->at(i) == value){
+            list->erase(list->begin() + i);
+        }
+    }
+    
+}
+
+bool PowerUps::hasAPowerup(bool isPlayer1){
+    if(isPlayer1){
+        if(m_admir1Powerups->size() > 0){
+            return(true);
+        }      
+        else{
+             return(false);
+        }  
+    }
+    else{
+        if(m_admir2Powerups->size() > 0){
+            return(true);
+        }
+        else{
+            return(false);
+        }
+    }
+}
+/*
 void PowerUps::addPowerUp(char symbol){
     char* temp = new char[(m_size+1)];
     for(int i=0;i<m_size; i++)

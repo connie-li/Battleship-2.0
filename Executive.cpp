@@ -2,6 +2,7 @@
 
 Executive::Executive()
 {
+  m_turn = 1;
     //create players
   m_player1 = new Admiral();
   m_player2 = new Admiral();
@@ -25,9 +26,6 @@ void Executive::saveGame(int n, Admiral* player, bool ai)
 
 void Executive::placeShip(int n, Admiral* player, bool ai)
 {
-    //currently, this does not add the ships to a fleet and does not save their location
-    //that will need to be implemented after other classes are built
-
     bool taken [9][9];
     for (int i = 0; i < 9; i++)
     {
@@ -80,8 +78,13 @@ void Executive::placeShip(int n, Admiral* player, bool ai)
         std::string option_s = "";
         std::string option_w = "";
         std::string option_e = "";
+
     if (size != 1)
     {
+      if(!ai)
+        {
+          std::cout << "Enter an ending coordinate (possible ending coordinates for this ship are: ";
+        }
         if (r+(size-1) <= 8)
         {
             bool flag = false;
@@ -147,7 +150,6 @@ void Executive::placeShip(int n, Admiral* player, bool ai)
         std::string end = "";
         if(!ai)
         {
-          std::cout << "Enter an ending coordinate (possible ending coordinates for this ship are: ";
           std::cout << "\n Enter the ending coordinate from the list. ";
           end = askCoord();
         }
@@ -174,7 +176,7 @@ void Executive::placeShip(int n, Admiral* player, bool ai)
         
         while (end !=option_e && end!=option_n && end!=option_s && end!=option_w)
         {
-            std::cout << "Error. Enter one of the coordinates listed above. ";
+            std::cout << "\n Error. Enter one of the coordinates listed above. ";
             end = askCoord();
         }
 
@@ -276,22 +278,25 @@ bool Executive::validPos(std::string pos)
 
 void Executive::run()
 {
+  int winner = 0;
     int menu = setup();
     if (menu == 4)
     {
       return;
     }
-    if (menu == 1)
+    if (menu == 2)
     {
-        std::cout<< "Player 1: It's time to place your ships.";
+        std::cout<< "Player 1: It's time to place your ships.\n";
         placeShip(m_numShips, m_player1, false);
         saveGame(m_numShips, m_player1, false);
         std::cout << "Thanks for placing your ships player 1! \nNow it's player 2's turn";
         std::chrono::seconds interval(2);
-        std::cout<< "Player 2: It's time to place your ships.";
+        std::cout<< "\n\n\n\n\n\n\n\n\n\n\nPlayer 2: It's time to place your ships.\n";
         placeShip(m_numShips, m_player2, false);
         saveGame(m_numShips, m_player2, false);
         std::cout << "Thanks for placing your ships. Time to start the game";
+        winner = gameplay(false);
+        printGameOver(winner);
     }
     if (menu == 3)
     {
@@ -299,6 +304,8 @@ void Executive::run()
         placeShip(m_numShips, m_player1, false);
         std::cout << "Thanks for placing your ships. The AI's ships have been placed randomly. Time to start the game";
         placeShip(m_numShips, m_player2, true);
+        winner = gameplay(true);
+        printGameOver(winner);
     }
 
 }
@@ -307,7 +314,6 @@ int Executive::setup()
 {
   std::chrono::seconds interval(2);
   bool menurun = true;
-  bool working = false;
   std::string ship_num;
   std::string player_choice;
   while (menurun == true)
@@ -321,18 +327,23 @@ int Executive::setup()
     std::cout << " |____/ \\__,_|\\__|\\__|_|\\___||___/_| |_|_| .__/ \n";
     std::cout << "                                         | |    \n";
     std::cout << "                                         |_|    \n";
-    std::cout << "\nMenu:\n 1) Start Game (normal 2 v 2)\n 2) Instructions\n 3)Play game (1 player against AI) \n4) Quit Game\n\nEnter option (1-4): ";
+    std::cout << "\nMenu:\n 1) Instructions\n 2) Start Game: Player vs. Player\n 3) Start Game: Player vs. AI\n 4) Quit Game\n\nEnter option (1-4): ";
     std::getline(std::cin,player_choice);
-    if (player_choice != "1" && player_choice != "2" && player_choice != "3" && player_choice != "4")
+    if (player_choice == "1")
     {
-      std::cout << "\nError with player selection please choose 1, 2, or 3 \n";
-    }
-    else if (player_choice == "1")
-    {
-        setNumShips();
-        return 1;
+      std::cout << "There are two game modes: a 1v1 game with two players, or a player vs. AI mode. In Player vs. AI mode, you can choose Easy, Medium, or Hard AI difficulty.\n";
+      std::cout << "\nGoals of the game!: Sink all enemy ships\n\nHow to Play:\n - You, the player, will start by selecting how many ships you'd like to play with, 1 to 5 ships.";
+      std::cout << "\n - You will walk through and place your ships and then take turns entering coordinates to attack the other players ships.\n - The game is over when all Enemy Ships have been sunk.";
+      std::cout << "\n - Here are the lists of symbols that will show up on the board with explanations: \n";
+      std::cout << "\t • ~: Water \n\t • O: Miss \n\t • X: Hit \n\t • 5: 5x1 Carrier \n\t • 4: 4x1 Battleship \n\t • 3: 3x1 Destroyer \n\t • 2: 2x1 Submarine \n\t • 1: 1x1 Tug Boat\n";
     }
     else if (player_choice == "2")
+    {
+      cout << "Starting a Player vs. Player game!\n";
+      setNumShips();
+      return 2;
+    }
+    else if (player_choice == "3")
     {
       cout << "Starting a Player vs. AI game!\n";
       m_player2 = new AI(); 
@@ -341,15 +352,13 @@ int Executive::setup()
     }
     else if (player_choice == "4")
     {
-      menurun = false;
       std::cout << "\nHave a nice day!\n";
-      /// Quitting the program by returning and skipping gameplay phase.
       return 4;
     }
-    else if (player_choice == "3")
+    else
     {
-      // m_player2 = new AI(); //exact constructer and arguements to come
-      // m_player2.placeShips(m_numShips);
+      cout << "Please enter a valid input.\n";
+      menurun = true;
     }
   }
 }
@@ -358,7 +367,6 @@ void Executive::setNumShips()
 {
   bool working = false;
   int ship_int = 0;
-  bool menurun = false;
     std::string ship_num = "";
     while (working == false)
       {
@@ -369,11 +377,10 @@ void Executive::setNumShips()
           working = true;
           /// If input is good, cast to int for map creation and end loop for menu.
           ship_int = std::stoi(ship_num);
-          menurun = false;
         }
         else
         {
-          std::cout << "\nError with number of ships, please enter a valid number 1, 2, 3, 4 or, 5\n";
+          std::cout << "\nError with number of ships, please enter a valid number: 1, 2, 3, 4 or, 5\n";
         }
       }
     m_numShips = ship_int;
@@ -383,7 +390,236 @@ void Executive::setNumShips()
     m_player2->setNumAfloat(m_numShips);
 }
 
+void Executive::switchTurn()
+{
+  if(m_turn == 1)
+  {
+    m_turn = 2;
+  }
+  else
+  {
+    m_turn = 1;
+  }
+}
 
+bool Executive::handleTurn(const int player, const bool AI)
+{
+  string powerup;
+  string targetCoord;
+  string turnResult;
+  if(AI)  // AI player
+  {
+    // waiting on AI method
+    // targetCoord = m_player2->chooseTarget();
+    turnResult = m_player1->incomingShot(targetCoord);
+    return(m_player1->getNumAfloat() < 1);
+  }
+  else
+  {
+    if(player == 1)
+    {
+      printMaps(player);
+      printEnemyAction(); //TODO
+      if(m_powerups.hasAPowerup(true))
+      {
+        powerup = askForPowerUp(1);
+      }
+      targetCoord = askForFireCoord(m_turn);
+      turnResult = m_player2->incomingShot(targetCoord);
+      // TODO: add powerups
+      // if(turnResult == "T" || turnResult == "R" || turnResult == "U" || turnResult == "S")
+      //   {
+
+      //   }
+      printTurnResult(turnResult);
+      return(m_player2->getNumAfloat() < 1);
+    }
+    else  // player 2
+    {
+      printMaps(player);
+      printEnemyAction(); //TODO
+      if(m_powerups.hasAPowerup(false))
+      {
+        powerup = askForPowerUp(2);
+      }
+      targetCoord = askForFireCoord(m_turn);
+      turnResult = m_player1->incomingShot(targetCoord);
+      // TODO: add powerups
+      printTurnResult(turnResult);
+      return(m_player1->getNumAfloat() < 1);
+    }
+  }
+}
+
+int Executive::gameplay(const bool AI)
+{
+  bool gameOver = false;
+  int winner = 0;
+  while(!gameOver)
+  {
+    if(m_turn == 1)
+    {
+      gameOver = handleTurn(1, false);
+    }
+    else
+    {
+      gameOver = handleTurn(2, AI);
+    }
+
+    if(gameOver)
+    {
+      if(m_turn == 1)
+      {
+        winner = 1;
+      }
+      else
+      {
+        if(AI)
+        {
+          winner = 3;
+        }
+        else
+        {
+          winner = 2;
+        }
+      }
+    }
+    switchTurn();
+  }
+  return(winner);
+}
+
+string Executive::askForPowerUp(const int player)
+{
+  bool goodInput = false;
+  vector<string>* playerPUs = getPowerups(player);
+  vector<string>::iterator it = playerPUs->begin();
+  string choice = "";
+  do {
+      cout << "Player " << player << ", would you like to use a powerup?\n";
+      it = playerPUs->begin();
+      while(it != playerPUs->end())
+      {
+        if(*it == "T")
+        {
+          cout << "Enter T to use your Torpedo.\n";
+        }
+        if(*it == "R")
+        {
+          cout << "Enter R to use your Radar.\n";
+        }
+        if(*it == "U")
+        {
+          cout << "Enter U to use your Uber Commander.\n";
+        }
+        if(*it == "S")
+        {
+          cout << "Enter S to use your Scattershot.\n";
+        }
+        ++it;
+      }  
+      cout << "Or enter N to not use a powerup this turn.\n";
+      cout << "Your choice: ";
+      cin >> choice;
+      // check whether the choice is in the vector
+      it = find(playerPUs->begin(), playerPUs->end(), choice);
+      if(it != playerPUs->end())
+      {
+        goodInput = true;
+      }
+  } while(!goodInput);
+  return(choice);
+}
+
+string Executive::askForFireCoord(const int player)
+{
+  string coord = "";
+  do {
+    cout << "Player " << player << ", input a valid coordinate to fire on: ";
+    cin >> coord;
+  } while(!validPos(coord));
+  return(coord);
+}
+
+vector<string>* Executive::getPowerups(const int player) const
+{
+//   vector<string>* powerups = m_powerups.getPowerUps(player);
+}
+
+void Executive::printTurnResult(const string result) const
+{
+  if(result == "hit")
+  {
+    cout << "You hit their ship!\n";
+  }
+  else if(result == "sunk")
+  {
+    cout << "You hit and sank their ship!\n";
+  }
+  else if(result == "miss")
+  {
+    cout << "You missed.\n";
+  }
+  else if(result == "X")
+  {
+    cout << "You already fired on that location.\n";
+  }
+  else
+  {
+    cout << "You got a powerup!\n";
+  }
+}
+
+// --- HELPER FUNCTIONS ---
 int Executive::charCoordtoIntCoord(char c){
   return (int)c - 64;
+}
+
+string Executive::convertCoord(string orig)
+{
+  int row = charCoordtoIntCoord(orig.at(0));
+  int col = charCoordtoIntCoord(orig.at(1));
+  string newCoord = to_string(row) + ":" + to_string(col);
+  return(newCoord);
+}
+
+void Executive::printGameOver(const int player) const
+{
+  cout << "GAME OVER!\n";
+  if(player == 3)
+  {
+    cout << "The AI won the game.  Better luck next time!\n";
+  }
+  else
+  {
+    cout << "Congratulations player " << player << ", you are the winner!\n\n";
+    cout << "                                  )___(\n";
+    cout << "                           _______/__/_\n";
+    cout << "                  ___     /===========|   ___\n";
+    cout << " ____       __   [\\\\]___/____________|__[///]   __\n";
+    cout << " \\   \\_____[\\\\]__/___________________________\\__[//]___\n";
+    cout << "  \\448                                                 |\n";
+    cout << "   \\                                                  /\n";
+    cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n\n";
+  }
+}
+
+void Executive::printMaps(const int player) const
+{
+  if(player == 1)
+  {
+    cout << "Your firing map:\n";
+    m_player2->getBoard()->printGrid(true);
+    cout << "Your ship map:\n";
+    m_player1->getBoard()->printGrid(false);
+  }
+  else
+  {
+    m_player1->getBoard()->printGrid(true);
+    m_player2->getBoard()->printGrid(false);
+  }
+}
+
+void Executive::printEnemyAction() const
+{
 }

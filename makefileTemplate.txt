@@ -1,14 +1,19 @@
-objo := Executive.o Admiral.o Ship.o Grid.o
+objo := Executive.o Admiral.o Ship.o Grid.o AI.o PowerUps.o
+testo := Testing.o Test.o GridTest.o
+objo := $(objo) $(testo)
 objc := $(objo:.o=.cpp)
+objh := $(objo:.o=.h)
+testc := $(testo:.o=.cpp)
 flags := -std=c++11 -g -Wall
 
 all: main.o $(objo)
-	g++ $(flags) main.o $(objo) -o Battleship
+	g++ $(flags) main.o $(objo) \
+	-o Battleship 
 
-$(objo): $(objo:.o=.h) $(objc)
+$(objo): $(objh) $(objc)
 	g++ $(flags) -c $(objc)
 
-main.o: main.cpp
+main.o: main.cpp $(objh)
 	g++ $(flags) -c main.cpp
 
 //WINDOWS

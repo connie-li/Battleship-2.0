@@ -3,6 +3,7 @@
 #include <string>
 #include <iostream>
 #include <stdexcept>
+#include <algorithm>
 #include "Admiral.h"
 #include "PowerUps.h"
 #include "AI.h"
@@ -15,8 +16,9 @@ class Executive
         Admiral* m_player1; //Admiral object for player 1
         Admiral* m_player2; //Admiral object for player 2
         int m_numShips; //int of the number of ships used in the game
+        int m_turn; /* 1 for player 1, 2 for player 2 */
         std::chrono::duration<unsigned long long> interval = std::chrono::seconds(2); //their timeout thing
-
+        PowerUps m_powerups;    /* Contains both players' powerups and methods to use them. */
 
 
     public:
@@ -62,11 +64,14 @@ class Executive
     /**
      * Runs the menu for the game
      * @param none
-     * @return int of the user's selection on the menu
-     * 1 start game or
-     * 3 quit
+     * @return int of the user's selection on the menu: 1 for instructions, 2 to play a PvP game, 3 to play vs. AI, 4 to quit.
      */
     int setup();
+
+    /** Changes the player turn.
+     * @post if the turn is 1, changes it to 2, and vice versa.
+     */
+    void switchTurn();
 
     /**
      * Translates a letter coordinate to a number coordinate
@@ -91,6 +96,71 @@ class Executive
      */
     void setNumShips();
 
+    /** Handles the given player or AI's turn: asks for firing targets & powerup usage, updates Grid & Ship data.
+     * @param player 1 for player 1, 2 for player 2.
+     * @param AI true if an AI is playing, else false.
+     * @post updates the other player's game data as necessary, and prints messages to the user.
+     * @return true if the game is over, else false.
+     */
+    bool handleTurn(const int player, const bool AI);
 
+    /** Runs the gameplay portion of the program: switches turns and calls handleTurn for each player. 
+     * @param AI true if there is an AI player, else false.
+     * @return a number representing which player has won: 1 for player 1, 2 for player 2, 3 for an AI.
+     */
+    int gameplay(const bool AI);
+
+    /** Asks the player whether they want to use a powerup.
+     * @pre assumes this method is called only when the player has 1 or more powerups.
+     * @param player 1 for player 1, 2 for player 2.
+     * @return an initial representing the powerup chosen, or N if the player chooses not to use one.
+     */
+    string askForPowerUp(const int player);
+
+    /** Gets the firing coordinate from the user.
+     * @param playerNum the current player turn, 1 for player 1, 2 for player 2.
+     * @return a validated coordinate input by the player.
+     */
+    string askForFireCoord(const int player);
+
+    /** Gets the given player's current powerups.
+     * @param player 1 for player 1, 2 for player 2.
+     * @return a pointer to the array of the player's powerups.
+     */
+    vector<string>* getPowerups(const int player) const;
+
+    /** Adds the given powerup to the current player's powerup vector. [NOT USED YET]
+     * @param powerup a string representing the powerup.
+     */
+    void updatePowerups(const string powerup);
+
+    /** Prints the result of the turn: hit, miss, powerup, etc.
+     * @param result represents whether the turn result was a hit, miss, sink, or powerup.
+     * @post Prints messages for the current player based on the given result
+     */
+    void printTurnResult(const string result) const;
+
+    /** Helper function: converts coords from the form "1A" to the form "<row>:<col>".
+     * @param orig the original coordinate.
+     * @return the coordinate in "<row>:<col>" form.
+     */
+    string convertCoord(string orig);
+
+    /**
+     * @param player 1 for player 1, 2 for player 2.
+     * @post prints the game over message.
+     */
+    void printGameOver(const int player) const;
+
+    /** Prints the current player's firing map and ship map.
+     * @param 1 for player 1, 2 for player 2.
+     * @post prints the current player's firing map and ship map.
+     */
+    void printMaps(const int player) const;
+
+    /** Prints a message if the other player has hit or sunk the current player's Ships.
+     * @param
+     */
+    void printEnemyAction() const;
 };
 #endif

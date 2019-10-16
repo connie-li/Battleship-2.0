@@ -16,3 +16,11 @@ Grid.o
 main.o
 
 Ship.o
+
+*.o
+
+PowerUps.o
+
+**/*.o
+
+**/*.exe
