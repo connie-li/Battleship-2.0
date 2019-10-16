@@ -15,6 +15,15 @@ Executive::~Executive()
     delete m_player2;
 }
 
+void Executive::saveGame(int n, Admiral* player, bool ai)
+{
+  string** board = nullptr;
+  //board contains the 2D string array from the grid object from the current player
+  board = player->getBoard()->getGrid();
+  
+
+}
+
 void Executive::placeShip(int n, Admiral* player, bool ai)
 {
     bool taken [9][9];
@@ -279,10 +288,12 @@ void Executive::run()
     {
         std::cout<< "Player 1: It's time to place your ships.\n";
         placeShip(m_numShips, m_player1, false);
+        saveGame(m_numShips, m_player1, false);
         std::cout << "Thanks for placing your ships player 1! \nNow it's player 2's turn";
         std::chrono::seconds interval(2);
         std::cout<< "\n\n\n\n\n\n\n\n\n\n\nPlayer 2: It's time to place your ships.\n";
         placeShip(m_numShips, m_player2, false);
+        saveGame(m_numShips, m_player2, false);
         std::cout << "Thanks for placing your ships. Time to start the game";
         winner = gameplay(false);
         printGameOver(winner);
@@ -335,8 +346,8 @@ int Executive::setup()
     else if (player_choice == "3")
     {
       cout << "Starting a Player vs. AI game!\n";
-      // m_player2 = new AI(); //exact constructer and arguements to come
-      // m_player2.placeShips(m_numShips);
+      m_player2 = new AI(); 
+      placeShip(m_numShips, m_player2, true);
       return 3;
     }
     else if (player_choice == "4")

@@ -71,6 +71,8 @@ public:
      */
     void readShip(const string* arr, const int length);
 
+    string** getGrid();
+
     /**
      * Destroys a Grid object.
      */

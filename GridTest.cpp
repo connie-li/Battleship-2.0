@@ -100,7 +100,7 @@ bool GridTest::testRead(){
     bool hasPassed = 1;
     int arrLength = 3;
     string size = to_string(arrLength);
-    string arr[arrLength] = {"1:1", "1:2", "1:3"};
+    string arr[3] = {"1:1", "1:2", "1:3"};
     try{
         bool isUnknown = 0;
         cout<< "\t\tChecking Ship Creation: ";
