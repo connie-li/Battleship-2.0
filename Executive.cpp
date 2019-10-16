@@ -18,8 +18,35 @@ Executive::~Executive()
 void Executive::saveGame(int n, Admiral* player, bool ai)
 {
   string** board = nullptr;
+
   //board contains the 2D string array from the grid object from the current player
   board = player->getBoard()->getGrid();
+
+  //testing storing the board by printing
+  for(int i = 0; i < m_BOARD_SIZE; i++)
+  {
+    for(int j = 0; j < m_BOARD_SIZE; j++)
+    {
+      char temp = '\0';
+      if(board[i][j].length() > 1)
+      {
+          temp = board[i][j].at(1);
+      }else
+      {
+          temp = board[i][j].at(0);
+      }
+      if(((int)temp >= 48 && (int)temp <= 57) || temp == 'O' || temp == 'X')
+      {
+          cout<< temp;
+      }
+      else
+      {
+          cout<< "~";
+      }
+      cout<<"\t";
+    }
+    cout<<"\n";
+    }
   
 
 }
