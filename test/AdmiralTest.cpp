@@ -5,6 +5,7 @@
 #include <string>
 using namespace std;
 
+/*
 string* generateCoords(string startCoord, int size, bool orientation)
 {
 	string* coordsArr = new string[size];
@@ -44,6 +45,7 @@ string* generateCoords(string startCoord, int size, bool orientation)
 	cout << '\n';
 	return(coordsArr);
 }
+*/
 
 int main()
 {
@@ -92,24 +94,41 @@ int main()
 	cout << "\nGive stackAdm2 5 Ships, all horizontal.\n";
 	// string* stack2coords = generateCoords("1:1", 1, true);
 	// stackAdm2.addShip(1, stack2coords);
-	string* stack2coords = generateCoords("2:1", 2, true);
-	delete stack2coords;
-	// stackAdm2.addShip(2, stack2coords);
-	stack2coords = generateCoords("3:1", 3, true);
-	// stackAdm2.addShip(3, stack2coords);
-	stack2coords = generateCoords("4:1", 4, true);
-	// stackAdm2.addShip(4, stack2coords);
-	stack2coords = generateCoords("5:1", 5, true);
+	// string* stack2coords = generateCoords("2:1", 2, true);
+	// delete stack2coords;
+	// // stackAdm2.addShip(2, stack2coords);
+	// stack2coords = generateCoords("3:1", 3, true);
+	// // stackAdm2.addShip(3, stack2coords);
+	// stack2coords = generateCoords("4:1", 4, true);
+	// // stackAdm2.addShip(4, stack2coords);
+	// stack2coords = generateCoords("5:1", 5, true);
 	// stackAdm2.addShip(5, stack2coords);
+
+	string* stack2coords = new string[5];
+	stack2coords[0] = "1:1";
+	stack2coords[1] = "1:2";
+	stack2coords[2] = "1:3";
+	stack2coords[3] = "1:4";
+	stack2coords[4] = "1:5";
+	stackAdm2.addShip(5, stack2coords);
 	cout << "stackAdm2 has:\n";
 	cout << '\t' << stackAdm2.getNumShips() << " ships\n";
 	cout << '\t' << stackAdm2.getNumAfloat() << " afloat.\n";
 	cout << "\tfleet is empty = " << stackAdm2.getFleet().empty() << "\n";
 	cout << "\tShips of size:\n";
-	for(int i = 0; i < stackAdm2.getNumShips(); i++)
+	cout << "\t\t" << stackAdm2.getFleet()[0]->getSize() << '\n';
+	string* tempCoords = stackAdm2.getFleet()[0]->getCoords();
+	cout << "\t\tcoords: ";
+	for(int i = 0; i < 5; i++)
 	{
-		cout << "\t\t" << stackAdm2.getFleet()[i]->getSize() << " at coord " << stackAdm1.getFleet()[i]->getCoords()[i] << "\n";
+		cout << tempCoords[i] << ", ";
 	}
+	cout << '\n';
+		
+	// for(int i = 0; i < stackAdm2.getNumShips(); i++)
+	// {
+	// 	cout << "\t\t" << stackAdm2.getFleet()[i]->getSize() << " at coord " << stackAdm1.getFleet()[i]->getCoords()[i] << "\n";
+	// }
 
 	delete coord1;
 	delete stack2coords;
