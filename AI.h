@@ -11,7 +11,7 @@ using namespace std;
 class AI : public Admiral
 {
     private: 
-        Grid ai_board;	/* a Grid to store the AI's game map. */
+        Grid* ai_board;	/* a Grid to store the AI's game map. */
     public:
     
     AI();
@@ -21,7 +21,7 @@ class AI : public Admiral
      * @param none
      * @return std::string of the coordinate in the form 1:1
      */
-    string randomFiringCoord();
+    void easyFire();
 
     ~AI();
 
