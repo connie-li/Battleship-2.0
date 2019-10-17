@@ -76,7 +76,9 @@ int Grid::rowCoor(const string coord){
 }
 
 void Grid::printFiring(){
+    cout << "\tA\tB\tC\tD\tE\tF\tG\tH\n";
     for(int i = 0; i < m_BOARD_SIZE; i++){
+        cout << i << "\t";
         for(int j = 0; j < m_BOARD_SIZE; j++){
             if(m_arr[i][j] == "O" || m_arr[i][j] == "X"){
                 cout<< m_arr[i][j];
@@ -92,7 +94,9 @@ void Grid::printFiring(){
 }
 
 void Grid::printShip(){
+    cout << "\tA\tB\tC\tD\tE\tF\tG\tH\n";
     for(int i = 0; i < m_BOARD_SIZE; i++){
+        cout << i << "\t";
         for(int j = 0; j < m_BOARD_SIZE; j++){
             char temp = '\0';
             if(m_arr[i][j].length() > 1){
