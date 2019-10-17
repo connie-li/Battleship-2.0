@@ -10,6 +10,11 @@ AI::AI()
 
 }
 
+string AI::hardFire(Grid* board)
+{
+    
+}
+
 AI::~AI()
 {
 
