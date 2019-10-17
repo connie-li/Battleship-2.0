@@ -5,13 +5,15 @@
 #include "Grid.h"
 #include "Ship.h"
 #include "stdlib.h"
+#include <ctype.h>
 
 using namespace std;
 
 class AI : public Admiral
 {
     private: 
-        Grid* ai_board;	/* a Grid to store the AI's game map. */
+        /* a Grid to store the the real players map (so the AI can access it and shoot) */
+        Grid* opponentBoard;
     public:
     
     AI();
@@ -30,7 +32,7 @@ class AI : public Admiral
      * @param none
      * @return std::string of the coor in form 1:1
      */
-    string hardFire(Grid* board);
+    string hardFire();
 
 
 };
