@@ -56,6 +56,7 @@ public:
      * Returns a random coordinate from the grid.
      * @param allowOcc: If true, allowd for randCoor to include occupied(nonwater) coordinates. 
      *      If false, ignores occupied coordinates.
+     * @return string: Returns the a coordinate string in the form "#:#".
      */
     string randCoor(const bool allowOcc);
 
@@ -71,7 +72,14 @@ public:
      */
     void readShip(const string* arr, const int length);
 
-    string** getGrid();
+    /**
+     * Creates and returns of a give n by n size at the center location.
+     * @param size (Optional): determines the size of the grid to return.
+     * @param center (Optional): gives the center location of the array if it is an odd number. 
+     *      If it is even it must be the upper left corner of the cell intersection.
+     * @return String Array: Returns a grid of the given size;
+     */
+    string** getPartialGrid(int size = 8, string center = "-1:-1");
 
     /**
      * Destroys a Grid object.

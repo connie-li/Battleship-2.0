@@ -46,14 +46,15 @@ void Grid::printGrid(const bool isFiring){
     }
 }
 
-string** Grid::getGrid(){
-    return m_arr;
-}
-
 void Grid::readShip(const string* arr, const int length){
     for(int i = 0; i < length; i++){
         setCoor(arr[i], to_string(length));
     }
+}
+
+string** Grid::getPartialGrid(int size = 8, string center = "-1:-1"){
+    //TODO
+    return m_arr;
 }
 
 Grid::~Grid(){
