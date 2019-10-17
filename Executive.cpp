@@ -294,7 +294,7 @@ void Executive::run()
         std::cout<< "\n\n\n\n\n\n\n\n\n\n\nPlayer 2: It's time to place your ships.\n";
         placeShip(m_numShips, m_player2, false);
         saveGame(m_numShips, m_player2, false);
-        std::cout << "Thanks for placing your ships. Time to start the game";
+        std::cout << "Thanks for placing your ships. Time to start the game\n\n";
         winner = gameplay(false);
         printGameOver(winner);
     }
@@ -302,7 +302,7 @@ void Executive::run()
     {
         std::cout<< "Player 1: It's time to place your ships.";
         placeShip(m_numShips, m_player1, false);
-        std::cout << "Thanks for placing your ships. The AI's ships have been placed randomly. Time to start the game";
+        std::cout << "Thanks for placing your ships. The AI's ships have been placed randomly. Time to start the game\n";
         placeShip(m_numShips, m_player2, true);
         winner = gameplay(true);
         printGameOver(winner);
