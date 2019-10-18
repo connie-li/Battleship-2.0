@@ -14,10 +14,17 @@ Executive::~Executive()
 {
     delete m_player1;
     delete m_player2;
+
 }
 
 void Executive::saveGame(int n, Admiral* player, bool ai)
 {
+  fstream exists("saved.txt");
+  if (exists) 
+  {
+    remove("saved.txt");
+  }
+
   string** board = nullptr;
 
   //store in the board:whose turn, ai or nah, and boards
@@ -30,6 +37,8 @@ void Executive::saveGame(int n, Admiral* player, bool ai)
 
 void Executive::writeBoard(string** board)
 {
+  save_turn++;
+
   ofstream gameFile;
   gameFile.open("saved.txt", ios::app); 
 
@@ -61,6 +70,11 @@ void Executive::writeBoard(string** board)
     gameFile<<"\n";
 
     gameFile.close();
+
+    /*if(save_turn>2)
+    {
+      remove("saved.txt");
+    }*/
 }
 
 void Executive::placeShip(int n, Admiral* player, bool ai)

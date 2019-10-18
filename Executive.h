@@ -20,8 +20,7 @@ class Executive
         int m_turn; /* 1 for player 1, 2 for player 2 */
         std::chrono::duration<unsigned long long> interval = std::chrono::seconds(2); //their timeout thing
         PowerUps m_powerups;    /* Contains both players' powerups and methods to use them. */
-
-
+        int save_turn=0; /* 1 for player 1, 2 for player 2 */
     public:
     /** A constructor that takes no parameters.
      * @param none
