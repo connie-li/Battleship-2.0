@@ -27,11 +27,11 @@ void Executive::saveGame(int n, Admiral* player, bool ai)
 
   ofstream gameFile;
   gameFile.open("saved.txt"); 
-  writeToFile(gameFile, board);
+  writeBoard(gameFile, board);
 
 }
 
-void Executive::writeToFile(ofstream fileObject, string** board)
+void Executive::writeBoard(ofstream fileObject, string** board)
 {
   //write board information to a text file
   for(int i = 0; i < m_BOARD_SIZE; i++)
