@@ -10,11 +10,9 @@ void PowerUpsTest::run(){
     testFunc("Testing Radar: ", (Test::func) testRadar());
     testFunc("Testing Scattershot: ", (Test::func) testScatter());
     testFunc("Testing Ubercommander: ", (Test::func) testUber());
-
-    
 }
 
-PowerUpsTest::PowerUpsTest(){
+PowerUpsTest::~PowerUpsTest(){
     cout << "PowerUps Testing Complete";
 }
 
@@ -70,4 +68,20 @@ bool PowerUpsTest::testGetAddRmHas(){
 
 bool PowerUpsTest::testTorpedo(){
     bool hasPassed = 1;
+    return(true);
+}
+
+bool PowerUpsTest::testRadar(){
+    bool hasPassed =1;
+    return(true);
+}
+
+bool PowerUpsTest::testScatter(){
+    bool hasPassed = 1;
+    return(true);
+}
+
+bool PowerUpsTest::testUber(){
+    bool hasPassed = 1;
+    return(true);
 }
