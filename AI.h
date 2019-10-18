@@ -23,7 +23,7 @@ class AI : public Admiral
      * @param none
      * @return std::string of the coordinate in the form 1:1
      */
-    void easyFire();
+    string easyFire();
 
     ~AI();
 

@@ -1,20 +1,8 @@
 #include "AI.h"
 
-void AI::easyFire()
+string AI::easyFire()
 {
-    string shot1 = opponentBoard->randCoor(true);
-    string coord1 = opponentBoard->getCoor(shot1);
-    if(isdigit(coord1[0]))
-    {
-        //if it is a ship (number) then show as hit
-        opponentBoard->setCoor(shot1, "X");
-    }
-    else
-    {
-        //else show it as a miss --- AI can't use powerups 
-        opponentBoard->setCoor(shot1, "O");
-    }
-
+    return opponentBoard->randCoor(true);
 }
 
 AI::AI()
@@ -43,7 +31,7 @@ string AI::hardFire()
             }
         }
     }
-    opponentBoard->setCoor(fire, "X");
+    return fire;
     //Do i need to update that admirals num ships afloat and all that jazzz? how? 
 }
 
