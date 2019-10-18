@@ -24,7 +24,6 @@ class PowerUps
     vector<string>* m_admir2Powerups;
 
     public:
-
     /**
      * the default constructor that takes no parameters
      * @param none
