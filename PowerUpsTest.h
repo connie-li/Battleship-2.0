@@ -7,7 +7,7 @@
 
 class PowerUpsTest: protected Test{
 private:
-    //private methods
+    PowerUps m_PowerUps;
     /**
      * Tests using the Torpedo powerup
      * @return bool: If true, success. If false, failure.
@@ -33,29 +33,9 @@ private:
     bool testUber();
 
     /**
-     * Tests getting the vector of powerups
-     * @return bool: If true, success. If false, failure.
+     * tests getting, adding, removing, and if player has powerups
      */
-    bool testGetPwrUps();
-
-    /**
-     * Tests adding a powerup to the vector list
-     * @return bool: If true, success. If false, failure.
-     */
-    bool testAddPwrUp();
-
-    /**
-     * Tests removing a powerup from the list
-     * @return bool: If true, success. If false, failure.
-     */
-    bool testRmPwrUp();
-
-    /**
-     * Tests whether or not a player has a powerup
-     * @return bool: If true, success. If false, failure.
-     */
-    bool testHasPwrUp();
-
+    bool testGetAddRmHas();
 
 public:
 
