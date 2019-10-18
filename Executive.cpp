@@ -31,7 +31,7 @@ void Executive::saveGame(int n, Admiral* player, bool ai)
 void Executive::writeBoard(string** board)
 {
   ofstream gameFile;
-  gameFile.open("saved.txt"); 
+  gameFile.open("saved.txt", ios::app); 
 
   //write board information to a text file
   for(int i = 0; i < m_BOARD_SIZE; i++)
@@ -58,6 +58,7 @@ void Executive::writeBoard(string** board)
     }
     gameFile<<"\n";
     }
+    gameFile<<"\n";
 
     gameFile.close();
 }
