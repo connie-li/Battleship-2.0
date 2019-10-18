@@ -43,8 +43,29 @@ bool PowerUpsTest::testGetAddRmHas(){
         hasPassed = 0;
         cout << fail;
     }
-    
+    try{
+        cout << "Getting Power Ups";
+        vector<string>* tempUps= m_PowerUps.getPowerUps(true);
+        vector<string>* tempUps2= m_PowerUps.getPowerUps(false);
 
+    }catch(exception){
+        hasPassed = 0;
+        cout << fail;
+    }    
+    try{
+        cout << "Removing PowerUps Admiral1";
+        m_PowerUps.removePowerUp("T",true);
+        m_PowerUps.removePowerUp("R",true);
+        m_PowerUps.removePowerUp("S",true);
+        m_PowerUps.removePowerUp("U",true);
+        cout << "Removing Powerups Admiral2";
+        m_PowerUps.removePowerUp("T",false);
+    }catch(exception){
+        hasPassed = 0;
+        cout << fail;
+    }
+
+    return(hasPassed);
 }
 
 bool PowerUpsTest::testTorpedo(){
