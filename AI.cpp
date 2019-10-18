@@ -12,21 +12,38 @@ AI::AI()
 
 string AI::medFire()
 {
-    if(hit)
+    if(medAI_arr == nullptr)
     {
-
+        return opponentBoard->randCoor(true);
+    }
+    else
+    {
+        if (hit)
+        {
+            string prevShot = "";
+        }
     }
 }
 
-void AI::updateHit()
+void AI::updateHit(string coor)
 {
-
+    hit = true;
+    medAI_arr[counter] = coor;
+    counter = counter +1;
+    int shipsLeft = opponent->getNumAfloat();
+    if (shipsLeft == prevShipAfloat -1)
+    {
+        hit = false;
+        delete[] medAI_arr;
+        medAI_arr = nullptr;
+        counter = 0;
+    }
 }
 
 
 string AI::hardFire()
 {
-    vector<Ship*> fleet = getFleet();
+    vector<Ship*> fleet = opponent->getFleet(); //needs to be other player's fleet!!!
     bool foundCoor = false;
     string fire = "";
     while(!foundCoor)
@@ -45,6 +62,11 @@ string AI::hardFire()
             }
         }
     }
+    /* or
+    hardFire(int i, int j)
+    string* coor = fleet[i]->getCoords();
+    string fire = coor[j];
+    */
     return fire;
     //Do i need to update that admirals num ships afloat and all that jazzz? how? 
 }
