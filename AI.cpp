@@ -10,6 +10,20 @@ AI::AI()
 
 }
 
+string AI::medFire()
+{
+    if(hit)
+    {
+
+    }
+}
+
+void AI::updateHit()
+{
+
+}
+
+
 string AI::hardFire()
 {
     vector<Ship*> fleet = getFleet();
