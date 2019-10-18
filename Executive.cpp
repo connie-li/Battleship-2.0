@@ -24,15 +24,15 @@ void Executive::saveGame(int n, Admiral* player, bool ai)
 
   //board contains the 2D string array from the grid object from the current player
   board = player->getBoard()->getGrid();
-
-  ofstream gameFile;
-  gameFile.open("saved.txt"); 
-  writeBoard(gameFile, board);
+  writeBoard(board);
 
 }
 
-void Executive::writeBoard(ofstream fileObject, string** board)
+void Executive::writeBoard(string** board)
 {
+  ofstream gameFile;
+  gameFile.open("saved.txt"); 
+
   //write board information to a text file
   for(int i = 0; i < m_BOARD_SIZE; i++)
   {
@@ -48,18 +48,18 @@ void Executive::writeBoard(ofstream fileObject, string** board)
       }
       if(((int)temp >= 48 && (int)temp <= 57) || temp == 'O' || temp == 'X')
       {
-          fileObject<< temp;
+          gameFile<< temp;
       }
       else
       {
-          fileObject<< "~";
+          gameFile<< "~";
       }
-      fileObject<<"\t";
+      gameFile<<"\t";
     }
-    fileObject<<"\n";
+    gameFile<<"\n";
     }
 
-    fileObject.close();
+    gameFile.close();
 }
 
 void Executive::placeShip(int n, Admiral* player, bool ai)

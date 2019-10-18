@@ -54,7 +54,7 @@ class Executive
     void placeShip(int size, Admiral* player, bool AI);
 
     void saveGame(int size, Admiral* player, bool AI);
-    void writeBoard(ofstream fileObject, string** board);
+    void writeBoard(string** board);
 
     /**
      * Runs the Battleship game
