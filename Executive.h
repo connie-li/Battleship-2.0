@@ -20,7 +20,7 @@ class Executive
         int m_turn; /* 1 for player 1, 2 for player 2 */
         std::chrono::duration<unsigned long long> interval = std::chrono::seconds(2); //their timeout thing
         PowerUps m_powerups;    /* Contains both players' powerups and methods to use them. */
-        int save_turn=0; /* 1 for player 1, 2 for player 2 */
+        
     public:
     /** A constructor that takes no parameters.
      * @param none
@@ -52,8 +52,8 @@ class Executive
      */
     void placeShip(int size, Admiral* player, bool AI);
 
-    void saveGame(int size, Admiral* player, bool AI);
-    void writeBoard(string** board);
+    void saveGame(int n, Admiral* player1, Admiral* player2, bool ai);
+    void writeBoard(string** player1_board, string** player2_board);
 
     /**
      * Runs the Battleship game

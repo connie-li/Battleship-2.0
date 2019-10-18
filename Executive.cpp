@@ -17,7 +17,7 @@ Executive::~Executive()
 
 }
 
-void Executive::saveGame(int n, Admiral* player, bool ai)
+void Executive::saveGame(int n, Admiral* player1, Admiral* player2, bool ai)
 {
   fstream exists("saved.txt");
   if (exists) 
@@ -25,25 +25,39 @@ void Executive::saveGame(int n, Admiral* player, bool ai)
     remove("saved.txt");
   }
 
-  string** board = nullptr;
+  string** board1 = nullptr;
+  string** board2 = nullptr;
 
   //store in the board:whose turn, ai or nah, and boards
 
   //board contains the 2D string array from the grid object from the current player
-  board = player->getBoard()->getGrid();
-  writeBoard(board);
+  board1 = player1->getBoard()->getGrid();
+  board2 = player2->getBoard()->getGrid();
+
+  writeBoard(board1, board2);
 
 }
 
-void Executive::writeBoard(string** board)
+void Executive::writeBoard(string** player1_board, string** player2_board)
 {
-  save_turn++;
-
   ofstream gameFile;
   gameFile.open("saved.txt", ios::app); 
 
+  string** board;
+
   //write board information to a text file
-  for(int i = 0; i < m_BOARD_SIZE; i++)
+  for(int i = 0; i < 2; i++)
+  {
+    if(i==0)
+    {
+      board=player1_board;
+    }
+    if(i==1)
+    {
+      board=player2_board;
+    } 
+
+    for(int i = 0; i < m_BOARD_SIZE; i++)
   {
     for(int j = 0; j < m_BOARD_SIZE; j++)
     {
@@ -68,13 +82,11 @@ void Executive::writeBoard(string** board)
     gameFile<<"\n";
     }
     gameFile<<"\n";
+  }
+  
+    gameFile<<"\n";
 
     gameFile.close();
-
-    /*if(save_turn>2)
-    {
-      remove("saved.txt");
-    }*/
 }
 
 void Executive::placeShip(int n, Admiral* player, bool ai)
@@ -341,12 +353,11 @@ void Executive::run()
     {
         std::cout<< "Player 1: It's time to place your ships.\n";
         placeShip(m_numShips, m_player1, false);
-        saveGame(m_numShips, m_player1, false);
         std::cout << "Thanks for placing your ships player 1! \nNow it's player 2's turn";
         std::chrono::seconds interval(2);
         std::cout<< "\n\n\n\n\n\n\n\n\n\n\nPlayer 2: It's time to place your ships.\n";
         placeShip(m_numShips, m_player2, false);
-        saveGame(m_numShips, m_player2, false);
+        saveGame(m_numShips, m_player1, m_player2, false);
         std::cout << "Thanks for placing your ships. Time to start the game";
         winner = gameplay(false);
         printGameOver(winner);
