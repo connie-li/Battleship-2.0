@@ -8,7 +8,7 @@
 #include <stdlib.h> 
 #include "Admiral.h"
 #include "PowerUps.h"
-#include "AI.h"
+// #include "AI.h"
 #include <chrono>
 using namespace std;
 
@@ -90,7 +90,7 @@ class Executive
      * @param none
      * @return int of the user's selection on the menu: 1 for instructions, 2 to play a PvP game, 3 to play vs. AI, 4 to quit.
      */
-    int setup();
+    int mainMenu();
 
     /** Changes the player turn.
      * @post if the turn is 1, changes it to 2, and vice versa.
@@ -186,5 +186,12 @@ class Executive
      * @param
      */
     void printEnemyAction() const;
+
+    /** Sets up the game.
+     * @pre the player has chosen either PvP or PvAI gameplay.
+     * @param AI true if the game includes an AI player, else false.
+     * @post Gets number of Ships from the player, constructs Admiral or AI objects, and lets players place their Ships.
+     */
+    void setupGame(bool AI);
 };
 #endif
