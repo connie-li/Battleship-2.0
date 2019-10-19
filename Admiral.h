@@ -50,7 +50,7 @@ class Admiral
 		/** Gets the Admiral's fleet of Ships.
 		 * @return a reference to the fleet vector.
 		 */
-		vector<Ship*> getFleet() const;
+		vector<Ship*> getFleet();
 
 		/** Gets the number of the Admiral's Ships that are still afloat.
 		 * @return the number of Ships afloat.
