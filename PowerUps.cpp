@@ -203,14 +203,13 @@ void PowerUps::useUberCommander(std::string coord,bool isPlayer1){
     removePowerUp("U",isPlayer1);
 }
 
-vector<string> PowerUps::getPowerUps(const int player) const
+vector<string> PowerUps::getPowerUps(bool isPlayer1)
 {
-    if(player == 1)
+    if(isPlayer1)
     {
         return(m_admir1Powerups);
     }
-    if(player == 2)
-    {
+    else{
         return(m_admir2Powerups);
     }
 }

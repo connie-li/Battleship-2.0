@@ -71,10 +71,10 @@ class PowerUps
     Grid* mapPicker(bool isPlayer1);
 
     /** Gets the given player's powerups.
-     * @param player 1 for player 1, 2 for player 2.
+     * @param isPlayer1 true for player1, false for player2
      * @return a pointer to the vector of powerup symbols.
      */
-    vector<string> getPowerUps(const int player) const;
+    vector<string> getPowerUps(bool isPlayer1);
 
     /**
      * adds a powerup to the correct admiral's powerups vector
