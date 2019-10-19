@@ -21,7 +21,7 @@ void Executive::saveGame(int turn, Admiral* player1, Admiral* player2, bool ai)
 {
   //delete the files if they already exist. after that, save the latest save game info 
   fstream savedExists("saved.txt");
-  fstream playerExists("saved.txt");
+  fstream playerExists("player_info.txt");
   if(savedExists) 
   {
     remove("saved.txt");
@@ -29,7 +29,7 @@ void Executive::saveGame(int turn, Admiral* player1, Admiral* player2, bool ai)
 
   if(playerExists) 
   {
-    remove("saved.txt");
+    remove("player_info.txt");
   }
 
   //write AI and player turn info into player_info
@@ -37,7 +37,7 @@ void Executive::saveGame(int turn, Admiral* player1, Admiral* player2, bool ai)
   fileInfo.open("player_info.txt", ios::app); 
 
   fileInfo<<turn;
-
+  fileInfo<<"\n";
   fileInfo<<ai;
 
   fileInfo.close();
@@ -48,7 +48,7 @@ void Executive::saveGame(int turn, Admiral* player1, Admiral* player2, bool ai)
   //pass in 2D string array into the getPartialGrid to update the gird to what the current player has
   player1->getBoard()->getPartialGrid(board1);
   player2->getBoard()->getPartialGrid(board2);
-  
+
   writeBoard(board1, board2);
 }
 
@@ -104,14 +104,26 @@ void Executive::writeBoard(string** player1_board, string** player2_board)
     gameFile.close();
 }
 
-void Executive::loadGame(int n, Admiral* player1, Admiral* player2, bool ai){
-    //here is the load game stuff and things
-}
+void Executive::readBoard()
+{
+  ifstream playerInfo;
+  playerInfo.open("player_info.txt"); 
 
-void Executive::readBoard(){
-    //reads from file right?
+  int turn=100;
+  int ai=100;
+
+  playerInfo>>turn;
+  playerInfo>>ai;
+
+  cout<<turn<<" "<<ai<<'\n';
+
+  
     
     //open file
+}
+
+void Executive::loadGame(int n, Admiral* player1, Admiral* player2, bool ai){
+    //here is the load game stuff and things
 }
 
 void Executive::placeShip(int n, Admiral* player, bool ai)
@@ -512,6 +524,7 @@ bool Executive::handleTurn(const int player, const bool AI)
       if(quit_choice=='s'||quit_choice=='S')
       {
         saveGame(m_turn, m_player1, m_player2, AI);
+        //readBoard();
         exit(0);
       }
       else
@@ -540,6 +553,7 @@ bool Executive::handleTurn(const int player, const bool AI)
       if(quit_choice=='s'||quit_choice=='S')
       {
         saveGame(m_turn, m_player1, m_player2, AI);
+        //readBoard();
         exit(0);
       }
       else
