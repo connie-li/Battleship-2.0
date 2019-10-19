@@ -1,4 +1,5 @@
 #include "Executive.h"
+#include <fstream>
 
 Executive::Executive()
 {
@@ -13,15 +14,89 @@ Executive::~Executive()
 {
     delete m_player1;
     delete m_player2;
+
 }
 
-void Executive::saveGame(int n, Admiral* player, bool ai)
+void Executive::saveGame(int turn, Admiral* player1, Admiral* player2, bool ai)
 {
-  string** board = nullptr;
-  //board contains the 2D string array from the grid object from the current player
-  board = player->getBoard()->getGrid();
-  
+  fstream exists("saved.txt");
+  if(exists) 
+  {
+    remove("saved.txt");
+    remove("player_info.txt");
+  }
 
+  ofstream fileInfo;
+  fileInfo.open("player_info.txt", ios::app); 
+
+  cout<<"THIS IS THE CURRENT TURN "<<turn<<"\n";
+  fileInfo<<turn;
+
+  cout<<"THIS IS THE CURRENT AI "<<ai<<"\n";
+  fileInfo<<ai;
+
+  fileInfo.close();
+
+  string** board1 = nullptr;
+  string** board2 = nullptr;
+
+  //board contains the 2D string array from the grid object from the current player
+  board1 = player1->getBoard()->getGrid();
+  board2 = player2->getBoard()->getGrid();
+
+  writeBoard(board1, board2);
+}
+
+void Executive::writeBoard(string** player1_board, string** player2_board)
+{
+  ofstream gameFile;
+  gameFile.open("saved.txt", ios::app); 
+
+  string** board;
+
+  //write board information to a text file
+  for(int i = 0; i < 2; i++)
+  {
+    if(i==0)
+    {
+      board=player1_board;
+
+    }
+    if(i==1)
+    {
+      board=player2_board;
+    } 
+
+    for(int i = 0; i < m_BOARD_SIZE; i++)
+  {
+    for(int j = 0; j < m_BOARD_SIZE; j++)
+    {
+      char temp = '\0';
+      if(board[i][j].length() > 1)
+      {
+          temp = board[i][j].at(1);
+      }else
+      {
+          temp = board[i][j].at(0);
+      }
+      if(((int)temp >= 48 && (int)temp <= 57) || temp == 'O' || temp == 'X')
+      {
+          gameFile<< temp;
+      }
+      else
+      {
+          gameFile<< "~";
+      }
+      gameFile<<"\t";
+    }
+    gameFile<<"\n";
+    }
+    gameFile<<"\n";
+  }
+  
+    gameFile<<"\n";
+
+    gameFile.close();
 }
 
 void Executive::placeShip(int n, Admiral* player, bool ai)
@@ -288,13 +363,12 @@ void Executive::run()
     {
         std::cout<< "Player 1: It's time to place your ships.\n";
         placeShip(m_numShips, m_player1, false);
-        saveGame(m_numShips, m_player1, false);
         std::cout << "Thanks for placing your ships player 1! \nNow it's player 2's turn";
         std::chrono::seconds interval(2);
         std::cout<< "\n\n\n\n\n\n\n\n\n\n\nPlayer 2: It's time to place your ships.\n";
         placeShip(m_numShips, m_player2, false);
-        saveGame(m_numShips, m_player2, false);
-        std::cout << "Thanks for placing your ships. Time to start the game\n\n";
+        //saveGame(m_player1, m_player2, false);
+        std::cout << "Thanks for placing your ships. Time to start the game";
         winner = gameplay(false);
         printGameOver(winner);
     }
@@ -418,35 +492,55 @@ bool Executive::handleTurn(const int player, const bool AI)
   {
     if(player == 1)
     {
-      printMaps(player);
-      printEnemyAction(); //TODO
-      if(m_powerups.hasAPowerup(true))
+      cout<<"\nDo you want to save and quit the game? Hit S/s to save and quit. Hit enter to continue.\n";
+      cin>>quit_choice;
+      if(quit_choice=='s'||quit_choice=='S')
       {
-        powerup = askForPowerUp(1);
+        saveGame(m_turn, m_player1, m_player2, AI);
+        exit(0);
       }
-      targetCoord = askForFireCoord(m_turn);
-      turnResult = m_player2->incomingShot(targetCoord);
-      // TODO: add powerups
-      // if(turnResult == "T" || turnResult == "R" || turnResult == "U" || turnResult == "S")
-      //   {
+      else
+      {
+        printMaps(player);
+        printEnemyAction(); //TODO
+        if(m_powerups.hasAPowerup(true))
+        {
+          powerup = askForPowerUp(1);
+        }
+        targetCoord = askForFireCoord(m_turn);
+        turnResult = m_player2->incomingShot(targetCoord);
+        // TODO: add powerups
+        // if(turnResult == "T" || turnResult == "R" || turnResult == "U" || turnResult == "S")
+        //   {
 
-      //   }
-      printTurnResult(turnResult);
-      return(m_player2->getNumAfloat() < 1);
+        //   }
+        printTurnResult(turnResult);
+        return(m_player2->getNumAfloat() < 1);
+      }
     }
     else  // player 2
     {
-      printMaps(player);
-      printEnemyAction(); //TODO
-      if(m_powerups.hasAPowerup(false))
+      cout<<"\nDo you want to save and quit the game? \nHit S/s to save and quit. Hit C/c to continue.\n";
+      cin>>quit_choice;
+      if(quit_choice=='s'||quit_choice=='S')
       {
-        powerup = askForPowerUp(2);
+        saveGame(m_turn, m_player1, m_player2, AI);
+        exit(0);
       }
-      targetCoord = askForFireCoord(m_turn);
-      turnResult = m_player1->incomingShot(targetCoord);
-      // TODO: add powerups
-      printTurnResult(turnResult);
-      return(m_player1->getNumAfloat() < 1);
+      else
+      {
+        printMaps(player);
+        printEnemyAction(); //TODO
+        if(m_powerups.hasAPowerup(false))
+        {
+          powerup = askForPowerUp(2);
+        }
+        targetCoord = askForFireCoord(m_turn);
+        turnResult = m_player1->incomingShot(targetCoord);
+        // TODO: add powerups
+        printTurnResult(turnResult);
+        return(m_player1->getNumAfloat() < 1);
+      }
     }
   }
 }
