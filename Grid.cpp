@@ -24,7 +24,7 @@ void Grid::setCoor(const string coord, const string value){
     m_arr[rowCoor(coord)][colCoor(coord)] = value;
 }
 
-string Grid::randCoor(const bool allowOcc){
+string Grid::randCoor(bool allowOcc){
     int row = 1;
     int col = 1;
     if(allowOcc){

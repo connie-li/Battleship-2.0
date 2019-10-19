@@ -60,7 +60,7 @@ public:
      *      If false, ignores occupied coordinates.
      * @return string: Returns the a coordinate string in the form "#:#".
      */
-    string randCoor(const bool allowOcc);
+    string randCoor(bool allowOcc);
 
     /**
      * Prints the grind to the console.
