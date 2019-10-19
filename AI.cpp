@@ -7,7 +7,7 @@ string AI::easyFire()
 
 AI::AI()
 {
-
+    
 }
 
 string AI::checkDirection()
@@ -123,7 +123,7 @@ string AI::medFire()
                 prevShot = fire;
                 return fire;
             }
-            if (current = 3)
+            if (current == 3)
             {
                 if (c== 0)
                 {
@@ -238,8 +238,8 @@ string AI::hardFire()
     {
         for (int i = 0; i< fleet->size(); i++)
         {
-            string* coor = fleet[i]->getCoords();
-            for (int j = 0; j< fleet[i]->getSize(); j++ )
+            string* coor = fleet->at(i)->getCoords();
+            for (int j = 0; j< fleet->at(i)->getSize(); j++ )
             {   
                 string c = opponentBoard->getCoor(coor[j]);
                 if (c!= "X" )
