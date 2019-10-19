@@ -173,7 +173,7 @@ void Executive::placeShip(int n, Admiral* player, bool ai)
         if (r+(size-1) <= 8)
         {
             bool flag = false;
-            for (int j = 1; j< size; j++)
+            for (int j = 0; j< size; j++)
             {
                 if (taken[j+r][c])
                     flag = true;
@@ -188,7 +188,7 @@ void Executive::placeShip(int n, Admiral* player, bool ai)
         if (r-(size-1) > 0)
         {
             bool flag = false;
-            for (int j = 1; j< size; j++)
+            for (int j = 0; j< size; j++)
             {
                 if (taken[r-j][c])
                     flag = true;
@@ -203,7 +203,7 @@ void Executive::placeShip(int n, Admiral* player, bool ai)
         if (c + (size-1) <= 8)
         {
             bool flag = false;
-            for (int j = 1; j< size; j++)
+            for (int j = 0; j< size; j++)
             {
                 if (taken[r][c+j])
                     flag = true;
@@ -219,7 +219,7 @@ void Executive::placeShip(int n, Admiral* player, bool ai)
         if (c-(size-1) > 0)
         {
             bool flag = false;
-            for (int j = 1; j< size; j++)
+            for (int j = 0; j< size; j++)
             {
                 if (taken[r][j-c])
                     flag = true;
@@ -324,6 +324,7 @@ void Executive::placeShip(int n, Admiral* player, bool ai)
             std::string* arr = new std::string[size];
             arr[0] = std::to_string(r) + ":" + std::to_string(c);
             taken[r][c] = true;
+            std::cout << arr[0];
             player->addShip(size, arr);
       }
     }

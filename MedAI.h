@@ -25,22 +25,35 @@ class MedAI : public Admiral
 
     public:
     
+    /**
+     * Creates an Medium difficulty AI
+     * @param grid is a Grid object for the real player
+     */
     MedAI();
 
-    /** the med AI helper function
-     * call this in exec if the fire was a hit
-     */
+
     void updateHit(string coor);
 
+
+    /**
+     * Empty destructor for EasyAI. Opponent board gets deleted by the player
+     * @param none
+     */
     ~MedAI();
 
     /**
-     * Returns coordinate to fire in exec based on hard medium
+     * Returns coordinate to fire in exec based on medium AI
+     * Fires randomly until a hit, then fires orthogonally
      * @param none
      * @return std::string of the coor in form 1:1
      */
     string fire();
 
+    /**
+     * Helper function that creates a random coordinate to fire on
+     * Sets the direction orientation for the ship if it is a hit
+     * @param none
+     */
     string checkDirection();
 
 

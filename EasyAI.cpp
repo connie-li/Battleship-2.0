@@ -24,5 +24,5 @@ Grid* EasyAI::getGrid()
 
 EasyAI::~EasyAI()
 {
-    
+
 }
