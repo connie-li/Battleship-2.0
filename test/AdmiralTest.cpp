@@ -19,7 +19,7 @@ void testAddShip(Admiral* admPtr)
 	bool fleetSizeCorrect = false;
 	bool coordsCorrect = true;
 
-	cout << "Testing adding Ships\n: ";
+	cout << "Testing adding Ships:\n";
 	string* coord1 = new string[1];
 	coord1[0] = "1:1";
 	string* coord5 = new string[5];
@@ -74,25 +74,30 @@ void testAddShip(Admiral* admPtr)
 	delete[] coord5;	
 }
 
-void testGetBoard(Grid* gridPtr)
+void testGetBoard(Admiral* admPtr)
 {
+	Grid* gridPtr = admPtr->getBoard();
+	cout << "\n\nTesting Admiral::getBoard():\n";
 	gridPtr->printGrid(false);
-
+	testAddShip(admPtr);
+	gridPtr->printGrid(false);
 }
 
 void runTests(Admiral* admPtr)
 {
-	testInitial("testAdm", admPtr);
+	testInitial("testAdm1", admPtr);
 	testAddShip(admPtr);
-	testGetBoard(admPtr->getBoard());
 }
 
 int main()
 {
-	Admiral* testAdm = new Admiral(5);
+	Admiral* testAdm1 = new Admiral(5);
+	Admiral* testAdm2 = new Admiral(2);
 
-	runTests(testAdm);
+	runTests(testAdm1);
+	testGetBoard(testAdm2);
 
-	delete testAdm;
+	delete testAdm1;
+	delete testAdm2;
 	return(0);
 }
