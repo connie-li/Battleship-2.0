@@ -75,7 +75,7 @@ class Executive
      */
     void writeBoard(string** player1_board, string** player2_board);
 
-    void loadGame(int n, Admiral* player1, Admiral* player2, bool ai);
+    void loadGame(int n, string** player1, string** player2, bool ai);
     void readBoard();
 
     /**

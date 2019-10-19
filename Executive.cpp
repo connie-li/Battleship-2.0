@@ -19,20 +19,25 @@ Executive::~Executive()
 
 void Executive::saveGame(int turn, Admiral* player1, Admiral* player2, bool ai)
 {
-  fstream exists("saved.txt");
-  if(exists) 
+  //delete the files if they already exist. after that, save the latest save game info 
+  fstream savedExists("saved.txt");
+  fstream playerExists("player_info.txt");
+  if(savedExists) 
   {
     remove("saved.txt");
+  }
+
+  if(playerExists) 
+  {
     remove("player_info.txt");
   }
 
+  //write AI and player turn info into player_info
   ofstream fileInfo;
   fileInfo.open("player_info.txt", ios::app); 
 
-  cout<<"THIS IS THE CURRENT TURN "<<turn<<"\n";
   fileInfo<<turn;
-
-  cout<<"THIS IS THE CURRENT AI "<<ai<<"\n";
+  fileInfo<<"\n";
   fileInfo<<ai;
 
   fileInfo.close();
@@ -40,9 +45,9 @@ void Executive::saveGame(int turn, Admiral* player1, Admiral* player2, bool ai)
   string** board1 = nullptr;
   string** board2 = nullptr;
 
-  //board contains the 2D string array from the grid object from the current player
-  // board1 = player1->getBoard()->getGrid();
-  // board2 = player2->getBoard()->getGrid();
+  //pass in 2D string array into the getPartialGrid to update the gird to what the current player has
+  player1->getBoard()->getPartialGrid(board1);
+  player2->getBoard()->getPartialGrid(board2);
 
   writeBoard(board1, board2);
 }
@@ -99,14 +104,66 @@ void Executive::writeBoard(string** player1_board, string** player2_board)
     gameFile.close();
 }
 
-void Executive::loadGame(int n, Admiral* player1, Admiral* player2, bool ai){
-    //here is the load game stuff and things
+void Executive::readBoard()
+{
+  //store player info
+  ifstream playerInfo;
+  playerInfo.open("player_info.txt"); 
+
+  int turn=100;
+  int ai=100;
+
+  playerInfo>>turn;
+  playerInfo>>ai;
+
+  playerInfo.close(); 
+
+  //store grid info
+  ifstream grid;
+  grid.open("saved.txt"); 
+
+  string** board=nullptr;
+
+  board=new string*[m_BOARD_SIZE];
+  for(int i = 0; i < m_BOARD_SIZE; i++)
+  {
+    board[i] = new string[m_BOARD_SIZE];
+  }
+
+
+  string** player1_board=nullptr;
+  string** player2_board=nullptr;
+
+  for(int i = 0; i < 2; i++)  //for 2 players
+  {
+    for(int i = 0; i < m_BOARD_SIZE; i++)
+    {
+        for(int j = 0; j < m_BOARD_SIZE; j++)
+        {
+          grid>>board[i][j];
+        }
+    }
+
+    if(i==0)
+    {
+        player1_board=board;
+    }
+
+    
+    if(i==1)
+    {
+        player2_board=board;
+    } 
+  }
+  
+  grid.close();
+
+  loadGame(turn, player1_board, player2_board, ai);
 }
 
-void Executive::readBoard(){
-    //reads from file right?
-    
-    //open file
+void Executive::loadGame(int n, string** player1, string** player2, bool ai){
+    //here is the load game stuff and things
+
 }
 
 void Executive::placeShip(int n, Admiral* player, bool ai)
@@ -486,6 +543,7 @@ bool Executive::handleTurn(const int player, const bool AI)
   {
     if(player == 1)
     {
+
 //       cout<<"\nDo you want to save and quit the game? Hit S/s to save and quit. Hit C/c to continue.\n";
 //       cin>>quit_choice;
 //       if(quit_choice=='s'||quit_choice=='S')
@@ -495,6 +553,7 @@ bool Executive::handleTurn(const int player, const bool AI)
 //       }
 //       else
 //       {
+
         printMaps(player);
         printEnemyAction(); //TODO
         // if(m_powerups.hasAPowerup(true))
@@ -514,6 +573,7 @@ bool Executive::handleTurn(const int player, const bool AI)
     }
     else  // player 2
     {
+
       // cout<<"\nDo you want to save and quit the game? \nHit S/s to save and quit. Hit C/c to continue.\n";
       // cin>>quit_choice;
       // if(quit_choice=='s'||quit_choice=='S')
@@ -523,6 +583,7 @@ bool Executive::handleTurn(const int player, const bool AI)
       // }
       // else
       // {
+
         printMaps(player);
         printEnemyAction(); //TODO
         // if(m_powerups.hasAPowerup(false))
