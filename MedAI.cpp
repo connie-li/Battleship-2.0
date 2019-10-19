@@ -1,6 +1,5 @@
 #include "MedAI.h"
 
-#include "AI.h"
 
 MedAI::MedAI(Grid* grid)
 {

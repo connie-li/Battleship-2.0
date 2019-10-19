@@ -92,5 +92,10 @@ class Admiral
 		 * @return the index of the relevant Ship in m_fleet, or -1 if the Ship is not found.
 		 */
 		int findShipbyCoord(const string coord) const;
+
+		/**
+		 * dummy fire method to please C++ inheritence
+		 */
+		string fire();
 };
 #endif
