@@ -20,7 +20,6 @@ class MedAI : public Admiral
         int prevShipAfloat;
         int direction;
         int current;
-        Admiral* opponent;
 
 
     public:
@@ -29,7 +28,7 @@ class MedAI : public Admiral
      * Creates an Medium difficulty AI
      * @param grid is a Grid object for the real player
      */
-    MedAI();
+    MedAI(Grid* grid);
 
 
     void updateHit(string coor);
