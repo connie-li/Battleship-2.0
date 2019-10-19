@@ -20,7 +20,7 @@ PowerUpsTest::~PowerUpsTest(){
 bool PowerUpsTest::testGetAddRmHas(){
     bool hasPassed = 1;
     try{
-        cout << "Adding a Power Up";
+        cout << "Adding a Power Up: ";
         m_PowerUps.addPowerUp("T",true);
         m_PowerUps.addPowerUp("R",true);
         m_PowerUps.addPowerUp("S",true);
@@ -31,7 +31,7 @@ bool PowerUpsTest::testGetAddRmHas(){
         cout << fail;
     }
     try{
-        cout << "Has a Powerup?";
+        cout << "Has a Powerup?\n";
         bool temp1= m_PowerUps.hasAPowerup(true);
         bool temp2 = m_PowerUps.hasAPowerup(false);
         if(temp1 == false || temp2 == true){
@@ -43,22 +43,26 @@ bool PowerUpsTest::testGetAddRmHas(){
         cout << fail;
     }
     try{
-        cout << "Getting Power Ups";
+        cout << "Getting Power Ups: ";
         vector<string> tempUps= m_PowerUps.getPowerUps(true);
         vector<string> tempUps2= m_PowerUps.getPowerUps(false);
+        cout << pass;
 
     }catch(exception){
         hasPassed = 0;
         cout << fail;
     }    
     try{
-        cout << "Removing PowerUps Admiral1";
+        cout << "Removing PowerUps Admiral1: ";
         m_PowerUps.removePowerUp("T",true);
         m_PowerUps.removePowerUp("R",true);
         m_PowerUps.removePowerUp("S",true);
         m_PowerUps.removePowerUp("U",true);
-        cout << "Removing Powerups Admiral2";
+        cout << pass << "\n";
+        cout << "Removing Powerups Admiral2: ";
         m_PowerUps.removePowerUp("T",false);
+        cout << pass << "\n";
+
     }catch(exception){
         hasPassed = 0;
         cout << fail;
