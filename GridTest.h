@@ -34,6 +34,8 @@ private:
      * @return bool: If true, success. If false, failure.
      */
     bool testRead();
+
+    bool testParticularGrid();
 public:
     /**
      * Tests the grid class
