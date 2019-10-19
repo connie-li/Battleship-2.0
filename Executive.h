@@ -10,6 +10,7 @@
 #include "PowerUps.h"
 // #include "AI.h"
 #include <chrono>
+#include <thread>
 using namespace std;
 
 class Executive
@@ -20,7 +21,7 @@ class Executive
         Admiral* m_player2; //Admiral object for player 2
         int m_numShips; //int of the number of ships used in the game
         int m_turn; /* 1 for player 1, 2 for player 2 */
-        std::chrono::duration<unsigned long long> interval = std::chrono::seconds(2); //their timeout thing
+        std::chrono::duration<unsigned long long> m_interval = std::chrono::seconds(3); //their timeout thing
         PowerUps m_powerups;    /* Contains both players' powerups and methods to use them. */
         char quit_choice;
         

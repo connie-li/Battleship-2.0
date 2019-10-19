@@ -385,7 +385,6 @@ void Executive::run()
 
 int Executive::mainMenu()
 {
-  std::chrono::seconds interval(2);
   bool menurun = true;
   std::string ship_num;
   std::string player_choice;
@@ -484,6 +483,8 @@ bool Executive::handleTurn(const int player, const bool AI)
   }
   else
   {
+    std::this_thread::sleep_for(m_interval);
+    system("cls");
     if(player == 1)
     {
 //       cout<<"\nDo you want to save and quit the game? Hit S/s to save and quit. Hit C/c to continue.\n";
@@ -696,6 +697,7 @@ void Executive::printGameOver(const int player) const
 
 void Executive::printMaps(const int player) const
 {
+  system("cls");
   if(player == 1)
   {
     cout << "Your firing map:\n";
@@ -735,16 +737,15 @@ void Executive::setupGame(bool AI)
     cout << "Starting a Player vs. Player game!\n";
     setNumShips();
     std::cout<< "Player 1: It's time to place your ships.\n";
-    m_player1->getBoard()->printGrid(false);
     placeShip(m_numShips, m_player1, false);
-    m_player1->getBoard()->printGrid(false);
     std::cout << "Thanks for placing your ships, player 1! \nNow it's player 2's turn.";
-    std::chrono::seconds interval(2);
-    std::cout<< "\n\n\n\n\n\n\n\n\n\n\nPlayer 2: It's time to place your ships.\n";
-    m_player2->getBoard()->printGrid(false);
+    std::this_thread::sleep_for(std::chrono::seconds(5));
+
+    system("cls");
+    std::cout<< "Player 2: It's time to place your ships.\n";
     placeShip(m_numShips, m_player2, false);
-    m_player2->getBoard()->printGrid(false);
     //saveGame(m_player1, m_player2, false);
     std::cout << "Thanks for placing your ships. Time to start the game!";
+    std::this_thread::sleep_for(std::chrono::seconds(5));
   }
 }
