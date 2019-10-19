@@ -2,9 +2,15 @@
 
 #include "AI.h"
 
-MedAI::AI()
+MedAI::MedAI(Grid* grid)
 {
-    
+    opponentBoard = grid;
+    counter = 0;
+    prevShot = "";
+    hit = false;
+    prevShipAfloat = getNumShips();
+    direction = 0;
+    current = 0;
 }
 
 string MedAI::checkDirection()
@@ -140,7 +146,7 @@ string MedAI::fire()
                 if (r == 8)
                 {
                     current = 2;
-                    fire=  to_string(r-counter) + ":" + to_string(c);
+                    fire = to_string(r-counter) + ":" + to_string(c);
                     counter ++;
                     prevShot = fire;
                     return fire;
