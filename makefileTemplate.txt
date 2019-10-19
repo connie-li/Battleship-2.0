@@ -1,4 +1,4 @@
-objo := Executive.o Admiral.o Ship.o Grid.o AI.o PowerUps.o
+objo := Executive.o Admiral.o Ship.o Grid.o AI.o PowerUps.o EasyAI.o MedAI.o HardAI.o
 testo := Testing.o Test.o GridTest.o PowerUpsTest.o
 objo := $(objo) $(testo)
 objc := $(objo:.o=.cpp)
