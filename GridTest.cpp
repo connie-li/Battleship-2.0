@@ -1,10 +1,11 @@
 #include "GridTest.h"
 
 GridTest::GridTest(){
-    cout<< "Starting Grid Test\n";
+    cout<< "Creating Grid Test\n";
 }
 
 void GridTest::run(){
+    cout<< "Starting Grid Test\n";
     testFunc("Testing Location: ", (func) testLocRet());
     testFunc("Testing Random: ", (func) testRand());
     testFunc("Testing Read Ship: ", (func)testRead());

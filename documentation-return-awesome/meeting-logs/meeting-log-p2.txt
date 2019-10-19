@@ -35,7 +35,13 @@ TEAM RETURN(AWESOME) - PROJECT 2 - MEETING LOG
 	Discussed: progress on Powerups, general testing, makefiles, bug fixes, plans to work on remaining features.
 10. 10/10/2019. Eaton Fishbowl.
 	Attendees: Archana Ramakrishnan, Connie Li.
-	Worked on Admiral, Exec, & AI.
-11. 10/18/2019. In lecture, scrum.
+	Discussed: Worked on Admiral, Exec, & AI.
+11. 10/16/2019. Spahr Library.
+	Attendees: Archana Ramakrishnan, Connie Li.
+	Discussed: Developed testing code and started the save game feature.
+12. 10/18/2019. In lecture, scrum.
 	Attendees: Archana Ramakrishnan, Ethan Brenner, Connie Li, Malena Schoeni.
 	Discussed recent progress & task divisions going forward. Planned next meeting.
+13. 10/19/2019. Spahr Library.
+	Attendees: Archana Ramakrishnan, Ethan Brenner, Kyle Kappes-Sum, Connie Li, Malena Schoeni.
+	Discussed: Assed current progress and issues. Developed testing code, save game, and AI.
