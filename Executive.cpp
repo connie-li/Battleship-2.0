@@ -106,6 +106,7 @@ void Executive::writeBoard(string** player1_board, string** player2_board)
 
 void Executive::readBoard()
 {
+  //store player info
   ifstream playerInfo;
   playerInfo.open("player_info.txt"); 
 
@@ -115,11 +116,51 @@ void Executive::readBoard()
   playerInfo>>turn;
   playerInfo>>ai;
 
-  cout<<turn<<" "<<ai<<'\n';
+  playerInfo.close(); 
+
+  //store grid info
+  ifstream grid;
+  grid.open("saved.txt"); 
+
+  string** board=nullptr;
+
+  board=new string*[m_BOARD_SIZE];
+  for(int i = 0; i < m_BOARD_SIZE; i++)
+  {
+    board[i] = new string[m_BOARD_SIZE];
+  }
+
+
+  string** player1_board=nullptr;
+  string** player2_board=nullptr;
+
 
   
+
+  for(int i = 0; i < 2; i++)  //for 2 players
+  {
+    for(int i = 0; i < m_BOARD_SIZE; i++)
+    {
+        for(int j = 0; j < m_BOARD_SIZE; j++)
+        {
+          grid>>board[i][j];
+        }
+    }
+
+    if(i==0)
+    {
+        player1_board=board;
+    }
+
     
-    //open file
+    if(i==1)
+    {
+        player2_board=board;
+    } 
+  }
+  
+  grid.close();
+
 }
 
 void Executive::loadGame(int n, Admiral* player1, Admiral* player2, bool ai){
@@ -524,7 +565,7 @@ bool Executive::handleTurn(const int player, const bool AI)
       if(quit_choice=='s'||quit_choice=='S')
       {
         saveGame(m_turn, m_player1, m_player2, AI);
-        //readBoard();
+        readBoard();
         exit(0);
       }
       else
@@ -553,7 +594,7 @@ bool Executive::handleTurn(const int player, const bool AI)
       if(quit_choice=='s'||quit_choice=='S')
       {
         saveGame(m_turn, m_player1, m_player2, AI);
-        //readBoard();
+        readBoard();
         exit(0);
       }
       else
