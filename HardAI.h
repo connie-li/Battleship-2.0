@@ -14,13 +14,20 @@ class HardAI : public Admiral
     private: 
         //For hard AI
         Admiral* opponent;
+        Grid* opponentBoard;
 
     public:
     
+    /**
+     * Creates an Hard difficulty AI
+     * @param players is a pointer to the real player
+     */
+    HardAI(Admiral* player);
 
-    HardAI();
-
-
+    /**
+     * Empty destructor for EasyAI. Opponent board gets deleted by the player
+     * @param none
+     */
     ~HardAI();
 
     /**

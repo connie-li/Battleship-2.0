@@ -31,9 +31,6 @@ class MedAI : public Admiral
     MedAI(Grid* grid);
 
 
-    void updateHit(string coor);
-
-
     /**
      * Empty destructor for EasyAI. Opponent board gets deleted by the player
      * @param none
