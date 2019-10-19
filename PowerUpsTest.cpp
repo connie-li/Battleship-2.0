@@ -58,10 +58,10 @@ bool PowerUpsTest::testGetAddRmHas(){
         m_PowerUps.removePowerUp("R",true);
         m_PowerUps.removePowerUp("S",true);
         m_PowerUps.removePowerUp("U",true);
-        cout << pass << "\n";
+        cout << pass;
         cout << "Removing Powerups Admiral2: ";
         m_PowerUps.removePowerUp("T",false);
-        cout << pass << "\n";
+        cout << pass;
 
     }catch(exception){
         hasPassed = 0;
