@@ -99,6 +99,16 @@ void Executive::writeBoard(string** player1_board, string** player2_board)
     gameFile.close();
 }
 
+void Executive::loadGame(int n, Admiral* player1, Admiral* player2, bool ai){
+    //here is the load game stuff and things
+}
+
+void Executive::readBoard(){
+    //reads from file right?
+    
+    //open file
+}
+
 void Executive::placeShip(int n, Admiral* player, bool ai)
 {
     bool taken [9][9];
