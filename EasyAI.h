@@ -17,7 +17,7 @@ class EasyAI : public Admiral
 
     public:
     
-    EasyAI();
+    EasyAI(Grid* grid);
 
     /**
      * Returns a random coordinate for usage in exec to fire at a random coordinate
@@ -25,6 +25,10 @@ class EasyAI : public Admiral
      * @return std::string of the coordinate in the form 1:1
      */
     string fire();
+
+    void setGrid(Grid* grid);
+
+    Grid* getGrid();
 
     ~EasyAI();
 };
