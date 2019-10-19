@@ -4,7 +4,9 @@
 #include <stdexcept>
 #include "Admiral.h"
 #include <ctype.h>
-
+#include <vector>
+#include <iostream>
+using namespace std;
 class PowerUps
 {
     private:
@@ -18,10 +20,10 @@ class PowerUps
 
     //pointer for the list of aquired powerups
     
-    Admiral* m_admir1;
-    Admiral* m_admir2;
-    vector<string>* m_admir1Powerups;
-    vector<string>* m_admir2Powerups;
+    Admiral* m_admir1 = nullptr;
+    Admiral* m_admir2 = nullptr;
+    vector<string>* m_admir1Powerups = nullptr;
+    vector<string>* m_admir2Powerups = nullptr;
 
     public:
     /**
