@@ -17,6 +17,10 @@ class EasyAI : public Admiral
 
     public:
     
+    /**
+     * Creates an Easy difficulty AI
+     * @param grid is a Grid object for the real player
+     */
     EasyAI(Grid* grid);
 
     /**
@@ -26,10 +30,22 @@ class EasyAI : public Admiral
      */
     string fire();
 
+    /**
+     * Sets the opponent's grid pointer to grid
+     * @param grid is the Grid object
+     */
     void setGrid(Grid* grid);
 
+    /**
+     * Returns the Grid object that the EasyAI is referencing
+     * @return returns opponentBoard
+     */
     Grid* getGrid();
 
+    /**
+     * Empty destructor for EasyAI. Opponent board gets deleted by the player
+     * @param none
+     */
     ~EasyAI();
 };
 #endif
