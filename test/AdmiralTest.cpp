@@ -120,6 +120,7 @@ int main()
 	Admiral* testAdm2 = new Admiral(2);
 
 	runTests(testAdm1);
+	testDecNumAfloat(testAdm2);
 
 	delete testAdm1;
 	delete testAdm2;
