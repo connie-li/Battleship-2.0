@@ -27,7 +27,7 @@ void PowerUps::useTorpedo(std::string coord,bool isPlayer1, int shipSize, string
     else{
         tempAdmir = m_admir2;
     }
-    vector<Ship*> fleet = tempAdmir->getFleet();
+    vector<Ship*>* fleet = tempAdmir->getFleet();
     int tempIndex= tempAdmir->findShipbyCoord(coord);
 
      //check to see if the value is an int
@@ -38,8 +38,8 @@ void PowerUps::useTorpedo(std::string coord,bool isPlayer1, int shipSize, string
             map->setCoor(shipCoords[i], "X");
 
             //update the ship object
-            fleet.at(tempIndex)->incNumHits();
-            if(fleet.at(tempIndex)->getStatus() == false){
+            fleet->at(tempIndex)->incNumHits();
+            if(fleet->at(tempIndex)->getStatus() == false){
                 tempAdmir->decNumAfloat(); 
             }
         }
@@ -176,12 +176,12 @@ void PowerUps::useUberCommander(std::string coord,bool isPlayer1){
         tempAdmir = m_admir1;
     }
     
-    vector<Ship*> tempFleet = tempAdmir->getFleet();
+    vector<Ship*>* tempFleet = tempAdmir->getFleet();
     //outer loop iterates through each ship in the fleet
     for(int i=1;i<=tempAdmir->getNumShips();i++){
         //getting the coordinates of the ship at the ith position of shipVector
-        std::string* tempCoords = tempFleet.at(i)->getCoords();
-        int tempSize = tempFleet.at(i)->getSize();
+        std::string* tempCoords = tempFleet->at(i)->getCoords();
+        int tempSize = tempFleet->at(i)->getSize();
         std::string tempI = std::to_string(i);
 
         //inner loop iterates through each coordinate of a ship
@@ -192,8 +192,8 @@ void PowerUps::useUberCommander(std::string coord,bool isPlayer1){
                     map->setCoor(tempCoords[j], "X");
                     fired = true;
                     //adjust the ship
-                    tempFleet.at(i)->incNumHits();
-                    if(tempFleet.at(i)->getStatus() == false){
+                    tempFleet->at(i)->incNumHits();
+                    if(tempFleet->at(i)->getStatus() == false){
                         tempAdmir->decNumAfloat();
                     }
                 }
