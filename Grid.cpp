@@ -112,6 +112,24 @@ void Grid::getPartialGrid(string** &arr, int size, string center){
     }
 }
 
+void Grid::readGrid(string** arr){
+    if(m_arr != nullptr){
+        for(int i = 0; i < m_BOARD_SIZE; i++){
+            delete[] m_arr[i];
+        }
+        delete[] m_arr;
+        m_arr = nullptr;
+    }
+    
+    m_arr = new string*[m_BOARD_SIZE];
+    for(int i = 0; i < m_BOARD_SIZE; i++){
+        m_arr[i] = new string[m_BOARD_SIZE];
+        for(int j = 0; j < m_BOARD_SIZE; j++){
+            m_arr[i][j] = arr[i][j];
+        }
+    }
+}
+
 Grid::~Grid(){
     if(m_arr != nullptr)
     {
