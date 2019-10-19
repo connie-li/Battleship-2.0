@@ -55,7 +55,24 @@ class Executive
      */
     void placeShip(int size, Admiral* player, bool AI);
 
+    /**
+     * Delete saved.txt if it already exists. Then, write the AI and turn info and call writeBoard()
+     * @param turn is an int for the player's turn (1/2)
+     * @param player1 is an Admiral object for player 1
+     * @param player2 is an Admiral object for player 2
+     * @param AI true if player is AI
+     * @return none
+     * @post writes bool ai and int turn into a file called player_info.txt
+     */
     void saveGame(int turn, Admiral* player1, Admiral* player2, bool ai);
+
+    /**
+     * write grid info into a text file
+     * @param player1_board 2D string array for player 1
+     * @param player2_board 2D string array for player 2
+     * @return none
+     * @post writes grid info for both players into a file called saved.txt
+     */
     void writeBoard(string** player1_board, string** player2_board);
 
     void loadGame(int n, Admiral* player1, Admiral* player2, bool ai);
