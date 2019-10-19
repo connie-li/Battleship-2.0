@@ -4,6 +4,8 @@
 #include <iostream>
 #include <stdexcept>
 #include <algorithm>
+#include <stdio.h> 
+#include <stdlib.h> 
 #include "Admiral.h"
 #include "PowerUps.h"
 #include "AI.h"
@@ -13,14 +15,15 @@ using namespace std;
 class Executive
 {
     private:
+        const int m_BOARD_SIZE = 8; /** The size of the board to be created.*/
         Admiral* m_player1; //Admiral object for player 1
         Admiral* m_player2; //Admiral object for player 2
         int m_numShips; //int of the number of ships used in the game
         int m_turn; /* 1 for player 1, 2 for player 2 */
         std::chrono::duration<unsigned long long> interval = std::chrono::seconds(2); //their timeout thing
         PowerUps m_powerups;    /* Contains both players' powerups and methods to use them. */
-
-
+        char quit_choice;
+        
     public:
     /** A constructor that takes no parameters.
      * @param none
@@ -52,7 +55,11 @@ class Executive
      */
     void placeShip(int size, Admiral* player, bool AI);
 
-    void saveGame(int size, Admiral* player, bool AI);
+    void saveGame(int turn, Admiral* player1, Admiral* player2, bool ai);
+    void writeBoard(string** player1_board, string** player2_board);
+
+    void loadGame(int n, Admiral* player1, Admiral* player2, bool ai);
+    void readBoard();
 
     /**
      * Runs the Battleship game

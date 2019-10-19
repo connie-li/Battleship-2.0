@@ -30,7 +30,7 @@ class Admiral
 		 */
 		Admiral(int numShips);
 
-		/** The destructor.  Manually deletes the pointer m_fleet.
+		/** The destructor.  Manually deletes each pointer contained by m_fleet.
 		 *
 		 */
 		~Admiral();
@@ -50,7 +50,7 @@ class Admiral
 		/** Gets the Admiral's fleet of Ships.
 		 * @return a reference to the fleet vector.
 		 */
-		vector<Ship*> getFleet() const;
+		vector<Ship*>* getFleet();
 
 		/** Gets the number of the Admiral's Ships that are still afloat.
 		 * @return the number of Ships afloat.

@@ -36,3 +36,6 @@ TEAM RETURN(AWESOME) - PROJECT 2 - MEETING LOG
 10. 10/10/2019. Eaton Fishbowl.
 	Attendees: Archana Ramakrishnan, Connie Li.
 	Worked on Admiral, Exec, & AI.
+11. 10/18/2019. In lecture, scrum.
+	Attendees: Archana Ramakrishnan, Ethan Brenner, Connie Li, Malena Schoeni.
+	Discussed recent progress & task divisions going forward. Planned next meeting.

@@ -1,6 +1,7 @@
 #include "Grid.h"
 
 Grid::Grid(){
+    m_center = to_string(m_BOARD_SIZE / 2) + ":" + to_string(m_BOARD_SIZE / 2);
     m_arr = new string*[m_BOARD_SIZE];
     for(int i = 0; i < m_BOARD_SIZE; i++){
             m_arr[i] = new string[m_BOARD_SIZE];
@@ -46,13 +47,68 @@ void Grid::printGrid(const bool isFiring){
     }
 }
 
-string** Grid::getGrid(){
-    return m_arr;
-}
-
 void Grid::readShip(const string* arr, const int length){
     for(int i = 0; i < length; i++){
         setCoor(arr[i], to_string(length));
+    }
+}
+
+void Grid::getPartialGrid(string** &arr, int size, string center){
+    int upperBound = -1;
+    int lowerBound = -1;
+    int leftBound = -1;
+    int rightBound = -1;
+    
+    if(size < 1 || rowCoor(center) < 1 || colCoor(center) < 1){
+        size = m_BOARD_SIZE;
+        center = m_center;
+    }
+    //Finding array bounds    
+    lowerBound = rowCoor(center) + (size / 2);
+    rightBound = colCoor(center) + (size / 2);
+    if(size % 2 == 0){
+        upperBound = rowCoor(center) - (size / 2 - 1);
+        leftBound = colCoor(center) - (size / 2 - 1);
+    }else{
+        upperBound = rowCoor(center) - (size / 2);
+        leftBound = colCoor(center) - (size / 2);
+    }
+    if(upperBound < 0){
+        upperBound = 0;
+    }else if(upperBound >= m_BOARD_SIZE){
+        upperBound = m_BOARD_SIZE - 1;
+    }
+    if(lowerBound < 0){
+        lowerBound = 0;
+    }else if(lowerBound >= m_BOARD_SIZE){
+        lowerBound = m_BOARD_SIZE - 1;
+    }
+    if(leftBound < 0){
+        leftBound = 0;
+    }else if(leftBound >= m_BOARD_SIZE){
+        leftBound = m_BOARD_SIZE - 1;
+    }
+    if(rightBound < 0){
+        rightBound = 0;
+    }else if(rightBound >= m_BOARD_SIZE){
+        rightBound = m_BOARD_SIZE - 1;
+    }
+
+    //Array creation
+    //Junk values are *
+    arr = new string*[size];
+    for(int i = 0; i < size; i++){
+        arr[i] = new string[size];
+        for(int j = 0; j < size; j++){
+            arr[i][j] = "*";
+        }
+    }
+
+
+    for(int i = upperBound; i <= lowerBound; i++){
+        for(int j = leftBound; j <= rightBound; j++){
+            arr[i - upperBound][j - leftBound] = m_arr[i][j];
+        }
     }
 }
 
