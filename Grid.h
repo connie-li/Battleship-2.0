@@ -75,13 +75,12 @@ public:
     void readShip(const string* arr, const int length);
 
     /**
-     * Creates and returns of a give n by n size at the center location. If the given array 
+     * Creates an string array of a give n by n size at the center location. If the given array 
      *      would write off of the grid the cells are populated with an *.
      * @param arr: A pointer to the arr to be created.
      * @param size (Optional): determines the size of the grid to return.
      * @param center (Optional): gives the center location of the array if it is an odd number. 
      *      If it is even it must be the upper left corner of the cell intersection.
-     * @return String Array: Returns a grid of the given size;
      */
     void getPartialGrid(string** &arr, int size = -1, string center = "-1:-1");
 
