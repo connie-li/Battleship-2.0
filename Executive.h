@@ -8,7 +8,9 @@
 #include <stdlib.h> 
 #include "Admiral.h"
 #include "PowerUps.h"
-// #include "AI.h"
+#include "EasyAI.h"
+#include "MedAI.h"
+#include "HardAI.h"
 #include <chrono>
 using namespace std;
 
