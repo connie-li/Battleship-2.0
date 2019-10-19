@@ -11,7 +11,7 @@ void testInitial(string admName, Admiral* admPtr)
 	cout << admName << " has:\n";
 	cout << '\t' << admPtr->getNumShips() << " ships\n";
 	cout << '\t' << admPtr->getNumAfloat() << " afloat.\n";
-	cout << "\tfleet is empty = " << admPtr->getFleet().empty() << "\n";
+	cout << "\tfleet is empty = " << admPtr->getFleet()->empty() << "\n";
 }
 
 void testAddShip(Admiral* admPtr)
@@ -31,20 +31,20 @@ void testAddShip(Admiral* admPtr)
 
 	admPtr->addShip(1, coord1);
 	admPtr->addShip(5, coord5);
-	vector<Ship*> tempFleet = admPtr->getFleet();
+	vector<Ship*>* tempFleet = admPtr->getFleet();
 
-	if(tempFleet.size() == 2)
+	if(tempFleet->size() == 2)
 	{
 		fleetSizeCorrect = true;
 	}
 
-	if(tempFleet[0]->getCoords()[0] != coord1[0])
+	if(tempFleet->at(0)->getCoords()[0] != coord1[0])
 	{
 		coordsCorrect = false;
 	}
 	for(int i = 0; i < 5; i++)
 	{
-		if(tempFleet[1]->getCoords()[i] != coord5[i])
+		if(tempFleet->at(1)->getCoords()[i] != coord5[i])
 		{
 			coordsCorrect = false;
 		}
@@ -83,10 +83,35 @@ void testGetBoard(Admiral* admPtr)
 	gridPtr->printGrid(false);
 }
 
+void testDecNumAfloat(Admiral* admPtr)
+{
+	cout << "Testing decNumAfloat(): ";
+	bool correct = true;
+	int numAfloat = 10;
+	for(int i = 1; i <= admPtr->getNumShips(); i++)
+	{
+		numAfloat = admPtr->decNumAfloat();
+		if(numAfloat < 0)
+		{
+			correct = false;
+		}
+	}
+
+	if(correct)
+	{
+		cout << "PASSED\n";
+	}
+	else
+	{
+		cout << "FAILED\n";
+	}
+}
+
 void runTests(Admiral* admPtr)
 {
 	testInitial("testAdm1", admPtr);
 	testAddShip(admPtr);
+	testDecNumAfloat(admPtr);
 }
 
 int main()
@@ -95,7 +120,6 @@ int main()
 	Admiral* testAdm2 = new Admiral(2);
 
 	runTests(testAdm1);
-	testGetBoard(testAdm2);
 
 	delete testAdm1;
 	delete testAdm2;

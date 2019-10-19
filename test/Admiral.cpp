@@ -36,7 +36,7 @@ int Admiral::getNumShips() const
 	return(m_numShips);
 }
 
-vector<Ship*>* Admiral::getFleet() const
+vector<Ship*>* Admiral::getFleet()
 {
 	vector<Ship*>* ptr = &m_fleet;
 	return(ptr);
