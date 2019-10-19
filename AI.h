@@ -20,11 +20,9 @@ class AI : public Admiral
         //Admiral* opponent;
 
         //for the med AI
-        string* hits; //keeps track of hits
         int counter;
         string prevShot;
         bool hit;
-        bool sunk;
         int prevShipAfloat;
         int direction;
         int current;
