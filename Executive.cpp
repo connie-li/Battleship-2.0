@@ -17,25 +17,28 @@ Executive::~Executive()
 
 }
 
-void Executive::saveGame(int n, Admiral* player1, Admiral* player2, bool ai)
+void Executive::saveGame(int turn, Admiral* player1, Admiral* player2, bool ai)
 {
   fstream exists("saved.txt");
-  if (exists) 
+  if(exists) 
   {
     remove("saved.txt");
   }
 
+  ofstream gameFile;
+  gameFile.open("saved.txt", ios::app); 
+
+  gameFile<<turn;
+  gameFile<<ai;
+
   string** board1 = nullptr;
   string** board2 = nullptr;
-
-  //store in the board:whose turn, ai or nah, and boards
 
   //board contains the 2D string array from the grid object from the current player
   board1 = player1->getBoard()->getGrid();
   board2 = player2->getBoard()->getGrid();
 
   writeBoard(board1, board2);
-
 }
 
 void Executive::writeBoard(string** player1_board, string** player2_board)
@@ -51,6 +54,7 @@ void Executive::writeBoard(string** player1_board, string** player2_board)
     if(i==0)
     {
       board=player1_board;
+
     }
     if(i==1)
     {
@@ -357,7 +361,7 @@ void Executive::run()
         std::chrono::seconds interval(2);
         std::cout<< "\n\n\n\n\n\n\n\n\n\n\nPlayer 2: It's time to place your ships.\n";
         placeShip(m_numShips, m_player2, false);
-        saveGame(m_numShips, m_player1, m_player2, false);
+        //saveGame(m_player1, m_player2, false);
         std::cout << "Thanks for placing your ships. Time to start the game";
         winner = gameplay(false);
         printGameOver(winner);
@@ -482,35 +486,55 @@ bool Executive::handleTurn(const int player, const bool AI)
   {
     if(player == 1)
     {
-      printMaps(player);
-      printEnemyAction(); //TODO
-      if(m_powerups.hasAPowerup(true))
+      cout<<"Do you want to save and quit the game? Hit S/s to save and quit. Hit enter to continue.\n";
+      cin>>quit_choice;
+      if(quit_choice=='s'||quit_choice=='S')
       {
-        powerup = askForPowerUp(1);
+        saveGame(m_turn, m_player1, m_player2, AI);
+        return(0);
       }
-      targetCoord = askForFireCoord(m_turn);
-      turnResult = m_player2->incomingShot(targetCoord);
-      // TODO: add powerups
-      // if(turnResult == "T" || turnResult == "R" || turnResult == "U" || turnResult == "S")
-      //   {
+      else
+      {
+        printMaps(player);
+        printEnemyAction(); //TODO
+        if(m_powerups.hasAPowerup(true))
+        {
+          powerup = askForPowerUp(1);
+        }
+        targetCoord = askForFireCoord(m_turn);
+        turnResult = m_player2->incomingShot(targetCoord);
+        // TODO: add powerups
+        // if(turnResult == "T" || turnResult == "R" || turnResult == "U" || turnResult == "S")
+        //   {
 
-      //   }
-      printTurnResult(turnResult);
-      return(m_player2->getNumAfloat() < 1);
+        //   }
+        printTurnResult(turnResult);
+        return(m_player2->getNumAfloat() < 1);
+      }
     }
     else  // player 2
     {
-      printMaps(player);
-      printEnemyAction(); //TODO
-      if(m_powerups.hasAPowerup(false))
+      cout<<"Do you want to save and quit the game? Hit S/s to save and quit. Hit enter to continue.\n";
+      cin>>quit_choice;
+      if(quit_choice=='s'||quit_choice=='S')
       {
-        powerup = askForPowerUp(2);
+        saveGame(m_turn, m_player1, m_player2, AI);
+        return(0);
       }
-      targetCoord = askForFireCoord(m_turn);
-      turnResult = m_player1->incomingShot(targetCoord);
-      // TODO: add powerups
-      printTurnResult(turnResult);
-      return(m_player1->getNumAfloat() < 1);
+      else
+      {
+        printMaps(player);
+        printEnemyAction(); //TODO
+        if(m_powerups.hasAPowerup(false))
+        {
+          powerup = askForPowerUp(2);
+        }
+        targetCoord = askForFireCoord(m_turn);
+        turnResult = m_player1->incomingShot(targetCoord);
+        // TODO: add powerups
+        printTurnResult(turnResult);
+        return(m_player1->getNumAfloat() < 1);
+      }
     }
   }
 }
