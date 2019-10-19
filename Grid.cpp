@@ -24,17 +24,17 @@ void Grid::setCoor(const string coord, const string value){
     m_arr[rowCoor(coord)][colCoor(coord)] = value;
 }
 
-string Grid::randCoor(bool allowOcc){
+string Grid::randCoor(const bool allowOcc){
     int row = 1;
     int col = 1;
     if(allowOcc){
-        row = rand() % (m_BOARD_SIZE - 1);
-        col = rand() % (m_BOARD_SIZE - 1);
+        row = rand() % m_BOARD_SIZE + 1;
+        col = rand() % m_BOARD_SIZE + 1;
     }else{
         do{
             row = rand() % m_BOARD_SIZE + 1;
             col = rand() % m_BOARD_SIZE + 1;
-        }while(m_arr[row][col] != "~");
+        }while(m_arr[row - 1][col - 1] != "~");
     }
     return to_string(row) + ":" + to_string(col);
 }
