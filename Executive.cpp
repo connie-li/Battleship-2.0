@@ -354,37 +354,26 @@ bool Executive::validPos(std::string pos)
 void Executive::run()
 {
   int winner = 0;
-    int menu = setup();
+    int menu = mainMenu();
     if (menu == 4)
     {
       return;
     }
     if (menu == 2)
     {
-        std::cout<< "Player 1: It's time to place your ships.\n";
-        placeShip(m_numShips, m_player1, false);
-        std::cout << "Thanks for placing your ships player 1! \nNow it's player 2's turn";
-        std::chrono::seconds interval(2);
-        std::cout<< "\n\n\n\n\n\n\n\n\n\n\nPlayer 2: It's time to place your ships.\n";
-        placeShip(m_numShips, m_player2, false);
-        //saveGame(m_player1, m_player2, false);
-        std::cout << "Thanks for placing your ships. Time to start the game";
-        winner = gameplay(false);
-        printGameOver(winner);
+      setupGame(false);
+      winner = gameplay(false);
+      printGameOver(winner);
     }
     if (menu == 3)
     {
-        std::cout<< "Player 1: It's time to place your ships.";
-        placeShip(m_numShips, m_player1, false);
-        std::cout << "Thanks for placing your ships. The AI's ships have been placed randomly. Time to start the game\n";
-        placeShip(m_numShips, m_player2, true);
-        winner = gameplay(true);
-        printGameOver(winner);
+      setupGame(true);
+      winner = gameplay(true);
+      printGameOver(winner);
     }
-
 }
 
-int Executive::setup()
+int Executive::mainMenu()
 {
   std::chrono::seconds interval(2);
   bool menurun = true;
@@ -413,15 +402,10 @@ int Executive::setup()
     }
     else if (player_choice == "2")
     {
-      cout << "Starting a Player vs. Player game!\n";
-      setNumShips();
       return 2;
     }
     else if (player_choice == "3")
     {
-      cout << "Starting a Player vs. AI game!\n";
-      //m_player2 = new AI(); 
-      setNumShips();
       return 3;
     }
     else if (player_choice == "4")
@@ -716,4 +700,39 @@ void Executive::printMaps(const int player) const
 
 void Executive::printEnemyAction() const
 {
+}
+
+void Executive::setupGame(bool AI)
+{
+  if(AI)
+  {
+    cout << "Starting a Player vs. AI game!\n";
+    //m_player2 = new AI(); 
+    setNumShips();
+    std::cout<< "Player 1: It's time to place your ships.\n";
+    m_player1->getBoard()->printGrid(false);
+    placeShip(m_numShips, m_player1, false);
+    m_player1->getBoard()->printGrid(false);
+
+    //place AI ships
+    placeShip(m_numShips, m_player2, true);
+    std::cout << "Thanks for placing your ships. The AI's ships have been placed randomly. Time to start the game!\n";
+  }
+  else
+  {
+    cout << "Starting a Player vs. Player game!\n";
+    setNumShips();
+    std::cout<< "Player 1: It's time to place your ships.\n";
+    m_player1->getBoard()->printGrid(false);
+    placeShip(m_numShips, m_player1, false);
+    m_player1->getBoard()->printGrid(false);
+    std::cout << "Thanks for placing your ships, player 1! \nNow it's player 2's turn.";
+    std::chrono::seconds interval(2);
+    std::cout<< "\n\n\n\n\n\n\n\n\n\n\nPlayer 2: It's time to place your ships.\n";
+    m_player2->getBoard()->printGrid(false);
+    placeShip(m_numShips, m_player2, false);
+    m_player2->getBoard()->printGrid(false);
+    //saveGame(m_player1, m_player2, false);
+    std::cout << "Thanks for placing your ships. Time to start the game!";
+  }
 }
