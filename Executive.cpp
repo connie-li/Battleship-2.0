@@ -134,9 +134,6 @@ void Executive::readBoard()
   string** player1_board=nullptr;
   string** player2_board=nullptr;
 
-
-  
-
   for(int i = 0; i < 2; i++)  //for 2 players
   {
     for(int i = 0; i < m_BOARD_SIZE; i++)
@@ -161,10 +158,12 @@ void Executive::readBoard()
   
   grid.close();
 
+  loadGame(turn, player1_board, player2_board, ai);
 }
 
-void Executive::loadGame(int n, Admiral* player1, Admiral* player2, bool ai){
+void Executive::loadGame(int n, string** player1, string** player2, bool ai){
     //here is the load game stuff and things
+
 }
 
 void Executive::placeShip(int n, Admiral* player, bool ai)
