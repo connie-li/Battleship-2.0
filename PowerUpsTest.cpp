@@ -44,8 +44,8 @@ bool PowerUpsTest::testGetAddRmHas(){
     }
     try{
         cout << "Getting Power Ups";
-        vector<string>* tempUps= m_PowerUps.getPowerUps(true);
-        vector<string>* tempUps2= m_PowerUps.getPowerUps(false);
+        vector<string> tempUps= m_PowerUps.getPowerUps(true);
+        vector<string> tempUps2= m_PowerUps.getPowerUps(false);
 
     }catch(exception){
         hasPassed = 0;

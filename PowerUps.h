@@ -22,8 +22,8 @@ class PowerUps
     
     Admiral* m_admir1 = nullptr;
     Admiral* m_admir2 = nullptr;
-    vector<string>* m_admir1Powerups = nullptr;
-    vector<string>* m_admir2Powerups = nullptr;
+    vector<string> m_admir1Powerups;
+    vector<string> m_admir2Powerups;
 
     public:
     /**
@@ -74,7 +74,7 @@ class PowerUps
      * @param player 1 for player 1, 2 for player 2.
      * @return a pointer to the vector of powerup symbols.
      */
-    vector<string>* getPowerUps(const int player) const;
+    vector<string> getPowerUps(const int player) const;
 
     /**
      * adds a powerup to the correct admiral's powerups vector

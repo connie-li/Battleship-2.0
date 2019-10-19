@@ -203,7 +203,7 @@ void PowerUps::useUberCommander(std::string coord,bool isPlayer1){
     removePowerUp("U",isPlayer1);
 }
 
-vector<string>* PowerUps::getPowerUps(const int player) const
+vector<string> PowerUps::getPowerUps(const int player) const
 {
     if(player == 1)
     {
@@ -221,15 +221,16 @@ int PowerUps::charCoordtoIntCoord(char c){
 
 void PowerUps::addPowerUp(std::string value, bool isPlayer1){
      if(isPlayer1){
-            m_admir1Powerups->push_back(value);
+            m_admir1Powerups.push_back(value);
         }
         else{
-            m_admir2Powerups->push_back(value);
+            m_admir2Powerups.push_back(value);
         }
 }
 
 void PowerUps::removePowerUp(std::string value, bool isPlayer1){
-    vector<string>* list = nullptr;
+    //this was a vector<string>* list = nullptr;
+    vector<string> list;
     
     if(isPlayer1){
         list = m_admir1Powerups;
@@ -237,9 +238,9 @@ void PowerUps::removePowerUp(std::string value, bool isPlayer1){
     else{
         list = m_admir2Powerups;
     }
-    for(int i = 0;i<list->size();i++){
-        if(list->at(i) == value){
-            list->erase(list->begin() + i);
+    for(int i = 0;i<list.size();i++){
+        if(list.at(i) == value){
+            list.erase(list.begin() + i);
         }
     }
     
@@ -247,7 +248,7 @@ void PowerUps::removePowerUp(std::string value, bool isPlayer1){
 
 bool PowerUps::hasAPowerup(bool isPlayer1){
     if(isPlayer1){
-        if(m_admir1Powerups->size() > 0){
+        if(m_admir1Powerups.size() > 0){
             return(true);
         }      
         else{
@@ -255,7 +256,7 @@ bool PowerUps::hasAPowerup(bool isPlayer1){
         }  
     }
     else{
-        if(m_admir2Powerups->size() > 0){
+        if(m_admir2Powerups.size() > 0){
             return(true);
         }
         else{
