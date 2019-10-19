@@ -420,8 +420,8 @@ int Executive::setup()
     else if (player_choice == "3")
     {
       cout << "Starting a Player vs. AI game!\n";
-      m_player2 = new AI(); 
-      placeShip(m_numShips, m_player2, true);
+      //m_player2 = new AI(); 
+      setNumShips();
       return 3;
     }
     else if (player_choice == "4")
