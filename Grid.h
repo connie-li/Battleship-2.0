@@ -8,7 +8,9 @@ using namespace std;
 class Grid{
 private:
     const int m_BOARD_SIZE = 8; /** The size of the board to be created.*/
+    string m_center;            /** The center or upper left corner of the center of the board based on the size*/ 
     string** m_arr;             /** The array representing the board.*/
+    string** m_temp;
 
     /**
      * Returns the column given a "#:#" format string
@@ -56,6 +58,7 @@ public:
      * Returns a random coordinate from the grid.
      * @param allowOcc: If true, allowd for randCoor to include occupied(nonwater) coordinates. 
      *      If false, ignores occupied coordinates.
+     * @return string: Returns the a coordinate string in the form "#:#".
      */
     string randCoor(const bool allowOcc);
 
@@ -71,7 +74,16 @@ public:
      */
     void readShip(const string* arr, const int length);
 
-    string** getGrid();
+    /**
+     * Creates and returns of a give n by n size at the center location. If the given array 
+     *      would write off of the grid the cells are populated with an *.
+     * @param arr: A pointer to the arr to be created.
+     * @param size (Optional): determines the size of the grid to return.
+     * @param center (Optional): gives the center location of the array if it is an odd number. 
+     *      If it is even it must be the upper left corner of the cell intersection.
+     * @return String Array: Returns a grid of the given size;
+     */
+    void getPartialGrid(string** &arr, int size = -1, string center = "-1:-1");
 
     /**
      * Destroys a Grid object.

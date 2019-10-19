@@ -5,10 +5,11 @@ GridTest::GridTest(){
 }
 
 void GridTest::run(){
-    testFunc("Testing Location: ", (Test::func) testLocRet());
-    testFunc("Testing Random: ", (Test::func) testRand());
-    testFunc("Testing Read Ship: ", (Test::func)testRead());
-    testFunc("Testing Printing: ", (Test::func) testPrint());
+    testFunc("Testing Location: ", (func) testLocRet());
+    testFunc("Testing Random: ", (func) testRand());
+    testFunc("Testing Read Ship: ", (func)testRead());
+    testFunc("Testing Particular Grid: ", (func) testParticularGrid());
+    testFunc("Testing Printing: ", (func) testPrint());
 }
 
 bool GridTest::testLocRet(){
@@ -122,4 +123,51 @@ bool GridTest::testRead(){
         cout<<fail;
     }
     return hasPassed;
+}
+
+bool GridTest::testParticularGrid(){
+    string** arr = nullptr;
+    int size = 3;
+    string center = "7:6";
+    
+    //Partial
+    try{
+        cout<< "\t\tTesting Partial Retrieval: ";
+        m_grid.getPartialGrid(arr, size, center);
+        for(int i = 0; i < size; i++){
+            for(int j = 0; j < size; j++){
+                cout << arr[i][j] << "\t";
+            }
+            cout<<"\n";
+        }
+        cout<< pass;
+    }catch(exception){
+        cout<< fail;
+    }
+    for(int i = 0; i < size; i++){
+        delete[] arr[i];
+    }
+    delete[] arr;
+    arr = nullptr;
+
+    //Full
+    try{
+        size = 8;
+        cout<< "\t\tTesting Full Retrieval: ";
+        m_grid.getPartialGrid(arr);
+        for(int i = 0; i < size; i++){
+            for(int j = 0; j < size; j++){
+                cout << arr[i][j] << "\t";
+            }
+            cout<<"\n";
+        }
+        cout<< pass;
+    }catch(exception){
+        cout<< fail;
+    }
+    for(int i = 0; i < size; i++){
+        delete[] arr[i];
+    }
+    delete[] arr;
+    arr = nullptr;
 }
