@@ -719,7 +719,33 @@ void Executive::setupGame(bool AI)
   if(AI)
   {
     cout << "Starting a Player vs. AI game!\n";
-    //m_player2 = new AI(); 
+    string difficulty = "";
+    cout << "Choose a difficulty level for the AI.\n1) Easy\n2) Medium\n3) Hard\n";
+    bool valid = false;
+    std::getline(std::cin, difficulty);
+    while(!valid)
+    {
+      if (difficulty == "1")
+      {
+        m_player2 = new EasyAI(m_player1->getBoard());
+        valid = true;
+      }
+      else if (difficulty == "2")
+      {
+        m_player2 = new MedAI(m_player1->getBoard());
+        valid = true;
+
+      }
+      else if (difficulty == "3")
+      {
+        m_player2 = new HardAI(m_player1);
+        valid = true;
+      }
+      else
+      {
+        std::cout << "Error, enter a valid number from 1-3\n";
+      }
+    }
     setNumShips();
     std::cout<< "Player 1: It's time to place your ships.\n";
     m_player1->getBoard()->printGrid(false);
