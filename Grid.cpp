@@ -34,7 +34,7 @@ string Grid::randCoor(const bool allowOcc){
         do{
             row = rand() % m_BOARD_SIZE + 1;
             col = rand() % m_BOARD_SIZE + 1;
-        }while(m_arr[row][col] != "~");
+        }while(m_arr[row - 1][col - 1] != "~");
     }
     return to_string(row) + ":" + to_string(col);
 }
