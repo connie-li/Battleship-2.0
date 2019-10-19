@@ -1,5 +1,5 @@
 objo := Executive.o Admiral.o Ship.o Grid.o AI.o PowerUps.o
-testo := Testing.o Test.o GridTest.o
+testo := Testing.o Test.o GridTest.o PowerUpsTest.o
 objo := $(objo) $(testo)
 objc := $(objo:.o=.cpp)
 objh := $(objo:.o=.h)
