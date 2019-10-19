@@ -492,21 +492,21 @@ bool Executive::handleTurn(const int player, const bool AI)
   {
     if(player == 1)
     {
-      cout<<"\nDo you want to save and quit the game? Hit S/s to save and quit. Hit enter to continue.\n";
-      cin>>quit_choice;
-      if(quit_choice=='s'||quit_choice=='S')
-      {
-        saveGame(m_turn, m_player1, m_player2, AI);
-        exit(0);
-      }
-      else
-      {
+      // cout<<"\nDo you want to save and quit the game? Hit S/s to save and quit. Hit enter to continue.\n";
+      // cin>>quit_choice;
+      // if(quit_choice=='s'||quit_choice=='S')
+      // {
+      //   saveGame(m_turn, m_player1, m_player2, AI);
+      //   exit(0);
+      // }
+      // else
+      // {
         printMaps(player);
         printEnemyAction(); //TODO
-        if(m_powerups.hasAPowerup(true))
-        {
-          powerup = askForPowerUp(1);
-        }
+        // if(m_powerups.hasAPowerup(true))
+        // {
+        //   powerup = askForPowerUp(1);
+        // }
         targetCoord = askForFireCoord(m_turn);
         turnResult = m_player2->incomingShot(targetCoord);
         // TODO: add powerups
@@ -516,31 +516,31 @@ bool Executive::handleTurn(const int player, const bool AI)
         //   }
         printTurnResult(turnResult);
         return(m_player2->getNumAfloat() < 1);
-      }
+      // }
     }
     else  // player 2
     {
-      cout<<"\nDo you want to save and quit the game? \nHit S/s to save and quit. Hit C/c to continue.\n";
-      cin>>quit_choice;
-      if(quit_choice=='s'||quit_choice=='S')
-      {
-        saveGame(m_turn, m_player1, m_player2, AI);
-        exit(0);
-      }
-      else
-      {
+      // cout<<"\nDo you want to save and quit the game? \nHit S/s to save and quit. Hit C/c to continue.\n";
+      // cin>>quit_choice;
+      // if(quit_choice=='s'||quit_choice=='S')
+      // {
+      //   saveGame(m_turn, m_player1, m_player2, AI);
+      //   exit(0);
+      // }
+      // else
+      // {
         printMaps(player);
         printEnemyAction(); //TODO
-        if(m_powerups.hasAPowerup(false))
-        {
-          powerup = askForPowerUp(2);
-        }
+        // if(m_powerups.hasAPowerup(false))
+        // {
+        //   powerup = askForPowerUp(2);
+        // }
         targetCoord = askForFireCoord(m_turn);
         turnResult = m_player1->incomingShot(targetCoord);
         // TODO: add powerups
         printTurnResult(turnResult);
         return(m_player1->getNumAfloat() < 1);
-      }
+      // }
     }
   }
 }
