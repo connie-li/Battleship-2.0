@@ -14,7 +14,7 @@ void PowerUpsTest::run(){
 }
 
 PowerUpsTest::~PowerUpsTest(){
-    cout << "PowerUps Testing Complete";
+    cout << "PowerUps Testing Complete\n";
 }
 
 bool PowerUpsTest::testGetAddRmHas(){
