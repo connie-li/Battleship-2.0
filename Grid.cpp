@@ -37,7 +37,6 @@ string Grid::randCoor(const bool allowOcc){
         }while(m_arr[row - 1][col - 1] != "~");
     }
     return to_string(row) + ":" + to_string(col);
-    // return "1:1";
 }
 
 void Grid::printGrid(const bool isFiring){
