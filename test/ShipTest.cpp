@@ -30,7 +30,7 @@ int main()
     {
         cout << coordPtr[i] << ", ";
     }
-    
+
     cout << "\n\tstatus: " << ship5->getStatus() << '\n';
     cout << "\tnumber of hits: " << ship5->getNumHits() << '\n';
 
@@ -42,6 +42,8 @@ int main()
         cout << ship5->getNumHits() << '\n';
         cout << "status = " << ship5->getStatus() << '\n';
     }
+
+    ship5->incNumHits();
 
     delete[] coords;
     delete ship1;
