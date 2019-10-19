@@ -49,54 +49,64 @@ void Executive::saveGame(int turn, Admiral* player1, Admiral* player2, bool ai)
 
 void Executive::writeBoard(string** player1_board, string** player2_board)
 {
-  ofstream gameFile;
-  gameFile.open("saved.txt", ios::app); 
+    ofstream gameFile;
+    gameFile.open("saved.txt", ios::app); 
 
-  string** board;
+    string** board;
 
-  //write board information to a text file
-  for(int i = 0; i < 2; i++)
-  {
-    if(i==0)
+    //write board information to a text file
+    for(int i = 0; i < 2; i++)
     {
-      board=player1_board;
+        if(i==0)
+        {
+            board=player1_board;
 
-    }
-    if(i==1)
-    {
-      board=player2_board;
-    } 
+        }
+        if(i==1)
+        {
+            board=player2_board;
+        } 
 
-    for(int i = 0; i < m_BOARD_SIZE; i++)
-  {
-    for(int j = 0; j < m_BOARD_SIZE; j++)
-    {
-      char temp = '\0';
-      if(board[i][j].length() > 1)
-      {
-          temp = board[i][j].at(1);
-      }else
-      {
-          temp = board[i][j].at(0);
-      }
-      if(((int)temp >= 48 && (int)temp <= 57) || temp == 'O' || temp == 'X')
-      {
-          gameFile<< temp;
-      }
-      else
-      {
-          gameFile<< "~";
-      }
-      gameFile<<"\t";
+        for(int i = 0; i < m_BOARD_SIZE; i++)
+        {
+            for(int j = 0; j < m_BOARD_SIZE; j++)
+            {
+                char temp = '\0';
+                if(board[i][j].length() > 1)
+                {
+                    temp = board[i][j].at(1);
+                }else
+                {
+                    temp = board[i][j].at(0);
+                }
+                if(((int)temp >= 48 && (int)temp <= 57) || temp == 'O' || temp == 'X')
+                {
+                    gameFile<< temp;
+                }
+                else
+                {
+                    gameFile<< "~";
+                }
+                gameFile<<"\t";
+            }
+            gameFile<<"\n";
+        }
+        gameFile<<"\n";
     }
-    gameFile<<"\n";
-    }
-    gameFile<<"\n";
-  }
-  
+
     gameFile<<"\n";
 
     gameFile.close();
+}
+
+void Executive::loadGame(int n, Admiral* player1, Admiral* player2, bool ai){
+    //here is the load game stuff and things
+}
+
+void Executive::readBoard(){
+    //reads from file right?
+    
+    //open file
 }
 
 void Executive::placeShip(int n, Admiral* player, bool ai)
