@@ -1,7 +1,5 @@
 #include "HardAI.h"
 
-#include "AI.h"
-
 
 HardAI::HardAI(Admiral* player)
 {
