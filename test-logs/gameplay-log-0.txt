@@ -1,0 +1,56 @@
+C:\Users\Connie\Documents\repos\eecs448\Return-Awesome---Project-2\Battleship-2.0>Battleship.exe
+
+
+  ____        _   _   _           _     _
+ |  _ \      | | | | | |         | |   (_)
+ | |_) | __ _| |_| |_| | ___  ___| |__  _ _ __
+ |  _ < / _` | __| __| |/ _ \/ __| '_ \| | '_ \
+ | |_) | (_| | |_| |_| |  __/\__ \ | | | | |_) |
+ |____/ \__,_|\__|\__|_|\___||___/_| |_|_| .__/
+                                         | |
+                                         |_|
+
+Menu:
+ 1) Instructions
+ 2) Start Game: Player vs. Player
+ 3) Start Game: Player vs. AI
+ 4) Quit Game
+
+Enter option (1-4): 1
+There are two game modes: a 1v1 game with two players, or a player vs. AI mode. In Player vs. AI mode, you can choose Easy, Medium, or Hard AI difficulty.
+
+Goals of the game!: Sink all enemy ships
+
+How to Play:
+ - You, the player, will start by selecting how many ships you'd like to play with, 1 to 5 ships.
+ - You will walk through and place your ships and then take turns entering coordinates to attack the other players ships.
+ - The game is over when all Enemy Ships have been sunk.
+ - Here are the lists of symbols that will show up on the board with explanations:
+         ΓÇó ~: Water
+         ΓÇó O: Miss
+         ΓÇó X: Hit
+         ΓÇó 5: 5x1 Carrier
+         ΓÇó 4: 4x1 Battleship
+         ΓÇó 3: 3x1 Destroyer
+         ΓÇó 2: 2x1 Submarine
+         ΓÇó 1: 1x1 Tug Boat
+
+
+  ____        _   _   _           _     _
+ |  _ \      | | | | | |         | |   (_)
+ | |_) | __ _| |_| |_| | ___  ___| |__  _ _ __
+ |  _ < / _` | __| __| |/ _ \/ __| '_ \| | '_ \
+ | |_) | (_| | |_| |_| |  __/\__ \ | | | | |_) |
+ |____/ \__,_|\__|\__|_|\___||___/_| |_|_| .__/
+                                         | |
+                                         |_|
+
+Menu:
+ 1) Instructions
+ 2) Start Game: Player vs. Player
+ 3) Start Game: Player vs. AI
+ 4) Quit Game
+
+Enter option (1-4): 4
+
+Have a nice day!

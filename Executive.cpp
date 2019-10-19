@@ -408,8 +408,8 @@ int Executive::setup()
       std::cout << "There are two game modes: a 1v1 game with two players, or a player vs. AI mode. In Player vs. AI mode, you can choose Easy, Medium, or Hard AI difficulty.\n";
       std::cout << "\nGoals of the game!: Sink all enemy ships\n\nHow to Play:\n - You, the player, will start by selecting how many ships you'd like to play with, 1 to 5 ships.";
       std::cout << "\n - You will walk through and place your ships and then take turns entering coordinates to attack the other players ships.\n - The game is over when all Enemy Ships have been sunk.";
-      std::cout << "\n - Here are the lists of symbols that will show up on the board with explanations: \n";
-      std::cout << "\t • ~: Water \n\t • O: Miss \n\t • X: Hit \n\t • 5: 5x1 Carrier \n\t • 4: 4x1 Battleship \n\t • 3: 3x1 Destroyer \n\t • 2: 2x1 Submarine \n\t • 1: 1x1 Tug Boat\n";
+      std::cout << "\n - Here is the list of symbols that will appear on the board: \n";
+      std::cout << "\t~: Water \n\tO: Miss \n\tX: Hit \n\t5: 5x1 Carrier \n\t4: 4x1 Battleship \n\t3: 3x1 Destroyer \n\t2: 2x1 Submarine \n\t1: 1x1 Tug Boat\n";
     }
     else if (player_choice == "2")
     {
