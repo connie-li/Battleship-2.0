@@ -4,7 +4,9 @@
 #include <stdexcept>
 #include "Admiral.h"
 #include <ctype.h>
-
+#include <vector>
+#include <iostream>
+using namespace std;
 class PowerUps
 {
     private:
@@ -18,13 +20,12 @@ class PowerUps
 
     //pointer for the list of aquired powerups
     
-    Admiral* m_admir1;
-    Admiral* m_admir2;
-    vector<string>* m_admir1Powerups;
-    vector<string>* m_admir2Powerups;
+    Admiral* m_admir1 = nullptr;
+    Admiral* m_admir2 = nullptr;
+    vector<string> m_admir1Powerups;
+    vector<string> m_admir2Powerups;
 
     public:
-
     /**
      * the default constructor that takes no parameters
      * @param none
@@ -70,10 +71,10 @@ class PowerUps
     Grid* mapPicker(bool isPlayer1);
 
     /** Gets the given player's powerups.
-     * @param player 1 for player 1, 2 for player 2.
+     * @param isPlayer1 true for player1, false for player2
      * @return a pointer to the vector of powerup symbols.
      */
-    vector<string>* getPowerUps(const int player) const;
+    vector<string> getPowerUps(bool isPlayer1);
 
     /**
      * adds a powerup to the correct admiral's powerups vector

@@ -5,52 +5,99 @@
 #include <string>
 using namespace std;
 
-int main()
+void testInitial(string admName, Admiral* admPtr)
 {
-	Admiral stackAdm1 = Admiral();
-	Admiral stackAdm2 = Admiral(5);
-	Admiral* heapAdm1 = new Admiral();
-	Admiral* heapAdm2 = new Admiral(4);
+	cout << "Testing Admiral creation:\n";
+	cout << admName << " has:\n";
+	cout << '\t' << admPtr->getNumShips() << " ships\n";
+	cout << '\t' << admPtr->getNumAfloat() << " afloat.\n";
+	cout << "\tfleet is empty = " << admPtr->getFleet().empty() << "\n";
+}
 
-	// ADMIRAL TESTS
-	// test constructors & getters: CLEARED
-	cout << "-- TEST ADMIRAL CONSTRUCTORS & GETTERS --\n";
-	cout << "stackAdm1 has:\n";
-	cout << '\t' << stackAdm1.getNumShips() << " ships\n";
-	cout << '\t' << stackAdm1.getNumAfloat() << " afloat.\n";
-	cout << "\tfleet is empty = " << stackAdm1.getFleet().empty() << "\n";
+void testAddShip(Admiral* admPtr)
+{
+	bool fleetSizeCorrect = false;
+	bool coordsCorrect = true;
 
-	cout << "stackAdm2 has:\n";
-	cout << '\t' << stackAdm2.getNumShips() << " ships\n";
-	cout << '\t' << stackAdm2.getNumAfloat() << " afloat.\n";
-	cout << "\tfleet is empty = " << stackAdm2.getFleet().empty() << "\n";
-
-	cout << "heapAdm1 has:\n";
-	cout << '\t' << heapAdm1->getNumShips() << " ships\n";
-	cout << '\t' << heapAdm1->getNumAfloat() << " afloat.\n";
-	cout << "\tfleet is empty = " << heapAdm1->getFleet().empty() << "\n";
-
-	cout << "heapAdm2 has:\n";
-	cout << '\t' << heapAdm2->getNumShips() << " ships\n";
-	cout << '\t' << heapAdm2->getNumAfloat() << " afloat.\n";
-	cout << "\tfleet is empty = " << heapAdm2->getFleet().empty() << "\n";
-
-	// test setters & all getters
-	cout << "-- TEST ADMIRAL SETTERS, ADDING SHIPS, & ADMIRAL & SHIP GETTERS --\n";
-	cout << "Give stackAdm1 1 Ship at coord 1:1.\n";
+	cout << "Testing adding Ships:\n";
 	string* coord1 = new string[1];
 	coord1[0] = "1:1";
-	stackAdm1.setNumShips(1);
-	stackAdm1.setNumAfloat(1);
-	stackAdm1.addShip(1, coord1);
-	cout << "stackAdm1 has:\n";
-	cout << '\t' << stackAdm1.getNumShips() << " ships\n";
-	cout << '\t' << stackAdm1.getNumAfloat() << " afloat.\n";
-	cout << "\tfleet is empty = " << stackAdm1.getFleet().empty() << "\n";
-	cout << "\ta Ship of size " << stackAdm1.getFleet()[0].getSize() << " at " << stackAdm1.getFleet()[0].getCoords()[0] << "\n";
-	
+	string* coord5 = new string[5];
+	coord5[0] = "2:1";
+	coord5[1] = "2:2";
+	coord5[2] = "2:3";
+	coord5[3] = "2:4";
+	coord5[4] = "2:5";
 
-	delete heapAdm1;
-	delete heapAdm2;
+	admPtr->addShip(1, coord1);
+	admPtr->addShip(5, coord5);
+	vector<Ship*> tempFleet = admPtr->getFleet();
+
+	if(tempFleet.size() == 2)
+	{
+		fleetSizeCorrect = true;
+	}
+
+	if(tempFleet[0]->getCoords()[0] != coord1[0])
+	{
+		coordsCorrect = false;
+	}
+	for(int i = 0; i < 5; i++)
+	{
+		if(tempFleet[1]->getCoords()[i] != coord5[i])
+		{
+			coordsCorrect = false;
+		}
+	}
+
+	cout << "Fleet size: ";
+	if(fleetSizeCorrect)
+	{
+		cout << "PASSED\n";
+	}
+	else
+	{
+		cout << "FAILED\n";
+	}
+
+	cout << "Coords: ";
+	if(coordsCorrect)
+	{
+		cout << "PASSED\n";
+	}
+	else
+	{
+		cout << "FAILED\n";
+	}
+
+	delete[] coord1;
+	delete[] coord5;	
+}
+
+void testGetBoard(Admiral* admPtr)
+{
+	Grid* gridPtr = admPtr->getBoard();
+	cout << "\n\nTesting Admiral::getBoard():\n";
+	gridPtr->printGrid(false);
+	testAddShip(admPtr);
+	gridPtr->printGrid(false);
+}
+
+void runTests(Admiral* admPtr)
+{
+	testInitial("testAdm1", admPtr);
+	testAddShip(admPtr);
+}
+
+int main()
+{
+	Admiral* testAdm1 = new Admiral(5);
+	Admiral* testAdm2 = new Admiral(2);
+
+	runTests(testAdm1);
+	testGetBoard(testAdm2);
+
+	delete testAdm1;
+	delete testAdm2;
 	return(0);
 }

@@ -376,7 +376,7 @@ void Executive::run()
     {
         std::cout<< "Player 1: It's time to place your ships.";
         placeShip(m_numShips, m_player1, false);
-        std::cout << "Thanks for placing your ships. The AI's ships have been placed randomly. Time to start the game";
+        std::cout << "Thanks for placing your ships. The AI's ships have been placed randomly. Time to start the game\n";
         placeShip(m_numShips, m_player2, true);
         winner = gameplay(true);
         printGameOver(winner);

@@ -24,6 +24,11 @@ PowerUps.o
 **/*.o
 
 **/*.exe
+
 load_info.txt
 
 saved.txt
+
+
+**/AdmiralTest
+

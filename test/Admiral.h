@@ -30,7 +30,7 @@ class Admiral
 		 */
 		Admiral(int numShips);
 
-		/** The destructor.  Manually deletes the pointer m_fleet.
+		/** The destructor.  Manually deletes each pointer contained by m_fleet.
 		 *
 		 */
 		~Admiral();

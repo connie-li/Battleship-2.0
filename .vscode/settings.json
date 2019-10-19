@@ -67,5 +67,6 @@
         "map": "cpp",
         "*.tcc": "cpp",
         "hashtable": "cpp"
+        "xstring": "cpp"
     }
 }
