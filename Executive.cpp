@@ -40,8 +40,6 @@ void Executive::saveGame(int turn, Admiral* player1, Admiral* player2, bool ai)
   fileInfo<<"\n";
   fileInfo<<ai;
 
-  fileInfo.close();
-
   string** board1 = nullptr;
   string** board2 = nullptr;
 
@@ -50,6 +48,8 @@ void Executive::saveGame(int turn, Admiral* player1, Admiral* player2, bool ai)
   player2->getBoard()->getPartialGrid(board2);
 
   writeBoard(board1, board2);
+
+  fileInfo.close();
 }
 
 void Executive::writeBoard(string** player1_board, string** player2_board)
@@ -161,8 +161,12 @@ void Executive::readBoard()
   loadGame(turn, player1_board, player2_board, ai);
 }
 
-void Executive::loadGame(int n, string** player1, string** player2, bool ai){
+void Executive::loadGame(int n, string** player1_board, string** player2_board, bool ai){
     //here is the load game stuff and things
+
+    //void Grid::readGrid(string** arr)
+    m_player1->getBoard()->readGrid(player1_board);
+    m_player2->getBoard()->readGrid(player2_board);
 
 }
 
