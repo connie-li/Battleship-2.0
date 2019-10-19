@@ -1,10 +1,11 @@
 #include "PowerUpsTest.h"
 
 PowerUpsTest::PowerUpsTest(){
-    cout << "Starting PowerUps Test\n";
+    std::cout << "Creating PowerUpsTest Object\n";
 }
 
 void PowerUpsTest::run(){
+    std::cout << "Starting PowerUps Testing\n";
     testFunc("Testing Get, Add, Rm , and Has: ", (Test::func) testGetAddRmHas());
     testFunc("Testing Torpedo: ", (Test::func) testTorpedo());
     testFunc("Testing Radar: ", (Test::func) testRadar());
