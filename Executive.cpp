@@ -492,7 +492,7 @@ bool Executive::handleTurn(const int player, const bool AI)
   {
     if(player == 1)
     {
-      cout<<"\nDo you want to save and quit the game? Hit S/s to save and quit. Hit enter to continue.\n";
+      cout<<"\nDo you want to save and quit the game? Hit S/s to save and quit. Hit C/c to continue.\n";
       cin>>quit_choice;
       if(quit_choice=='s'||quit_choice=='S')
       {
@@ -632,7 +632,9 @@ string Executive::askForFireCoord(const int player)
     cout << "Player " << player << ", input a valid coordinate to fire on: ";
     cin >> coord;
   } while(!validPos(coord));
-  return(coord);
+  string fire = "";
+  fire = coord.substr(0,1) + ":" + to_string(charCoordtoIntCoord(coord.at(1)));
+  return(fire);
 }
 
 vector<string>* Executive::getPowerups(const int player) const
