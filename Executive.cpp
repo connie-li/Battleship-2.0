@@ -23,13 +23,19 @@ void Executive::saveGame(int turn, Admiral* player1, Admiral* player2, bool ai)
   if(exists) 
   {
     remove("saved.txt");
+    remove("player_info.txt");
   }
 
-  ofstream gameFile;
-  gameFile.open("saved.txt", ios::app); 
+  ofstream fileInfo;
+  fileInfo.open("player_info.txt", ios::app); 
 
-  gameFile<<turn;
-  gameFile<<ai;
+  cout<<"THIS IS THE CURRENT TURN "<<turn<<"\n";
+  fileInfo<<turn;
+
+  cout<<"THIS IS THE CURRENT AI "<<ai<<"\n";
+  fileInfo<<ai;
+
+  fileInfo.close();
 
   string** board1 = nullptr;
   string** board2 = nullptr;
@@ -486,12 +492,12 @@ bool Executive::handleTurn(const int player, const bool AI)
   {
     if(player == 1)
     {
-      cout<<"Do you want to save and quit the game? Hit S/s to save and quit. Hit enter to continue.\n";
+      cout<<"\nDo you want to save and quit the game? Hit S/s to save and quit. Hit enter to continue.\n";
       cin>>quit_choice;
       if(quit_choice=='s'||quit_choice=='S')
       {
         saveGame(m_turn, m_player1, m_player2, AI);
-        return(0);
+        exit(0);
       }
       else
       {
@@ -514,12 +520,12 @@ bool Executive::handleTurn(const int player, const bool AI)
     }
     else  // player 2
     {
-      cout<<"Do you want to save and quit the game? Hit S/s to save and quit. Hit enter to continue.\n";
+      cout<<"\nDo you want to save and quit the game? \nHit S/s to save and quit. Hit C/c to continue.\n";
       cin>>quit_choice;
       if(quit_choice=='s'||quit_choice=='S')
       {
         saveGame(m_turn, m_player1, m_player2, AI);
-        return(0);
+        exit(0);
       }
       else
       {

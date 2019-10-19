@@ -4,6 +4,8 @@
 #include <iostream>
 #include <stdexcept>
 #include <algorithm>
+#include <stdio.h> 
+#include <stdlib.h> 
 #include "Admiral.h"
 #include "PowerUps.h"
 #include "AI.h"
