@@ -54,49 +54,64 @@ void Executive::saveGame(int turn, Admiral* player1, Admiral* player2, bool ai)
 
 void Executive::writeBoard(string** player1_board, string** player2_board)
 {
-    ofstream gameFile;
-    gameFile.open("saved.txt", ios::app); 
+  ofstream gameFile;
+  gameFile.open("saved.txt", ios::app); 
 
-    string** board;
+  string** board;
 
-    //write board information to a text file
-    for(int i = 0; i < 2; i++)
-    {
-        if(i==0)
-        {
-            board=player1_board;
+  vector<Ship*>* fleet=nullptr;
 
-        }
-        if(i==1)
-        {
-            board=player2_board;
-        } 
+  //write board information to a text file
+  for(int i = 0; i < 2; i++)
+  {
+      if(i==0)
+      {
+          board=player1_board;
+          fleet=m_player1->getFleet();
+      }
+      if(i==1)
+      {
+          board=player2_board;
+          fleet=m_player2->getFleet();
+      }
 
-        for(int i = 0; i < m_BOARD_SIZE; i++)
-        {
-            for(int j = 0; j < m_BOARD_SIZE; j++)
-            {
-                char temp = '\0';
-                if(board[i][j].length() > 1)
-                {
-                    temp = board[i][j].at(1);
-                }else
-                {
-                    temp = board[i][j].at(0);
-                }
-                if(((int)temp >= 48 && (int)temp <= 57) || temp == 'O' || temp == 'X')
-                {
-                    gameFile<< temp;
-                }
-                else
-                {
-                    gameFile<< "~";
-                }
-                gameFile<<"\t";
-            }
-            gameFile<<"\n";
-        }
+      for(int j = 0; j<fleet->size(); j++)
+      {
+        gameFile<<*(fleet->at(j)->getCoords());
         gameFile<<"\n";
+        gameFile<<fleet->at(j)->getStatus();
+        gameFile<<"\n";
+        gameFile<<fleet->at(j)->getNumHits();
+        gameFile<<"\n";
+        gameFile<<fleet->at(j)->getSize();
+        gameFile<<"\n";
+      } 
+
+      for(int i = 0; i < m_BOARD_SIZE; i++)
+      {
+          for(int j = 0; j < m_BOARD_SIZE; j++)
+          {
+              char temp = '\0';
+              if(board[i][j].length() > 1)
+              {
+                  temp = board[i][j].at(1);
+              }else
+              {
+                  temp = board[i][j].at(0);
+              }
+              if(((int)temp >= 48 && (int)temp <= 57) || temp == 'O' || temp == 'X')
+              {
+                  gameFile<< temp;
+              }
+              else
+              {
+                  gameFile<< "~";
+              }
+              gameFile<<"\t";
+          }
+          gameFile<<"\n";
+      }
+      gameFile<<"\n";
     }
 
     gameFile<<"\n";
@@ -548,15 +563,15 @@ bool Executive::handleTurn(const int player, const bool AI)
     if(player == 1)
     {
 
-//       cout<<"\nDo you want to save and quit the game? Hit S/s to save and quit. Hit C/c to continue.\n";
-//       cin>>quit_choice;
-//       if(quit_choice=='s'||quit_choice=='S')
-//       {
-//         saveGame(m_turn, m_player1, m_player2, AI);
-//         exit(0);
-//       }
-//       else
-//       {
+      cout<<"\nDo you want to save and quit the game? Hit S/s to save and quit. Hit C/c to continue.\n";
+      cin>>quit_choice;
+      if(quit_choice=='s'||quit_choice=='S')
+      {
+        saveGame(m_turn, m_player1, m_player2, AI);
+        exit(0);
+      }
+      else
+      {
 
         printMaps(player);
         printEnemyAction(); //TODO
@@ -573,20 +588,20 @@ bool Executive::handleTurn(const int player, const bool AI)
         //   }
         printTurnResult(turnResult);
         return(m_player2->getNumAfloat() < 1);
-      // }
+      }
     }
     else  // player 2
     {
 
-      // cout<<"\nDo you want to save and quit the game? \nHit S/s to save and quit. Hit C/c to continue.\n";
-      // cin>>quit_choice;
-      // if(quit_choice=='s'||quit_choice=='S')
-      // {
-      //   saveGame(m_turn, m_player1, m_player2, AI);
-      //   exit(0);
-      // }
-      // else
-      // {
+        cout<<"\nDo you want to save and quit the game? \nHit S/s to save and quit. Hit C/c to continue.\n";
+        cin>>quit_choice;
+        if(quit_choice=='s'||quit_choice=='S')
+        {
+          saveGame(m_turn, m_player1, m_player2, AI);
+          exit(0);
+        }
+        else
+        {
 
         printMaps(player);
         printEnemyAction(); //TODO
@@ -599,7 +614,7 @@ bool Executive::handleTurn(const int player, const bool AI)
         // TODO: add powerups
         printTurnResult(turnResult);
         return(m_player1->getNumAfloat() < 1);
-      // }
+        }
     }
   }
 }
