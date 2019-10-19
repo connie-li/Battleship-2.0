@@ -107,11 +107,86 @@ void testDecNumAfloat(Admiral* admPtr)
 	}
 }
 
+void testFindShip(Admiral* admPtr)
+{
+	bool correct = true;
+	cout << "Testing findShipbyCoord(): ";
+	string* coord5 = new string[5];
+	coord5[0] = "2:1";
+	coord5[1] = "2:2";
+	coord5[2] = "2:3";
+	coord5[3] = "2:4";
+	coord5[4] = "2:5";
+	Ship* tempShip = admPtr->getFleet()->at(1);
+	for(int i = 0; i < tempShip->getSize(); i++)
+	{
+		if(coord5[i] != tempShip->getCoords()[i])
+		{
+			correct = false;
+		}
+	}
+
+	if(correct)
+	{
+		cout << "PASSED\n";
+	}
+	else
+	{
+		cout << "FAILED\n";
+	}
+	delete[] coord5;
+}
+
+void testIncomingShot(Admiral* admPtr)
+{
+	string* coord5 = new string[5];
+	coord5[0] = "2:1";
+	coord5[1] = "2:2";
+	coord5[2] = "2:3";
+	coord5[3] = "2:4";
+	coord5[4] = "2:5";
+	string* coord3 = new string[3];
+	coord3[0] = "8:6";
+	coord3[1] = "8:7";
+	coord3[2] = "8:8";
+	string result;
+
+	cout << "Testing incomingShot():\nInitial board:\n";
+	admPtr->getBoard()->printGrid(false);
+	cout << "Testing hits.\n";
+	for(int i = 0; i < 5; i++)
+	{
+		result = admPtr->incomingShot(coord5[i]);
+		cout << result << '\n';
+	}
+
+	cout << "Testing misses.\n";
+	for(int i = 0; i < 3; i++)
+	{
+		result = admPtr->incomingShot(coord3[i]);
+		cout << result << '\n';
+	}
+
+	cout << "Testing double hits.\n";
+	for(int i = 0; i < 5; i++)
+	{
+		result = admPtr->incomingShot(coord5[i]);
+		cout << result << '\n';
+	}
+
+	cout << "Final board:\n";
+	admPtr->getBoard()->printGrid(false);
+
+	delete[] coord5;
+	delete[] coord3;
+}
+
 void runTests(Admiral* admPtr)
 {
 	testInitial("testAdm1", admPtr);
 	testAddShip(admPtr);
-	testDecNumAfloat(admPtr);
+	testFindShip(admPtr);
+	testIncomingShot(admPtr);
 }
 
 int main()
@@ -120,7 +195,6 @@ int main()
 	Admiral* testAdm2 = new Admiral(2);
 
 	runTests(testAdm1);
-	testDecNumAfloat(testAdm2);
 
 	delete testAdm1;
 	delete testAdm2;
