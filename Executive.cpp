@@ -41,8 +41,8 @@ void Executive::saveGame(int turn, Admiral* player1, Admiral* player2, bool ai)
   string** board2 = nullptr;
 
   //board contains the 2D string array from the grid object from the current player
-  board1 = player1->getBoard()->getGrid();
-  board2 = player2->getBoard()->getGrid();
+  // board1 = player1->getBoard()->getGrid();
+  // board2 = player2->getBoard()->getGrid();
 
   writeBoard(board1, board2);
 }
