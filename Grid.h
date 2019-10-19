@@ -10,7 +10,6 @@ private:
     const int m_BOARD_SIZE = 8; /** The size of the board to be created.*/
     string m_center;            /** The center or upper left corner of the center of the board based on the size*/ 
     string** m_arr;             /** The array representing the board.*/
-    string** m_temp;
 
     /**
      * Returns the column given a "#:#" format string
@@ -83,6 +82,12 @@ public:
      *      If it is even it must be the upper left corner of the cell intersection.
      */
     void getPartialGrid(string** &arr, int size = -1, string center = "-1:-1");
+
+    /**
+     * Intakes an array and populates the grid.
+     * @param arr: An array of strings that will be the content in grid.
+     */
+    void readGrid(string** arr);
 
     /**
      * Destroys a Grid object.
