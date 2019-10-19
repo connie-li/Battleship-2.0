@@ -477,10 +477,30 @@ bool Executive::handleTurn(const int player, const bool AI)
   string turnResult;
   if(AI)  // AI player
   {
-    // waiting on AI method
-    // targetCoord = m_player2->chooseTarget();
-    turnResult = m_player1->incomingShot(targetCoord);
-    return(m_player1->getNumAfloat() < 1);
+    if (player ==1)
+    {
+        printMaps(player);
+        printEnemyAction(); //TODO
+        // if(m_powerups.hasAPowerup(true))
+        // {
+        //   powerup = askForPowerUp(1);
+        // }
+        targetCoord = askForFireCoord(m_turn);
+        turnResult = m_player2->incomingShot(targetCoord);
+        // TODO: add powerups
+        // if(turnResult == "T" || turnResult == "R" || turnResult == "U" || turnResult == "S")
+        //   {
+
+        //   }
+        printTurnResult(turnResult);
+        return(m_player2->getNumAfloat() < 1);
+    }
+    else
+    {
+        targetCoord = m_player2->fire();
+        turnResult = m_player1->incomingShot(targetCoord);
+        return(m_player1->getNumAfloat() < 1);
+    }
   }
   else
   {
