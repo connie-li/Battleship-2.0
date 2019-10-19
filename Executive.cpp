@@ -19,20 +19,25 @@ Executive::~Executive()
 
 void Executive::saveGame(int turn, Admiral* player1, Admiral* player2, bool ai)
 {
-  fstream exists("saved.txt");
-  if(exists) 
+  //delete the files if they already exist. after that, save the latest save game info 
+  fstream savedExists("saved.txt");
+  fstream playerExists("saved.txt");
+  if(savedExists) 
   {
     remove("saved.txt");
-    remove("player_info.txt");
   }
 
+  if(playerExists) 
+  {
+    remove("saved.txt");
+  }
+
+  //write AI and player turn info into player_info
   ofstream fileInfo;
   fileInfo.open("player_info.txt", ios::app); 
 
-  cout<<"THIS IS THE CURRENT TURN "<<turn<<"\n";
   fileInfo<<turn;
 
-  cout<<"THIS IS THE CURRENT AI "<<ai<<"\n";
   fileInfo<<ai;
 
   fileInfo.close();
@@ -40,10 +45,10 @@ void Executive::saveGame(int turn, Admiral* player1, Admiral* player2, bool ai)
   string** board1 = nullptr;
   string** board2 = nullptr;
 
-  //board contains the 2D string array from the grid object from the current player
-  // board1 = player1->getBoard()->getGrid();
-  // board2 = player2->getBoard()->getGrid();
-
+  //pass in 2D string array into the getPartialGrid to update the gird to what the current player has
+  player1->getBoard()->getPartialGrid(board1);
+  player2->getBoard()->getPartialGrid(board2);
+  
   writeBoard(board1, board2);
 }
 
