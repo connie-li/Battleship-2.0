@@ -1,7 +1,7 @@
 #include "MedAI.h"
 
 
-MedAI::MedAI(Grid* grid)
+MedAI::MedAI(Grid* grid, int numShips)
 {
     opponentBoard = grid;
     counter = 0;
@@ -10,6 +10,8 @@ MedAI::MedAI(Grid* grid)
     prevShipAfloat = getNumShips();
     direction = 0;
     current = 0;
+    m_numShips = numShips;
+    m_numAfloat = numShips;
 }
 
 string MedAI::checkDirection()

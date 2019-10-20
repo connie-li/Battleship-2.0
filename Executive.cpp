@@ -914,17 +914,18 @@ void Executive::setupGame(bool AI)
     cout << "Choose a difficulty level for the AI.\n1) Easy\n2) Medium\n3) Hard\nYour choice: ";
     bool valid = false;
     std::getline(std::cin, difficulty);
+    setNumShips();
     m_player1 = new Admiral(m_numShips);
     while(!valid)
     {
       if (difficulty == "1")
       {
-        m_player2 = new EasyAI(m_player1->getBoard());
+        m_player2 = new EasyAI(m_player1->getBoard(), m_numShips);
         valid = true;
       }
       else if (difficulty == "2")
       {
-        m_player2 = new MedAI(m_player1->getBoard());
+        m_player2 = new MedAI(m_player1->getBoard(), m_numShips);
         valid = true;
 
       }
@@ -938,7 +939,7 @@ void Executive::setupGame(bool AI)
         std::cout << "Error, enter a valid number from 1-3\n";
       }
     }
-    setNumShips();
+    
     std::cout<< "\nPlayer 1: It's time to place your ships.\n\n";
     m_player1->getBoard()->printGrid(false);
     placeShip(m_numShips, m_player1, false);
