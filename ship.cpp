@@ -12,7 +12,11 @@ Ship::Ship(int size)
 Ship::Ship(int size, string* coords, bool status, int hits)
 {
 	m_size = size;
-	m_coords = coords;
+	m_coords = new string[m_size];
+	for(int i=0; i<m_size; i++)
+	{
+		m_coords[i]=coords[i];
+	}
 	m_status = status;
 	m_numHits = hits;
 }
