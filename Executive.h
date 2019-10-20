@@ -80,7 +80,21 @@ class Executive
      */
     void writeBoard(string** player1_board, string** player2_board);
 
+    /**
+     * set the board, turn and indicate if AI or not
+     * @param turn indicates whose turn is next
+     * @param player1_board 2D string array for player 1
+     * @param player2_board 2D string array for player 2
+     * @param ai if pvp or ai game
+     * @return none
+     * @post relaunch the game
+     */
     void loadGame(int turn, string** player1_board, string** player2_board, bool ai);
+
+    /**
+     * read the text file to attain ship information and grid information
+     * @post stores all grid info for both players from a file called saved.txt into buffer variables
+     */
     void readBoard();
 
     /**

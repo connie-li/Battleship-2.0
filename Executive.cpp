@@ -185,7 +185,6 @@ void Executive::readBoard()
 
   //1. read numShips
   grid>>m_numShips;
-  cout<<"Num Ships: "<<m_numShips;
 
   //create two Admiral objects using given numShips
   m_player1= new Admiral(m_numShips);
@@ -197,7 +196,6 @@ void Executive::readBoard()
     {
       //2. shipSize
       grid>>shipSize;
-      cout<<"\nShip size: "<<shipSize;
 
       coordsPtr=new string[shipSize];
 
@@ -205,16 +203,13 @@ void Executive::readBoard()
       {
         //3. coordsPtr[j]: coordinates of ship for example (3:8 4:8 for a 1x2 ship)
         grid>>coordsPtr[j];
-        cout<<"\ncoords: "<<coordsPtr[j];
       }
 
       //4. ship's status: true if the Ship is still afloat, else false
       grid>>status;
-      cout<<"\nStatus: "<<status;
 
       //5. numHits: the number of hits the Ship has taken
       grid>>hits;
-      cout<<"\nHits: "<<hits<<"\n";
         
       //if player 1
       if(player==1)
@@ -236,9 +231,7 @@ void Executive::readBoard()
         for(int j = 0; j < m_BOARD_SIZE; j++)
         {
           grid>>board[i][j];
-          //cout<<board[i][j]<<"\t";
         }
-        //cout<<"\n";
     }
 
     //if player 1
@@ -280,9 +273,7 @@ void Executive::loadGame(int turn, string** player1_board, string** player2_boar
 {
     //store boards
     m_player1->getBoard()->readGrid(player1_board);
-    m_player1->getBoard()->printGrid(false);
     m_player2->getBoard()->readGrid(player2_board);
-    m_player2->getBoard()->printGrid(false);
 
     //set current turn
     m_turn=turn;
