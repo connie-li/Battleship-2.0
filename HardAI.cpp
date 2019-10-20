@@ -4,7 +4,9 @@
 HardAI::HardAI(Admiral* player)
 {
     opponent = player;
-    opponentBoard = opponent->getBoard();   
+    opponentBoard = opponent->getBoard();
+    m_numShips = opponent->getNumShips();
+    m_numAfloat = opponent->getNumAfloat();
 }
 
 

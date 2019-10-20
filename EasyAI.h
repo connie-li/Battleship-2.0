@@ -21,7 +21,7 @@ class EasyAI : public Admiral
      * Creates an Easy difficulty AI
      * @param grid is a Grid object for the real player
      */
-    EasyAI(Grid* grid);
+    EasyAI(Grid* grid, int numShips);
 
     /**
      * Returns a random coordinate for usage in exec to fire at a random coordinate

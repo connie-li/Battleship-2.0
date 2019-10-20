@@ -28,7 +28,7 @@ class MedAI : public Admiral
      * Creates an Medium difficulty AI
      * @param grid is a Grid object for the real player
      */
-    MedAI(Grid* grid);
+    MedAI(Grid* grid, int numShips);
 
 
     /**

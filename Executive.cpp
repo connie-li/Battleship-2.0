@@ -919,12 +919,12 @@ void Executive::setupGame(bool AI)
     {
       if (difficulty == "1")
       {
-        m_player2 = new EasyAI(m_player1->getBoard());
+        m_player2 = new EasyAI(m_player1->getBoard(), m_numShips);
         valid = true;
       }
       else if (difficulty == "2")
       {
-        m_player2 = new MedAI(m_player1->getBoard());
+        m_player2 = new MedAI(m_player1->getBoard(), m_numShips);
         valid = true;
 
       }
