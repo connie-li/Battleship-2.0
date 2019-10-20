@@ -1,0 +1,341 @@
+Your firing map:
+        A       B       C       D       E       F       G       H
+1       X       ~       ~       ~       ~       ~       ~       ~
+2       ~       ~       ~       ~       ~       ~       ~       ~
+3       ~       ~       ~       ~       ~       ~       ~       ~
+4       ~       ~       ~       ~       ~       ~       ~       ~
+5       ~       ~       ~       ~       ~       ~       ~       ~
+6       ~       ~       ~       ~       ~       ~       ~       ~
+7       ~       ~       ~       ~       ~       ~       ~       ~
+8       X       ~       ~       ~       ~       ~       ~       O
+
+Your ship map:
+        A       B       C       D       E       F       G       H
+1       X       ~       ~       ~       ~       ~       ~       ~
+2       X       2       ~       ~       ~       ~       ~       ~
+3       3       3       3       ~       ~       ~       ~       ~
+4       4       4       4       4       ~       ~       ~       ~
+5       5       5       5       5       5       ~       ~       ~
+6       ~       ~       ~       ~       ~       ~       ~       ~
+7       ~       ~       ~       ~       ~       ~       ~       ~
+8       ~       ~       ~       ~       ~       ~       ~       O
+
+Player 1, input a valid coordinate to fire on: Player ^C
+C:\Users\Connie\Documents\repos\eecs448\Return-Awesome---Project-2\Battleship-2.0>Battleship.exe
+
+
+  ____        _   _   _           _     _
+ |  _ \      | | | | | |         | |   (_)
+ | |_) | __ _| |_| |_| | ___  ___| |__  _ _ __
+ |  _ < / _` | __| __| |/ _ \/ __| '_ \| | '_ \
+ | |_) | (_| | |_| |_| |  __/\__ \ | | | | |_) |
+ |____/ \__,_|\__|\__|_|\___||___/_| |_|_| .__/
+                                         | |
+                                         |_|
+
+Menu:
+ 1) Instructions
+ 2) Start Game: Player vs. Player
+ 3) Start Game: Player vs. AI
+ 4) Quit Game
+
+Enter option (1-4): 2
+Starting a Player vs. Player game!
+
+How many ships would you like to play with? (1-5 ships): 2
+Player 1: It's time to place your ships.
+        A       B       C       D       E       F       G       H
+1       ~       ~       ~       ~       ~       ~       ~       ~
+2       ~       ~       ~       ~       ~       ~       ~       ~
+3       ~       ~       ~       ~       ~       ~       ~       ~
+4       ~       ~       ~       ~       ~       ~       ~       ~
+5       ~       ~       ~       ~       ~       ~       ~       ~
+6       ~       ~       ~       ~       ~       ~       ~       ~
+7       ~       ~       ~       ~       ~       ~       ~       ~
+8       ~       ~       ~       ~       ~       ~       ~       ~
+
+It's time to place your ship of size 1x1. Enter a starting coordinate
+Please enter a coordinate in the form 1A: 1A
+        A       B       C       D       E       F       G       H
+1       1       ~       ~       ~       ~       ~       ~       ~
+2       ~       ~       ~       ~       ~       ~       ~       ~
+3       ~       ~       ~       ~       ~       ~       ~       ~
+4       ~       ~       ~       ~       ~       ~       ~       ~
+5       ~       ~       ~       ~       ~       ~       ~       ~
+6       ~       ~       ~       ~       ~       ~       ~       ~
+7       ~       ~       ~       ~       ~       ~       ~       ~
+8       ~       ~       ~       ~       ~       ~       ~       ~
+
+It's time to place your ship of size 1x2. Enter a starting coordinate
+Please enter a coordinate in the form 1A: 8H
+Enter an ending coordinate. Possible ending coordinates for this ship are: 7H 8G
+Please enter a coordinate in the form 1A: 7h
+Invalid coordinate. Please enter a coordinate in the form 1A: 8G
+        A       B       C       D       E       F       G       H
+1       1       ~       ~       ~       ~       ~       ~       ~
+2       ~       ~       ~       ~       ~       ~       ~       ~
+3       ~       ~       ~       ~       ~       ~       ~       ~
+4       ~       ~       ~       ~       ~       ~       ~       ~
+5       ~       ~       ~       ~       ~       ~       ~       ~
+6       ~       ~       ~       ~       ~       ~       ~       ~
+7       ~       ~       ~       ~       ~       ~       ~       ~
+8       ~       ~       ~       ~       ~       ~       2       2
+
+Thanks for placing your ships, player 1!
+Now it's player 2's turn.
+
+
+
+
+
+
+
+Player 2: It's time to place your ships.
+        A       B       C       D       E       F       G       H
+1       ~       ~       ~       ~       ~       ~       ~       ~
+2       ~       ~       ~       ~       ~       ~       ~       ~
+3       ~       ~       ~       ~       ~       ~       ~       ~
+4       ~       ~       ~       ~       ~       ~       ~       ~
+5       ~       ~       ~       ~       ~       ~       ~       ~
+6       ~       ~       ~       ~       ~       ~       ~       ~
+7       ~       ~       ~       ~       ~       ~       ~       ~
+8       ~       ~       ~       ~       ~       ~       ~       ~
+
+It's time to place your ship of size 1x1. Enter a starting coordinate
+Please enter a coordinate in the form 1A: Invalid coordinate. Please enter a coordinate in the form 1A: 3D
+        A       B       C       D       E       F       G       H
+1       ~       ~       ~       ~       ~       ~       ~       ~
+2       ~       ~       ~       ~       ~       ~       ~       ~
+3       ~       ~       ~       1       ~       ~       ~       ~
+4       ~       ~       ~       ~       ~       ~       ~       ~
+5       ~       ~       ~       ~       ~       ~       ~       ~
+6       ~       ~       ~       ~       ~       ~       ~       ~
+7       ~       ~       ~       ~       ~       ~       ~       ~
+8       ~       ~       ~       ~       ~       ~       ~       ~
+
+It's time to place your ship of size 1x2. Enter a starting coordinate
+Please enter a coordinate in the form 1A: Invalid coordinate. Please enter a coordinate in the form 1A: 83
+Invalid coordinate. Please enter a coordinate in the form 1A: 3E
+Enter an ending coordinate. Possible ending coordinates for this ship are: 4E 2E 3F
+Please enter a coordinate in the form 1A: Invalid coordinate. Please enter a coordinate in the form 1A: 3F
+        A       B       C       D       E       F       G       H
+1       ~       ~       ~       ~       ~       ~       ~       ~
+2       ~       ~       ~       ~       ~       ~       ~       ~
+3       ~       ~       ~       1       2       2       ~       ~
+4       ~       ~       ~       ~       ~       ~       ~       ~
+5       ~       ~       ~       ~       ~       ~       ~       ~
+6       ~       ~       ~       ~       ~       ~       ~       ~
+7       ~       ~       ~       ~       ~       ~       ~       ~
+8       ~       ~       ~       ~       ~       ~       ~       ~
+
+Thanks for placing your ships. Time to start the game!
+
+
+
+
+
+
+Your firing map:
+        A       B       C       D       E       F       G       H
+1       ~       ~       ~       ~       ~       ~       ~       ~
+2       ~       ~       ~       ~       ~       ~       ~       ~
+3       ~       ~       ~       ~       ~       ~       ~       ~
+4       ~       ~       ~       ~       ~       ~       ~       ~
+5       ~       ~       ~       ~       ~       ~       ~       ~
+6       ~       ~       ~       ~       ~       ~       ~       ~
+7       ~       ~       ~       ~       ~       ~       ~       ~
+8       ~       ~       ~       ~       ~       ~       ~       ~
+
+Your ship map:
+        A       B       C       D       E       F       G       H
+1       1       ~       ~       ~       ~       ~       ~       ~
+2       ~       ~       ~       ~       ~       ~       ~       ~
+3       ~       ~       ~       ~       ~       ~       ~       ~
+4       ~       ~       ~       ~       ~       ~       ~       ~
+5       ~       ~       ~       ~       ~       ~       ~       ~
+6       ~       ~       ~       ~       ~       ~       ~       ~
+7       ~       ~       ~       ~       ~       ~       ~       ~
+8       ~       ~       ~       ~       ~       ~       2       2
+
+Player 1, input a valid coordinate to fire on: 3D
+You hit and sank their ship!
+
+
+
+
+        A       B       C       D       E       F       G       H
+1       ~       ~       ~       ~       ~       ~       ~       ~
+2       ~       ~       ~       ~       ~       ~       ~       ~
+3       ~       ~       ~       ~       ~       ~       ~       ~
+4       ~       ~       ~       ~       ~       ~       ~       ~
+5       ~       ~       ~       ~       ~       ~       ~       ~
+6       ~       ~       ~       ~       ~       ~       ~       ~
+7       ~       ~       ~       ~       ~       ~       ~       ~
+8       ~       ~       ~       ~       ~       ~       ~       ~
+
+        A       B       C       D       E       F       G       H
+1       ~       ~       ~       ~       ~       ~       ~       ~
+2       ~       ~       ~       ~       ~       ~       ~       ~
+3       ~       ~       ~       X       2       2       ~       ~
+4       ~       ~       ~       ~       ~       ~       ~       ~
+5       ~       ~       ~       ~       ~       ~       ~       ~
+6       ~       ~       ~       ~       ~       ~       ~       ~
+7       ~       ~       ~       ~       ~       ~       ~       ~
+8       ~       ~       ~       ~       ~       ~       ~       ~
+
+Player 2, input a valid coordinate to fire on: 1A
+You hit and sank their ship!
+
+
+
+
+
+Your firing map:
+        A       B       C       D       E       F       G       H
+1       ~       ~       ~       ~       ~       ~       ~       ~
+2       ~       ~       ~       ~       ~       ~       ~       ~
+3       ~       ~       ~       X       ~       ~       ~       ~
+4       ~       ~       ~       ~       ~       ~       ~       ~
+5       ~       ~       ~       ~       ~       ~       ~       ~
+6       ~       ~       ~       ~       ~       ~       ~       ~
+7       ~       ~       ~       ~       ~       ~       ~       ~
+8       ~       ~       ~       ~       ~       ~       ~       ~
+
+Your ship map:
+        A       B       C       D       E       F       G       H
+1       X       ~       ~       ~       ~       ~       ~       ~
+2       ~       ~       ~       ~       ~       ~       ~       ~
+3       ~       ~       ~       ~       ~       ~       ~       ~
+4       ~       ~       ~       ~       ~       ~       ~       ~
+5       ~       ~       ~       ~       ~       ~       ~       ~
+6       ~       ~       ~       ~       ~       ~       ~       ~
+7       ~       ~       ~       ~       ~       ~       ~       ~
+8       ~       ~       ~       ~       ~       ~       2       2
+
+Player 1, input a valid coordinate to fire on: 2D
+You missed.
+
+
+
+
+        A       B       C       D       E       F       G       H
+1       X       ~       ~       ~       ~       ~       ~       ~
+2       ~       ~       ~       ~       ~       ~       ~       ~
+3       ~       ~       ~       ~       ~       ~       ~       ~
+4       ~       ~       ~       ~       ~       ~       ~       ~
+5       ~       ~       ~       ~       ~       ~       ~       ~
+6       ~       ~       ~       ~       ~       ~       ~       ~
+7       ~       ~       ~       ~       ~       ~       ~       ~
+8       ~       ~       ~       ~       ~       ~       ~       ~
+
+        A       B       C       D       E       F       G       H
+1       ~       ~       ~       ~       ~       ~       ~       ~
+2       ~       ~       ~       O       ~       ~       ~       ~
+3       ~       ~       ~       X       2       2       ~       ~
+4       ~       ~       ~       ~       ~       ~       ~       ~
+5       ~       ~       ~       ~       ~       ~       ~       ~
+6       ~       ~       ~       ~       ~       ~       ~       ~
+7       ~       ~       ~       ~       ~       ~       ~       ~
+8       ~       ~       ~       ~       ~       ~       ~       ~
+
+Player 2, input a valid coordinate to fire on: 1B
+You missed.
+
+
+
+
+Your firing map:
+        A       B       C       D       E       F       G       H
+1       ~       ~       ~       ~       ~       ~       ~       ~
+2       ~       ~       ~       O       ~       ~       ~       ~
+3       ~       ~       ~       X       ~       ~       ~       ~
+4       ~       ~       ~       ~       ~       ~       ~       ~
+5       ~       ~       ~       ~       ~       ~       ~       ~
+6       ~       ~       ~       ~       ~       ~       ~       ~
+7       ~       ~       ~       ~       ~       ~       ~       ~
+8       ~       ~       ~       ~       ~       ~       ~       ~
+
+Your ship map:
+        A       B       C       D       E       F       G       H
+1       X       O       ~       ~       ~       ~       ~       ~
+2       ~       ~       ~       ~       ~       ~       ~       ~
+3       ~       ~       ~       ~       ~       ~       ~       ~
+4       ~       ~       ~       ~       ~       ~       ~       ~
+5       ~       ~       ~       ~       ~       ~       ~       ~
+6       ~       ~       ~       ~       ~       ~       ~       ~
+7       ~       ~       ~       ~       ~       ~       ~       ~
+8       ~       ~       ~       ~       ~       ~       2       2
+
+Player 1, input a valid coordinate to fire on: 3E
+You hit their ship!
+
+
+
+
+
+        A       B       C       D       E       F       G       H
+1       X       O       ~       ~       ~       ~       ~       ~
+2       ~       ~       ~       ~       ~       ~       ~       ~
+3       ~       ~       ~       ~       ~       ~       ~       ~
+4       ~       ~       ~       ~       ~       ~       ~       ~
+5       ~       ~       ~       ~       ~       ~       ~       ~
+6       ~       ~       ~       ~       ~       ~       ~       ~
+7       ~       ~       ~       ~       ~       ~       ~       ~
+8       ~       ~       ~       ~       ~       ~       ~       ~
+
+        A       B       C       D       E       F       G       H
+1       ~       ~       ~       ~       ~       ~       ~       ~
+2       ~       ~       ~       O       ~       ~       ~       ~
+3       ~       ~       ~       X       X       2       ~       ~
+4       ~       ~       ~       ~       ~       ~       ~       ~
+5       ~       ~       ~       ~       ~       ~       ~       ~
+6       ~       ~       ~       ~       ~       ~       ~       ~
+7       ~       ~       ~       ~       ~       ~       ~       ~
+8       ~       ~       ~       ~       ~       ~       ~       ~
+
+Player 2, input a valid coordinate to fire on: 8G
+You hit their ship!
+
+
+
+
+
+Your firing map:
+        A       B       C       D       E       F       G       H
+1       ~       ~       ~       ~       ~       ~       ~       ~
+2       ~       ~       ~       O       ~       ~       ~       ~
+3       ~       ~       ~       X       X       ~       ~       ~
+4       ~       ~       ~       ~       ~       ~       ~       ~
+5       ~       ~       ~       ~       ~       ~       ~       ~
+6       ~       ~       ~       ~       ~       ~       ~       ~
+7       ~       ~       ~       ~       ~       ~       ~       ~
+8       ~       ~       ~       ~       ~       ~       ~       ~
+
+Your ship map:
+        A       B       C       D       E       F       G       H
+1       X       O       ~       ~       ~       ~       ~       ~
+2       ~       ~       ~       ~       ~       ~       ~       ~
+3       ~       ~       ~       ~       ~       ~       ~       ~
+4       ~       ~       ~       ~       ~       ~       ~       ~
+5       ~       ~       ~       ~       ~       ~       ~       ~
+6       ~       ~       ~       ~       ~       ~       ~       ~
+7       ~       ~       ~       ~       ~       ~       ~       ~
+8       ~       ~       ~       ~       ~       ~       X       2
+
+Player 1, input a valid coordinate to fire on: 3F
+You hit and sank their ship!
+GAME OVER!
+Congratulations player 1, you are the winner!
+
+                                  )___(
+                           _______/__/_
+                  ___     /===========|   ___
+ ____       __   [\\]___/____________|__[///]   __
+ \   \_____[\\]__/___________________________\__[//]___
+  \448                                                 |
+   \                                                  /
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+C:\Users\Connie\Documents\repos\eecs448\Return-Awesome---Project-2\Battleship-2.0>
