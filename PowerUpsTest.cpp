@@ -143,10 +143,12 @@ bool PowerUpsTest::testScatter(){
         m_PowerUps.useScatterShot(true);
         m_tempAdmir->getBoard()->printGrid(false);
         cout<<pass;
+        delete m_tempAdmir;
     }catch(exception){
         hasPassed = 0;
         cout<< fail;
     }
+    delete[] tempCoords;
     return(hasPassed);
 }
 
@@ -188,7 +190,7 @@ bool PowerUpsTest::testUber(){
 }
 
 void PowerUpsTest::createAdmiral(string powerup, int ships){
-    deleteAdmiral();
+    //deleteAdmiral();
     m_tempAdmir = new Admiral(ships);
     m_PowerUps.addPowerUp(powerup,true);
     m_PowerUps.setAdmirals(m_tempAdmir,m_tempAdmir);
