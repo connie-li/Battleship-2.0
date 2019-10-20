@@ -109,6 +109,7 @@ void PowerUps::useRadar(std::string coord,bool isPlayer1){
             }
         }
     }
+    removePowerUp("R", isPlayer1);
 }
 /**
  * Power up questions: do you want else if =='~' to make sure it is water before 
@@ -131,6 +132,7 @@ void PowerUps::useScatterShot(bool isPlayer1){
             addPowerUp(value, isPlayer1);
         }
     }
+    removePowerUp("S", isPlayer1);
 }
 
 //10/13 I think this may only work correctly when the ships are put into the 
