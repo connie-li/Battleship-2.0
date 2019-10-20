@@ -134,9 +134,12 @@ void Executive::readBoard()
   int turn=100;
   int ai=100;
   int size=0;
-  string* coords=nullptr;
   bool status=false;
   int hits=0;
+  string* coordsPtr=nullptr;
+  int numShips=0;
+  vector<Ship*>* fleet=nullptr;
+  string** board=nullptr;
   
   //store player info
   ifstream playerInfo;
@@ -151,9 +154,8 @@ void Executive::readBoard()
   ifstream grid;
   grid.open("saved.txt"); 
 
-  string** board=nullptr;
-
   board=new string*[m_BOARD_SIZE];
+
   for(int i = 0; i < m_BOARD_SIZE; i++)
   {
     board[i] = new string[m_BOARD_SIZE];
@@ -169,12 +171,22 @@ void Executive::readBoard()
       for(int n=0; n<m_numShips; n++)
       {
         grid>>size;
-        //grid>>coords;
+
+        fleet=m_player1->getFleet();
+        for(int j = 0; j<fleet->size(); j++)
+        {
+          coordsPtr=fleet->at(j)->getCoords();
+          numShips=fleet->at(j)->getSize();
+          for(int n=0; n<numShips; n++)
+          {
+            grid>>coordsPtr[n];
+          }
+        }
         grid>>status;
         grid>>hits;
       }
         //call grid constructor
-        m_player1->loadShip(size, coords, status, hits);
+        m_player1->loadShip(size, coordsPtr, status, hits);
     }
 
     
@@ -183,12 +195,21 @@ void Executive::readBoard()
         for(int n=0; n<m_numShips; n++)
       {
         grid>>size;
-        //grid>>coords;
+        fleet=m_player2->getFleet();
+        for(int j = 0; j<fleet->size(); j++)
+        {
+          coordsPtr=fleet->at(j)->getCoords();
+          numShips=fleet->at(j)->getSize();
+          for(int n=0; n<numShips; n++)
+          {
+            grid>>coordsPtr[n];
+          }
+        }
         grid>>status;
         grid>>hits;
       }
         //call grid constructor
-        m_player1->loadShip(size, coords, status, hits);
+        m_player2->loadShip(size, coordsPtr, status, hits);
     } 
     
     
@@ -866,7 +887,6 @@ void Executive::setupGame(bool AI)
     m_player2->getBoard()->printGrid(false);
     placeShip(m_numShips, m_player2, false);
     m_player2->getBoard()->printGrid(false);
-    //saveGame(m_player1, m_player2, false);
     std::cout << "Thanks for placing your ships. Time to start the game!";
   }
 }
