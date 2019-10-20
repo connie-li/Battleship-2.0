@@ -181,6 +181,8 @@ bool PowerUpsTest::testUber(){
         cout << fail;
     }
     
+    delete[] tempCoords1;
+    delete[] tempCoords2;
 
     return(hasPassed);
 }
@@ -189,4 +191,11 @@ void PowerUpsTest::createAdmiral(string powerup, int ships){
     m_tempAdmir = new Admiral(ships);
     m_PowerUps.addPowerUp(powerup,true);
     m_PowerUps.setAdmirals(m_tempAdmir,m_tempAdmir);
+}
+
+void PowerUpsTest::deleteAdmiral(){
+    if(m_tempAdmir != nullptr){
+        delete m_tempAdmir; 
+    }
+    
 }

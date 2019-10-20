@@ -39,8 +39,15 @@ private:
      */
     bool testGetAddRmHas();
 
+    /**
+     * creates the temporary admirals
+     */
     void createAdmiral(string powerup, int ships);
 
+    /**
+     * deletes the extra Admiral objects
+     */
+    void deleteAdmiral();
 public:
 
     /**

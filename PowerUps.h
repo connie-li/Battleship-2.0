@@ -33,6 +33,8 @@ class PowerUps
     PowerUps();
     ~PowerUps();
 
+   
+
     /**
      * sets the internal admirals to the admirals made in game
      * @param Admiral* admir1 pointer to admiral1
