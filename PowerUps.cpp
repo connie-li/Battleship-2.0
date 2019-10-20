@@ -210,7 +210,6 @@ void PowerUps::useUberCommander(std::string coord,bool isPlayer1){
             }
         }
     }
-    std::cout << fired;
     removePowerUp("U",isPlayer1);
     
 }
