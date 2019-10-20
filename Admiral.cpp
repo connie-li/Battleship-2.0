@@ -65,6 +65,13 @@ void Admiral::addShip(const int size, const string* coordsArr)
 	m_board.readShip(coordsArr, size);
 }
 
+void Admiral::loadShip(int size, string* coordsArr, bool status, int hits)
+{
+	m_fleet.push_back(new Ship(size, coordsArr, status, hits));
+}
+
+
+
 int Admiral::decNumAfloat()
 {
 	m_numAfloat--;

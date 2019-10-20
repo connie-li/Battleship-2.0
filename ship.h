@@ -24,6 +24,15 @@ class Ship
 		 */
 		Ship(int size);
 
+		/** A constructor with one parameter.
+		 * @param size the size (1-5) of the Ship.
+		 * @param coords string array containing coordinates like 1:1
+		 * @param status if sunk or not
+		 * @param hits number of hits
+		 * @post creates a Ship of the given parameters, with an empty array of coordinates.
+		 */
+		Ship(int size, string* coords, bool status, int hits);
+
 		/** A destructor.  Deletes the member array of coordinates.
 		 *
 		 */

@@ -37,8 +37,6 @@ void Executive::saveGame(int turn, Admiral* player1, Admiral* player2, bool ai)
   fileInfo<<"\n";
   fileInfo<<ai;
 
-  fileInfo.close();
-
   string** board1 = nullptr;
   string** board2 = nullptr;
 
@@ -47,53 +45,83 @@ void Executive::saveGame(int turn, Admiral* player1, Admiral* player2, bool ai)
   player2->getBoard()->getPartialGrid(board2);
 
   writeBoard(board1, board2);
+
+  fileInfo.close();
 }
 
 void Executive::writeBoard(string** player1_board, string** player2_board)
 {
-    ofstream gameFile;
-    gameFile.open("saved.txt", ios::app); 
+  ofstream gameFile;
+  gameFile.open("saved.txt", ios::app); 
 
-    string** board;
+  string** board;
 
-    //write board information to a text file
-    for(int i = 0; i < 2; i++)
-    {
-        if(i==0)
+  vector<Ship*>* fleet=nullptr;
+
+  string* coordsPtr=nullptr;
+  int sizeShips=0;
+
+  //write board information to a text file
+  for(int i = 0; i < 2; i++)
+  {
+      if(i==0)
+      {
+          board=player1_board;
+          fleet=m_player1->getFleet();
+      }
+      if(i==1)
+      {
+          board=player2_board;
+          fleet=m_player2->getFleet();
+      }
+
+      gameFile<<m_numShips;
+      gameFile<<"\n";
+      for(int j = 0; j<fleet->size(); j++)
+      {
+        coordsPtr=fleet->at(j)->getCoords();
+        sizeShips=fleet->at(j)->getSize();
+
+        for(int n=0; n<sizeShips; n++)
         {
-            board=player1_board;
-
+          gameFile<<coordsPtr[n];
+          gameFile<<"\t";
         }
-        if(i==1)
-        {
-            board=player2_board;
-        } 
 
-        for(int i = 0; i < m_BOARD_SIZE; i++)
-        {
-            for(int j = 0; j < m_BOARD_SIZE; j++)
-            {
-                char temp = '\0';
-                if(board[i][j].length() > 1)
-                {
-                    temp = board[i][j].at(1);
-                }else
-                {
-                    temp = board[i][j].at(0);
-                }
-                if(((int)temp >= 48 && (int)temp <= 57) || temp == 'O' || temp == 'X')
-                {
-                    gameFile<< temp;
-                }
-                else
-                {
-                    gameFile<< "~";
-                }
-                gameFile<<"\t";
-            }
-            gameFile<<"\n";
-        }
         gameFile<<"\n";
+        gameFile<<fleet->at(j)->getStatus();
+        gameFile<<"\n";
+        gameFile<<fleet->at(j)->getNumHits();
+        gameFile<<"\n";
+        gameFile<<fleet->at(j)->getSize();
+        gameFile<<"\n";
+      } 
+
+      for(int i = 0; i < m_BOARD_SIZE; i++)
+      {
+          for(int j = 0; j < m_BOARD_SIZE; j++)
+          {
+              char temp = '\0';
+              if(board[i][j].length() > 1)
+              {
+                  temp = board[i][j].at(1);
+              }else
+              {
+                  temp = board[i][j].at(0);
+              }
+              if(((int)temp >= 48 && (int)temp <= 57) || temp == 'O' || temp == 'X')
+              {
+                  gameFile<< temp;
+              }
+              else
+              {
+                  gameFile<< "~";
+              }
+              gameFile<<"\t";
+          }
+          gameFile<<"\n";
+      }
+      gameFile<<"\n";
     }
 
     gameFile<<"\n";
@@ -103,12 +131,19 @@ void Executive::writeBoard(string** player1_board, string** player2_board)
 
 void Executive::readBoard()
 {
+  int turn=100;
+  int ai=100;
+  int size=0;
+  bool status=false;
+  int hits=0;
+  string* coordsPtr=nullptr;
+  int sizeShips=0;
+  vector<Ship*>* fleet=nullptr;
+  string** board=nullptr;
+  
   //store player info
   ifstream playerInfo;
   playerInfo.open("player_info.txt"); 
-
-  int turn=100;
-  int ai=100;
 
   playerInfo>>turn;
   playerInfo>>ai;
@@ -119,20 +154,71 @@ void Executive::readBoard()
   ifstream grid;
   grid.open("saved.txt"); 
 
-  string** board=nullptr;
+  grid>>m_numShips;
+
+  m_player1= new Admiral(m_numShips);
+  m_player2= new Admiral(m_numShips);
 
   board=new string*[m_BOARD_SIZE];
+
   for(int i = 0; i < m_BOARD_SIZE; i++)
   {
     board[i] = new string[m_BOARD_SIZE];
   }
 
-
   string** player1_board=nullptr;
   string** player2_board=nullptr;
 
-  for(int i = 0; i < 2; i++)  //for 2 players
+  for(int k = 0; k < 2; k++)  //for 2 players
   {
+    if(k==0)
+    {
+      for(int n=0; n<m_numShips; n++)
+      {
+        grid>>size;
+
+        fleet=m_player1->getFleet();
+        for(int j = 0; j<fleet->size(); j++)
+        {
+          coordsPtr=fleet->at(j)->getCoords();
+          sizeShips=fleet->at(j)->getSize();
+          for(int n=0; n<sizeShips; n++)
+          {
+            grid>>coordsPtr[n];
+          }
+        }
+        grid>>status;
+        grid>>hits;
+
+        //call grid constructor
+        m_player1->loadShip(size, coordsPtr, status, hits);
+      }
+    }
+
+    
+    if(k==1)
+    {
+        for(int n=0; n<m_numShips; n++)
+      {
+        grid>>size;
+        fleet=m_player2->getFleet();
+        for(int j = 0; j<fleet->size(); j++)
+        {
+          coordsPtr=fleet->at(j)->getCoords();
+          sizeShips=fleet->at(j)->getSize();
+          for(int n=0; n<sizeShips; n++)
+          {
+            grid>>coordsPtr[n];
+          }
+        }
+        grid>>status;
+        grid>>hits;
+
+        //call ship constructor
+        m_player2->loadShip(size, coordsPtr, status, hits);
+      }
+    } 
+
     for(int i = 0; i < m_BOARD_SIZE; i++)
     {
         for(int j = 0; j < m_BOARD_SIZE; j++)
@@ -141,13 +227,13 @@ void Executive::readBoard()
         }
     }
 
-    if(i==0)
+    if(k==0)
     {
         player1_board=board;
     }
 
     
-    if(i==1)
+    if(k==1)
     {
         player2_board=board;
     } 
@@ -155,13 +241,22 @@ void Executive::readBoard()
   
   grid.close();
 
-  loadGame(turn, player1_board, player2_board, ai);
+  //loadGame(turn, player1_board, player2_board, ai);
 }
 
-void Executive::loadGame(int n, string** player1, string** player2, bool ai){
-    //here is the load game stuff and things
+void Executive::loadGame(int turn, string** player1_board, string** player2_board, bool ai)
+{
+    //store boards
+    m_player1->getBoard()->readGrid(player1_board);
+    m_player2->getBoard()->readGrid(player2_board);
 
+    //set current turn
+    m_turn=turn;
+
+    //return in relaunchOption if AI or not
+    relaunchOption=ai;
 }
+
 
 void Executive::placeShip(int n, Admiral* player, bool ai)
 {
@@ -459,7 +554,7 @@ int Executive::mainMenu()
     std::cout << " |____/ \\__,_|\\__|\\__|_|\\___||___/_| |_|_| .__/ \n";
     std::cout << "                                         | |    \n";
     std::cout << "                                         |_|    \n";
-    std::cout << "\nMenu:\n 1) Instructions\n 2) Start Game: Player vs. Player\n 3) Start Game: Player vs. AI\n 4) Quit Game\n\nEnter option (1-4): ";
+    std::cout << "\nMenu:\n 1) Instructions\n 2) Start Game: Player vs. Player\n 3) Start Game: Player vs. AI\n 4) Quit Game\n 5) Resume Saved Game\n\nEnter option (1-5): ";
     std::getline(std::cin,player_choice);
     if (player_choice == "1")
     {
@@ -481,6 +576,13 @@ int Executive::mainMenu()
     {
       std::cout << "\nHave a nice day!\n";
       return 4;
+    }
+    else if (player_choice == "5")
+    {
+      //check if ai or not, and call accordingly
+      readBoard();
+      gameplay(relaunchOption);
+      
     }
     else
     {
@@ -570,47 +672,45 @@ bool Executive::handleTurn(const int player, const bool AI)
 
     if(player == 1)
     {
+      cout<<"\nDo you want to save and quit the game? Hit S/s to save and quit. Hit C/c to continue.\n";
+      cin>>quit_choice;
+      if(quit_choice=='s'||quit_choice=='S')
+      {
+        saveGame(m_turn, m_player1, m_player2, AI);
+        exit(0);
+      }
+      else
+      {
+        cout << "Player 1's turn!\n\n";
+        printMaps(player);
+        printEnemyAction(); //TODO
+        // if(m_powerups.hasAPowerup(true))
+        // {
+        //   powerup = askForPowerUp(1);
+        // }
+        targetCoord = askForFireCoord(m_turn);
+        turnResult = m_player2->incomingShot(targetCoord);
+        // TODO: add powerups
+        // if(turnResult == "T" || turnResult == "R" || turnResult == "U" || turnResult == "S")
+        //   {
 
-//       cout<<"\nDo you want to save and quit the game? Hit S/s to save and quit. Hit C/c to continue.\n";
-//       cin>>quit_choice;
-//       if(quit_choice=='s'||quit_choice=='S')
-//       {
-//         saveGame(m_turn, m_player1, m_player2, AI);
-//         exit(0);
-//       }
-//       else
-//       {
-      cout << "Player 1's turn!\n\n";
-      printMaps(player);
-      printEnemyAction(); //TODO
-      // if(m_powerups.hasAPowerup(true))
-      // {
-      //   powerup = askForPowerUp(1);
-      // }
-      targetCoord = askForFireCoord(m_turn);
-      turnResult = m_player2->incomingShot(targetCoord);
-      // TODO: add powerups
-      // if(turnResult == "T" || turnResult == "R" || turnResult == "U" || turnResult == "S")
-      //   {
-
-      //   }
-      printTurnResult(turnResult);
-      cout << "Next player's turn!\n";
-      return(m_player2->getNumAfloat() < 1);
-      // }
+        //   }
+        printTurnResult(turnResult);
+        cout << "Next player's turn!\n";
+        return(m_player2->getNumAfloat() < 1);
+      }
     }
     else  // player 2
     {
-
-      // cout<<"\nDo you want to save and quit the game? \nHit S/s to save and quit. Hit C/c to continue.\n";
-      // cin>>quit_choice;
-      // if(quit_choice=='s'||quit_choice=='S')
-      // {
-      //   saveGame(m_turn, m_player1, m_player2, AI);
-      //   exit(0);
-      // }
-      // else
-      // {
+      cout<<"\nDo you want to save and quit the game? \nHit S/s to save and quit. Hit C/c to continue.\n";
+      cin>>quit_choice;
+      if(quit_choice=='s'||quit_choice=='S')
+      {
+        saveGame(m_turn, m_player1, m_player2, AI);
+        exit(0);
+      }
+      else
+      {
       cout << "Player 2's turn!\n\n";
       printMaps(player);
       printEnemyAction(); //TODO
@@ -624,7 +724,7 @@ bool Executive::handleTurn(const int player, const bool AI)
       printTurnResult(turnResult);
       cout << "Next player's turn!\n";
       return(m_player1->getNumAfloat() < 1);
-      // }
+      }
     }
   }
 }
@@ -862,7 +962,6 @@ void Executive::setupGame(bool AI)
     system("cls");
     std::cout<< "Player 2: It's time to place your ships.\n\n";
     placeShip(m_numShips, m_player2, false);
-    //saveGame(m_player1, m_player2, false);
     std::cout << "Thanks for placing your ships. Time to start the game!";
     std::this_thread::sleep_for(std::chrono::seconds(5));
   }

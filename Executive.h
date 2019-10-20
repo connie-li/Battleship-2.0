@@ -26,6 +26,8 @@ class Executive
         std::chrono::duration<unsigned long long> m_interval = std::chrono::seconds(3); //their timeout thing
         PowerUps m_powerups;    /* Contains both players' powerups and methods to use them. */
         char quit_choice;
+
+        bool relaunchOption; /*bool value to check if AI or not to relaunch PvP or PvAI */
         
     public:
     /** A constructor that takes no parameters.
@@ -78,7 +80,7 @@ class Executive
      */
     void writeBoard(string** player1_board, string** player2_board);
 
-    void loadGame(int n, string** player1, string** player2, bool ai);
+    void loadGame(int turn, string** player1_board, string** player2_board, bool ai);
     void readBoard();
 
     /**

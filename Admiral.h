@@ -93,9 +93,12 @@ class Admiral
 		 */
 		int findShipbyCoord(const string coord) const;
 
+		void loadShip(int size, string* coordsArr, bool status, int hits);
+
 		/**
 		 * dummy fire method to please C++ inheritence
 		 */
 		string fire();
+
 };
 #endif
