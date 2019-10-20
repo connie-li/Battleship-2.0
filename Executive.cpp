@@ -37,10 +37,10 @@ void Executive::saveGame(int turn, Admiral* player1, Admiral* player2, bool ai)
   fileInfo<<"\n";
   fileInfo<<ai;
 
-  string** board1 = nullptr;
-  string** board2 = nullptr;
+  string** board1 = nullptr; /*2D string array to get grid of player 1*/
+  string** board2 = nullptr; /*2D string array to get grid of player 2*/
 
-  //pass in 2D string array into the getPartialGrid to update the gird to what the current player has
+  //pass in 2D string array into the getPartialGrid to load the gird to board1/2 according to what the current player has
   player1->getBoard()->getPartialGrid(board1);
   player2->getBoard()->getPartialGrid(board2);
 
@@ -54,29 +54,33 @@ void Executive::writeBoard(string** player1_board, string** player2_board)
   ofstream gameFile;
   gameFile.open("saved.txt", ios::app); 
 
-  string** board;
+  string** board; /*2D string to write grid to file*/
+  vector<Ship*>* fleet=nullptr; /*to access player's fleet*/
+  string* coordsPtr=nullptr; /* to store 1D sting array coords from getCoords of fleet*/
+  int sizeShips=0; /* to store size of ship to iterate and store all coordinates*/
 
-  vector<Ship*>* fleet=nullptr;
-
-  string* coordsPtr=nullptr;
-  int sizeShips=0;
-
-  //write board information to a text file
-  for(int i = 0; i < 2; i++)
+  //write board information to a text file, for 2 players
+  for(int player = 1; player <= 2; player++)
   {
-      if(i==0)
+      //if first player
+      if(player==1)
       {
           board=player1_board;
           fleet=m_player1->getFleet();
       }
-      if(i==1)
+      //if second player
+      if(player==1)
       {
           board=player2_board;
           fleet=m_player2->getFleet();
       }
 
+      //contents of saved_txt are numbered below
+      //1. m_numShips
       gameFile<<m_numShips;
       gameFile<<"\n";
+
+      
       for(int j = 0; j<fleet->size(); j++)
       {
         coordsPtr=fleet->at(j)->getCoords();
@@ -84,19 +88,26 @@ void Executive::writeBoard(string** player1_board, string** player2_board)
 
         for(int n=0; n<sizeShips; n++)
         {
+          //2. coordsPtr[n]: coordinates of ship for example (3:8 4:8 for a 1x2 ship)
           gameFile<<coordsPtr[n];
           gameFile<<"\t";
         }
 
+        //3. ship's status: true if the Ship is still afloat, else false
         gameFile<<"\n";
         gameFile<<fleet->at(j)->getStatus();
+
+        //4. numHits: the number of hits the Ship has taken
         gameFile<<"\n";
         gameFile<<fleet->at(j)->getNumHits();
+
+        //5. ship size: 
         gameFile<<"\n";
         gameFile<<fleet->at(j)->getSize();
         gameFile<<"\n";
       } 
 
+      //6. Print grid
       for(int i = 0; i < m_BOARD_SIZE; i++)
       {
           for(int j = 0; j < m_BOARD_SIZE; j++)
@@ -131,57 +142,65 @@ void Executive::writeBoard(string** player1_board, string** player2_board)
 
 void Executive::readBoard()
 {
-  int turn=100;
-  int ai=100;
-  int size=0;
+  int turn=100; /* current player 1/2 */
+  int ai=100; /* ai or pvp */
+  int size=0; 
   bool status=false;
   int hits=0;
   string* coordsPtr=nullptr;
   int sizeShips=0;
   vector<Ship*>* fleet=nullptr;
-  string** board=nullptr;
+  string** board=nullptr; /*2D string to read grid from file*/
   
-  //store player info
+  /*-read in player info: current player turn and bool AI-*/
   ifstream playerInfo;
   playerInfo.open("player_info.txt"); 
 
   playerInfo>>turn;
   playerInfo>>ai;
 
-  playerInfo.close(); 
+  playerInfo.close();
+  /*----------------------------------------------------*/ 
 
-  //store grid info
+
+  /*-read in grid info-----------------------------------*/ 
   ifstream grid;
   grid.open("saved.txt"); 
 
+  //1. read numShips
   grid>>m_numShips;
 
+  //create two Admiral objects using given numShips
   m_player1= new Admiral(m_numShips);
   m_player2= new Admiral(m_numShips);
 
+  //initial 2D with size rows
   board=new string*[m_BOARD_SIZE];
 
   for(int i = 0; i < m_BOARD_SIZE; i++)
   {
+    //initial each row with 8 elements
     board[i] = new string[m_BOARD_SIZE];
   }
 
   string** player1_board=nullptr;
   string** player2_board=nullptr;
 
-  for(int k = 0; k < 2; k++)  //for 2 players
+  for(int player = 1; player <= 2; player++)  //for 2 players
   {
-    if(k==0)
+    //if player 1
+    if(player==1)
     {
       for(int n=0; n<m_numShips; n++)
       {
         grid>>size;
-
-        fleet=m_player1->getFleet();
+        coordsPtr=new string[size];
+        //fleet=m_player1->getFleet();
         for(int j = 0; j<size; j++)
         {
-          coordsPtr=fleet->at(j)->getCoords();
-          sizeShips=fleet->at(j)->getSize();
+          //coordsPtr=fleet->at(j)->getCoords();
+          //sizeShips=fleet->at(j)->getSize();
+          
           for(int n=0; n<sizeShips; n++)
           {
             grid>>coordsPtr[n];
@@ -195,17 +214,18 @@ void Executive::readBoard()
       }
     }
 
-    
-    if(k==1)
+    //if player 2
+    if(player==2)
     {
         for(int n=0; n<m_numShips; n++)
       {
         grid>>size;
-        fleet=m_player2->getFleet();
-        for(int j = 0; j<fleet->size(); j++)
+        coordsPtr=new string[size];
+        //fleet=m_player2->getFleet();
+        for(int j = 0; j<size; j++)
         {
-          coordsPtr=fleet->at(j)->getCoords();
-          sizeShips=fleet->at(j)->getSize();
+          //coordsPtr=fleet->at(j)->getCoords();
+          //sizeShips=fleet->at(j)->getSize();
           for(int n=0; n<sizeShips; n++)
           {
             grid>>coordsPtr[n];
@@ -227,13 +247,13 @@ void Executive::readBoard()
         }
     }
 
-    if(k==0)
+    if(player==1)
     {
         player1_board=board;
     }
 
     
-    if(k==1)
+    if(player==2)
     {
         player2_board=board;
     } 
