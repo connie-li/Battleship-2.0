@@ -188,30 +188,32 @@ void PowerUps::useScatterShot(bool isPlayer1){
 //10/13 I think this may only work correctly when the ships are put into the 
 //vector in order from smallest to largest
 void PowerUps::useUberCommander(std::string coord,bool isPlayer1){
-    Grid* map = mapPicker(isPlayer1);
+    Admiral* tempAdmir= new Admiral();
+    
     bool fired = false;
     //picking which admiral to use
-    Admiral* tempAdmir=nullptr;
     if(isPlayer1){
         tempAdmir = m_admir2;
     }
     else{
         tempAdmir = m_admir1;
     }
-    
+    //gathering the correct map
+    Grid* map = mapPicker(isPlayer1);
     vector<Ship*>* tempFleet = tempAdmir->getFleet();
+    
     //outer loop iterates through each ship in the fleet
-    for(int i=1;i<=tempAdmir->getNumShips();i++){
+    for(int i=0;i<tempAdmir->getNumShips();i++){
         //getting the coordinates of the ship at the ith position of shipVector
         std::string* tempCoords = tempFleet->at(i)->getCoords();
         int tempSize = tempFleet->at(i)->getSize();
-        std::string tempI = std::to_string(i);
+        std::string tempI = std::to_string(i+1);
 
         //inner loop iterates through each coordinate of a ship
         for(int j=0;j<tempSize;j++){
             if(fired ==false){
                 //if value at the ship coord is = to the number
-                if(tempCoords[j]== tempI){
+                if(tempAdmir->getBoard()->getCoor(tempCoords[j])== tempI){
                     map->setCoor(tempCoords[j], "X");
                     fired = true;
                     //adjust the ship
@@ -223,6 +225,7 @@ void PowerUps::useUberCommander(std::string coord,bool isPlayer1){
             }
         }
     }
+    std::cout << fired;
     removePowerUp("U",isPlayer1);
 }
 
