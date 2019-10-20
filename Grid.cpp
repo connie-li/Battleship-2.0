@@ -1,6 +1,7 @@
 #include "Grid.h"
 
 Grid::Grid(){
+    srand(time(NULL));
     m_center = to_string(m_BOARD_SIZE / 2) + ":" + to_string(m_BOARD_SIZE / 2);
     m_arr = new string*[m_BOARD_SIZE];
     for(int i = 0; i < m_BOARD_SIZE; i++){
@@ -36,6 +37,7 @@ string Grid::randCoor(const bool allowOcc){
             col = rand() % m_BOARD_SIZE + 1;
         }while(m_arr[row - 1][col - 1] != "~");
     }
+    cout<<to_string(row) + ":" + to_string(col);
     return to_string(row) + ":" + to_string(col);
 }
 

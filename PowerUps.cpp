@@ -128,7 +128,6 @@ void PowerUps::useScatterShot(bool isPlayer1){
     for(int i = 0; i < 3; i++){
         coor = map->randCoor(true);
         value = map->getCoor(coor);
-        cout<< "\ncoor: " << coor << " value: "<< value <<"\n";
         if(((int)value[0] >= 48 && (int)value[0] <= 57) || value == "X"){
             map->setCoor(coor, "X");
         }else if(value == "O" || value == "~"){
@@ -137,52 +136,6 @@ void PowerUps::useScatterShot(bool isPlayer1){
             addPowerUp(value, isPlayer1);
         }
     }
-
-//     //make 3 random shots on the board,
-//     //either call an AI or we rng the shots here, then send to grid
-//     //as a "fire"
-//     Grid* map = mapPicker(isPlayer1);
-//    // removePowerUp('S');
-
-//     //randomly generates coordinate
-//     std::string shot1 = map->randCoor(true);
-
-//     //gets the value of that coor from Grid
-//     std::string coord1 = map->getCoor(shot1);
-
-//     if(std::isdigit(coord1[0]))
-//     {
-//         //if it is a ship (number) then show as hit
-//         map->setCoor(shot1, "X");
-//     }
-//     else
-//     {
-//         //else show it as a miss --- what about other power ups????
-//         map->setCoor(shot1, "O");
-//     }
-    
-//     std::string shot2 = map->randCoor(true);
-//     std::string coord2 = map->getCoor(shot2);
-
-//     if(std::isdigit(coord2[0]))
-//     {
-//         map->setCoor(shot2, "X");
-//     }
-//     else
-//     {
-//         map->setCoor(shot2, "O");
-//     }
-//     std::string shot3 = map->randCoor(true);
-//     std::string coord3 = map->getCoor(shot3);
-
-//     if(std::isdigit(coord3[0]))
-//     {
-//         map->setCoor(shot3, "X");
-//     }
-//     else
-//     {
-//         map->setCoor(shot3, "O");
-//     }
 }
 
 //10/13 I think this may only work correctly when the ships are put into the 
