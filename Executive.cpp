@@ -36,6 +36,7 @@ void Executive::saveGame(int turn, Admiral* player1, Admiral* player2, bool ai)
   fileInfo<<turn;
   fileInfo<<"\n";
   fileInfo<<ai;
+  fileInfo<<"\n";
 
   string** board1 = nullptr; /*2D string array to get grid of player 1*/
   string** board2 = nullptr; /*2D string array to get grid of player 2*/
@@ -201,7 +202,7 @@ void Executive::readBoard()
       for(int j = 0; j<shipSize; j++)
       {
         //3. coordsPtr[n]: coordinates of ship for example (3:8 4:8 for a 1x2 ship)
-        grid>>coordsPtr[n]; 
+        grid>>coordsPtr[j];
       }
 
       //4. ship's status: true if the Ship is still afloat, else false
@@ -218,25 +219,37 @@ void Executive::readBoard()
             grid>>board[i][j];
           }
       }
+        
+      //if player 1
+      if(player==1)
+      {
+        //load a ship using constructor call
+        m_player1->loadShip(shipSize, coordsPtr, status, hits);
+      }
+      
+      //if player 2
+      if(player==2)
+      {
+        //load a ship using constructor call
+        m_player2->loadShip(shipSize, coordsPtr, status, hits);
+      }
     }
-    
+
     //if player 1
-    if(player==1)
-    {
-      //load a ship using constructor call
-      m_player1->loadShip(shipSize, coordsPtr, status, hits);
-      //assign board
-      player1_board=board;
-    }
+      if(player==1)
+      {
+        //assign board
+        player1_board=board;
+      }
+      
+      //if player 2
+      if(player==2)
+      {
+        //assign board
+        player2_board=board;
+      }
     
-    //if player 2
-    if(player==2)
-    {
-      //load a ship using constructor call
-      m_player2->loadShip(shipSize, coordsPtr, status, hits);
-      //assign board
-      player2_board=board;
-    }
+    
   } 
 
   grid.close();
