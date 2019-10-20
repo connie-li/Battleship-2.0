@@ -209,7 +209,7 @@ void Executive::readBoard()
         grid>>status;
         grid>>hits;
 
-        //call grid constructor
+        //call ship constructor
         m_player2->loadShip(size, coordsPtr, status, hits);
       }
     } 
@@ -570,7 +570,8 @@ int Executive::mainMenu()
     else if (player_choice == "5")
     {
       //check if ai or not, and call accordingly
-      if 
+      readBoard();
+      gameplay(relaunchOption);
       
     }
     else
