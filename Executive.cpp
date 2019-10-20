@@ -184,9 +184,10 @@ void Executive::readBoard()
         }
         grid>>status;
         grid>>hits;
-      }
+
         //call grid constructor
         m_player1->loadShip(size, coordsPtr, status, hits);
+      }
     }
 
     
@@ -207,12 +208,11 @@ void Executive::readBoard()
         }
         grid>>status;
         grid>>hits;
-      }
+
         //call grid constructor
         m_player2->loadShip(size, coordsPtr, status, hits);
+      }
     } 
-    
-    
 
     for(int i = 0; i < m_BOARD_SIZE; i++)
     {
@@ -236,13 +236,18 @@ void Executive::readBoard()
   
   grid.close();
 
-  loadGame(turn, player1_board, player2_board, ai);
+  //load board information
+  m_player1->getBoard()->readGrid(player1_board);
+  m_player2->getBoard()->readGrid(player2_board);
+  //loadGame(turn, player1_board, player2_board, ai, size, coordsPtr, status, hits);
 }
 
-void Executive::loadGame(int n, string** player1_board, string** player2_board, bool ai){
-    //here is the load game stuff and things
+void Executive::loadGame(int turn, string** player1_board, string** player2_board, bool ai, int size, string* coordsPtr, bool status, int hits)
+{
+    //store ship information
+    
 
-    //void Grid::readGrid(string** arr)
+    //store boards
     m_player1->getBoard()->readGrid(player1_board);
     m_player2->getBoard()->readGrid(player2_board);
 
