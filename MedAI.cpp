@@ -14,6 +14,50 @@ MedAI::MedAI(Grid* grid, int numShips)
     m_numAfloat = numShips;
 }
 
+void MedAI::updateMiss()
+{
+    string fire = "";
+    if (getNumAfloat() != prevShipAfloat)
+    {
+        hit = false;
+        counter = 0;
+        prevShot = "";
+        prevShipAfloat = getNumShips();
+        direction = 0;
+        current = 0;
+    }
+    else if (direction == current)
+    {
+        if (direction ==1)
+        {
+            direction = 3;
+            fire = to_string(r) + ":" + to_string(c-counter);
+            prevShot = fire;
+        
+        }
+        else if (direction ==2)
+        {
+            direction =4;
+            fire = to_string(r+counter) + ":" + to_string(c);
+            prevShot = fire;
+            
+        }
+        else if(direction == 3)
+        {
+            direction =1;
+            fire =  to_string(r) + ":" + to_string(c+counter);
+            prevShot = fire;
+
+        }
+        else 
+        {
+            direction = 2;
+            fire = to_string(r-counter) + ":" + to_string(c);
+            prevShot = fire;
+        }
+    }
+}
+
 string MedAI::checkDirection()
 {
     string fire = opponentBoard->randCoor(true);
