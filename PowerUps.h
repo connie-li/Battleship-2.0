@@ -33,6 +33,8 @@ class PowerUps
     PowerUps();
     ~PowerUps();
 
+   
+
     /**
      * sets the internal admirals to the admirals made in game
      * @param Admiral* admir1 pointer to admiral1
@@ -61,7 +63,7 @@ class PowerUps
      * @param string coordinate to use the powerup on
      * @param bool true if player1 false if player2
      */
-    void useScatterShot(std::string coord,bool isPlayer1);
+    void useScatterShot(bool isPlayer1);
 
     /**
      * seeks the smallest ship and fires upon it

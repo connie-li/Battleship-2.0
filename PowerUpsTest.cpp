@@ -14,6 +14,7 @@ void PowerUpsTest::run(){
 }
 
 PowerUpsTest::~PowerUpsTest(){
+    deleteAdmiral();
     cout << "PowerUps Testing Complete\n";
 }
 
@@ -73,20 +74,147 @@ bool PowerUpsTest::testGetAddRmHas(){
 
 bool PowerUpsTest::testTorpedo(){
     bool hasPassed = 1;
-    return(true);
+    string* tempCoords = new string[3];
+    tempCoords[0] = "1:1";
+    tempCoords[1] ="1:2";
+    tempCoords[2] = "1:3";
+    
+    try{
+        createAdmiral("T", 1);
+        m_tempAdmir->addShip(3, tempCoords);
+
+        cout << "Firing on top coordinate: ";
+        m_PowerUps.useTorpedo("1:1", true, 3, tempCoords);
+        cout << pass;
+        delete m_tempAdmir;
+
+    }catch(exception){
+        hasPassed = 0;
+        cout << fail;
+    }
+    try{
+        createAdmiral("T", 1);
+        m_tempAdmir->addShip(3, tempCoords);
+
+        cout << "Firing on middle coordinate: ";
+        m_PowerUps.useTorpedo("1:2",true,3,tempCoords);
+        cout << pass;
+        delete m_tempAdmir;
+
+    }catch(exception){
+        hasPassed = 0;
+        cout << fail;
+    }
+    try{
+        createAdmiral("T", 1);
+        m_tempAdmir->addShip(3, tempCoords);
+
+        cout << "Firing on bottom coordinate: ";
+        m_PowerUps.useTorpedo("1:3",true,3,tempCoords);
+        cout << pass;
+        delete m_tempAdmir;
+
+    }catch(exception){
+        hasPassed = 0;
+        cout << fail;
+    }
+
+    delete[] tempCoords;
+    
+    return(hasPassed);
 }
 
 bool PowerUpsTest::testRadar(){
     bool hasPassed =1;
-    return(true);
+    string* tempCoords = new string[3];
+    tempCoords[0] = "1:1";
+    tempCoords[1] ="1:2";
+    tempCoords[2] = "1:3";
+
+    try{
+        createAdmiral("R", 1);
+        m_tempAdmir->getBoard()->setCoor("1:1", "3");
+        m_tempAdmir->getBoard()->setCoor("1:2", "3");
+        m_tempAdmir->getBoard()->setCoor("1:3", "3");
+        m_PowerUps.useRadar("2:2", true);
+        m_tempAdmir->getBoard()->printGrid(true);
+    }catch(exception){
+        hasPassed = 0;
+    }
+    delete[] tempCoords;
+    delete m_tempAdmir;
+    return(hasPassed);
 }
 
 bool PowerUpsTest::testScatter(){
     bool hasPassed = 1;
-    return(true);
+    string* tempCoords = new string[3];
+    tempCoords[0] = "1:1";
+    tempCoords[1] ="1:2";
+    tempCoords[2] = "1:3";
+    try{
+        createAdmiral("S", 1);
+        m_tempAdmir->addShip(3, tempCoords);
+        cout<< "Firing Scattershot: ";
+        m_PowerUps.useScatterShot(true);
+        m_tempAdmir->getBoard()->printGrid(false);
+        cout<<pass;
+        delete m_tempAdmir;
+    }catch(exception){
+        hasPassed = 0;
+        cout<< fail;
+    }
+    delete[] tempCoords;
+    return(hasPassed);
 }
 
 bool PowerUpsTest::testUber(){
     bool hasPassed = 1;
-    return(true);
+    string* tempCoords1 = new string[1];
+    tempCoords1[0] = "2:1";
+    string* tempCoords2 = new string[2];
+    tempCoords2[0] = "1:1";
+    tempCoords2[1] ="1:2";
+
+  
+
+    //testing if uber fires on the smallest ship
+    try{
+        createAdmiral("U", 2);
+        m_tempAdmir->addShip(1, tempCoords1);
+        m_tempAdmir->addShip(2,tempCoords2);
+
+        std::cout << "Firing on the smallest ship: ";
+        m_PowerUps.useUberCommander("1:1",true);
+        if(m_tempAdmir->getBoard()->getCoor("2:1")=="X"){
+            cout << pass;
+        }
+        else{
+            cout << unkno;
+        }
+        
+    }catch(exception e){
+        
+        hasPassed = 0;
+        cout << fail;
+    }
+    
+    delete[] tempCoords1;
+    delete[] tempCoords2;
+
+    return(hasPassed);
+}
+
+void PowerUpsTest::createAdmiral(string powerup, int ships){
+    //deleteAdmiral();
+    m_tempAdmir = new Admiral(ships);
+    m_PowerUps.addPowerUp(powerup,true);
+    m_PowerUps.setAdmirals(m_tempAdmir,m_tempAdmir);
+}
+
+void PowerUpsTest::deleteAdmiral(){
+    if(m_tempAdmir != nullptr){
+        delete m_tempAdmir; 
+    }
+    
 }

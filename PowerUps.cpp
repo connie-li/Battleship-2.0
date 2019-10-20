@@ -7,8 +7,8 @@ PowerUps::PowerUps()
 
 PowerUps::~PowerUps(){
     //tbd
-    delete m_admir1;
-    delete m_admir2;
+    //delete m_admir1;
+    //delete m_admir2;
 }
 
 void PowerUps::setAdmirals(Admiral* admir1, Admiral* admir2){
@@ -24,21 +24,21 @@ Grid* PowerUps::mapPicker(bool isPlayer1){
 }
 
 void PowerUps::useTorpedo(std::string coord,bool isPlayer1, int shipSize, string* shipCoords){
-    Grid* map = mapPicker(isPlayer1);
-    Admiral* tempAdmir = new Admiral();
+    Admiral* tempAdmir = nullptr;
     
-
     if(isPlayer1){
         tempAdmir = m_admir1;
     }
     else{
         tempAdmir = m_admir2;
     }
+    Grid* map = mapPicker(isPlayer1);
     vector<Ship*>* fleet = tempAdmir->getFleet();
+    
     int tempIndex= tempAdmir->findShipbyCoord(coord);
-
      //check to see if the value is an int
     std::string coordValue = map->getCoor(coord);
+
     if(shipSize != -1){
         //this is a hit, destroy whole ship
         for(int i=0;i<shipSize;i++){
@@ -67,6 +67,7 @@ void PowerUps::useTorpedo(std::string coord,bool isPlayer1, int shipSize, string
 
     //remove the torpedo from the list
     removePowerUp("T", isPlayer1);
+    
 }
 
 void PowerUps::useRadar(std::string coord,bool isPlayer1){
@@ -74,9 +75,8 @@ void PowerUps::useRadar(std::string coord,bool isPlayer1){
     //should these show as water or misses?
     //went with showing them as misses... ships shown as *** 
     Grid* map = mapPicker(isPlayer1);
-    int r = std::stoi(coord.substr(0,1));
-    int c = charCoordtoIntCoord(coord.at(2));
-
+    int r = stoi(coord.substr(coord.find(":") + 1));
+    int c = stoi(coord.substr(0, coord.find(":")));
     //get starting upper left coor row and col for 3x3 box for radar
     int startRow = r-1;
     int startCol = c -1;
@@ -96,21 +96,16 @@ void PowerUps::useRadar(std::string coord,bool isPlayer1){
     {
         startCol -= 1;
     }
-    for (int i = startRow; i< startRow+2; i++ )
+    for (int i = startRow; i<= startRow+2; i++ )
     {
-        for(int j = startCol; j< startCol+2; j++)
+        for(int j = startCol; j<= startCol+2; j++)
         {
-            std::string shot = std::to_string(i)+":"+std::to_string(j);
+            string shot = to_string(i) + ":" + to_string(j);
             std::string coord1 = map->getCoor(shot);
-            if(std::isdigit(coord1.at(0)))
-            {
-                //if it is a number (ship) then display as *
-                map->setCoor(shot, "*");
-            }
-            else if (coord1[0] == '~')
-            {
-                //if water, display as miss
+            if(coord1 == "~"){
                 map->setCoor(shot, "O");
+            }else{
+                map->setCoor(shot, ("$" + coord1));
             }
         }
     }
@@ -121,81 +116,52 @@ void PowerUps::useRadar(std::string coord,bool isPlayer1){
  * How do we know if a user got a power up??
  */
 
-void PowerUps::useScatterShot(std::string coord,bool isPlayer1){
-    //make 3 random shots on the board,
-    //either call an AI or we rng the shots here, then send to grid
-    //as a "fire"
+void PowerUps::useScatterShot(bool isPlayer1){
     Grid* map = mapPicker(isPlayer1);
-   // removePowerUp('S');
-
-    //randomly generates coordinate
-    std::string shot1 = map->randCoor(true);
-
-    //gets the value of that coor from Grid
-    std::string coord1 = map->getCoor(shot1);
-
-    if(std::isdigit(coord1[0]))
-    {
-        //if it is a ship (number) then show as hit
-        map->setCoor(shot1, "X");
-    }
-    else
-    {
-        //else show it as a miss --- what about other power ups????
-        map->setCoor(shot1, "O");
-    }
-    
-    std::string shot2 = map->randCoor(true);
-    std::string coord2 = map->getCoor(shot2);
-
-    if(std::isdigit(coord2[0]))
-    {
-        map->setCoor(shot2, "X");
-    }
-    else
-    {
-        map->setCoor(shot2, "O");
-    }
-    std::string shot3 = map->randCoor(true);
-    std::string coord3 = map->getCoor(shot3);
-
-    if(std::isdigit(coord3[0]))
-    {
-        map->setCoor(shot3, "X");
-    }
-    else
-    {
-        map->setCoor(shot3, "O");
+    string value = "\0";
+    string coor = "\0";
+    for(int i = 0; i < 3; i++){
+        coor = map->randCoor(true);
+        value = map->getCoor(coor);
+        if(((int)value[0] >= 48 && (int)value[0] <= 57) || value == "X"){
+            map->setCoor(coor, "X");
+        }else if(value == "O" || value == "~"){
+            map->setCoor(coor, "O");
+        }else{
+            addPowerUp(value, isPlayer1);
+        }
     }
 }
 
 //10/13 I think this may only work correctly when the ships are put into the 
 //vector in order from smallest to largest
 void PowerUps::useUberCommander(std::string coord,bool isPlayer1){
-    Grid* map = mapPicker(isPlayer1);
+    Admiral* tempAdmir= nullptr;
+    
     bool fired = false;
     //picking which admiral to use
-    Admiral* tempAdmir=nullptr;
     if(isPlayer1){
         tempAdmir = m_admir2;
     }
     else{
         tempAdmir = m_admir1;
     }
-    
+    //gathering the correct map
+    Grid* map = mapPicker(isPlayer1);
     vector<Ship*>* tempFleet = tempAdmir->getFleet();
+    
     //outer loop iterates through each ship in the fleet
-    for(int i=1;i<=tempAdmir->getNumShips();i++){
+    for(int i=0;i<tempAdmir->getNumShips();i++){
         //getting the coordinates of the ship at the ith position of shipVector
         std::string* tempCoords = tempFleet->at(i)->getCoords();
         int tempSize = tempFleet->at(i)->getSize();
-        std::string tempI = std::to_string(i);
+        std::string tempI = std::to_string(i+1);
 
         //inner loop iterates through each coordinate of a ship
         for(int j=0;j<tempSize;j++){
             if(fired ==false){
                 //if value at the ship coord is = to the number
-                if(tempCoords[j]== tempI){
+                if(tempAdmir->getBoard()->getCoor(tempCoords[j])== tempI){
                     map->setCoor(tempCoords[j], "X");
                     fired = true;
                     //adjust the ship
@@ -208,6 +174,7 @@ void PowerUps::useUberCommander(std::string coord,bool isPlayer1){
         }
     }
     removePowerUp("U",isPlayer1);
+    
 }
 
 vector<string> PowerUps::getPowerUps(bool isPlayer1)
