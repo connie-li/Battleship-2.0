@@ -530,7 +530,10 @@ void Executive::placeShip(int n, Admiral* player, bool ai)
     }
   }
 
-  player->getBoard()->printGrid(false);
+  if(!ai)
+  {
+    player->getBoard()->printGrid(false);
+  }
 }
 
 std::string Executive::askCoord()
@@ -1106,9 +1109,7 @@ void Executive::setupGame(bool AI)
     
     setNumShips();
     std::cout<< "\nPlayer 1: It's time to place your ships.\n\n";
-    m_player1->getBoard()->printGrid(false);
     placeShip(m_numShips, m_player1, false);
-    m_player1->getBoard()->printGrid(false);
 
     //place AI ships
     placeShip(m_numShips, m_player2, true);
