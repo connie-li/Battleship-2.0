@@ -39,6 +39,8 @@ private:
      */
     bool testGetAddRmHas();
 
+    void createAdmiral(string powerup, int ships);
+
 public:
 
     /**
@@ -56,5 +58,5 @@ public:
      */
     ~PowerUpsTest();
 
-};
+}; 
 #endif
