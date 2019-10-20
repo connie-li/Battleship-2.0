@@ -244,7 +244,7 @@ void Executive::readBoard()
   
   grid.close();
 
-  //loadGame(turn, player1_board, player2_board, ai);
+  loadGame(turn, player1_board, player2_board, ai);
 }
 
 void Executive::loadGame(int turn, string** player1_board, string** player2_board, bool ai)
