@@ -829,24 +829,24 @@ void Executive::placePowerUp(bool ai)
    Grid* p1 = m_player1->getBoard();
    Grid* p2 = m_player2->getBoard();
    string coor = "";
-   coor = p1->randCoor(false);
-   p1->setCoor(coor, "T");
-   coor = p1->randCoor(false);
-   p1->setCoor(coor, "U");
-   coor = p1->randCoor(false);
-   p1->setCoor(coor, "S");
-   coor = p1->randCoor(false);
-   p1->setCoor(coor, "R");
+   coor = p2->randCoor(false);
+   p2->setCoor("1:1", "T");
+   coor = p2->randCoor(false);
+   p2->setCoor("1:2", "U");
+   coor = p2->randCoor(false);
+   p2->setCoor("1:3", "S");
+   coor = p2->randCoor(false);
+   p2->setCoor("1:4", "R");
    coor = p2->randCoor(false);
    if(!ai)
    {
-      p2->setCoor(coor, "T");
-      coor = p2->randCoor(false);
-      p2->setCoor(coor, "U");
-      coor = p2->randCoor(false);
-      p2->setCoor(coor, "S");
-      coor = p2->randCoor(false);
-      p2->setCoor(coor, "R");
+      p1->setCoor(coor, "T");
+      coor = p1->randCoor(false);
+      p1->setCoor(coor, "U");
+      coor = p1->randCoor(false);
+      p1->setCoor(coor, "S");
+      coor = p1->randCoor(false);
+      p1->setCoor(coor, "R");
    }
    
 }
@@ -860,21 +860,21 @@ string Executive::askForPowerUp(const int player)
   do {
       cout << "Player " << player << ", would you like to use a powerup?\n";
       it = playerPUs->begin();
-      while(it != playerPUs->end())
+      for(int i = 0; i< playerPUs->size(); i++)
       {
-        if(*it == "T")
+        if(playerPUs->at(i) == "T")
         {
           cout << "Enter T to use your Torpedo.\n";
         }
-        if(*it == "R")
+        if(playerPUs->at(i)== "R")
         {
           cout << "Enter R to use your Radar.\n";
         }
-        if(*it == "U")
+        if(playerPUs->at(i) == "U")
         {
           cout << "Enter U to use your Uber Commander.\n";
         }
-        if(*it == "S")
+        if(playerPUs->at(i) == "S")
         {
           cout << "Enter S to use your Scattershot.\n";
         }
@@ -884,11 +884,11 @@ string Executive::askForPowerUp(const int player)
       cout << "Your choice: ";
       cin >> choice;
       // check whether the choice is in the vector
-      it = find(playerPUs->begin(), playerPUs->end(), choice);
-      if(it != playerPUs->end())
-      {
-        goodInput = true;
-      }
+      //it = find(playerPUs->begin(), playerPUs->end(), choice);
+      // if(it != playerPUs->end())
+      // {
+      //   goodInput = true;
+      // }
   } while(!goodInput);
   return(choice);
 }
@@ -977,10 +977,9 @@ void Executive::receivedPowerUp(string turnResult, bool isPlayer1)
 {
   if(turnResult == "T" || turnResult == "R" || turnResult == "U" || turnResult == "S")
   {
-    m_powerups.addPowerUp(turnResult, true);
+    m_powerups.addPowerUp(turnResult, isPlayer1);
   }
 }
-
 vector<string>* Executive::getPowerups(const int player) const
 {
 //   vector<string>* powerups = m_powerups.getPowerUps(player);
