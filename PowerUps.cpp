@@ -7,6 +7,13 @@ PowerUps::PowerUps()
 
 PowerUps::~PowerUps(){
     //tbd
+    delete m_admir1;
+    delete m_admir2;
+}
+
+void PowerUps::setAdmirals(Admiral* admir1, Admiral* admir2){
+    m_admir1 = admir1;
+    m_admir2 = admir2;
 }
 
 Grid* PowerUps::mapPicker(bool isPlayer1){
@@ -18,7 +25,7 @@ Grid* PowerUps::mapPicker(bool isPlayer1){
 
 void PowerUps::useTorpedo(std::string coord,bool isPlayer1, int shipSize, string* shipCoords){
     Grid* map = mapPicker(isPlayer1);
-    Admiral* tempAdmir = nullptr;
+    Admiral* tempAdmir = new Admiral();
     
 
     if(isPlayer1){

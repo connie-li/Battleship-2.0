@@ -1,7 +1,5 @@
 #include "EasyAI.h"
 
-#include "AI.h"
-
 string EasyAI::fire()
 {
     return opponentBoard->randCoor(true);

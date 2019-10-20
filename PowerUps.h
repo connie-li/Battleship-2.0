@@ -34,6 +34,13 @@ class PowerUps
     ~PowerUps();
 
     /**
+     * sets the internal admirals to the admirals made in game
+     * @param Admiral* admir1 pointer to admiral1
+     * @param Admiral* admir2 pointer to admiral2
+     */
+    void setAdmirals(Admiral* admir1, Admiral* admir2);
+
+    /**
      * launches insta-kill torpedo
      * @param string coordinate to use the powerup on
      * @param bool isPlayer1 true if player1 false if player2

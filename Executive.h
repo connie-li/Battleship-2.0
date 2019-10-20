@@ -8,8 +8,11 @@
 #include <stdlib.h> 
 #include "Admiral.h"
 #include "PowerUps.h"
-// #include "AI.h"
+#include "EasyAI.h"
+#include "MedAI.h"
+#include "HardAI.h"
 #include <chrono>
+#include <thread>
 using namespace std;
 
 class Executive
@@ -20,7 +23,7 @@ class Executive
         Admiral* m_player2; //Admiral object for player 2
         int m_numShips; //int of the number of ships used in the game
         int m_turn; /* 1 for player 1, 2 for player 2 */
-        std::chrono::duration<unsigned long long> interval = std::chrono::seconds(2); //their timeout thing
+        std::chrono::duration<unsigned long long> m_interval = std::chrono::seconds(3); //their timeout thing
         PowerUps m_powerups;    /* Contains both players' powerups and methods to use them. */
         char quit_choice;
 
@@ -28,7 +31,7 @@ class Executive
         
     public:
     /** A constructor that takes no parameters.
-     * @param none
+     * @post initializes the player turn to 1.
      */
     Executive();
 
@@ -55,7 +58,7 @@ class Executive
      * @return none
      * @post sends a string array of the coordinates of the ship to Admiral
      */
-    void placeShip(int size, Admiral* player, bool AI);
+    void placeShip(int n, Admiral* player, bool ai);
 
     /**
      * Delete saved.txt if it already exists. Then, write the AI and turn info and call writeBoard()

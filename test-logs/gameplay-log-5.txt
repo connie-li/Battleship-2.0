@@ -1,0 +1,324 @@
+C:\Users\Connie\Documents\repos\eecs448\Return-Awesome---Project-2\Battleship-2.0>Battleship.exe
+
+
+  ____        _   _   _           _     _
+ |  _ \      | | | | | |         | |   (_)
+ | |_) | __ _| |_| |_| | ___  ___| |__  _ _ __
+ |  _ < / _` | __| __| |/ _ \/ __| '_ \| | '_ \
+ | |_) | (_| | |_| |_| |  __/\__ \ | | | | |_) |
+ |____/ \__,_|\__|\__|_|\___||___/_| |_|_| .__/
+                                         | |
+                                         |_|
+
+Menu:
+ 1) Instructions
+ 2) Start Game: Player vs. Player
+ 3) Start Game: Player vs. AI
+ 4) Quit Game
+
+Enter option (1-4): 2
+Starting a Player vs. Player game!
+
+How many ships would you like to play with? (1-5 ships): 5
+Player 1: It's time to place your ships.
+        A       B       C       D       E       F       G       H
+1       ~       ~       ~       ~       ~       ~       ~       ~
+2       ~       ~       ~       ~       ~       ~       ~       ~
+3       ~       ~       ~       ~       ~       ~       ~       ~
+4       ~       ~       ~       ~       ~       ~       ~       ~
+5       ~       ~       ~       ~       ~       ~       ~       ~
+6       ~       ~       ~       ~       ~       ~       ~       ~
+7       ~       ~       ~       ~       ~       ~       ~       ~
+8       ~       ~       ~       ~       ~       ~       ~       ~
+
+It's time to place your ship of size 1x1. Enter a starting coordinate
+Please enter a coordinate in the form 1A: 1A
+        A       B       C       D       E       F       G       H
+1       1       ~       ~       ~       ~       ~       ~       ~
+2       ~       ~       ~       ~       ~       ~       ~       ~
+3       ~       ~       ~       ~       ~       ~       ~       ~
+4       ~       ~       ~       ~       ~       ~       ~       ~
+5       ~       ~       ~       ~       ~       ~       ~       ~
+6       ~       ~       ~       ~       ~       ~       ~       ~
+7       ~       ~       ~       ~       ~       ~       ~       ~
+8       ~       ~       ~       ~       ~       ~       ~       ~
+
+It's time to place your ship of size 1x2. Enter a starting coordinate
+Please enter a coordinate in the form 1A: 2A
+Enter an ending coordinate. Possible ending coordinates for this ship are: 3A 2B
+Please enter a coordinate in the form 1A: 2B
+        A       B       C       D       E       F       G       H
+1       1       ~       ~       ~       ~       ~       ~       ~
+2       2       2       ~       ~       ~       ~       ~       ~
+3       ~       ~       ~       ~       ~       ~       ~       ~
+4       ~       ~       ~       ~       ~       ~       ~       ~
+5       ~       ~       ~       ~       ~       ~       ~       ~
+6       ~       ~       ~       ~       ~       ~       ~       ~
+7       ~       ~       ~       ~       ~       ~       ~       ~
+8       ~       ~       ~       ~       ~       ~       ~       ~
+
+It's time to place your ship of size 1x3. Enter a starting coordinate
+Please enter a coordinate in the form 1A: 3A
+Enter an ending coordinate. Possible ending coordinates for this ship are: 5A 3C
+Please enter a coordinate in the form 1A: 3C
+        A       B       C       D       E       F       G       H
+1       1       ~       ~       ~       ~       ~       ~       ~
+2       2       2       ~       ~       ~       ~       ~       ~
+3       3       3       3       ~       ~       ~       ~       ~
+4       ~       ~       ~       ~       ~       ~       ~       ~
+5       ~       ~       ~       ~       ~       ~       ~       ~
+6       ~       ~       ~       ~       ~       ~       ~       ~
+7       ~       ~       ~       ~       ~       ~       ~       ~
+8       ~       ~       ~       ~       ~       ~       ~       ~
+
+It's time to place your ship of size 1x4. Enter a starting coordinate
+Please enter a coordinate in the form 1A: 4A
+Enter an ending coordinate. Possible ending coordinates for this ship are: 7A 4D
+Please enter a coordinate in the form 1A: 4D
+        A       B       C       D       E       F       G       H
+1       1       ~       ~       ~       ~       ~       ~       ~
+2       2       2       ~       ~       ~       ~       ~       ~
+3       3       3       3       ~       ~       ~       ~       ~
+4       4       4       4       4       ~       ~       ~       ~
+5       ~       ~       ~       ~       ~       ~       ~       ~
+6       ~       ~       ~       ~       ~       ~       ~       ~
+7       ~       ~       ~       ~       ~       ~       ~       ~
+8       ~       ~       ~       ~       ~       ~       ~       ~
+
+It's time to place your ship of size 1x5. Enter a starting coordinate
+Please enter a coordinate in the form 1A: 5A
+Enter an ending coordinate. Possible ending coordinates for this ship are: 5E
+Please enter a coordinate in the form 1A: 5E
+        A       B       C       D       E       F       G       H
+1       1       ~       ~       ~       ~       ~       ~       ~
+2       2       2       ~       ~       ~       ~       ~       ~
+3       3       3       3       ~       ~       ~       ~       ~
+4       4       4       4       4       ~       ~       ~       ~
+5       5       5       5       5       5       ~       ~       ~
+6       ~       ~       ~       ~       ~       ~       ~       ~
+7       ~       ~       ~       ~       ~       ~       ~       ~
+8       ~       ~       ~       ~       ~       ~       ~       ~
+
+Thanks for placing your ships, player 1!
+Now it's player 2's turn.
+
+
+
+
+
+
+
+
+Player 2: It's time to place your ships.
+        A       B       C       D       E       F       G       H
+1       ~       ~       ~       ~       ~       ~       ~       ~
+2       ~       ~       ~       ~       ~       ~       ~       ~
+3       ~       ~       ~       ~       ~       ~       ~       ~
+4       ~       ~       ~       ~       ~       ~       ~       ~
+5       ~       ~       ~       ~       ~       ~       ~       ~
+6       ~       ~       ~       ~       ~       ~       ~       ~
+7       ~       ~       ~       ~       ~       ~       ~       ~
+8       ~       ~       ~       ~       ~       ~       ~       ~
+
+It's time to place your ship of size 1x1. Enter a starting coordinate
+Please enter a coordinate in the form 1A: 8A
+        A       B       C       D       E       F       G       H
+1       ~       ~       ~       ~       ~       ~       ~       ~
+2       ~       ~       ~       ~       ~       ~       ~       ~
+3       ~       ~       ~       ~       ~       ~       ~       ~
+4       ~       ~       ~       ~       ~       ~       ~       ~
+5       ~       ~       ~       ~       ~       ~       ~       ~
+6       ~       ~       ~       ~       ~       ~       ~       ~
+7       ~       ~       ~       ~       ~       ~       ~       ~
+8       1       ~       ~       ~       ~       ~       ~       ~
+
+It's time to place your ship of size 1x2. Enter a starting coordinate
+Please enter a coordinate in the form 1A: 7A
+Enter an ending coordinate. Possible ending coordinates for this ship are: 6A 7B
+Please enter a coordinate in the form 1A: 6A
+        A       B       C       D       E       F       G       H
+1       ~       ~       ~       ~       ~       ~       ~       ~
+2       ~       ~       ~       ~       ~       ~       ~       ~
+3       ~       ~       ~       ~       ~       ~       ~       ~
+4       ~       ~       ~       ~       ~       ~       ~       ~
+5       ~       ~       ~       ~       ~       ~       ~       ~
+6       2       ~       ~       ~       ~       ~       ~       ~
+7       2       ~       ~       ~       ~       ~       ~       ~
+8       1       ~       ~       ~       ~       ~       ~       ~
+
+It's time to place your ship of size 1x3. Enter a starting coordinate
+Please enter a coordinate in the form 1A: 5A
+Enter an ending coordinate. Possible ending coordinates for this ship are: 3A 5C
+Please enter a coordinate in the form 1A: 3A
+        A       B       C       D       E       F       G       H
+1       ~       ~       ~       ~       ~       ~       ~       ~
+2       ~       ~       ~       ~       ~       ~       ~       ~
+3       3       ~       ~       ~       ~       ~       ~       ~
+4       3       ~       ~       ~       ~       ~       ~       ~
+5       3       ~       ~       ~       ~       ~       ~       ~
+6       2       ~       ~       ~       ~       ~       ~       ~
+7       2       ~       ~       ~       ~       ~       ~       ~
+8       1       ~       ~       ~       ~       ~       ~       ~
+
+It's time to place your ship of size 1x4. Enter a starting coordinate
+Please enter a coordinate in the form 1A: 4A
+Error you already placed a ship there. Try a different coordinate. Please enter a coordinate in the form 1A: 9A
+Invalid coordinate. Please enter a coordinate in the form 1A: fae
+Invalid coordinate. Please enter a coordinate in the form 1A: `1
+Invalid coordinate. Please enter a coordinate in the form 1A: 23
+Invalid coordinate. Please enter a coordinate in the form 1A: 1j
+Invalid coordinate. Please enter a coordinate in the form 1A: 1b
+Invalid coordinate. Please enter a coordinate in the form 1A: asdfoiwahg
+Invalid coordinate. Please enter a coordinate in the form 1A:
+f
+Invalid coordinate. Please enter a coordinate in the form 1A: 2A
+Enter an ending coordinate. Possible ending coordinates for this ship are: 2D
+Please enter a coordinate in the form 1A: Invalid coordinate. Please enter a coordinate in the form 1A: 2D
+        A       B       C       D       E       F       G       H
+1       ~       ~       ~       ~       ~       ~       ~       ~
+2       4       4       4       4       ~       ~       ~       ~
+3       3       ~       ~       ~       ~       ~       ~       ~
+4       3       ~       ~       ~       ~       ~       ~       ~
+5       3       ~       ~       ~       ~       ~       ~       ~
+6       2       ~       ~       ~       ~       ~       ~       ~
+7       2       ~       ~       ~       ~       ~       ~       ~
+8       1       ~       ~       ~       ~       ~       ~       ~
+
+It's time to place your ship of size 1x5. Enter a starting coordinate
+Please enter a coordinate in the form 1A: Invalid coordinate. Please enter a coordinate in the form 1A: 1A
+Enter an ending coordinate. Possible ending coordinates for this ship are: 1E
+Please enter a coordinate in the form 1A: Invalid coordinate. Please enter a coordinate in the form 1A: 1fe
+Invalid coordinate. Please enter a coordinate in the form 1A: fae
+Invalid coordinate. Please enter a coordinate in the form 1A: 09
+Invalid coordinate. Please enter a coordinate in the form 1A: 3j
+Invalid coordinate. Please enter a coordinate in the form 1A: 5A
+
+ Error. Enter one of the coordinates listed above. Please enter a coordinate in the form 1A: Invalid coordinate. Please enter a coordinate in the form 1A: 5A
+
+ Error. Enter one of the coordinates listed above. Please enter a coordinate in the form 1A: Invalid coordinate. Please enter a coordinate in the form 1A: 1E
+        A       B       C       D       E       F       G       H
+1       5       5       5       5       5       ~       ~       ~
+2       4       4       4       4       ~       ~       ~       ~
+3       3       ~       ~       ~       ~       ~       ~       ~
+4       3       ~       ~       ~       ~       ~       ~       ~
+5       3       ~       ~       ~       ~       ~       ~       ~
+6       2       ~       ~       ~       ~       ~       ~       ~
+7       2       ~       ~       ~       ~       ~       ~       ~
+8       1       ~       ~       ~       ~       ~       ~       ~
+
+Thanks for placing your ships. Time to start the game!
+
+
+
+
+
+Your firing map:
+        A       B       C       D       E       F       G       H
+1       ~       ~       ~       ~       ~       ~       ~       ~
+2       ~       ~       ~       ~       ~       ~       ~       ~
+3       ~       ~       ~       ~       ~       ~       ~       ~
+4       ~       ~       ~       ~       ~       ~       ~       ~
+5       ~       ~       ~       ~       ~       ~       ~       ~
+6       ~       ~       ~       ~       ~       ~       ~       ~
+7       ~       ~       ~       ~       ~       ~       ~       ~
+8       ~       ~       ~       ~       ~       ~       ~       ~
+
+Your ship map:
+        A       B       C       D       E       F       G       H
+1       1       ~       ~       ~       ~       ~       ~       ~
+2       2       2       ~       ~       ~       ~       ~       ~
+3       3       3       3       ~       ~       ~       ~       ~
+4       4       4       4       4       ~       ~       ~       ~
+5       5       5       5       5       5       ~       ~       ~
+6       ~       ~       ~       ~       ~       ~       ~       ~
+7       ~       ~       ~       ~       ~       ~       ~       ~
+8       ~       ~       ~       ~       ~       ~       ~       ~
+
+Player 1, input a valid coordinate to fire on: 1j
+Player 1, input a valid coordinate to fire on: dfaoi
+Player 1, input a valid coordinate to fire on: 1J
+Player 1, input a valid coordinate to fire on: 1A
+You hit their ship!
+
+
+
+
+
+        A       B       C       D       E       F       G       H
+1       ~       ~       ~       ~       ~       ~       ~       ~
+2       ~       ~       ~       ~       ~       ~       ~       ~
+3       ~       ~       ~       ~       ~       ~       ~       ~
+4       ~       ~       ~       ~       ~       ~       ~       ~
+5       ~       ~       ~       ~       ~       ~       ~       ~
+6       ~       ~       ~       ~       ~       ~       ~       ~
+7       ~       ~       ~       ~       ~       ~       ~       ~
+8       ~       ~       ~       ~       ~       ~       ~       ~
+
+        A       B       C       D       E       F       G       H
+1       X       5       5       5       5       ~       ~       ~
+2       4       4       4       4       ~       ~       ~       ~
+3       3       ~       ~       ~       ~       ~       ~       ~
+4       3       ~       ~       ~       ~       ~       ~       ~
+5       3       ~       ~       ~       ~       ~       ~       ~
+6       2       ~       ~       ~       ~       ~       ~       ~
+7       2       ~       ~       ~       ~       ~       ~       ~
+8       1       ~       ~       ~       ~       ~       ~       ~
+
+Player 2, input a valid coordinate to fire on: 8H
+You missed.
+
+
+
+
+
+Your firing map:
+        A       B       C       D       E       F       G       H
+1       X       ~       ~       ~       ~       ~       ~       ~
+2       ~       ~       ~       ~       ~       ~       ~       ~
+3       ~       ~       ~       ~       ~       ~       ~       ~
+4       ~       ~       ~       ~       ~       ~       ~       ~
+5       ~       ~       ~       ~       ~       ~       ~       ~
+6       ~       ~       ~       ~       ~       ~       ~       ~
+7       ~       ~       ~       ~       ~       ~       ~       ~
+8       ~       ~       ~       ~       ~       ~       ~       ~
+
+Your ship map:
+        A       B       C       D       E       F       G       H
+1       1       ~       ~       ~       ~       ~       ~       ~
+2       2       2       ~       ~       ~       ~       ~       ~
+3       3       3       3       ~       ~       ~       ~       ~
+4       4       4       4       4       ~       ~       ~       ~
+5       5       5       5       5       5       ~       ~       ~
+6       ~       ~       ~       ~       ~       ~       ~       ~
+7       ~       ~       ~       ~       ~       ~       ~       ~
+8       ~       ~       ~       ~       ~       ~       ~       O
+
+Player 1, input a valid coordinate to fire on: 8H
+You missed.
+
+
+
+
+
+        A       B       C       D       E       F       G       H
+1       ~       ~       ~       ~       ~       ~       ~       ~
+2       ~       ~       ~       ~       ~       ~       ~       ~
+3       ~       ~       ~       ~       ~       ~       ~       ~
+4       ~       ~       ~       ~       ~       ~       ~       ~
+5       ~       ~       ~       ~       ~       ~       ~       ~
+6       ~       ~       ~       ~       ~       ~       ~       ~
+7       ~       ~       ~       ~       ~       ~       ~       ~
+8       ~       ~       ~       ~       ~       ~       ~       O
+
+        A       B       C       D       E       F       G       H
+1       X       5       5       5       5       ~       ~       ~
+2       4       4       4       4       ~       ~       ~       ~
+3       3       ~       ~       ~       ~       ~       ~       ~
+4       3       ~       ~       ~       ~       ~       ~       ~
+5       3       ~       ~       ~       ~       ~       ~       ~
+6       2       ~       ~       ~       ~       ~       ~       ~
+7       2       ~       ~       ~       ~       ~       ~       ~
+8       1       ~       ~       ~       ~       ~       ~       O
+
+Player 2, input a valid coordinate to fire on: 1A
+You hit and sank their ship!

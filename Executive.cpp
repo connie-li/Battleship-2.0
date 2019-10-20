@@ -4,17 +4,14 @@
 Executive::Executive()
 {
   m_turn = 1;
-    //create players
-  m_player1 = new Admiral();
-  m_player2 = new Admiral();
-
+  m_player1 = nullptr;
+  m_player2 = nullptr;
 }
 
 Executive::~Executive()
 {
     delete m_player1;
     delete m_player2;
-
 }
 
 void Executive::saveGame(int turn, Admiral* player1, Admiral* player2, bool ai)
@@ -263,222 +260,228 @@ void Executive::loadGame(int turn, string** player1_board, string** player2_boar
 
 void Executive::placeShip(int n, Admiral* player, bool ai)
 {
-    bool taken [9][9];
-    for (int i = 0; i < 9; i++)
+  bool taken [9][9];
+  for (int i = 0; i < 9; i++)
+  {
+    for (int j = 0; j<9; j++)
     {
-        for (int j = 0; j<9; j++)
-        {
-            taken[i][j] = false;
-        }
+        taken[i][j] = false;
     }
-    for (int size = 1; size<= n; size++)
+  }
+  for (int size = 1; size<= n; size++)
+  {
+    std::string start = "";
+    if(!ai)
     {
-        std::string start = "";
-        if(!ai)
-        {
-          std::cout << "It's time to place your ship of size 1x" << size << ". Enter a starting coordinate\n";
-          start = askCoord();
-        }
-        else
-        {
-          int x = rand() % 8+1;
-          int y = rand() % 8+ 1;
-          start = std::to_string(x) + ":" + std::to_string(y);
-        }
-        
-        
-        int temp = charCoordtoIntCoord(start.at(1));
-        int r = std::stoi(start.substr(0,1));
-        int c = temp;
-        while(taken[r][c] == true)
-        {
-          if(!ai)
-          {
-            std::cout << "Error you already placed a ship there. Try a different coordinate. ";
-            start = askCoord();
-            temp = charCoordtoIntCoord(start.at(1));
-            r = std::stoi(start.substr(0,1));
-            c = temp;
-          }
-          else
-          {
-            r = rand() % 8+1;
-            c = rand() % 8+ 1;
-          }
-          
-        }
-        bool north = false;
-        bool south = false;
-        bool west = false;
-        bool east = false;
-        std::string option_n = "";
-        std::string option_s = "";
-        std::string option_w = "";
-        std::string option_e = "";
+      player->getBoard()->printGrid(false);
+      std::cout << "It's time to place your ship of size 1x" << size << ". Enter a starting coordinate\n";
+      start = askCoord();
+    }
+    else
+    {
+      int x = rand() % 8+1;
+      int y = rand() % 8+ 1;
+      start = std::to_string(x) + ":" + std::to_string(y);
+    }
+    
+    int temp = charCoordtoIntCoord(start.at(1));
+    int r = std::stoi(start.substr(0,1));
+    int c = temp;
+    while(taken[r][c] == true)
+    {
+      if(!ai)
+      {
+        std::cout << "Error you already placed a ship there. Try a different coordinate. ";
+        start = askCoord();
+        temp = charCoordtoIntCoord(start.at(1));
+        r = std::stoi(start.substr(0,1));
+        c = temp;
+      }
+      else
+      {
+        r = rand() % 8+1;
+        c = rand() % 8+ 1;
+      }
+    }
+
+    bool north = false;
+    bool south = false;
+    bool west = false;
+    bool east = false;
+    std::string option_n = "";
+    std::string option_s = "";
+    std::string option_w = "";
+    std::string option_e = "";
 
     if (size != 1)
     {
       if(!ai)
+      {
+        std::cout << "Enter an ending coordinate. Possible ending coordinates for this ship are: ";
+      }
+      if (r+(size-1) <= 8)
+      {
+        bool flag = false;
+        for (int j = 0; j< size; j++)
         {
-          std::cout << "Enter an ending coordinate (possible ending coordinates for this ship are: ";
+          if (taken[j+r][c])
+              flag = true;
         }
-        if (r+(size-1) <= 8)
+        if (!flag)
         {
-            bool flag = false;
-            for (int j = 0; j< size; j++)
-            {
-                if (taken[j+r][c])
-                    flag = true;
-            }
-            if (!flag)
-            {
-                south = true;
-                option_s = std::to_string(r+(size-1))+start.at(1);
-                std::cout << r+(size-1) << start.at(1) << " ";
-            }
-        }
-        if (r-(size-1) > 0)
-        {
-            bool flag = false;
-            for (int j = 0; j< size; j++)
-            {
-                if (taken[r-j][c])
-                    flag = true;
-            }
-            if (!flag)
-            {
-                north = true;
-                option_n = std::to_string(r-(size-1))+start.at(1);
-                std::cout << r-(size-1) << start.at(1) << " ";
-            }
-        }
-        if (c + (size-1) <= 8)
-        {
-            bool flag = false;
-            for (int j = 0; j< size; j++)
-            {
-                if (taken[r][c+j])
-                    flag = true;
-            }
-            if (!flag)
-            {
-                east = true;
-                char letter = char(64+c+(size-1));
-                option_e = std::to_string(r)+letter;
-                cout<< r <<  letter << " ";
-            }
-        }
-        if (c-(size-1) > 0)
-        {
-            bool flag = false;
-            for (int j = 0; j< size; j++)
-            {
-                if (taken[r][c-j])
-                    flag = true;
-            }
-            if (!flag)
-            {
-                west = true;
-                char letter = char(64+(c-(size-1)));
-                option_w = std::to_string(r)+letter;
-                cout << r <<  letter << " ";
-            }
-        }
-        std::string end = "";
-        if(!ai)
-        {
-          std::cout << "\n Enter the ending coordinate from the list. ";
-          end = askCoord();
-        }
-        else
-        {
-            int randOpt = rand()%4;
-            if (randOpt == 0)
-            {
-              end = option_e;
-            }
-            if (randOpt == 1)
-            {
-              end = option_n;
-            }
-            if (randOpt ==2)
-            {
-              end = option_s;
-            }
-            if (randOpt == 3)
-            {
-              end = option_w;
-            }
-        }
-        
-        while (end !=option_e && end!=option_n && end!=option_s && end!=option_w)
-        {
-            std::cout << "\n Error. Enter one of the coordinates listed above. ";
-            end = askCoord();
-        }
-
-        if(south && (std::stoi(end.substr(0,1))== r+(size-1)))
-        {
-          std::string* arr = new std::string[size];
-          int index = r;
-          for(int i = 0; i<size; i++)
-          {
-            taken[index][charCoordtoIntCoord(start.at(1))] = true;
-            std::string coor = std::to_string(index) + ":" + std::to_string(charCoordtoIntCoord(start.at(1)));
-            arr[i] = coor;
-            index++;
-          }
-           player->addShip(size, arr);
-        }
-        else if (north && (std::stoi(end.substr(0,1)) == r-(size-1)))
-        {
-          std::string* arr = new std::string[size];
-          int index = r;
-          for(int i = size-1; i>=0; i--)
-          {
-            taken[index][charCoordtoIntCoord(start.at(1))] = true;
-            std::string coor = std::to_string(index) + ":" + std::to_string(charCoordtoIntCoord(start.at(1)));
-            arr[i] = coor;
-            index--;
-          }
-           player->addShip(size, arr);
-
-        }
-        else if (east && (end.at(1) > start.at(1)))
-        {
-            std::string* arr = new std::string[size];
-            int index = c;
-            for (int i = 0; i<size; i++)
-            {
-                taken[r][index] = true;
-                std::string coor = std::to_string(r) + ":" + std::to_string(index);
-                arr[i] = coor;
-                index++;
-            }
-             player->addShip(size, arr);
-        }
-        else if (west && (end.at(1) < start.at(1)))
-        {
-            std::string* arr = new std::string[size];
-            int index = c;
-            for (int i = size-1; i>=0; i--)
-            {
-                taken[r][index] = true;
-                std::string coor = std::to_string(r) + ":" + std::to_string(index);
-                arr[i] = coor;
-                index--;
-            }
-             player->addShip(size, arr);
+          south = true;
+          option_s = std::to_string(r+(size-1))+start.at(1);
+          std::cout << r+(size-1) << start.at(1) << " ";
         }
       }
-      else //if size is 1x1 don't ask for ending coor
+      if (r-(size-1) > 0)
       {
-            std::string* arr = new std::string[size];
-            arr[0] = std::to_string(r) + ":" + std::to_string(c);
-            taken[r][c] = true;
-            player->addShip(size, arr);
+        bool flag = false;
+        for (int j = 0; j< size; j++)
+        {
+          if (taken[r-j][c])
+              flag = true;
+        }
+        if (!flag)
+        {
+          north = true;
+          option_n = std::to_string(r-(size-1))+start.at(1);
+          std::cout << r-(size-1) << start.at(1) << " ";
+        }
+      }
+      if (c + (size-1) <= 8)
+      {
+        bool flag = false;
+        for (int j = 0; j< size; j++)
+        {
+          if (taken[r][c+j])
+              flag = true;
+        }
+        if (!flag)
+        {
+          east = true;
+          char letter = char(64+c+(size-1));
+          option_e = std::to_string(r)+letter;
+          cout<< r <<  letter << " ";
+        }
+      }
+      if (c-(size-1) > 0)
+      {
+        bool flag = false;
+        for (int j = 0; j< size; j++)
+        {
+          if (taken[r][c-j])
+              flag = true;
+        }
+        if (!flag)
+        {
+          west = true;
+          char letter = char(64+(c-(size-1)));
+          option_w = std::to_string(r)+letter;
+          cout << r <<  letter << " ";
+        }
+      }
+      std::string end = "";
+      if(!ai)
+      {
+        std::cout << "\n";
+        end = askCoord();
+      }
+      else
+      {
+        int randOpt = rand()%4;
+        if (randOpt == 0)
+        {
+          end = option_e;
+        }
+        if (randOpt == 1)
+        {
+          end = option_n;
+        }
+        if (randOpt ==2)
+        {
+          end = option_s;
+        }
+        if (randOpt == 3)
+        {
+          end = option_w;
+        }
+      }
+    
+      while (end !=option_e && end!=option_n && end!=option_s && end!=option_w)
+      {
+        std::cout << "\n Error. Enter one of the coordinates listed above. ";
+        end = askCoord();
+      }
+
+      if(south && (std::stoi(end.substr(0,1))== r+(size-1)))
+      {
+        std::string* arr = new std::string[size];
+        int index = r;
+        for(int i = 0; i<size; i++)
+        {
+          taken[index][charCoordtoIntCoord(start.at(1))] = true;
+          std::string coor = std::to_string(index) + ":" + std::to_string(charCoordtoIntCoord(start.at(1)));
+          arr[i] = coor;
+          index++;
+        }
+        player->addShip(size, arr);
+        delete[] arr;
+      }
+      else if (north && (std::stoi(end.substr(0,1)) == r-(size-1)))
+      {
+        std::string* arr = new std::string[size];
+        int index = r;
+        for(int i = size-1; i>=0; i--)
+        {
+          taken[index][charCoordtoIntCoord(start.at(1))] = true;
+          std::string coor = std::to_string(index) + ":" + std::to_string(charCoordtoIntCoord(start.at(1)));
+          arr[i] = coor;
+          index--;
+        }
+        player->addShip(size, arr);
+        delete[] arr;
+      }
+      else if (east && (end.at(1) > start.at(1)))
+      {
+        std::string* arr = new std::string[size];
+        int index = c;
+        for (int i = 0; i<size; i++)
+        {
+          taken[r][index] = true;
+          std::string coor = std::to_string(r) + ":" + std::to_string(index);
+          arr[i] = coor;
+          index++;
+        }
+        player->addShip(size, arr);
+        delete[] arr;
+      }
+      else if (west && (end.at(1) < start.at(1)))
+      {
+        std::string* arr = new std::string[size];
+        int index = c;
+        for (int i = size-1; i>=0; i--)
+        {
+          taken[r][index] = true;
+          std::string coor = std::to_string(r) + ":" + std::to_string(index);
+          arr[i] = coor;
+          index--;
+        }
+        player->addShip(size, arr);
+        delete[] arr;
       }
     }
+    else //if size is 1x1 don't ask for ending coor
+    {
+      std::string* arr = new std::string[size];
+      arr[0] = std::to_string(r) + ":" + std::to_string(c);
+      taken[r][c] = true;
+      player->addShip(size, arr);
+      delete[] arr;
+    }
+  }
+
+  player->getBoard()->printGrid(false);
 }
 
 std::string Executive::askCoord()
@@ -537,7 +540,6 @@ void Executive::run()
 
 int Executive::mainMenu()
 {
-  std::chrono::seconds interval(2);
   bool menurun = true;
   std::string ship_num;
   std::string player_choice;
@@ -636,16 +638,40 @@ bool Executive::handleTurn(const int player, const bool AI)
   string turnResult;
   if(AI)  // AI player
   {
-    // waiting on AI method
-    // targetCoord = m_player2->chooseTarget();
-    turnResult = m_player1->incomingShot(targetCoord);
-    return(m_player1->getNumAfloat() < 1);
+    if (player ==1)
+    {
+      cout << "Player 1's turn!\n\n";
+      printMaps(player);
+      printEnemyAction(); //TODO
+      // if(m_powerups.hasAPowerup(true))
+      // {
+      //   powerup = askForPowerUp(1);
+      // }
+      targetCoord = askForFireCoord(m_turn);
+      turnResult = m_player2->incomingShot(targetCoord);
+      // TODO: add powerups
+      // if(turnResult == "T" || turnResult == "R" || turnResult == "U" || turnResult == "S")
+      //   {
+
+      //   }
+      printTurnResult(turnResult);
+      cout << "Next player's turn!\n";
+      return(m_player2->getNumAfloat() < 1);
+    }
+    else
+    {
+      targetCoord = m_player2->fire();
+      turnResult = m_player1->incomingShot(targetCoord);
+      return(m_player1->getNumAfloat() < 1);
+    }
   }
   else
   {
+    std::this_thread::sleep_for(m_interval);
+    system("cls");
+
     if(player == 1)
     {
-
       cout<<"\nDo you want to save and quit the game? Hit S/s to save and quit. Hit C/c to continue.\n";
       cin>>quit_choice;
       if(quit_choice=='s'||quit_choice=='S')
@@ -655,7 +681,7 @@ bool Executive::handleTurn(const int player, const bool AI)
       }
       else
       {
-
+        cout << "Player 1's turn!\n\n";
         printMaps(player);
         printEnemyAction(); //TODO
         // if(m_powerups.hasAPowerup(true))
@@ -670,34 +696,35 @@ bool Executive::handleTurn(const int player, const bool AI)
 
         //   }
         printTurnResult(turnResult);
+        cout << "Next player's turn!\n";
         return(m_player2->getNumAfloat() < 1);
       }
     }
     else  // player 2
     {
-
-        cout<<"\nDo you want to save and quit the game? \nHit S/s to save and quit. Hit C/c to continue.\n";
-        cin>>quit_choice;
-        if(quit_choice=='s'||quit_choice=='S')
-        {
-          saveGame(m_turn, m_player1, m_player2, AI);
-          exit(0);
-        }
-        else
-        {
-
-        printMaps(player);
-        printEnemyAction(); //TODO
-        // if(m_powerups.hasAPowerup(false))
-        // {
-        //   powerup = askForPowerUp(2);
-        // }
-        targetCoord = askForFireCoord(m_turn);
-        turnResult = m_player1->incomingShot(targetCoord);
-        // TODO: add powerups
-        printTurnResult(turnResult);
-        return(m_player1->getNumAfloat() < 1);
-        }
+      cout<<"\nDo you want to save and quit the game? \nHit S/s to save and quit. Hit C/c to continue.\n";
+      cin>>quit_choice;
+      if(quit_choice=='s'||quit_choice=='S')
+      {
+        saveGame(m_turn, m_player1, m_player2, AI);
+        exit(0);
+      }
+      else
+      {
+      cout << "Player 2's turn!\n\n";
+      printMaps(player);
+      printEnemyAction(); //TODO
+      // if(m_powerups.hasAPowerup(false))
+      // {
+      //   powerup = askForPowerUp(2);
+      // }
+      targetCoord = askForFireCoord(m_turn);
+      turnResult = m_player1->incomingShot(targetCoord);
+      // TODO: add powerups
+      printTurnResult(turnResult);
+      cout << "Next player's turn!\n";
+      return(m_player1->getNumAfloat() < 1);
+      }
     }
   }
 }
@@ -859,6 +886,7 @@ void Executive::printGameOver(const int player) const
 
 void Executive::printMaps(const int player) const
 {
+  system("cls");
   if(player == 1)
   {
     cout << "Your firing map:\n";
@@ -882,9 +910,36 @@ void Executive::setupGame(bool AI)
   if(AI)
   {
     cout << "Starting a Player vs. AI game!\n";
-    //m_player2 = new AI(); 
+    string difficulty = "";
+    cout << "Choose a difficulty level for the AI.\n1) Easy\n2) Medium\n3) Hard\nYour choice: ";
+    bool valid = false;
+    std::getline(std::cin, difficulty);
+    m_player1 = new Admiral(m_numShips);
+    while(!valid)
+    {
+      if (difficulty == "1")
+      {
+        m_player2 = new EasyAI(m_player1->getBoard());
+        valid = true;
+      }
+      else if (difficulty == "2")
+      {
+        m_player2 = new MedAI(m_player1->getBoard());
+        valid = true;
+
+      }
+      else if (difficulty == "3")
+      {
+        m_player2 = new HardAI(m_player1);
+        valid = true;
+      }
+      else
+      {
+        std::cout << "Error, enter a valid number from 1-3\n";
+      }
+    }
     setNumShips();
-    std::cout<< "Player 1: It's time to place your ships.\n";
+    std::cout<< "\nPlayer 1: It's time to place your ships.\n\n";
     m_player1->getBoard()->printGrid(false);
     placeShip(m_numShips, m_player1, false);
     m_player1->getBoard()->printGrid(false);
@@ -896,17 +951,18 @@ void Executive::setupGame(bool AI)
   else
   {
     cout << "Starting a Player vs. Player game!\n";
+    m_player1 = new Admiral(m_numShips);
+    m_player2 = new Admiral(m_numShips);
     setNumShips();
-    std::cout<< "Player 1: It's time to place your ships.\n";
-    m_player1->getBoard()->printGrid(false);
+    std::cout<< "\nPlayer 1: It's time to place your ships.\n\n";
     placeShip(m_numShips, m_player1, false);
-    m_player1->getBoard()->printGrid(false);
     std::cout << "Thanks for placing your ships, player 1! \nNow it's player 2's turn.";
-    std::chrono::seconds interval(2);
-    std::cout<< "\n\n\n\n\n\n\n\n\n\n\nPlayer 2: It's time to place your ships.\n";
-    m_player2->getBoard()->printGrid(false);
+    std::this_thread::sleep_for(std::chrono::seconds(5));
+
+    system("cls");
+    std::cout<< "Player 2: It's time to place your ships.\n\n";
     placeShip(m_numShips, m_player2, false);
-    m_player2->getBoard()->printGrid(false);
     std::cout << "Thanks for placing your ships. Time to start the game!";
+    std::this_thread::sleep_for(std::chrono::seconds(5));
   }
 }
