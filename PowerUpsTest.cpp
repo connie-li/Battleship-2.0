@@ -88,6 +88,7 @@ bool PowerUpsTest::testTorpedo(){
         cout << "Firing on top coordinate: ";
         m_PowerUps.useTorpedo("1:1", true, 3, tempCoords);
         cout << pass;
+        delete m_tempAdmir;
 
     }catch(exception){
         hasPassed = 0;
@@ -96,10 +97,13 @@ bool PowerUpsTest::testTorpedo(){
     try{
         m_tempAdmir = new Admiral(1);
         m_PowerUps.addPowerUp("T",true);
+        m_PowerUps.setAdmirals(m_tempAdmir,m_tempAdmir);
         m_tempAdmir->addShip(3, tempCoords);
 
         cout << "Firing on middle coordinate: ";
         m_PowerUps.useTorpedo("1:2",true,3,tempCoords);
+        cout << pass;
+        delete m_tempAdmir;
 
     }catch(exception){
         hasPassed = 0;
@@ -108,10 +112,14 @@ bool PowerUpsTest::testTorpedo(){
     try{
         m_tempAdmir = new Admiral(1);
         m_PowerUps.addPowerUp("T",true);
+        m_PowerUps.setAdmirals(m_tempAdmir,m_tempAdmir);
         m_tempAdmir->addShip(3, tempCoords);
 
         cout << "Firing on bottom coordinate: ";
         m_PowerUps.useTorpedo("1:3",true,3,tempCoords);
+        cout << pass;
+        delete m_tempAdmir;
+        
     }catch(exception){
         hasPassed = 0;
         cout << fail;
