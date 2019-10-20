@@ -173,15 +173,15 @@ void Executive::readBoard()
 
   //initial 2D with size rows
   board=new string*[m_BOARD_SIZE];
-
+  string** player1_board=new string*[m_BOARD_SIZE];
+  string** player2_board=new string*[m_BOARD_SIZE];
   for(int i = 0; i < m_BOARD_SIZE; i++)
   {
     //initial each row with 8 elements
     board[i] = new string[m_BOARD_SIZE];
-  }
-
-  string** player1_board=nullptr;
-  string** player2_board=nullptr;
+    player1_board[i] = new string[m_BOARD_SIZE];
+    player2_board[i] = new string[m_BOARD_SIZE];
+  }  
 
   //1. read numShips
   grid>>m_numShips;
@@ -236,23 +236,35 @@ void Executive::readBoard()
         for(int j = 0; j < m_BOARD_SIZE; j++)
         {
           grid>>board[i][j];
-          cout<<board[i][j]<<"\t";
+          //cout<<board[i][j]<<"\t";
         }
-        cout<<"\n";
+        //cout<<"\n";
     }
 
     //if player 1
       if(player==1)
       {
         //assign board
-        player1_board=board;
+        for(int i = 0; i < m_BOARD_SIZE; i++)
+        {
+            for(int j = 0; j < m_BOARD_SIZE; j++)
+            {
+              player1_board[i][j]=board[i][j];
+            }
+        }
       }
       
       //if player 2
       if(player==2)
       {
         //assign board
-        player2_board=board;
+        for(int i = 0; i < m_BOARD_SIZE; i++)
+        {
+            for(int j = 0; j < m_BOARD_SIZE; j++)
+            {
+              player2_board[i][j]=board[i][j];
+            }
+        }
       }
     
     
@@ -268,7 +280,9 @@ void Executive::loadGame(int turn, string** player1_board, string** player2_boar
 {
     //store boards
     m_player1->getBoard()->readGrid(player1_board);
+    m_player1->getBoard()->printGrid(false);
     m_player2->getBoard()->readGrid(player2_board);
+    m_player2->getBoard()->printGrid(false);
 
     //set current turn
     m_turn=turn;
