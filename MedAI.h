@@ -53,5 +53,15 @@ class MedAI : public Admiral
     string checkDirection();
 
 
+    /**
+     * Function to be called/used in Exec when there is a miss registered after a hit
+     * i.e. a ship was found, and the AI then guessed got a miss (wrong direction)
+     * This is to switch the direction of shots if an initial hit was in the middle of a ship
+     * @param none
+     * @post reverses direction of firing
+     */
+    void updateMiss();
+
+
 };
 #endif
