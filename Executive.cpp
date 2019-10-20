@@ -883,12 +883,12 @@ string Executive::askForPowerUp(const int player)
       cout << "Or enter N to not use a powerup this turn.\n";
       cout << "Your choice: ";
       cin >> choice;
-      // check whether the choice is in the vector
-      //it = find(playerPUs->begin(), playerPUs->end(), choice);
-      // if(it != playerPUs->end())
-      // {
-      //   goodInput = true;
-      // }
+      //check whether the choice is in the vector
+      it = find(playerPUs->begin(), playerPUs->end(), choice);
+      if(it != playerPUs->end())
+      {
+        goodInput = true;
+      }
   } while(!goodInput);
   return(choice);
 }
