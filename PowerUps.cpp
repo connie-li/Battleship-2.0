@@ -75,11 +75,8 @@ void PowerUps::useRadar(std::string coord,bool isPlayer1){
     //should these show as water or misses?
     //went with showing them as misses... ships shown as *** 
     Grid* map = mapPicker(isPlayer1);
-    // int r = std::stoi(coord.substr(0,1));
     int r = stoi(coord.substr(coord.find(":") + 1));
-    // int c = charCoordtoIntCoord(coord.at(2));
     int c = stoi(coord.substr(0, coord.find(":")));
-    cout<<"\nr: "<<r<<" c: "<<c<<"\n";
     //get starting upper left coor row and col for 3x3 box for radar
     int startRow = r-1;
     int startCol = c -1;
@@ -99,10 +96,9 @@ void PowerUps::useRadar(std::string coord,bool isPlayer1){
     {
         startCol -= 1;
     }
-    cout<<"\nr: "<<r<<" c: "<<c<<"\n";
-    for (int i = startRow; i< startRow+2; i++ )
+    for (int i = startRow; i<= startRow+2; i++ )
     {
-        for(int j = startCol; j< startCol+2; j++)
+        for(int j = startCol; j<= startCol+2; j++)
         {
             string shot = to_string(i) + ":" + to_string(j);
             std::string coord1 = map->getCoor(shot);

@@ -130,8 +130,12 @@ bool PowerUpsTest::testRadar(){
     tempCoords[0] = "1:1";
     tempCoords[1] ="1:2";
     tempCoords[2] = "1:3";
+
     try{
         createAdmiral("R", 1);
+        m_tempAdmir->getBoard()->setCoor("1:1", "3");
+        m_tempAdmir->getBoard()->setCoor("1:2", "3");
+        m_tempAdmir->getBoard()->setCoor("1:3", "3");
         m_PowerUps.useRadar("2:2", true);
         m_tempAdmir->getBoard()->printGrid(true);
     }catch(exception){
