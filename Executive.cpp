@@ -331,6 +331,7 @@ void Executive::placeShip(int n, Admiral* player, bool ai)
           index++;
         }
         player->addShip(size, arr);
+        delete[] arr;
       }
       else if (north && (std::stoi(end.substr(0,1)) == r-(size-1)))
       {
@@ -344,6 +345,7 @@ void Executive::placeShip(int n, Admiral* player, bool ai)
           index--;
         }
         player->addShip(size, arr);
+        delete[] arr;
       }
       else if (east && (end.at(1) > start.at(1)))
       {
@@ -357,6 +359,7 @@ void Executive::placeShip(int n, Admiral* player, bool ai)
           index++;
         }
         player->addShip(size, arr);
+        delete[] arr;
       }
       else if (west && (end.at(1) < start.at(1)))
       {
@@ -370,14 +373,16 @@ void Executive::placeShip(int n, Admiral* player, bool ai)
           index--;
         }
         player->addShip(size, arr);
+        delete[] arr;
       }
     }
     else //if size is 1x1 don't ask for ending coor
     {
-          std::string* arr = new std::string[size];
-          arr[0] = std::to_string(r) + ":" + std::to_string(c);
-          taken[r][c] = true;
-          player->addShip(size, arr);
+      std::string* arr = new std::string[size];
+      arr[0] = std::to_string(r) + ":" + std::to_string(c);
+      taken[r][c] = true;
+      player->addShip(size, arr);
+      delete[] arr;
     }
   }
 
