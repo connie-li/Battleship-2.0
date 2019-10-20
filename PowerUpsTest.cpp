@@ -140,9 +140,10 @@ bool PowerUpsTest::testScatter(){
         
         m_tempAdmir->addShip(3, tempCoords);
 
-
+    
     }catch(exception){
 
+        
     }
 
     return(hasPassed);
@@ -166,8 +167,13 @@ bool PowerUpsTest::testUber(){
 
         std::cout << "Firing on the smallest ship: ";
         m_PowerUps.useUberCommander("1:1",true);
+        if(m_tempAdmir->getBoard()->getCoor("1:1")=="X"){
+            cout << pass;
+        }
+        else{
+            cout << fail;
+        }
         
-        cout << pass;
     }catch(exception){
         hasPassed = 0;
         cout << fail;
