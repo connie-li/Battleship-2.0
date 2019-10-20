@@ -212,5 +212,12 @@ class Executive
      * @post Gets number of Ships from the player, constructs Admiral or AI objects, and lets players place their Ships.
      */
     void setupGame(bool AI);
+
+    /**
+     * Places powerups on the board
+     * Places them randomly, giving each user 1 of each
+     * @param ai bool true if the p2 is an AI (gives them no powerups)
+     */
+    void placePowerUp(bool ai);
 };
 #endif

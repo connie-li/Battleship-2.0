@@ -937,7 +937,6 @@ bool Executive::handleTurn(const int player, const bool AI)
 
 int Executive::gameplay(const bool AI)
 {
-  m_powerups = PowerUps();
   bool gameOver = false;
   int winner = 0;
   while(!gameOver)
@@ -972,6 +971,32 @@ int Executive::gameplay(const bool AI)
     switchTurn();
   }
   return(winner);
+}
+
+void Executive::placePowerUp(bool ai)
+{
+   Grid* p1 = m_player1->getBoard();
+   Grid* p2 = m_player2->getBoard();
+   string coor = p1->randCoor(false);
+   p1->setCoor(coor, "T");
+   string coor = p1->randCoor(false);
+   p1->setCoor(coor, "U");
+   string coor = p1->randCoor(false);
+   p1->setCoor(coor, "S");
+   string coor = p1->randCoor(false);
+   p1->setCoor(coor, "R");
+   string coor = p2->randCoor(false);
+   if(!ai)
+   {
+      p2->setCoor(coor, "T");
+      string coor = p2->randCoor(false);
+      p2->setCoor(coor, "U");
+      string coor = p2->randCoor(false);
+      p2->setCoor(coor, "S");
+      string coor = p2->randCoor(false);
+      p2->setCoor(coor, "R");
+   }
+   
 }
 
 string Executive::askForPowerUp(const int player)
@@ -1114,6 +1139,7 @@ void Executive::printEnemyAction() const
 
 void Executive::setupGame(bool AI)
 {
+  m_powerups = PowerUps();
   if(AI)
   {
     cout << "Starting a Player vs. AI game!\n";
@@ -1153,6 +1179,7 @@ void Executive::setupGame(bool AI)
 
     //place AI ships
     placeShip(m_numShips, m_player2, true);
+    placePowerUp(true);
     std::cout << "Thanks for placing your ships. The AI's ships have been placed randomly. Time to start the game!\n";
   }
   else
@@ -1170,6 +1197,7 @@ void Executive::setupGame(bool AI)
     std::cout<< "Player 2: It's time to place your ships.\n\n";
     placeShip(m_numShips, m_player2, false);
     std::cout << "Thanks for placing your ships. Time to start the game!";
+    placePowerUp(false);
     std::this_thread::sleep_for(std::chrono::seconds(5));
   }
 }
