@@ -24,7 +24,7 @@ Grid* PowerUps::mapPicker(bool isPlayer1){
 }
 
 void PowerUps::useTorpedo(std::string coord,bool isPlayer1, int shipSize, string* shipCoords){
-    Admiral* tempAdmir = new Admiral();
+    Admiral* tempAdmir = nullptr;
     
     if(isPlayer1){
         tempAdmir = m_admir1;
@@ -67,6 +67,7 @@ void PowerUps::useTorpedo(std::string coord,bool isPlayer1, int shipSize, string
 
     //remove the torpedo from the list
     removePowerUp("T", isPlayer1);
+    
 }
 
 void PowerUps::useRadar(std::string coord,bool isPlayer1){
@@ -141,7 +142,7 @@ void PowerUps::useScatterShot(bool isPlayer1){
 //10/13 I think this may only work correctly when the ships are put into the 
 //vector in order from smallest to largest
 void PowerUps::useUberCommander(std::string coord,bool isPlayer1){
-    Admiral* tempAdmir= new Admiral();
+    Admiral* tempAdmir= nullptr;
     
     bool fired = false;
     //picking which admiral to use
@@ -178,8 +179,8 @@ void PowerUps::useUberCommander(std::string coord,bool isPlayer1){
             }
         }
     }
-    std::cout << fired;
     removePowerUp("U",isPlayer1);
+    
 }
 
 vector<string> PowerUps::getPowerUps(bool isPlayer1)
