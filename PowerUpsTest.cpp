@@ -126,8 +126,18 @@ bool PowerUpsTest::testTorpedo(){
 
 bool PowerUpsTest::testRadar(){
     bool hasPassed =1;
-
-    return(true);
+    string* tempCoords = new string[3];
+    tempCoords[0] = "1:1";
+    tempCoords[1] ="1:2";
+    tempCoords[2] = "1:3";
+    try{
+        createAdmiral("R", 1);
+        m_PowerUps.useRadar("2:2", true);
+        m_tempAdmir->getBoard()->printGrid(true);
+    }catch(exception){
+        hasPassed = 0;
+    }
+    return(hasPassed);
 }
 
 bool PowerUpsTest::testScatter(){
