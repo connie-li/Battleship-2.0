@@ -141,6 +141,8 @@ bool PowerUpsTest::testRadar(){
     }catch(exception){
         hasPassed = 0;
     }
+    delete[] tempCoords;
+    delete m_tempAdmir;
     return(hasPassed);
 }
 
