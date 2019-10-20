@@ -98,7 +98,7 @@ class Admiral
 		/**
 		 * dummy fire method to please C++ inheritence
 		 */
-		string fire();
+		virtual string fire() {}
 
 };
 #endif

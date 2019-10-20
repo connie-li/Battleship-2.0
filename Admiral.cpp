@@ -78,11 +78,6 @@ int Admiral::decNumAfloat()
 	return(m_numAfloat);
 }
 
-string Admiral::fire()
-{
-	int x = 4; //dummy method/call don't change to anything substantial 
-}
-
 string Admiral::incomingShot(const string coord)
 {
 	string origStr = m_board.getCoor(coord);
