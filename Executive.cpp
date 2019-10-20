@@ -236,20 +236,20 @@ void Executive::readBoard()
   
   grid.close();
 
-  //load board information
-  m_player1->getBoard()->readGrid(player1_board);
-  m_player2->getBoard()->readGrid(player2_board);
-  //loadGame(turn, player1_board, player2_board, ai, size, coordsPtr, status, hits);
+  //loadGame(turn, player1_board, player2_board, ai);
 }
 
-void Executive::loadGame(int turn, string** player1_board, string** player2_board, bool ai, int size, string* coordsPtr, bool status, int hits)
+bool Executive::loadGame(int turn, string** player1_board, string** player2_board, bool ai)
 {
-    //store ship information
-    
-
     //store boards
     m_player1->getBoard()->readGrid(player1_board);
     m_player2->getBoard()->readGrid(player2_board);
+
+    //set current turn
+    m_turn=turn;
+
+    //return if AI or not
+    return ai;
 
 }
 
@@ -544,7 +544,7 @@ int Executive::mainMenu()
     std::cout << " |____/ \\__,_|\\__|\\__|_|\\___||___/_| |_|_| .__/ \n";
     std::cout << "                                         | |    \n";
     std::cout << "                                         |_|    \n";
-    std::cout << "\nMenu:\n 1) Instructions\n 2) Start Game: Player vs. Player\n 3) Start Game: Player vs. AI\n 4) Quit Game\n\nEnter option (1-4): ";
+    std::cout << "\nMenu:\n 1) Instructions\n 2) Start Game: Player vs. Player\n 3) Start Game: Player vs. AI\n 4) Quit Game\n 5) Resume Saved Game\n\nEnter option (1-5): ";
     std::getline(std::cin,player_choice);
     if (player_choice == "1")
     {
@@ -566,6 +566,12 @@ int Executive::mainMenu()
     {
       std::cout << "\nHave a nice day!\n";
       return 4;
+    }
+    else if (player_choice == "5")
+    {
+      //check if ai or not, and call accordingly
+
+      
     }
     else
     {
