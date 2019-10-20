@@ -132,7 +132,7 @@ void PowerUps::useScatterShot(bool isPlayer1){
             addPowerUp(value, isPlayer1);
         }
     }
-    removePowerUp("S", isPlayer1)
+    removePowerUp("S", isPlayer1);
 }
 
 //10/13 I think this may only work correctly when the ships are put into the 
