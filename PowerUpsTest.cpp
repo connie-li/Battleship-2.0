@@ -143,7 +143,7 @@ bool PowerUpsTest::testScatter(){
     
     }catch(exception){
 
-        
+
     }
 
     return(hasPassed);
@@ -167,20 +167,21 @@ bool PowerUpsTest::testUber(){
 
         std::cout << "Firing on the smallest ship: ";
         m_PowerUps.useUberCommander("1:1",true);
-        if(m_tempAdmir->getBoard()->getCoor("1:1")=="X"){
+        if(m_tempAdmir->getBoard()->getCoor("2:1")=="X"){
             cout << pass;
         }
         else{
-            cout << fail;
+            cout << unkno;
         }
         
-    }catch(exception){
+    }catch(exception e){
+        
         hasPassed = 0;
         cout << fail;
     }
     
 
-    
+    return(hasPassed);
 }
 
 void PowerUpsTest::createAdmiral(string powerup, int ships){
