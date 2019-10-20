@@ -1,0 +1,149 @@
+c817l905@cycle3:~/eecs448/p2-repo$ valgrind --leak-check=full ./Battleship
+==7938== Memcheck, a memory error detector
+==7938== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==7938== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
+==7938== Command: ./Battleship
+==7938==
+
+
+  ____        _   _   _           _     _
+ |  _ \      | | | | | |         | |   (_)
+ | |_) | __ _| |_| |_| | ___  ___| |__  _ _ __
+ |  _ < / _` | __| __| |/ _ \/ __| '_ \| | '_ \
+ | |_) | (_| | |_| |_| |  __/\__ \ | | | | |_) |
+ |____/ \__,_|\__|\__|_|\___||___/_| |_|_| .__/
+                                         | |
+                                         |_|
+
+Menu:
+ 1) Instructions
+ 2) Start Game: Player vs. Player
+ 3) Start Game: Player vs. AI
+ 4) Quit Game
+
+Enter option (1-4): 2
+Starting a Player vs. Player game!
+
+How many ships would you like to play with? (1-5 ships): 1
+
+Player 1: It's time to place your ships.
+
+        A       B       C       D       E       F       G       H
+1       ~       ~       ~       ~       ~       ~       ~       ~
+2       ~       ~       ~       ~       ~       ~       ~       ~
+3       ~       ~       ~       ~       ~       ~       ~       ~
+4       ~       ~       ~       ~       ~       ~       ~       ~
+5       ~       ~       ~       ~       ~       ~       ~       ~
+6       ~       ~       ~       ~       ~       ~       ~       ~
+7       ~       ~       ~       ~       ~       ~       ~       ~
+8       ~       ~       ~       ~       ~       ~       ~       ~
+
+It's time to place your ship of size 1x1. Enter a starting coordinate
+Please enter a coordinate in the form 1A: 1A
+        A       B       C       D       E       F       G       H
+1       1       ~       ~       ~       ~       ~       ~       ~
+2       ~       ~       ~       ~       ~       ~       ~       ~
+3       ~       ~       ~       ~       ~       ~       ~       ~
+4       ~       ~       ~       ~       ~       ~       ~       ~
+5       ~       ~       ~       ~       ~       ~       ~       ~
+6       ~       ~       ~       ~       ~       ~       ~       ~
+7       ~       ~       ~       ~       ~       ~       ~       ~
+8       ~       ~       ~       ~       ~       ~       ~       ~
+
+Thanks for placing your ships, player 1!
+sh: 1: cls: not found
+Now it's player 2's turn.Player 2: It's time to place your ships.
+
+        A       B       C       D       E       F       G       H
+1       ~       ~       ~       ~       ~       ~       ~       ~
+2       ~       ~       ~       ~       ~       ~       ~       ~
+3       ~       ~       ~       ~       ~       ~       ~       ~
+4       ~       ~       ~       ~       ~       ~       ~       ~
+5       ~       ~       ~       ~       ~       ~       ~       ~
+6       ~       ~       ~       ~       ~       ~       ~       ~
+7       ~       ~       ~       ~       ~       ~       ~       ~
+8       ~       ~       ~       ~       ~       ~       ~       ~
+
+It's time to place your ship of size 1x1. Enter a starting coordinate
+Please enter a coordinate in the form 1A: 1A
+        A       B       C       D       E       F       G       H
+1       1       ~       ~       ~       ~       ~       ~       ~
+2       ~       ~       ~       ~       ~       ~       ~       ~
+3       ~       ~       ~       ~       ~       ~       ~       ~
+4       ~       ~       ~       ~       ~       ~       ~       ~
+5       ~       ~       ~       ~       ~       ~       ~       ~
+6       ~       ~       ~       ~       ~       ~       ~       ~
+7       ~       ~       ~       ~       ~       ~       ~       ~
+8       ~       ~       ~       ~       ~       ~       ~       ~
+
+sh: 1: cls: not found
+Thanks for placing your ships. Time to start the game!Player 1's turn!
+
+sh: 1: cls: not found
+Your firing map:
+        A       B       C       D       E       F       G       H
+1       ~       ~       ~       ~       ~       ~       ~       ~
+2       ~       ~       ~       ~       ~       ~       ~       ~
+3       ~       ~       ~       ~       ~       ~       ~       ~
+4       ~       ~       ~       ~       ~       ~       ~       ~
+5       ~       ~       ~       ~       ~       ~       ~       ~
+6       ~       ~       ~       ~       ~       ~       ~       ~
+7       ~       ~       ~       ~       ~       ~       ~       ~
+8       ~       ~       ~       ~       ~       ~       ~       ~
+
+Your ship map:
+        A       B       C       D       E       F       G       H
+1       1       ~       ~       ~       ~       ~       ~       ~
+2       ~       ~       ~       ~       ~       ~       ~       ~
+3       ~       ~       ~       ~       ~       ~       ~       ~
+4       ~       ~       ~       ~       ~       ~       ~       ~
+5       ~       ~       ~       ~       ~       ~       ~       ~
+6       ~       ~       ~       ~       ~       ~       ~       ~
+7       ~       ~       ~       ~       ~       ~       ~       ~
+8       ~       ~       ~       ~       ~       ~       ~       ~
+
+Player 1, input a valid coordinate to fire on: 1A
+You hit and sank their ship!
+Next player's turn!
+GAME OVER!
+Congratulations player 1, you are the winner!
+
+                                  )___(
+                           _______/__/_
+                  ___     /===========|   ___
+ ____       __   [\\]___/____________|__[///]   __
+ \   \_____[\\]__/___________________________\__[//]___
+  \448                                                 |
+   \                                                  /
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+==7938==
+==7938== HEAP SUMMARY:
+==7938==     in use at exit: 80 bytes in 2 blocks
+==7938==   total heap usage: 31 allocs, 29 frees, 79,504 bytes allocated
+==7938==
+==7938== 40 bytes in 1 blocks are definitely lost in loss record 1 of 2
+==7938==    at 0x4C3089F: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==7938==    by 0x10D481: Executive::placeShip(int, Admiral*, bool) (Executive.cpp:377)
+==7938==    by 0x10F718: Executive::setupGame(bool) (Executive.cpp:853)
+==7938==    by 0x10DDAC: Executive::run() (Executive.cpp:429)
+==7938==    by 0x10B11B: main (main.cpp:23)
+==7938==
+==7938== 40 bytes in 1 blocks are definitely lost in loss record 2 of 2
+==7938==    at 0x4C3089F: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==7938==    by 0x10D481: Executive::placeShip(int, Admiral*, bool) (Executive.cpp:377)
+==7938==    by 0x10F790: Executive::setupGame(bool) (Executive.cpp:859)
+==7938==    by 0x10DDAC: Executive::run() (Executive.cpp:429)
+==7938==    by 0x10B11B: main (main.cpp:23)
+==7938==
+==7938== LEAK SUMMARY:
+==7938==    definitely lost: 80 bytes in 2 blocks
+==7938==    indirectly lost: 0 bytes in 0 blocks
+==7938==      possibly lost: 0 bytes in 0 blocks
+==7938==    still reachable: 0 bytes in 0 blocks
+==7938==         suppressed: 0 bytes in 0 blocks
+==7938==
+==7938== For counts of detected and suppressed errors, rerun with: -v
+==7938== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 0 from 0)
+c817l905@cycle3:~/eecs448/p2-repo$
