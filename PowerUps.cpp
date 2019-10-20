@@ -7,8 +7,8 @@ PowerUps::PowerUps()
 
 PowerUps::~PowerUps(){
     //tbd
-    delete m_admir1;
-    delete m_admir2;
+    //delete m_admir1;
+    //delete m_admir2;
 }
 
 void PowerUps::setAdmirals(Admiral* admir1, Admiral* admir2){
