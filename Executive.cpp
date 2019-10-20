@@ -664,8 +664,8 @@ bool Executive::handleTurn(const int player, const bool AI)
 			if (turnResult == "hit")
 			{
 				int index = m_player1->findShipbyCoord(targetCoord);
-				shipCoords = (m_player1->getFleet()).at(index)->getCoords();
-				size = (m_player1->getFleet()).at(index)->getSize();
+				shipCoords = (m_player1->getFleet())->at(index)->getCoords();
+				size = (m_player1->getFleet())->at(index)->getSize();
 				m_powerups.useTorpedo(targetCoord, true, size, shipCoords);
 			}
 			else
@@ -674,6 +674,13 @@ bool Executive::handleTurn(const int player, const bool AI)
 				m_powerups.useTorpedo(targetCoord, true, size, shipCoords);
 			}
 			m_player1->getBoard()->printGrid(true);
+		}
+		else if (powerup == "R")
+		{
+			cout << "Radar will allow you to see a 3x3 part of the board. Water tiles will be shown as misses.";
+			cout << "Enter the coordinate for the center of the box \n";
+			targetCoord = askForFireCoord(m_turn);
+			m_powerups.useRadar(targetCoord, true);
 		}
       }
 	  else
