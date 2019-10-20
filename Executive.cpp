@@ -239,7 +239,7 @@ void Executive::readBoard()
   //loadGame(turn, player1_board, player2_board, ai);
 }
 
-bool Executive::loadGame(int turn, string** player1_board, string** player2_board, bool ai)
+void Executive::loadGame(int turn, string** player1_board, string** player2_board, bool ai)
 {
     //store boards
     m_player1->getBoard()->readGrid(player1_board);
@@ -248,10 +248,10 @@ bool Executive::loadGame(int turn, string** player1_board, string** player2_boar
     //set current turn
     m_turn=turn;
 
-    //return if AI or not
-    return ai;
-
+    //return in relaunchOption if AI or not
+    relaunchOption=ai;
 }
+
 
 void Executive::placeShip(int n, Admiral* player, bool ai)
 {
@@ -570,7 +570,7 @@ int Executive::mainMenu()
     else if (player_choice == "5")
     {
       //check if ai or not, and call accordingly
-
+      if 
       
     }
     else
