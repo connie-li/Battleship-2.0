@@ -272,31 +272,34 @@ void Executive::placeShip(int n, Admiral* player, bool ai)
   for (int size = 1; size<= n; size++)
   {
     std::string start = "";
+    int r = 0;
+    int c = 0;
+
     if(!ai)
     {
       player->getBoard()->printGrid(false);
       std::cout << "It's time to place your ship of size 1x" << size << ". Enter a starting coordinate\n";
       start = askCoord();
+      r = std::stoi(start.substr(0,1));
+      c = charCoordtoIntCoord(start.at(1));
     }
     else
     {
       int x = rand() % 8+1;
       int y = rand() % 8+ 1;
       start = std::to_string(x) + ":" + std::to_string(y);
+      r = x;
+      c = y;
     }
     
-    int temp = charCoordtoIntCoord(start.at(1));
-    int r = std::stoi(start.substr(0,1));
-    int c = temp;
     while(taken[r][c] == true)
     {
       if(!ai)
       {
         std::cout << "Error you already placed a ship there. Try a different coordinate. ";
         start = askCoord();
-        temp = charCoordtoIntCoord(start.at(1));
+        c = charCoordtoIntCoord(start.at(1));
         r = std::stoi(start.substr(0,1));
-        c = temp;
       }
       else
       {
