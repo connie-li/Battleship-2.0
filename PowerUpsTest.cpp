@@ -80,9 +80,7 @@ bool PowerUpsTest::testTorpedo(){
     tempCoords[2] = "1:3";
     
     try{
-        m_tempAdmir = new Admiral(1);
-        m_PowerUps.addPowerUp("T",true);
-        m_PowerUps.setAdmirals(m_tempAdmir,m_tempAdmir);
+        createAdmiral("T");
         m_tempAdmir->addShip(3, tempCoords);
 
         cout << "Firing on top coordinate: ";
@@ -95,9 +93,7 @@ bool PowerUpsTest::testTorpedo(){
         cout << fail;
     }
     try{
-        m_tempAdmir = new Admiral(1);
-        m_PowerUps.addPowerUp("T",true);
-        m_PowerUps.setAdmirals(m_tempAdmir,m_tempAdmir);
+        createAdmiral("T");
         m_tempAdmir->addShip(3, tempCoords);
 
         cout << "Firing on middle coordinate: ";
@@ -110,9 +106,7 @@ bool PowerUpsTest::testTorpedo(){
         cout << fail;
     }
     try{
-        m_tempAdmir = new Admiral(1);
-        m_PowerUps.addPowerUp("T",true);
-        m_PowerUps.setAdmirals(m_tempAdmir,m_tempAdmir);
+        createAdmiral("T");
         m_tempAdmir->addShip(3, tempCoords);
 
         cout << "Firing on bottom coordinate: ";
@@ -132,15 +126,35 @@ bool PowerUpsTest::testTorpedo(){
 
 bool PowerUpsTest::testRadar(){
     bool hasPassed =1;
+
     return(true);
 }
 
 bool PowerUpsTest::testScatter(){
     bool hasPassed = 1;
-    return(true);
+    string* tempCoords = new string[3];
+    tempCoords[0] = "1:1";
+    tempCoords[1] ="1:2";
+    tempCoords[2] = "1:3";
+    try{
+        
+        m_tempAdmir->addShip(3, tempCoords);
+
+
+    }catch(exception){
+
+    }
+
+    return(hasPassed);
 }
 
 bool PowerUpsTest::testUber(){
     bool hasPassed = 1;
     return(true);
+}
+
+void PowerUpsTest::createAdmiral(string powerup){
+    m_tempAdmir = new Admiral(1);
+    m_PowerUps.addPowerUp(powerup,true);
+    m_PowerUps.setAdmirals(m_tempAdmir,m_tempAdmir);
 }
