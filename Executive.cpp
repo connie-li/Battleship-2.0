@@ -62,7 +62,7 @@ void Executive::writeBoard(string** player1_board, string** player2_board)
   vector<Ship*>* fleet=nullptr;
 
   string* coordsPtr=nullptr;
-  int numShips=0;
+  int sizeShips=0;
 
   //write board information to a text file
   for(int i = 0; i < 2; i++)
@@ -78,11 +78,14 @@ void Executive::writeBoard(string** player1_board, string** player2_board)
           fleet=m_player2->getFleet();
       }
 
+      gameFile<<m_numShips;
+      gameFile<<"\n";
       for(int j = 0; j<fleet->size(); j++)
       {
         coordsPtr=fleet->at(j)->getCoords();
-        numShips=fleet->at(j)->getSize();
-        for(int n=0; n<numShips; n++)
+        sizeShips=fleet->at(j)->getSize();
+
+        for(int n=0; n<sizeShips; n++)
         {
           gameFile<<coordsPtr[n];
           gameFile<<"\t";
@@ -137,7 +140,7 @@ void Executive::readBoard()
   bool status=false;
   int hits=0;
   string* coordsPtr=nullptr;
-  int numShips=0;
+  int sizeShips=0;
   vector<Ship*>* fleet=nullptr;
   string** board=nullptr;
   
@@ -153,6 +156,11 @@ void Executive::readBoard()
   //store grid info
   ifstream grid;
   grid.open("saved.txt"); 
+
+  grid>>m_numShips;
+
+  m_player1= new Admiral(m_numShips);
+  m_player2= new Admiral(m_numShips);
 
   board=new string*[m_BOARD_SIZE];
 
@@ -176,8 +184,8 @@ void Executive::readBoard()
         for(int j = 0; j<fleet->size(); j++)
         {
           coordsPtr=fleet->at(j)->getCoords();
-          numShips=fleet->at(j)->getSize();
-          for(int n=0; n<numShips; n++)
+          sizeShips=fleet->at(j)->getSize();
+          for(int n=0; n<sizeShips; n++)
           {
             grid>>coordsPtr[n];
           }
@@ -200,8 +208,8 @@ void Executive::readBoard()
         for(int j = 0; j<fleet->size(); j++)
         {
           coordsPtr=fleet->at(j)->getCoords();
-          numShips=fleet->at(j)->getSize();
-          for(int n=0; n<numShips; n++)
+          sizeShips=fleet->at(j)->getSize();
+          for(int n=0; n<sizeShips; n++)
           {
             grid>>coordsPtr[n];
           }
