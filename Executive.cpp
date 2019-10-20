@@ -570,6 +570,12 @@ void Executive::run()
       winner = gameplay(true);
       printGameOver(winner);
     }
+    if (menu == 5)
+    {
+      //setupGame(true);
+      winner = gameplay(relaunchOption);
+      printGameOver(winner);
+    }
 }
 
 int Executive::mainMenu()
@@ -614,8 +620,7 @@ int Executive::mainMenu()
     else if (player_choice == "5")
     {
       readBoard();
-      gameplay(relaunchOption);
-      
+      return 5;
     }
     else
     {
