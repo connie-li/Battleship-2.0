@@ -137,15 +137,16 @@ bool PowerUpsTest::testScatter(){
     tempCoords[1] ="1:2";
     tempCoords[2] = "1:3";
     try{
-        // createAdmiral("S", 1);
-        // m_tempAdmir->addShip(3, tempCoords);
-
-    
+        createAdmiral("S", 1);
+        m_tempAdmir->addShip(3, tempCoords);
+        cout<< "Firing Scattershot: ";
+        m_PowerUps.useScatterShot(true);
+        m_tempAdmir->getBoard()->printGrid(false);
+        cout<<pass;
     }catch(exception){
-
-        
+        hasPassed = 0;
+        cout<< fail;
     }
-
     return(hasPassed);
 }
 
