@@ -224,6 +224,8 @@ void Executive::readBoard()
         //load a ship using constructor call
         m_player2->loadShip(shipSize, coordsPtr, status, hits);
       }
+
+      delete[] coordsPtr;
     }
     //6. 2D string array grid
     for(int i = 0; i < m_BOARD_SIZE; i++)
@@ -274,8 +276,6 @@ void Executive::readBoard()
   } 
 
   delete[] board;
-
-  delete[] coordsPtr;
 }
 
 
