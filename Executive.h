@@ -56,7 +56,7 @@ class Executive
      * @return none
      * @post sends a string array of the coordinates of the ship to Admiral
      */
-    void placeShip(int size, Admiral* player, bool AI);
+    void placeShip(int n, Admiral* player, bool ai);
 
     /**
      * Delete saved.txt if it already exists. Then, write the AI and turn info and call writeBoard()
