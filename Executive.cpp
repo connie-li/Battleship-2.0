@@ -4,17 +4,14 @@
 Executive::Executive()
 {
   m_turn = 1;
-    //create players
-  m_player1 = new Admiral();
-  m_player2 = new Admiral();
-
+  m_player1 = nullptr;
+  m_player2 = nullptr;
 }
 
 Executive::~Executive()
 {
     delete m_player1;
     delete m_player2;
-
 }
 
 void Executive::saveGame(int turn, Admiral* player1, Admiral* player2, bool ai)
@@ -565,7 +562,7 @@ bool Executive::handleTurn(const int player, const bool AI)
   {
     std::this_thread::sleep_for(m_interval);
     system("cls");
-    
+
     if(player == 1)
     {
 
@@ -809,9 +806,10 @@ void Executive::setupGame(bool AI)
   {
     cout << "Starting a Player vs. AI game!\n";
     string difficulty = "";
-    cout << "Choose a difficulty level for the AI.\n1) Easy\n2) Medium\n3) Hard\n";
+    cout << "Choose a difficulty level for the AI.\n1) Easy\n2) Medium\n3) Hard\nYour choice: ";
     bool valid = false;
     std::getline(std::cin, difficulty);
+    m_player1 = new Admiral(m_numShips);
     while(!valid)
     {
       if (difficulty == "1")
@@ -848,6 +846,8 @@ void Executive::setupGame(bool AI)
   else
   {
     cout << "Starting a Player vs. Player game!\n";
+    m_player1 = new Admiral(m_numShips);
+    m_player2 = new Admiral(m_numShips);
     setNumShips();
     std::cout<< "\nPlayer 1: It's time to place your ships.\n\n";
     placeShip(m_numShips, m_player1, false);

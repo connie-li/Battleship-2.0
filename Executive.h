@@ -29,7 +29,7 @@ class Executive
         
     public:
     /** A constructor that takes no parameters.
-     * @param none
+     * @post initializes the player turn to 1.
      */
     Executive();
 
