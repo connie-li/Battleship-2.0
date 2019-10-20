@@ -9,6 +9,14 @@ Ship::Ship(int size)
 	m_numHits = 0;
 }
 
+Ship::Ship(int size, string* coords, bool status, int hits)
+{
+	m_size = size;
+	m_coords = coords;
+	m_status = status;
+	m_numHits = hits;
+}
+
 Ship::~Ship()
 {
 	delete[] m_coords;
