@@ -27,7 +27,7 @@ class Executive
         PowerUps m_powerups;    /* Contains both players' powerups and methods to use them. */
         char quit_choice;
 
-        bool relaunchOption; /*bool value to check if AI or not to relaunch PvP or PvAI */
+        bool m_ai; /*bool value to check if AI or not to relaunch PvP or PvAI */
         
     public:
     /** A constructor that takes no parameters.

@@ -299,7 +299,7 @@ void Executive::loadGame(int turn, string** player1_board, string** player2_boar
     m_turn=turn;
 
     //return in relaunchOption if AI or not
-    relaunchOption=ai;
+    m_ai=ai;
 }
 
 
@@ -584,7 +584,7 @@ void Executive::run()
     if (menu == 5)
     {
       //setupGame(true);
-      winner = gameplay(relaunchOption);
+      winner = gameplay(m_ai);
       printGameOver(winner);
     }
 }
