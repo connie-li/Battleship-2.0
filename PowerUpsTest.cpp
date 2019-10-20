@@ -14,7 +14,7 @@ void PowerUpsTest::run(){
 }
 
 PowerUpsTest::~PowerUpsTest(){
-    delete m_tempAdmir;
+    deleteAdmiral();
     cout << "PowerUps Testing Complete\n";
 }
 
@@ -188,6 +188,7 @@ bool PowerUpsTest::testUber(){
 }
 
 void PowerUpsTest::createAdmiral(string powerup, int ships){
+    deleteAdmiral();
     m_tempAdmir = new Admiral(ships);
     m_PowerUps.addPowerUp(powerup,true);
     m_PowerUps.setAdmirals(m_tempAdmir,m_tempAdmir);
