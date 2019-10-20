@@ -137,8 +137,8 @@ bool PowerUpsTest::testScatter(){
     tempCoords[1] ="1:2";
     tempCoords[2] = "1:3";
     try{
-        
-        m_tempAdmir->addShip(3, tempCoords);
+        // createAdmiral("S", 1);
+        // m_tempAdmir->addShip(3, tempCoords);
 
 
     }catch(exception){
