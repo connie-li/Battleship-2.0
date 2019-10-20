@@ -178,7 +178,7 @@ void Executive::readBoard()
         grid>>size;
 
         fleet=m_player1->getFleet();
-        for(int j = 0; j<fleet->size(); j++)
+        for(int j = 0; j<size; j++)
         {
           coordsPtr=fleet->at(j)->getCoords();
           sizeShips=fleet->at(j)->getSize();
