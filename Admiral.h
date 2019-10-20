@@ -92,5 +92,7 @@ class Admiral
 		 * @return the index of the relevant Ship in m_fleet, or -1 if the Ship is not found.
 		 */
 		int findShipbyCoord(const string coord) const;
+
+		void loadShip(int size, string* coordsArr, bool status, int hits);
 };
 #endif
