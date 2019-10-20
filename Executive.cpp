@@ -976,23 +976,24 @@ void Executive::placePowerUp(bool ai)
 {
    Grid* p1 = m_player1->getBoard();
    Grid* p2 = m_player2->getBoard();
-   string coor = p1->randCoor(false);
+   string coor = "";
+   coor = p1->randCoor(false);
    p1->setCoor(coor, "T");
-   string coor = p1->randCoor(false);
+   coor = p1->randCoor(false);
    p1->setCoor(coor, "U");
-   string coor = p1->randCoor(false);
+   coor = p1->randCoor(false);
    p1->setCoor(coor, "S");
-   string coor = p1->randCoor(false);
+   coor = p1->randCoor(false);
    p1->setCoor(coor, "R");
-   string coor = p2->randCoor(false);
+   coor = p2->randCoor(false);
    if(!ai)
    {
       p2->setCoor(coor, "T");
-      string coor = p2->randCoor(false);
+      coor = p2->randCoor(false);
       p2->setCoor(coor, "U");
-      string coor = p2->randCoor(false);
+      coor = p2->randCoor(false);
       p2->setCoor(coor, "S");
-      string coor = p2->randCoor(false);
+      coor = p2->randCoor(false);
       p2->setCoor(coor, "R");
    }
    
