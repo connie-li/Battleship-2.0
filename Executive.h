@@ -219,5 +219,10 @@ class Executive
      * @param ai bool true if the p2 is an AI (gives them no powerups)
      */
     void placePowerUp(bool ai);
+
+
+    void usePowerUp(string powerup, bool isPlayer1);
+
+    void receivedPowerUp(string turnResult, bool isPlayer1);
 };
 #endif

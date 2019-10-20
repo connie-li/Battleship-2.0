@@ -699,63 +699,13 @@ bool Executive::handleTurn(const int player, const bool AI)
       if(m_powerups.hasAPowerup(true))
       {
         powerup = askForPowerUp(1);
-        if (powerup == "N")
-        {
-          targetCoord = askForFireCoord(m_turn);
-          turnResult = m_player2->incomingShot(targetCoord);
-          printTurnResult(turnResult);
-        }
-        else if (powerup == "T")
-        {
-        //torpedo
-          cout << "The torpedo will automatically sink a ship if you hit one.";
-          targetCoord = askForFireCoord(m_turn);
-          string* shipCoords;
-          int size = -1;
-          turnResult = m_player2->incomingShot(targetCoord);
-          if (turnResult == "hit")
-          {
-            int index = m_player2->findShipbyCoord(targetCoord);
-            shipCoords = (m_player2->getFleet())->at(index)->getCoords();
-            size = (m_player2->getFleet())->at(index)->getSize();
-            m_powerups.useTorpedo(targetCoord, true, size, shipCoords);
-          }
-          else
-          {
-            m_powerups.useTorpedo(targetCoord, true, size, shipCoords);
-          }
-          m_player1->getBoard()->printGrid(true);
-        }
-        else if (powerup == "R")
-        {
-          cout << "Radar will allow you to see a 3x3 part of the board. Water tiles will be shown as misses.";
-          cout << "Enter the coordinate for the center of the box \n";
-          targetCoord = askForFireCoord(m_turn);
-          m_powerups.useRadar(targetCoord, true);
-          m_player1->getBoard()->printGrid(true);
-        }
-        else if (powerup == "S")
-        {
-          cout << "Scatter shot fired at three random locations.";
-          m_powerups.useScatterShot(true);
-          m_player1->getBoard()->printGrid(true);
-        }
-        else //uber commander
-        {
-          cout << "UberCommander automatically sinks your opponents smallest remaining ship.\n";
-          targetCoord = askForFireCoord(m_turn);
-          m_powerups.useUberCommander(targetCoord, true);
-          m_player1->getBoard()->printGrid(true);
-        }
+        usePowerUp(powerup, true);
       } 
       else //no power up
       {
         targetCoord = askForFireCoord(m_turn);
         turnResult = m_player2->incomingShot(targetCoord);
-        if(turnResult == "T" || turnResult == "R" || turnResult == "U" || turnResult == "S")
-        {
-           m_powerups.addPowerUp(turnResult, true);
-        }
+        receivedPowerUp(turnResult, true);
         printTurnResult(turnResult);
       }
         cout << "Next player's turn!\n";
@@ -790,63 +740,13 @@ bool Executive::handleTurn(const int player, const bool AI)
         if(m_powerups.hasAPowerup(true))
         {
           powerup = askForPowerUp(1);
-          if (powerup == "N")
-          {
-            targetCoord = askForFireCoord(m_turn);
-            turnResult = m_player2->incomingShot(targetCoord);
-            printTurnResult(turnResult);
-          }
-          else if (powerup == "T")
-          {
-            //torpedo
-            cout << "The torpedo will automatically sink a ship if you hit one.";
-            targetCoord = askForFireCoord(m_turn);
-            string* shipCoords;
-            int size = -1;
-            turnResult = m_player2->incomingShot(targetCoord);
-            if (turnResult == "hit")
-            {
-              int index = m_player2->findShipbyCoord(targetCoord);
-              shipCoords = (m_player2->getFleet())->at(index)->getCoords();
-              size = (m_player2->getFleet())->at(index)->getSize();
-              m_powerups.useTorpedo(targetCoord, true, size, shipCoords);
-            }
-				    else
-				    {
-					    m_powerups.useTorpedo(targetCoord, true, size, shipCoords);
-				    }
-				    m_player1->getBoard()->printGrid(true);
-			    }
-          else if (powerup == "R")
-          {
-            cout << "Radar will allow you to see a 3x3 part of the board. Water tiles will be shown as misses.";
-            cout << "Enter the coordinate for the center of the box \n";
-            targetCoord = askForFireCoord(m_turn);
-            m_powerups.useRadar(targetCoord, true);
-            m_player1->getBoard()->printGrid(true);
-          }
-          else if (powerup == "S")
-          {
-            cout << "Scatter shot fired at three random locations.";
-            m_powerups.useScatterShot(true);
-            m_player1->getBoard()->printGrid(true);
-          }
-          else //uber commander
-          {
-            cout << "UberCommander automatically sinks your opponents smallest remaining ship.\n";
-            targetCoord = askForFireCoord(m_turn);
-            m_powerups.useUberCommander(targetCoord, true);
-            m_player1->getBoard()->printGrid(true);
-          }
-		    }
+          usePowerUp(powerup, true);
+        }
         else //no powerups
         {
             targetCoord = askForFireCoord(m_turn);
             turnResult = m_player2->incomingShot(targetCoord);
-            if(turnResult == "T" || turnResult == "R" || turnResult == "U" || turnResult == "S")
-            {
-              m_powerups.addPowerUp(turnResult, true);
-            }
+            receivedPowerUp(turnResult, true);
             printTurnResult(turnResult);
         }
         cout << "Next player's turn!\n";
@@ -870,64 +770,13 @@ bool Executive::handleTurn(const int player, const bool AI)
       if(m_powerups.hasAPowerup(false))
       {
           powerup = askForPowerUp(2);
-          if (powerup == "N")
-          {
-            targetCoord = askForFireCoord(m_turn);
-            turnResult = m_player1->incomingShot(targetCoord);
-            printTurnResult(turnResult);
-          }
-          else if (powerup == "T")
-          {
-            //torpedo
-            cout << "The torpedo will automatically sink a ship if you hit one.";
-            targetCoord = askForFireCoord(m_turn);
-            string* shipCoords;
-            int size = -1;
-            turnResult = m_player1->incomingShot(targetCoord);
-            if (turnResult == "hit")
-            {
-              int index = m_player1->findShipbyCoord(targetCoord);
-              shipCoords = (m_player1->getFleet())->at(index)->getCoords();
-              size = (m_player1->getFleet())->at(index)->getSize();
-              m_powerups.useTorpedo(targetCoord, false, size, shipCoords);
-            }
-            else
-            {
-
-              m_powerups.useTorpedo(targetCoord, false, size, shipCoords);
-            }
-            m_player2->getBoard()->printGrid(true);
-          }
-          else if (powerup == "R")
-          {
-            cout << "Radar will allow you to see a 3x3 part of the board. Water tiles will be shown as misses.";
-            cout << "Enter the coordinate for the center of the box \n";
-            targetCoord = askForFireCoord(m_turn);
-            m_powerups.useRadar(targetCoord, false);
-            m_player2->getBoard()->printGrid(true);
-          }
-          else if (powerup == "S")
-          {
-            cout << "Scatter shot fired at three random locations.";
-            m_powerups.useScatterShot(false);
-            m_player2->getBoard()->printGrid(true);
-          }
-          else //uber commander
-          {
-            cout << "UberCommander automatically sinks your opponents smallest remaining ship.\n";
-            targetCoord = askForFireCoord(m_turn);
-            m_powerups.useUberCommander(targetCoord, false);
-            m_player2->getBoard()->printGrid(true);
-          }
+          usePowerUp(powerup, false);
       }
       else //no powerups
       {
         targetCoord = askForFireCoord(m_turn);
         turnResult = m_player1->incomingShot(targetCoord);
-        if(turnResult == "T" || turnResult == "R" || turnResult == "U" || turnResult == "S")
-        {
-           m_powerups.addPowerUp(turnResult, true);
-        }
+        receivedPowerUp(turnResult, false);
         printTurnResult(turnResult);
       }
       cout << "Next player's turn!\n";
@@ -1054,6 +903,82 @@ string Executive::askForFireCoord(const int player)
   string fire = "";
   fire = coord.substr(0,1) + ":" + to_string(charCoordtoIntCoord(coord.at(1)));
   return(fire);
+}
+
+void Executive::usePowerUp(string powerup, bool isPlayer1)
+{
+  Admiral* opponent;
+  Admiral* self;
+  if(isPlayer1)
+  {
+    opponent = m_player2;
+    self = m_player1;
+  }
+  else
+  {
+    opponent = m_player1;
+    self = m_player2;
+  }
+  
+  string targetCoord = "";
+  string turnResult = "";
+  if (powerup == "N")
+  {
+    targetCoord = askForFireCoord(m_turn);
+    turnResult = opponent->incomingShot(targetCoord);
+    printTurnResult(turnResult);
+  }
+  else if (powerup == "T")
+  {     
+    cout << "The torpedo will automatically sink a ship if you hit one.";
+    targetCoord = askForFireCoord(m_turn);
+    string* shipCoords;
+    int size = -1;
+    turnResult = opponent->incomingShot(targetCoord);
+    if (turnResult == "hit")
+    {
+      int index = opponent->findShipbyCoord(targetCoord);
+      shipCoords = (opponent->getFleet())->at(index)->getCoords();
+      size = (opponent->getFleet())->at(index)->getSize();
+      m_powerups.useTorpedo(targetCoord, isPlayer1, size, shipCoords);
+    }
+    else
+    {
+
+      m_powerups.useTorpedo(targetCoord, isPlayer1, size, shipCoords);
+    }
+    self->getBoard()->printGrid(true);
+  }
+  else if (powerup == "R")
+  {
+    cout << "Radar will allow you to see a 3x3 part of the board. Water tiles will be shown as misses.";
+    cout << "Enter the coordinate for the center of the box \n";
+    targetCoord = askForFireCoord(m_turn);
+    m_powerups.useRadar(targetCoord, isPlayer1);
+    self->getBoard()->printGrid(true);
+  }
+  else if (powerup == "S")
+  {
+    cout << "Scatter shot fired at three random locations.";
+    m_powerups.useScatterShot(isPlayer1);
+    self->getBoard()->printGrid(true);
+  }
+  else //uber commander
+  {
+    cout << "UberCommander automatically sinks your opponents smallest remaining ship.\n";
+    targetCoord = askForFireCoord(m_turn);
+    m_powerups.useUberCommander(targetCoord, isPlayer1);
+    self->getBoard()->printGrid(true);
+  }
+          
+}
+
+void Executive::receivedPowerUp(string turnResult, bool isPlayer1)
+{
+  if(turnResult == "T" || turnResult == "R" || turnResult == "U" || turnResult == "S")
+  {
+    m_powerups.addPowerUp(turnResult, true);
+  }
 }
 
 vector<string>* Executive::getPowerups(const int player) const
