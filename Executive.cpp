@@ -1077,17 +1077,20 @@ void Executive::setupGame(bool AI)
       std::getline(std::cin, difficulty);
       if (difficulty == "1")
       {
-        m_player2 = new EasyAI(m_player1->getBoard(), m_numShips);
+        m_player1 = new Admiral();
+        m_player2 = new EasyAI(m_player1->getBoard());
         valid = true;
       }
       else if (difficulty == "2")
       {
-        m_player2 = new MedAI(m_player1->getBoard(), m_numShips);
+        m_player1 = new Admiral();
+        m_player2 = new MedAI(m_player1->getBoard());
         valid = true;
 
       }
       else if (difficulty == "3")
       {
+        m_player1 = new Admiral();
         m_player2 = new HardAI(m_player1);
         valid = true;
       }
@@ -1111,8 +1114,8 @@ void Executive::setupGame(bool AI)
   else
   {
     cout << "Starting a Player vs. Player game!\n";
-    m_player1 = new Admiral(m_numShips);
-    m_player2 = new Admiral(m_numShips);
+    m_player1 = new Admiral();
+    m_player2 = new Admiral();
     setNumShips();
     std::cout<< "\nPlayer 1: It's time to place your ships.\n\n";
     placeShip(m_numShips, m_player1, false);
