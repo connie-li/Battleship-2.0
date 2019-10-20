@@ -119,7 +119,7 @@ bool PowerUpsTest::testTorpedo(){
         m_PowerUps.useTorpedo("1:3",true,3,tempCoords);
         cout << pass;
         delete m_tempAdmir;
-        
+
     }catch(exception){
         hasPassed = 0;
         cout << fail;
@@ -142,5 +142,31 @@ bool PowerUpsTest::testScatter(){
 
 bool PowerUpsTest::testUber(){
     bool hasPassed = 1;
-    return(true);
+    string* tempCoords1 = new string[1];
+    tempCoords1[0] = "2:1";
+    string* tempCoords2 = new string[2];
+    tempCoords2[0] = "1:1";
+    tempCoords2[1] ="1:2";
+
+  
+
+    //testing if uber fires on the smallest ship
+    try{
+        m_tempAdmir = new Admiral(2);
+        m_PowerUps.addPowerUp("U",true);
+        m_PowerUps.setAdmirals(m_tempAdmir,m_tempAdmir);
+        m_tempAdmir->addShip(1, tempCoords1);
+        m_tempAdmir->addShip(2,tempCoords2);
+
+        std::cout << "Firing on the smallest ship: ";
+        m_PowerUps.useUberCommander("1:1",true);
+        
+        cout << pass;
+    }catch(exception){
+        hasPassed = 0;
+        cout << fail;
+    }
+    
+
+    
 }
