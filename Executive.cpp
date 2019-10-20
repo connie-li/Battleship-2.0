@@ -60,6 +60,12 @@ void Executive::writeBoard(string** player1_board, string** player2_board)
   int sizeShips=0; /* to store size of ship to iterate and store all coordinates*/
 
   //write board information to a text file, for 2 players
+
+  //contents of saved_txt are numbered below
+  //1. m_numShips
+  gameFile<<m_numShips;
+  gameFile<<"\n\n";
+
   for(int player = 1; player <= 2; player++)
   {
       //if first player
@@ -74,37 +80,32 @@ void Executive::writeBoard(string** player1_board, string** player2_board)
           board=player2_board;
           fleet=m_player2->getFleet();
       }
-
-      //contents of saved_txt are numbered below
-      //1. m_numShips
-      gameFile<<m_numShips;
-      gameFile<<"\n";
-
       
       for(int j = 0; j<fleet->size(); j++)
       {
         coordsPtr=fleet->at(j)->getCoords();
         sizeShips=fleet->at(j)->getSize();
 
+        //2. ship size: 
+        gameFile<<sizeShips;
+        gameFile<<"\n";
+
         for(int n=0; n<sizeShips; n++)
         {
-          //2. coordsPtr[n]: coordinates of ship for example (3:8 4:8 for a 1x2 ship)
+          //3. coordsPtr[n]: coordinates of ship for example (3:8 4:8 for a 1x2 ship)
           gameFile<<coordsPtr[n];
           gameFile<<"\t";
         }
 
-        //3. ship's status: true if the Ship is still afloat, else false
+        //4. ship's status: true if the Ship is still afloat, else false
         gameFile<<"\n";
         gameFile<<fleet->at(j)->getStatus();
 
-        //4. numHits: the number of hits the Ship has taken
+        //5. numHits: the number of hits the Ship has taken
         gameFile<<"\n";
         gameFile<<fleet->at(j)->getNumHits();
+        gameFile<<"\n\n";
 
-        //5. ship size: 
-        gameFile<<"\n";
-        gameFile<<fleet->at(j)->getSize();
-        gameFile<<"\n";
       } 
 
       //6. Print grid
