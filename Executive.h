@@ -220,9 +220,18 @@ class Executive
      */
     void placePowerUp(bool ai);
 
-
+    /**
+     * Lets user use a powerup
+     * @param powerup is a string of the letter for the power (TRUS)
+     * @param isPlayer1 is a bool true for player 1, false for player2
+     */
     void usePowerUp(string powerup, bool isPlayer1);
 
+    /**
+     * Checks if the player received a powerup and adds it to the vector if so
+     * @param turnResult is the value of the grid at the a coordinate point
+     * @param isPlayer1 is a bool true for player 1, false for player2
+     */
     void receivedPowerUp(string turnResult, bool isPlayer1);
 };
 #endif
