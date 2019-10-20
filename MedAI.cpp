@@ -1,5 +1,15 @@
 #include "MedAI.h"
 
+MedAI::MedAI(Grid* grid)
+{
+    opponentBoard = grid;
+    counter = 0;
+    prevShot = "";
+    hit = false;
+    prevShipAfloat = getNumShips();
+    direction = 0;
+    current = 0;
+}
 
 MedAI::MedAI(Grid* grid, int numShips)
 {

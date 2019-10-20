@@ -5,6 +5,11 @@ string EasyAI::fire()
     return opponentBoard->randCoor(true);
 }
 
+EasyAI::EasyAI(Grid* grid)
+{
+	opponentBoard = grid;
+}
+
 EasyAI::EasyAI(Grid* grid, int numShips)
 {
     setGrid(grid);

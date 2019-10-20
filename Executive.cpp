@@ -317,31 +317,34 @@ void Executive::placeShip(int n, Admiral* player, bool ai)
   for (int size = 1; size<= n; size++)
   {
     std::string start = "";
+    int r = 0;
+    int c = 0;
+
     if(!ai)
     {
       player->getBoard()->printGrid(false);
       std::cout << "It's time to place your ship of size 1x" << size << ". Enter a starting coordinate\n";
       start = askCoord();
+      r = std::stoi(start.substr(0,1));
+      c = charCoordtoIntCoord(start.at(1));
     }
     else
     {
       int x = rand() % 8+1;
       int y = rand() % 8+ 1;
       start = std::to_string(x) + ":" + std::to_string(y);
+      r = x;
+      c = y;
     }
     
-    int temp = charCoordtoIntCoord(start.at(1));
-    int r = std::stoi(start.substr(0,1));
-    int c = temp;
     while(taken[r][c] == true)
     {
       if(!ai)
       {
         std::cout << "Error you already placed a ship there. Try a different coordinate. ";
         start = askCoord();
-        temp = charCoordtoIntCoord(start.at(1));
+        c = charCoordtoIntCoord(start.at(1));
         r = std::stoi(start.substr(0,1));
-        c = temp;
       }
       else
       {
@@ -1116,35 +1119,40 @@ void Executive::setupGame(bool AI)
 {
   if(AI)
   {
-    cout << "Starting a Player vs. AI game!\n";
-    string difficulty = "";
-    cout << "Choose a difficulty level for the AI.\n1) Easy\n2) Medium\n3) Hard\nYour choice: ";
     bool valid = false;
-    std::getline(std::cin, difficulty);
-    m_player1 = new Admiral(m_numShips);
-    while(!valid)
+    string difficulty = "";
+    cout << "Starting a Player vs. AI game!\n";
+    cout << "Choose a difficulty level for the AI.\n1) Easy\n2) Medium\n3) Hard\nYour choice: ";
+    
+    do
     {
+      std::getline(std::cin, difficulty);
       if (difficulty == "1")
       {
-        m_player2 = new EasyAI(m_player1->getBoard(), m_numShips);
+        m_player1 = new Admiral();
+        m_player2 = new EasyAI(m_player1->getBoard());
         valid = true;
       }
       else if (difficulty == "2")
       {
-        m_player2 = new MedAI(m_player1->getBoard(), m_numShips);
+        m_player1 = new Admiral();
+        m_player2 = new MedAI(m_player1->getBoard());
         valid = true;
 
       }
       else if (difficulty == "3")
       {
+        m_player1 = new Admiral();
         m_player2 = new HardAI(m_player1);
         valid = true;
       }
       else
       {
-        std::cout << "Error, enter a valid number from 1-3\n";
+        std::cout << "Error, enter a valid number from 1-3: ";
       }
-    }
+    }while(!valid);
+
+    
     setNumShips();
     std::cout<< "\nPlayer 1: It's time to place your ships.\n\n";
     m_player1->getBoard()->printGrid(false);
@@ -1158,8 +1166,8 @@ void Executive::setupGame(bool AI)
   else
   {
     cout << "Starting a Player vs. Player game!\n";
-    m_player1 = new Admiral(m_numShips);
-    m_player2 = new Admiral(m_numShips);
+    m_player1 = new Admiral();
+    m_player2 = new Admiral();
     setNumShips();
     std::cout<< "\nPlayer 1: It's time to place your ships.\n\n";
     placeShip(m_numShips, m_player1, false);

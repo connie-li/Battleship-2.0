@@ -9,6 +9,9 @@
 
 using namespace std;
 
+/**
+ * Class definition for an Easy difficulty AI object, which inherits from Admiral.
+ */
 class EasyAI : public Admiral
 {
     private: 
@@ -17,9 +20,15 @@ class EasyAI : public Admiral
 
     public:
     
-    /**
-     * Creates an Easy difficulty AI
-     * @param grid is a Grid object for the real player
+    /** Constructor for an Easy difficulty AI with 1 parameter.
+     * @param grid is a pointer to the opponent player's Grid.
+     * @post creates an Easy difficulty AI object.
+     */
+    EasyAI(Grid* grid);
+
+    /** Constructor for an Easy difficulty AI with 2 parameters.
+     * @param grid is a pointer to the opponent player's Grid.
+     * @param numShips the number of Ships the AI will have.
      */
     EasyAI(Grid* grid, int numShips);
 

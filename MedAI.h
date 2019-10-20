@@ -23,13 +23,18 @@ class MedAI : public Admiral
 
 
     public:
-    
-    /**
-     * Creates an Medium difficulty AI
+    /** Constructor for a Medium difficulty AI with 1 parameter.
      * @param grid is a Grid object for the real player
+     * @post Creates an Medium difficulty AI.
+     */
+    MedAI(Grid* grid);
+
+    /** Constructor for a Medium difficulty AI with 2 parameters.
+     * @param grid is a Grid object for the real player
+     * @param numShips the number of Ships the AI object will have.
+     * @post Creates an Medium difficulty AI.
      */
     MedAI(Grid* grid, int numShips);
-
 
     /**
      * Empty destructor for EasyAI. Opponent board gets deleted by the player
