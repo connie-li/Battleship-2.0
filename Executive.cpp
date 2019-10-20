@@ -121,12 +121,16 @@ void Executive::writeBoard(string** player1_board, string** player2_board)
 
 void Executive::readBoard()
 {
+  int turn=100;
+  int ai=100;
+  int size=0;
+  string* coords=nullptr;
+  bool status=false;
+  int hits=0;
+  
   //store player info
   ifstream playerInfo;
   playerInfo.open("player_info.txt"); 
-
-  int turn=100;
-  int ai=100;
 
   playerInfo>>turn;
   playerInfo>>ai;
@@ -145,12 +149,43 @@ void Executive::readBoard()
     board[i] = new string[m_BOARD_SIZE];
   }
 
-
   string** player1_board=nullptr;
   string** player2_board=nullptr;
 
-  for(int i = 0; i < 2; i++)  //for 2 players
+  for(int k = 0; k < 2; k++)  //for 2 players
   {
+    if(k==0)
+    {
+      for(int n=0; n<m_numShips; n++)
+      {
+        grid>>size;
+        //grid>>coords;
+        grid>>status;
+        grid>>hits;
+      }
+        player1_board=board;
+        //call grid constructor
+        //m_player1->getFleet()->push_back(new Ship(size, coords, status, hits));
+    }
+
+    
+    if(k==1)
+    {
+        player2_board=board;
+        for(int n=0; n<m_numShips; n++)
+      {
+        grid>>size;
+        //grid>>coords;
+        grid>>status;
+        grid>>hits;
+      }
+        player1_board=board;
+        //call grid constructor
+        //m_player2->getFleet()->push_back(new Ship(size, coords, status, hits));
+    } 
+    
+    
+
     for(int i = 0; i < m_BOARD_SIZE; i++)
     {
         for(int j = 0; j < m_BOARD_SIZE; j++)
@@ -159,15 +194,18 @@ void Executive::readBoard()
         }
     }
 
-    if(i==0)
+    if(k==0)
     {
         player1_board=board;
+        //call grid constructor
+        //m_player1->getFleet()->push_back(new Ship(size, coords, status, hits));
     }
 
     
-    if(i==1)
+    if(k==1)
     {
         player2_board=board;
+        //call grid constructor
     } 
   }
   
