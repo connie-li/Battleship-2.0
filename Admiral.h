@@ -13,7 +13,7 @@ using namespace std;
 
 class Admiral
 {
-	private:
+	protected:
 		Grid m_board;	/* a Grid to store the Admiral's game map. */
 		int m_numShips;	/* the number of Ships in Admiral. */
 		vector<Ship*> m_fleet;	/* an vector of pointers to Ships that belong to the Admiral. */
