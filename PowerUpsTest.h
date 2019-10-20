@@ -3,11 +3,13 @@
 #include <string>
 #include <iostream>
 #include "Test.h"
+#include <stdexcept>
 #include "PowerUps.h"
 
 class PowerUpsTest: protected Test{
 private:
     PowerUps m_PowerUps;
+    Admiral* m_tempAdmir =nullptr;
     /**
      * Tests using the Torpedo powerup
      * @return bool: If true, success. If false, failure.

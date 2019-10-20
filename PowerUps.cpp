@@ -24,21 +24,21 @@ Grid* PowerUps::mapPicker(bool isPlayer1){
 }
 
 void PowerUps::useTorpedo(std::string coord,bool isPlayer1, int shipSize, string* shipCoords){
-    Grid* map = mapPicker(isPlayer1);
     Admiral* tempAdmir = new Admiral();
     
-
     if(isPlayer1){
         tempAdmir = m_admir1;
     }
     else{
         tempAdmir = m_admir2;
     }
+    Grid* map = mapPicker(isPlayer1);
     vector<Ship*>* fleet = tempAdmir->getFleet();
+    
     int tempIndex= tempAdmir->findShipbyCoord(coord);
-
      //check to see if the value is an int
     std::string coordValue = map->getCoor(coord);
+
     if(shipSize != -1){
         //this is a hit, destroy whole ship
         for(int i=0;i<shipSize;i++){
