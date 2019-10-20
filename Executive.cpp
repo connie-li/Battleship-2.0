@@ -4,17 +4,14 @@
 Executive::Executive()
 {
   m_turn = 1;
-    //create players
-  m_player1 = new Admiral();
-  m_player2 = new Admiral();
-
+  m_player1 = nullptr;
+  m_player2 = nullptr;
 }
 
 Executive::~Executive()
 {
     delete m_player1;
     delete m_player2;
-
 }
 
 void Executive::saveGame(int turn, Admiral* player1, Admiral* player2, bool ai)
@@ -536,33 +533,36 @@ bool Executive::handleTurn(const int player, const bool AI)
   {
     if (player ==1)
     {
-        printMaps(player);
-        printEnemyAction(); //TODO
-        // if(m_powerups.hasAPowerup(true))
-        // {
-        //   powerup = askForPowerUp(1);
-        // }
-        targetCoord = askForFireCoord(m_turn);
-        turnResult = m_player2->incomingShot(targetCoord);
-        // TODO: add powerups
-        // if(turnResult == "T" || turnResult == "R" || turnResult == "U" || turnResult == "S")
-        //   {
+      cout << "Player 1's turn!\n\n";
+      printMaps(player);
+      printEnemyAction(); //TODO
+      // if(m_powerups.hasAPowerup(true))
+      // {
+      //   powerup = askForPowerUp(1);
+      // }
+      targetCoord = askForFireCoord(m_turn);
+      turnResult = m_player2->incomingShot(targetCoord);
+      // TODO: add powerups
+      // if(turnResult == "T" || turnResult == "R" || turnResult == "U" || turnResult == "S")
+      //   {
 
-        //   }
-        printTurnResult(turnResult);
-        return(m_player2->getNumAfloat() < 1);
+      //   }
+      printTurnResult(turnResult);
+      cout << "Next player's turn!\n";
+      return(m_player2->getNumAfloat() < 1);
     }
     else
     {
-        targetCoord = m_player2->fire();
-        turnResult = m_player1->incomingShot(targetCoord);
-        return(m_player1->getNumAfloat() < 1);
+      targetCoord = m_player2->fire();
+      turnResult = m_player1->incomingShot(targetCoord);
+      return(m_player1->getNumAfloat() < 1);
     }
   }
   else
   {
     std::this_thread::sleep_for(m_interval);
     system("cls");
+
     if(player == 1)
     {
 
@@ -575,22 +575,23 @@ bool Executive::handleTurn(const int player, const bool AI)
 //       }
 //       else
 //       {
+      cout << "Player 1's turn!\n\n";
+      printMaps(player);
+      printEnemyAction(); //TODO
+      // if(m_powerups.hasAPowerup(true))
+      // {
+      //   powerup = askForPowerUp(1);
+      // }
+      targetCoord = askForFireCoord(m_turn);
+      turnResult = m_player2->incomingShot(targetCoord);
+      // TODO: add powerups
+      // if(turnResult == "T" || turnResult == "R" || turnResult == "U" || turnResult == "S")
+      //   {
 
-        printMaps(player);
-        printEnemyAction(); //TODO
-        // if(m_powerups.hasAPowerup(true))
-        // {
-        //   powerup = askForPowerUp(1);
-        // }
-        targetCoord = askForFireCoord(m_turn);
-        turnResult = m_player2->incomingShot(targetCoord);
-        // TODO: add powerups
-        // if(turnResult == "T" || turnResult == "R" || turnResult == "U" || turnResult == "S")
-        //   {
-
-        //   }
-        printTurnResult(turnResult);
-        return(m_player2->getNumAfloat() < 1);
+      //   }
+      printTurnResult(turnResult);
+      cout << "Next player's turn!\n";
+      return(m_player2->getNumAfloat() < 1);
       // }
     }
     else  // player 2
@@ -605,18 +606,19 @@ bool Executive::handleTurn(const int player, const bool AI)
       // }
       // else
       // {
-
-        printMaps(player);
-        printEnemyAction(); //TODO
-        // if(m_powerups.hasAPowerup(false))
-        // {
-        //   powerup = askForPowerUp(2);
-        // }
-        targetCoord = askForFireCoord(m_turn);
-        turnResult = m_player1->incomingShot(targetCoord);
-        // TODO: add powerups
-        printTurnResult(turnResult);
-        return(m_player1->getNumAfloat() < 1);
+      cout << "Player 2's turn!\n\n";
+      printMaps(player);
+      printEnemyAction(); //TODO
+      // if(m_powerups.hasAPowerup(false))
+      // {
+      //   powerup = askForPowerUp(2);
+      // }
+      targetCoord = askForFireCoord(m_turn);
+      turnResult = m_player1->incomingShot(targetCoord);
+      // TODO: add powerups
+      printTurnResult(turnResult);
+      cout << "Next player's turn!\n";
+      return(m_player1->getNumAfloat() < 1);
       // }
     }
   }
@@ -804,9 +806,10 @@ void Executive::setupGame(bool AI)
   {
     cout << "Starting a Player vs. AI game!\n";
     string difficulty = "";
-    cout << "Choose a difficulty level for the AI.\n1) Easy\n2) Medium\n3) Hard\n";
+    cout << "Choose a difficulty level for the AI.\n1) Easy\n2) Medium\n3) Hard\nYour choice: ";
     bool valid = false;
     std::getline(std::cin, difficulty);
+    m_player1 = new Admiral(m_numShips);
     while(!valid)
     {
       if (difficulty == "1")
@@ -831,7 +834,7 @@ void Executive::setupGame(bool AI)
       }
     }
     setNumShips();
-    std::cout<< "Player 1: It's time to place your ships.\n";
+    std::cout<< "\nPlayer 1: It's time to place your ships.\n\n";
     m_player1->getBoard()->printGrid(false);
     placeShip(m_numShips, m_player1, false);
     m_player1->getBoard()->printGrid(false);
@@ -843,14 +846,16 @@ void Executive::setupGame(bool AI)
   else
   {
     cout << "Starting a Player vs. Player game!\n";
+    m_player1 = new Admiral(m_numShips);
+    m_player2 = new Admiral(m_numShips);
     setNumShips();
-    std::cout<< "Player 1: It's time to place your ships.\n";
+    std::cout<< "\nPlayer 1: It's time to place your ships.\n\n";
     placeShip(m_numShips, m_player1, false);
     std::cout << "Thanks for placing your ships, player 1! \nNow it's player 2's turn.";
     std::this_thread::sleep_for(std::chrono::seconds(5));
 
     system("cls");
-    std::cout<< "Player 2: It's time to place your ships.\n";
+    std::cout<< "Player 2: It's time to place your ships.\n\n";
     placeShip(m_numShips, m_player2, false);
     //saveGame(m_player1, m_player2, false);
     std::cout << "Thanks for placing your ships. Time to start the game!";
