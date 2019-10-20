@@ -61,6 +61,9 @@ void Executive::writeBoard(string** player1_board, string** player2_board)
 
   vector<Ship*>* fleet=nullptr;
 
+  string* coordsPtr=nullptr;
+  int numShips=0;
+
   //write board information to a text file
   for(int i = 0; i < 2; i++)
   {
@@ -77,7 +80,14 @@ void Executive::writeBoard(string** player1_board, string** player2_board)
 
       for(int j = 0; j<fleet->size(); j++)
       {
-        gameFile<<*(fleet->at(j)->getCoords());
+        coordsPtr=fleet->at(j)->getCoords();
+        numShips=fleet->at(j)->getSize();
+        for(int n=0; n<numShips; n++)
+        {
+          gameFile<<coordsPtr[n];
+          gameFile<<"\t";
+        }
+
         gameFile<<"\n";
         gameFile<<fleet->at(j)->getStatus();
         gameFile<<"\n";
@@ -163,15 +173,13 @@ void Executive::readBoard()
         grid>>status;
         grid>>hits;
       }
-        player1_board=board;
         //call grid constructor
-        //m_player1->getFleet()->push_back(new Ship(size, coords, status, hits));
+        m_player1->loadShip(size, coords, status, hits);
     }
 
     
     if(k==1)
     {
-        player2_board=board;
         for(int n=0; n<m_numShips; n++)
       {
         grid>>size;
@@ -179,9 +187,8 @@ void Executive::readBoard()
         grid>>status;
         grid>>hits;
       }
-        player1_board=board;
         //call grid constructor
-        //m_player2->getFleet()->push_back(new Ship(size, coords, status, hits));
+        m_player1->loadShip(size, coords, status, hits);
     } 
     
     
@@ -197,15 +204,12 @@ void Executive::readBoard()
     if(k==0)
     {
         player1_board=board;
-        //call grid constructor
-        //m_player1->getFleet()->push_back(new Ship(size, coords, status, hits));
     }
 
     
     if(k==1)
     {
         player2_board=board;
-        //call grid constructor
     } 
   }
   
