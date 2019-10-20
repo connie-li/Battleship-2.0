@@ -681,6 +681,20 @@ bool Executive::handleTurn(const int player, const bool AI)
 			cout << "Enter the coordinate for the center of the box \n";
 			targetCoord = askForFireCoord(m_turn);
 			m_powerups.useRadar(targetCoord, true);
+			m_player1->getBoard()->printGrid(true);
+		}
+		else if (powerup == "S")
+		{
+			cout << "Scatter shot fired at three random locations.";
+			m_powerups.useScatterShot(true);
+			m_player1->getBoard()->printGrid(true);
+		}
+		else //uber commander
+		{
+			cout << "UberCommander automatically sinks your opponents smallest remaining ship.\n";
+			targetCoord = askForFireCoord(m_turn);
+			m_powerups.useUberCommander(targetCoord, true);
+			m_player1->getBoard()->printGrid(true);
 		}
       }
 	  else
