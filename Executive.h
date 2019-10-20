@@ -224,5 +224,10 @@ class Executive
     void usePowerUp(string powerup, bool isPlayer1);
 
     void receivedPowerUp(string turnResult, bool isPlayer1);
+
+    /** Clears the console by printing newlines.
+     * @post prints 100 newlines to the console.
+     */
+    void clearConsole() const;
 };
 #endif

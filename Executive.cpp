@@ -1135,3 +1135,11 @@ void Executive::setupGame(bool AI)
     std::this_thread::sleep_for(std::chrono::seconds(5));
   }
 }
+
+void Executive::clearConsole() const
+{
+  for(int i = 0; i < 100; i++)
+  {
+    cout << '\n';
+  }
+}
