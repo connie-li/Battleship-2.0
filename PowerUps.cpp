@@ -7,6 +7,8 @@ PowerUps::PowerUps()
 
 PowerUps::~PowerUps(){
     //tbd
+    delete m_admir1;
+    delete m_admir2;
 }
 
 Grid* PowerUps::mapPicker(bool isPlayer1){
