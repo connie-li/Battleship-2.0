@@ -266,6 +266,16 @@ void Executive::readBoard()
   grid.close();
 
   loadGame(turn, player1_board, player2_board, ai);
+
+  for(int i = 0; i < m_BOARD_SIZE; i++)
+  {
+    //initial each row with 8 elements
+    delete[] board[i];
+  } 
+
+  delete[] board;
+
+  delete[] coordsPtr;
 }
 
 
@@ -274,6 +284,16 @@ void Executive::loadGame(int turn, string** player1_board, string** player2_boar
     //store boards
     m_player1->getBoard()->readGrid(player1_board);
     m_player2->getBoard()->readGrid(player2_board);
+
+      for(int i = 0; i < m_BOARD_SIZE; i++)
+    {
+      //initial each row with 8 elements
+      delete[] player1_board[i];
+      delete[] player2_board[i];
+    } 
+
+    delete[] player1_board;
+    delete[] player2_board;
 
     //set current turn
     m_turn=turn;
