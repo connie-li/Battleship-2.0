@@ -1142,7 +1142,7 @@ void Executive::printGameOver(const int player) const
 
 void Executive::printMaps(const int player) const
 {
-  system("cls");
+  clearConsole();
   if(player == 1)
   {
     cout << "Your firing map:\n";
@@ -1221,7 +1221,7 @@ void Executive::setupGame(bool AI)
     std::cout << "Thanks for placing your ships, player 1! \nNow it's player 2's turn.";
     //std::this_thread::sleep_for(std::chrono::seconds(5));
 
-    system("cls");
+    clearConsole();
     std::cout<< "Player 2: It's time to place your ships.\n\n";
     placeShip(m_numShips, m_player2, false);
     std::cout << "Thanks for placing your ships. Time to start the game!";
