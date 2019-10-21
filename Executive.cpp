@@ -1140,6 +1140,7 @@ void Executive::setupGame(bool AI)
     placePowerUp(false);
     std::this_thread::sleep_for(std::chrono::seconds(5));
   }
+  m_powerups.setAdmirals(m_player1,m_player2);
 }
 
 void Executive::clearConsole() const
