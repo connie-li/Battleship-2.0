@@ -462,6 +462,10 @@ void Executive::placeShip(int n, Admiral* player, bool ai)
           {
             end = option_w;
           }
+          else if (south)
+          {
+            end = option_s;
+          }
         }
         if (randOpt == 1)
         {
@@ -476,6 +480,10 @@ void Executive::placeShip(int n, Admiral* player, bool ai)
           else if (south)
           {
             end = option_s;
+          }
+          else if (east)
+          {
+            end = option_e;
           }
         }
         if (randOpt ==2)
@@ -492,6 +500,10 @@ void Executive::placeShip(int n, Admiral* player, bool ai)
           {
             end = option_n;
           }
+          else if (west)
+          {
+            end = option_w;
+          }
         }
         if (randOpt == 3)
         {
@@ -506,6 +518,10 @@ void Executive::placeShip(int n, Admiral* player, bool ai)
           else if (east)
           {
             end = option_e;
+          }
+          else if (north)
+          {
+            end = option_n;
           }
         }
       }
