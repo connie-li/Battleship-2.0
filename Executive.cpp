@@ -933,8 +933,8 @@ void Executive::placePowerUp(bool ai)
    coor = p2->randCoor(false);
    if(!ai)
    {
-      p1->setCoor(coor, "T");
-      coor = p1->randCoor(false);
+      // p1->setCoor(coor, "T");
+      // coor = p1->randCoor(false);
       p1->setCoor(coor, "U");
       coor = p1->randCoor(false);
       p1->setCoor(coor, "S");
