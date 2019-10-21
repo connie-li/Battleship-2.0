@@ -1,0 +1,70 @@
+~~Dr.M~~
+~~Dr.M~~ Error #2: UNADDRESSABLE ACCESS beyond top of stack: reading 8 byte(s)
+~~Dr.M~~ # 0 .text                                   [../../../../../src/gcc-8.1.0/libgcc/config/i386/cygwin.S:132]
+~~Dr.M~~ # 1 __pformat_int.isra.0                    [main.cpp:26]
+~~Dr.M~~ # 2 __mingw_pformat                         [main.cpp:26]
+~~Dr.M~~ # 3 __mingw_vsnprintf                       [main.cpp:26]
+~~Dr.M~~ # 4 vsnprintf                               [C:/MinGW64/x86_64-w64-mingw32/include/stdio.h:401]
+~~Dr.M~~ # 5 __gnu_cxx::__to_xstring<>               [C:/MinGW64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/ext/string_conversions.h:111]
+~~Dr.M~~ # 6 std::__cxx11::to_string                 [C:/MinGW64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/basic_string.h:6416]
+~~Dr.M~~ # 7 Grid::Grid                              [Grid.cpp:5]
+~~Dr.M~~ # 8 Admiral::Admiral                        [Admiral.cpp:11]
+~~Dr.M~~ # 9 Executive::readBoard                    [Executive.cpp:191]
+~~Dr.M~~ #10 Executive::mainMenu                     [Executive.cpp:640]
+~~Dr.M~~ #11 Executive::run                          [Executive.cpp:574]
+~~Dr.M~~ #12 main                                    [main.cpp:23]
+~~Dr.M~~ Note: 0x000000000073f380 refers to 24 byte(s) beyond the top of the stack 0x000000000073f398
+~~Dr.M~~
+~~Dr.M~~ Error #3: UNADDRESSABLE ACCESS beyond top of stack: reading 8 byte(s)
+~~Dr.M~~ # 0 .text                                   [../../../../../src/gcc-8.1.0/libgcc/config/i386/cygwin.S:132]
+~~Dr.M~~ # 1 __pformat_int.isra.0                    [main.cpp:26]
+~~Dr.M~~ # 2 __mingw_pformat                         [main.cpp:26]
+~~Dr.M~~ # 3 __mingw_vsnprintf                       [main.cpp:26]
+~~Dr.M~~ # 4 vsnprintf                               [C:/MinGW64/x86_64-w64-mingw32/include/stdio.h:401]
+~~Dr.M~~ # 5 __gnu_cxx::__to_xstring<>               [C:/MinGW64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/ext/string_conversions.h:111]
+~~Dr.M~~ # 6 std::__cxx11::to_string                 [C:/MinGW64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/basic_string.h:6416]
+~~Dr.M~~ # 7 Grid::Grid                              [Grid.cpp:5]
+~~Dr.M~~ # 8 Admiral::Admiral                        [Admiral.cpp:11]
+~~Dr.M~~ # 9 Executive::readBoard                    [Executive.cpp:191]
+~~Dr.M~~ #10 Executive::mainMenu                     [Executive.cpp:640]
+~~Dr.M~~ #11 Executive::run                          [Executive.cpp:574]
+~~Dr.M~~ #12 main                                    [main.cpp:23]
+~~Dr.M~~ Note: 0x000000000073f380 refers to 24 byte(s) beyond the top of the stack 0x000000000073f398
+~~Dr.M~~
+~~Dr.M~~ Error #4: UNADDRESSABLE ACCESS beyond top of stack: reading 8 byte(s)
+~~Dr.M~~ # 0 .text                                   [../../../../../src/gcc-8.1.0/libgcc/config/i386/cygwin.S:132]
+~~Dr.M~~ # 1 __pformat_int.isra.0                    [main.cpp:26]
+~~Dr.M~~ # 2 __mingw_pformat                         [main.cpp:26]
+~~Dr.M~~ # 3 __mingw_vsnprintf                       [main.cpp:26]
+~~Dr.M~~ # 4 vsnprintf                               [C:/MinGW64/x86_64-w64-mingw32/include/stdio.h:401]
+~~Dr.M~~ # 5 __gnu_cxx::__to_xstring<>               [C:/MinGW64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/ext/string_conversions.h:111]
+~~Dr.M~~ # 6 std::__cxx11::to_string                 [C:/MinGW64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/basic_string.h:6416]
+~~Dr.M~~ # 7 Grid::Grid                              [Grid.cpp:5]
+~~Dr.M~~ # 8 Admiral::Admiral                        [Admiral.cpp:11]
+~~Dr.M~~ # 9 Executive::readBoard                    [Executive.cpp:192]
+~~Dr.M~~ #10 Executive::mainMenu                     [Executive.cpp:640]
+~~Dr.M~~ #11 Executive::run                          [Executive.cpp:574]
+~~Dr.M~~ #12 main                                    [main.cpp:23]
+~~Dr.M~~ Note: 0x000000000073f380 refers to 24 byte(s) beyond the top of the stack 0x000000000073f398
+~~Dr.M~~
+~~Dr.M~~ Error #5: UNADDRESSABLE ACCESS beyond top of stack: reading 8 byte(s)
+~~Dr.M~~ # 0 .text                                   [../../../../../src/gcc-8.1.0/libgcc/config/i386/cygwin.S:132]
+~~Dr.M~~ # 1 __pformat_int.isra.0                    [main.cpp:26]
+~~Dr.M~~ # 2 __mingw_pformat                         [main.cpp:26]
+~~Dr.M~~ # 3 __mingw_vsnprintf                       [main.cpp:26]
+~~Dr.M~~ # 4 vsnprintf                               [C:/MinGW64/x86_64-w64-mingw32/include/stdio.h:401]
+~~Dr.M~~ # 5 __gnu_cxx::__to_xstring<>               [C:/MinGW64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/ext/string_conversions.h:111]
+~~Dr.M~~ # 6 std::__cxx11::to_string                 [C:/MinGW64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/basic_string.h:6416]
+~~Dr.M~~ # 7 Grid::Grid                              [Grid.cpp:5]
+~~Dr.M~~ # 8 Admiral::Admiral                        [Admiral.cpp:11]
+~~Dr.M~~ # 9 Executive::readBoard                    [Executive.cpp:192]
+~~Dr.M~~ #10 Executive::mainMenu                     [Executive.cpp:640]
+~~Dr.M~~ #11 Executive::run                          [Executive.cpp:574]
+~~Dr.M~~ #12 main                                    [main.cpp:23]
+~~Dr.M~~ Note: 0x000000000073f380 refers to 24 byte(s) beyond the top of the stack 0x000000000073f398
+~~Dr.M~~
+~~Dr.M~~ Error #6: UNINITIALIZED READ: reading register eax
+~~Dr.M~~ # 0 Executive::readBoard               [Executive.cpp:196]
+~~Dr.M~~ # 1 Executive::mainMenu                [Executive.cpp:640]
+~~Dr.M~~ # 2 Executive::run                     [Executive.cpp:574]
+~~Dr.M~~ # 3 main                               [main.cpp:23]
