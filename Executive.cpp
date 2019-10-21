@@ -857,27 +857,27 @@ void Executive::placePowerUp(bool ai)
 string Executive::askForPowerUp(const int player)
 {
   bool goodInput = false;
-  vector<string>* playerPUs = getPowerups(player);
-  vector<string>::iterator it = playerPUs->begin();
+  vector<string> playerPUs = m_powerups.getPowerUps(player);
+  vector<string>::iterator it = playerPUs.begin();
   string choice = "";
   do {
       cout << "Player " << player << ", would you like to use a powerup?\n";
-      it = playerPUs->begin();
-      for(int i = 0; i< playerPUs->size(); i++)
+      it = playerPUs.begin();
+      for(int i = 0; i< playerPUs.size(); i++)
       {
-        if(playerPUs->at(i) == "T")
+        if(playerPUs.at(i) == "T")
         {
           cout << "Enter T to use your Torpedo.\n";
         }
-        if(playerPUs->at(i)== "R")
+        if(playerPUs.at(i)== "R")
         {
           cout << "Enter R to use your Radar.\n";
         }
-        if(playerPUs->at(i) == "U")
+        if(playerPUs.at(i) == "U")
         {
           cout << "Enter U to use your Uber Commander.\n";
         }
-        if(playerPUs->at(i) == "S")
+        if(playerPUs.at(i) == "S")
         {
           cout << "Enter S to use your Scattershot.\n";
         }
@@ -887,8 +887,8 @@ string Executive::askForPowerUp(const int player)
       cout << "Your choice: ";
       cin >> choice;
       //check whether the choice is in the vector
-      it = find(playerPUs->begin(), playerPUs->end(), choice);
-      if(it != playerPUs->end())
+      it = find(playerPUs.begin(), playerPUs.end(), choice);
+      if(it != playerPUs.end())
       {
         goodInput = true;
       }
