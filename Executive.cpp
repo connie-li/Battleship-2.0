@@ -1181,14 +1181,14 @@ void Executive::setupGame(bool AI)
     std::cout<< "\nPlayer 1: It's time to place your ships.\n\n";
     placeShip(m_numShips, m_player1, false);
     std::cout << "Thanks for placing your ships, player 1! \nNow it's player 2's turn.";
-    std::this_thread::sleep_for(std::chrono::seconds(5));
+    //std::this_thread::sleep_for(std::chrono::seconds(5));
 
     system("cls");
     std::cout<< "Player 2: It's time to place your ships.\n\n";
     placeShip(m_numShips, m_player2, false);
     std::cout << "Thanks for placing your ships. Time to start the game!";
     placePowerUp(false);
-    std::this_thread::sleep_for(std::chrono::seconds(5));
+    //std::this_thread::sleep_for(std::chrono::seconds(5));
   }
   m_powerups.setAdmirals(m_player1,m_player2);
 }
