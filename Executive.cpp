@@ -284,6 +284,8 @@ void Executive::readBoard()
   } 
 
   delete[] board;
+
+  m_powerups.setAdmirals(m_player1,m_player2);
 }
 
 
