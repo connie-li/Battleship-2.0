@@ -314,41 +314,22 @@ void Executive::loadGame(int turn, string** player1_board, string** player2_boar
 
 void Executive::placeAIShip(int n)
 {
-  //all vertical
-  bool taken[9];
-  for (int i = 0; i<9; i++)
+  for (int i = 1; i< n; i++)
   {
-    taken[i] = false;
-  }
-  for (int i = 1; i<= n; i++)
-  {
-    int r = rand() %(8-i+1) + 1;
-    bool occupied = true;
-    int c = rand()%8+1;
-    if (i!= 1)
+    int r = 1;
+    if (i%2 ==0)
     {
-      while (occupied)
-      {
-        if (taken[c])
-        {
-          c= rand()%8+1;
-        }
-        else
-        {
-          occupied = false;
-        }
-      }
+      r+= rand()%4;
     }
-    string* arr = new string[i];
-    for (int j = 0; j<i; j++)
+    std::string r = std::to_string(r);
+    std::string c = std::to_string(n);
+    cout << c << "-fdfds ";
+    std::string* arr = new string[i];
+    for (int j = 0; j< i; j++)
     {
-      string row = std::to_string(r+(j));
-      string col = std::to_string(c);
-      string coor = row+col;
-      std::cout << coor  << " ";
+      std::string coor = r+":"+c;
       arr[j] = coor;
     }
-    taken[c] = true;
     m_player2->addShip(i, arr);
   }
 
