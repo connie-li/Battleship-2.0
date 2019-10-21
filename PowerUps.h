@@ -37,44 +37,43 @@ class PowerUps
 
     /**
      * sets the internal admirals to the admirals made in game
-     * @param Admiral* admir1 pointer to admiral1
-     * @param Admiral* admir2 pointer to admiral2
+     * @param admir1 pointer to admiral1
+     * @param admir2 pointer to admiral2
      */
     void setAdmirals(Admiral* admir1, Admiral* admir2);
 
     /**
      * launches insta-kill torpedo
-     * @param string coordinate to use the powerup on
-     * @param bool isPlayer1 true if player1 false if player2
-     * @param int shipSize size of the ship, -1 if there is no ship at this coord
-     * @param string* shipCoords list of ship coordinates
+     * @param coord coordinate to use the powerup on
+     * @param isPlayer1 true if player1 false if player2
+     * @param shipSize size of the ship, -1 if there is no ship at this coord
+     * @param shipCoords list of ship coordinates
      */
     void useTorpedo(std::string coord, bool isPlayer1, int shipSize, string* shipCoords);
 
     /**
      * reveals locations around the chosen coordinate
-     * @param string coordinate to use the powerup on
-     * @param bool true if player1 false if player2
+     * @param coord coordinate to use the powerup on
+     * @param isPlayer1 true if player1 false if player2
      */
     void useRadar(std::string coord,bool isPlayer1);
 
     /**
      * hits random locations around the map
-     * @param string coordinate to use the powerup on
-     * @param bool true if player1 false if player2
+     * @param isPlayer1 true if player1 false if player2
      */
     void useScatterShot(bool isPlayer1);
 
     /**
      * seeks the smallest ship and fires upon it
-     * @param string coordinate to use the powerup on
-     * @param bool true if player1 false if player2
+     * @param coord coordinate to use the powerup on
+     * @param isPlayer1 true if player1 false if player2
      */
     void useUberCommander(std::string coord,bool isPlayer1);
 
     /**
      * chooses which map should be handed to the function
-     * @param bool true if player1's turn, false if player2
+     * @param isPlayer1 true if player1's turn, false if player2
      * @return Grid the grid owned by the other admiral (to fire upon)
      */
     Grid* mapPicker(bool isPlayer1);
@@ -87,21 +86,21 @@ class PowerUps
 
     /**
      * adds a powerup to the correct admiral's powerups vector
-     * @param string the string value of the powerup
-     * @param bool isPlayer1 true if player1 false if player2 
+     * @param value a string representing the powerup
+     * @param isPlayer1 true if player1 false if player2 
      */
     void addPowerUp(std::string value, bool isPlayer1);
 
     /**
      * removes the given powerup from the vector
-     * @param string the string value of the powerup to be removed
-     * @param bool isPlayer1 true if player1 false if player2
+     * @param value the string value of the powerup to be removed
+     * @param isPlayer1 true if player1 false if player2
      */
     
     void removePowerUp(std::string value, bool isPlayer1);
 
     /**
-     * Return  numeric equivalent of a letter column
+     * Return numeric equivalent of a letter column
      * @param c is the character letter
      * @return int equivalent (1-8)
      */
