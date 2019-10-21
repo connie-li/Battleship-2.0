@@ -312,6 +312,45 @@ void Executive::loadGame(int turn, string** player1_board, string** player2_boar
     m_ai=ai;
 }
 
+void Executive::placeAIShip(int n)
+{
+  //all vertical
+  bool taken[9];
+  for (int i = 0; i<9; i++)
+  {
+    taken[i] = false;
+  }
+  for (int i = 1; i<= n; i++)
+  {
+    int r = rand() %(8-i+1) + 1;
+    bool occupied = true;
+    int c = rand()%8+1;
+    if (i!= 1)
+    {
+      while (occupied)
+      {
+        if (taken[c])
+        {
+          c= rand()%8+1;
+        }
+        else
+        {
+          occupied = false;
+        }
+      }
+    }
+    string* arr = new string[i];
+    for (int j = 0; j<i; j++)
+    {
+      string coor = std::to_string(r+(j))+ std::to_string(c);
+      std::cout << coor  << " ";
+      arr[j] = coor;
+    }
+    taken[c] = true;
+    m_player2->addShip(i, arr);
+  }
+
+}
 
 void Executive::placeShip(int n, Admiral* player, bool ai)
 {
@@ -1184,7 +1223,8 @@ void Executive::setupGame(bool AI)
     placeShip(m_numShips, m_player1, false);
 
     //place AI ships
-    placeShip(m_numShips, m_player2, true);
+    placeAIShip(m_numShips);
+    //placeShip(m_numShips, m_player2, true);
     placePowerUp(true);
     std::cout << "Thanks for placing your ships. The AI's ships have been placed randomly. Time to start the game!\n";
   }
