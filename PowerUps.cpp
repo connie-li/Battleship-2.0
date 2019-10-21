@@ -110,6 +110,7 @@ void PowerUps::useRadar(std::string coord,bool isPlayer1){
         }
     }
     removePowerUp("R", isPlayer1);
+    
 }
 /**
  * Power up questions: do you want else if =='~' to make sure it is water before 
@@ -205,17 +206,17 @@ void PowerUps::addPowerUp(std::string value, bool isPlayer1){
 
 void PowerUps::removePowerUp(std::string value, bool isPlayer1){
     //this was a vector<string>* list = nullptr;
-    vector<string> list;
+    vector<string>* upsList;
     
     if(isPlayer1){
-        list = m_admir1Powerups;
+        upsList = &m_admir1Powerups;
     }
     else{
-        list = m_admir2Powerups;
+        upsList = &m_admir2Powerups;
     }
-    for(int i = 0;i<list.size();i++){
-        if(list.at(i) == value){
-            list.erase(list.begin() + i);
+    for(int i = 0;i<upsList->size();i++){
+        if(upsList->at(i) == value){
+            upsList->erase(upsList->begin() + i);
         }
     }
     
