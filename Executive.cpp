@@ -284,6 +284,8 @@ void Executive::readBoard()
   } 
 
   delete[] board;
+
+  m_powerups.setAdmirals(m_player1,m_player2);
 }
 
 
@@ -730,7 +732,7 @@ bool Executive::handleTurn(const int player, const bool AI)
   }
   else //no AI, p v p
   {
-    std::this_thread::sleep_for(m_interval);
+   // std::this_thread::sleep_for(m_interval);
     system("cls");
 
     if(player == 1)
@@ -1144,6 +1146,7 @@ void Executive::setupGame(bool AI)
     placePowerUp(false);
     std::this_thread::sleep_for(std::chrono::seconds(5));
   }
+  m_powerups.setAdmirals(m_player1,m_player2);
 }
 
 void Executive::clearConsole() const
