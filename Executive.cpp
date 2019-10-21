@@ -732,7 +732,7 @@ bool Executive::handleTurn(const int player, const bool AI)
   }
   else //no AI, p v p
   {
-    std::this_thread::sleep_for(m_interval);
+   // std::this_thread::sleep_for(m_interval);
     system("cls");
 
     if(player == 1)
