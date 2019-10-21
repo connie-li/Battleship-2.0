@@ -1,6 +1,6 @@
 objo := Executive.o Admiral.o Ship.o Grid.o PowerUps.o EasyAI.o MedAI.o HardAI.o
-# testo := Testing.o Test.o GridTest.o PowerUpsTest.o
-objo := $(objo) $(testo)
+testo := Testing.o Test.o GridTest.o PowerUpsTest.o
+# objo := $(objo) $(testo)
 objc := $(objo:.o=.cpp)
 objh := $(objo:.o=.h)
 testc := $(testo:.o=.cpp)
@@ -14,9 +14,6 @@ $(objo): $(objh) $(objc)
 
 main.o: main.cpp $(objh)
 	g++ $(flags) -c main.cpp
-
-clean:
-	del -f main.o $(objo) Battleship.exe
 
 //WINDOWS
 clean:
