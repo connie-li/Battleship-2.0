@@ -48,11 +48,19 @@ void Executive::saveGame(int turn, Admiral* player1, Admiral* player2, bool ai)
 
   writeBoard(board1, board2);
 
+  for(int i = 0; i < m_BOARD_SIZE; i++){
+    delete[] board1[i];
+    delete[] board2[i];
+  }
+  delete[] board1;
+  delete[] board2;
+  board1 = nullptr;
+  board2 = nullptr;
+  
   fileInfo.close();
 }
 
-void Executive::writeBoard(string** player1_board, string** player2_board)
-{
+void Executive::writeBoard(string** player1_board, string** player2_board){
   ofstream gameFile;
   gameFile.open("saved.txt", ios::app); 
 
@@ -61,15 +69,14 @@ void Executive::writeBoard(string** player1_board, string** player2_board)
   string* coordsPtr=nullptr; /* to store 1D sting array coords from getCoords of fleet*/
   int sizeShips=0; /* to store size of ship to iterate and store all coordinates*/
 
-  //write board information to a text file, for 2 players
+  // //write board information to a text file, for 2 players
 
-  //contents of saved_txt are numbered below
-  //1. m_numShips
+  // //contents of saved_txt are numbered below
+  // //1. m_numShips
   gameFile<<m_numShips;
   gameFile<<"\n\n";
 
-  for(int player = 1; player <= 2; player++)
-  {
+  for(int player = 1; player <= 2; player++){
       //if first player
       if(player==1)
       {
