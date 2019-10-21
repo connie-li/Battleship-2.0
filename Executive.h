@@ -239,7 +239,10 @@ class Executive
      */
     void clearConsole() const;
 
-
+    /**
+     * Place ships for AI
+     * @param n = int of num ships
+     */
     void placeAIShip(int n);
 };
 #endif
