@@ -884,11 +884,15 @@ string Executive::askForPowerUp(const int player)
       cout << "Your choice: ";
       cin >> choice;
       //check whether the choice is in the vector
-      it = find(playerPUs.begin(), playerPUs.end(), choice);
-      if(it != playerPUs.end())
+      if(choice == "T"||choice == "R" || choice == "U" || choice =="S" || choice== "N")
       {
         goodInput = true;
       }
+      // it = find(playerPUs.begin(), playerPUs.end(), choice);
+      // if(it != playerPUs.end())
+      // {
+      //   goodInput = true;
+      // }
   } while(!goodInput);
   return(choice);
 }
