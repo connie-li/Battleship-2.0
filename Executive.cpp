@@ -323,7 +323,6 @@ void Executive::placeAIShip(int n)
     }
     std::string r = std::to_string(x);
     std::string c = std::to_string(n);
-    cout << c << "-fdfds ";
     std::string* arr = new string[i];
     for (int j = 0; j< i; j++)
     {
