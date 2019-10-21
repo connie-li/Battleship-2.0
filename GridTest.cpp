@@ -48,7 +48,7 @@ bool GridTest::testRand(){
     try{
         cout<<"\t\tCompletely Rand Coord: ";
         temp = m_grid.randCoor(false);
-        if((stoi(temp.substr(0, 1)) < M_BOARD_SIZE && stoi(temp.substr(2)) < M_BOARD_SIZE) && (stoi(temp.substr(0, 1)) > 0 && stoi(temp.substr(2)) > 0)){
+        if((stoi(temp.substr(0, 1)) <= M_BOARD_SIZE && stoi(temp.substr(2)) <= M_BOARD_SIZE) && (stoi(temp.substr(0, 1)) > 0 && stoi(temp.substr(2)) > 0)){
             cout<< pass;
         }else{
             cout<< unkno;
@@ -60,8 +60,9 @@ bool GridTest::testRand(){
     try{
         cout<<"\t\tPartially Rand Coord: ";
         temp = m_grid.randCoor(true);
-        if(stoi(temp.substr(0, 1)) < M_BOARD_SIZE && stoi(temp.substr(2)) < M_BOARD_SIZE){
+        if((stoi(temp.substr(0, 1)) <= M_BOARD_SIZE && stoi(temp.substr(2)) <= M_BOARD_SIZE) && (stoi(temp.substr(0, 1)) > 0 && stoi(temp.substr(2)) > 0)){
             if(m_grid.getCoor(temp) != "~"){
+                cout<<m_grid.getCoor(temp);
                 cout<< fail;
             }else{
                 cout<< pass;
