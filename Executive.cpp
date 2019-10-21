@@ -793,8 +793,8 @@ bool Executive::handleTurn(const int player, const bool AI)
   else //no AI, p v p
   {
    // std::this_thread::sleep_for(m_interval);
-    system("cls");
-
+    clearConsole();
+    
     if(player == 1)
     {
       cout<<"\nDo you want to save and quit the game? Hit S/s to save and quit. Hit C/c to continue.\n";
