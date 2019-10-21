@@ -73,54 +73,54 @@ void MedAI::updateMiss()
 string MedAI::checkDirection()
 {
     string fire = opponentBoard->randCoor(true);
-        if (opponentBoard->getCoor(fire) == "2" || opponentBoard->getCoor(fire) == "3" ||  
-        opponentBoard->getCoor(fire) == "4" || opponentBoard->getCoor(fire) == "5")
+    if (opponentBoard->getCoor(fire) == "2" || opponentBoard->getCoor(fire) == "3" ||  opponentBoard->getCoor(fire) == "4" || opponentBoard->getCoor(fire) == "5")
+    {
+        counter = 1;
+        hit = true;
+        prevShot = fire;
+        string val = opponentBoard->getCoor(fire);
+        int r = stoi(prevShot.substr(0,1));
+        int c = stoi(prevShot.substr(1,2));
+        if (c!=8)
         {
-            counter = 1;
-            hit = true;
-            prevShot = fire;
-            string val = opponentBoard->getCoor(fire);
-            int r = stoi(prevShot.substr(0,1));
-            int c = stoi(prevShot.substr(1,2));
-            if (c!=8)
+            string temp = to_string(r) + ":" + to_string(c+1);
+            if (opponentBoard->getCoor(temp) == val)
             {
-                string temp = to_string(r) + ":" + to_string(c+1);
-                if (opponentBoard->getCoor(temp) == val)
-                {
-                    direction = 1;
-                }
+                direction = 1;
             }
-            if (c!=0)
-            {
-                string temp = to_string(r) + ":" + to_string(c-1);
-                if (opponentBoard->getCoor(temp) == val)
-                {
-                    direction = 3;
-                }
-            }
-            if (r!=8)
-            {
-                string temp = to_string(r+1) + ":" + to_string(c);
-                if (opponentBoard->getCoor(temp) == val)
-                {
-                    direction = 4;
-                }
-            }
-            if (r!=0)
-            {
-                string temp = to_string(r-1) + ":" + to_string(c);
-                if (opponentBoard->getCoor(temp) == val)
-                {
-                    direction = 2;
-                }
-            }
-            
         }
-        else if (opponentBoard->getCoor(fire) == "1")
+        if (c!=0)
         {
-            hit = false;
-            prevShipAfloat -= 1;
+            string temp = to_string(r) + ":" + to_string(c-1);
+            if (opponentBoard->getCoor(temp) == val)
+            {
+                direction = 3;
+            }
         }
+        if (r!=8)
+        {
+            string temp = to_string(r+1) + ":" + to_string(c);
+            if (opponentBoard->getCoor(temp) == val)
+            {
+                direction = 4;
+            }
+        }
+        if (r!=0)
+        {
+            string temp = to_string(r-1) + ":" + to_string(c);
+            if (opponentBoard->getCoor(temp) == val)
+            {
+                direction = 2;
+            }
+        }
+        
+    }
+    else if (opponentBoard->getCoor(fire) == "1")
+    {
+        hit = false;
+        prevShipAfloat -= 1;
+    }
+    return(fire);
 }
 
 string MedAI::fire()

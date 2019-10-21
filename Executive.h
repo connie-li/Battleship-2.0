@@ -233,5 +233,10 @@ class Executive
      * @param isPlayer1 is a bool true for player 1, false for player2
      */
     void receivedPowerUp(string turnResult, bool isPlayer1);
+
+    /** Clears the console by printing newlines.
+     * @post prints 100 newlines to the console.
+     */
+    void clearConsole() const;
 };
 #endif
