@@ -316,12 +316,12 @@ void Executive::placeAIShip(int n)
 {
   for (int i = 1; i< n; i++)
   {
-    int r = 1;
+    int x = 1;
     if (i%2 ==0)
     {
-      r+= rand()%4;
+      x+= rand()%4;
     }
-    std::string r = std::to_string(r);
+    std::string r = std::to_string(x);
     std::string c = std::to_string(n);
     cout << c << "-fdfds ";
     std::string* arr = new string[i];
