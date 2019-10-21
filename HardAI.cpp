@@ -26,7 +26,7 @@ string HardAI::fire()
                 if (c!= "X" )
                 {
                     foundCoor = true;
-                    fire = c;
+                    fire = coor[j];
                 }
             }
         }
