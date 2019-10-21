@@ -1,0 +1,16 @@
+~No other works were cited besides those listed below and the code cloned from the "Coding Coders Who Code Things" Repo.
+All other work was created by team return(AWESOME)
+
+
+
+Works Cited
+
+cplusplus. Cplusplus.com, 2011, www.cplusplus.com/reference/iostream/. Library used for printing to the terminal and getting user input. (iostream)
+
+cppreference. “Date and Time Utilities.” Cppreference.com, 7 Oct. 2017, en.cppreference.com/w/cpp/chrono. Used when pausing program in between turns. (chrono)
+
+cppreference. “Std::Thread.” Cppreference.com, 15 June 2018, en.cppreference.com/w/cpp/thread/thread. Used for pausing program in between turns. (thread)
+
+Gillespie, Patrick. “Text to ASCII Art Generator.” Text to ASCII Art Generator (TAAG), patorjk.com/software/taag/. In exec.cpp Line 33: ASCII conversion done with online generator (Battleship Graphic)
+
+HadritecH. “Boats.” Asciiworld.com : Boats, www.asciiworld.com/-Boats-.html. In exec.cpp Line 124: ASCII conversion done with online generator (Boat Graphic)
