@@ -342,7 +342,9 @@ void Executive::placeAIShip(int n)
     string* arr = new string[i];
     for (int j = 0; j<i; j++)
     {
-      string coor = std::to_string(r+(j))+ std::to_string(c);
+      string row = std::to_string(r+(j));
+      string col = std::to_string(c);
+      string coor = row+col;
       std::cout << coor  << " ";
       arr[j] = coor;
     }
