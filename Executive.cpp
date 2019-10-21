@@ -312,6 +312,27 @@ void Executive::loadGame(int turn, string** player1_board, string** player2_boar
     m_ai=ai;
 }
 
+void Executive::placeAIShip(int n)
+{
+  for (int i = 1; i< n; i++)
+  {
+    int x = 1;
+    if (i%2 ==0)
+    {
+      x+= rand()%4;
+    }
+    std::string r = std::to_string(x);
+    std::string c = std::to_string(n);
+    std::string* arr = new string[i];
+    for (int j = 0; j< i; j++)
+    {
+      std::string coor = r+":"+c;
+      arr[j] = coor;
+    }
+    m_player2->addShip(i, arr);
+  }
+
+}
 
 void Executive::placeShip(int n, Admiral* player, bool ai)
 {
@@ -901,19 +922,19 @@ void Executive::placePowerUp(bool ai)
    Grid* p1 = m_player1->getBoard();
    Grid* p2 = m_player2->getBoard();
    string coor = "";
+  //  coor = p2->randCoor(false);
+  //  p2->setCoor("1:1", "T");
    coor = p2->randCoor(false);
-   p2->setCoor("1:1", "T");
+   p2->setCoor(coor, "U");
    coor = p2->randCoor(false);
-   p2->setCoor("1:2", "U");
+   p2->setCoor(coor, "S");
    coor = p2->randCoor(false);
-   p2->setCoor("1:3", "S");
-   coor = p2->randCoor(false);
-   p2->setCoor("1:4", "R");
+   p2->setCoor(coor, "R");
    coor = p2->randCoor(false);
    if(!ai)
    {
-      p1->setCoor(coor, "T");
-      coor = p1->randCoor(false);
+      // p1->setCoor(coor, "T");
+      // coor = p1->randCoor(false);
       p1->setCoor(coor, "U");
       coor = p1->randCoor(false);
       p1->setCoor(coor, "S");
@@ -1121,7 +1142,7 @@ void Executive::printGameOver(const int player) const
 
 void Executive::printMaps(const int player) const
 {
-  system("cls");
+  clearConsole();
   if(player == 1)
   {
     cout << "Your firing map:\n";
@@ -1184,7 +1205,8 @@ void Executive::setupGame(bool AI)
     placeShip(m_numShips, m_player1, false);
 
     //place AI ships
-    placeShip(m_numShips, m_player2, true);
+    placeAIShip(m_numShips);
+    //placeShip(m_numShips, m_player2, true);
     placePowerUp(true);
     std::cout << "Thanks for placing your ships. The AI's ships have been placed randomly. Time to start the game!\n";
   }
@@ -1199,7 +1221,7 @@ void Executive::setupGame(bool AI)
     std::cout << "Thanks for placing your ships, player 1! \nNow it's player 2's turn.";
     //std::this_thread::sleep_for(std::chrono::seconds(5));
 
-    system("cls");
+    clearConsole();
     std::cout<< "Player 2: It's time to place your ships.\n\n";
     placeShip(m_numShips, m_player2, false);
     std::cout << "Thanks for placing your ships. Time to start the game!";

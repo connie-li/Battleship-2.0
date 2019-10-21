@@ -238,5 +238,8 @@ class Executive
      * @post prints 100 newlines to the console.
      */
     void clearConsole() const;
+
+
+    void placeAIShip(int n);
 };
 #endif
