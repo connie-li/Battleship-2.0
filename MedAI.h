@@ -38,14 +38,12 @@ class MedAI : public Admiral
 
     /**
      * Empty destructor for EasyAI. Opponent board gets deleted by the player
-     * @param none
      */
     ~MedAI();
 
     /**
      * Returns coordinate to fire in exec based on medium AI
      * Fires randomly until a hit, then fires orthogonally
-     * @param none
      * @return std::string of the coor in form 1:1
      */
     string fire();
@@ -53,7 +51,6 @@ class MedAI : public Admiral
     /**
      * Helper function that creates a random coordinate to fire on
      * Sets the direction orientation for the ship if it is a hit
-     * @param none
      */
     string checkDirection();
 
@@ -62,7 +59,6 @@ class MedAI : public Admiral
      * Function to be called/used in Exec when there is a miss registered after a hit
      * i.e. a ship was found, and the AI then guessed got a miss (wrong direction)
      * This is to switch the direction of shots if an initial hit was in the middle of a ship
-     * @param none
      * @post reverses direction of firing
      */
     void updateMiss();

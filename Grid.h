@@ -71,6 +71,7 @@ public:
     /**
      * Reads in an array of ship coordinates and sets those coordinates to the ship value
      * @param arr: An array of string coordinates in "#:#" format
+     * @param length the length of the array of coordinates
      */
     void readShip(const string* arr, const int length);
 

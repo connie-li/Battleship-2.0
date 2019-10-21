@@ -34,7 +34,6 @@ class EasyAI : public Admiral
 
     /**
      * Returns a random coordinate for usage in exec to fire at a random coordinate
-     * @param none
      * @return std::string of the coordinate in the form 1:1
      */
     string fire();
@@ -53,7 +52,6 @@ class EasyAI : public Admiral
 
     /**
      * Empty destructor for EasyAI. Opponent board gets deleted by the player
-     * @param none
      */
     ~EasyAI();
 };
