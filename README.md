@@ -1,0 +1,1 @@
+Please use the **makefileTemplate.txt** to create a makefile for Windows (using MinGW) or Unix.  

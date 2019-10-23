@@ -1,0 +1,21 @@
+objo := Executive.o Admiral.o Ship.o Grid.o PowerUps.o EasyAI.o MedAI.o HardAI.o
+objc := $(objo:.o=.cpp)
+objh := $(objo:.o=.h)
+flags := -std=c++11 -g -Wall
+
+all: main.o $(objo)
+	g++ $(flags) main.o $(objo) -o Battleship 
+
+$(objo): $(objh) $(objc)
+	g++ $(flags) -c $(objc)
+
+main.o: main.cpp $(objh)
+	g++ $(flags) -c main.cpp
+
+//WINDOWS
+clean:
+	del -f main.o $(objo) Battleship.exe
+
+//UNIX
+clean:
+	rm -f main.o $(objo) Battleship
